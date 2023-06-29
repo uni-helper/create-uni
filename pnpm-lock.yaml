@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -20,6 +20,9 @@ importers:
       '@types/node':
         specifier: ^18.16.16
         version: 18.16.16
+      '@types/prompts':
+        specifier: ^2.4.4
+        version: 2.4.4
       bumpp:
         specifier: ^9.1.0
         version: 9.1.0
@@ -29,12 +32,18 @@ importers:
       esno:
         specifier: ^0.16.3
         version: 0.16.3
+      kolorist:
+        specifier: ^1.8.0
+        version: 1.8.0
       lint-staged:
         specifier: ^13.2.2
         version: 13.2.2
       pnpm:
         specifier: ^8.6.0
         version: 8.6.0
+      prompts:
+        specifier: ^2.4.2
+        version: 2.4.2
       rimraf:
         specifier: ^5.0.1
         version: 5.0.1
@@ -873,6 +882,13 @@ packages:
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
+    dev: true
+
+  /@types/prompts@2.4.4:
+    resolution: {integrity: sha512-p5N9uoTH76lLvSAaYSZtBCdEXzpOOufsRjnhjVSrZGXikVGHX9+cc9ERtHRV4hvBKHyZb1bg4K+56Bd2TqUn4A==}
+    dependencies:
+      '@types/node': 18.16.16
+      kleur: 3.0.3
     dev: true
 
   /@types/resolve@1.20.2:
@@ -3034,6 +3050,10 @@ packages:
   /kleur@3.0.3:
     resolution: {integrity: sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==}
     engines: {node: '>=6'}
+    dev: true
+
+  /kolorist@1.8.0:
+    resolution: {integrity: sha512-Y+60/zizpJ3HRH8DCss+q95yr6145JXZo46OTpFvDZWLfRCE4qChOyk1b26nMaNpfHHgxagk9dXT5OP0Tfe+dQ==}
     dev: true
 
   /levn@0.4.1:
