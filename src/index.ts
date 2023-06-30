@@ -2,9 +2,7 @@
 
 import { join } from 'node:path'
 import { existsSync, mkdirSync, rmdirSync, unlinkSync } from 'node:fs'
-
-import { bold } from 'kolorist'
-import { ora, printBanner } from './utils'
+import { dowloadTemplate, printBanner } from './utils'
 import { question } from './question'
 import type { BaseTemplateList } from './question/template/type'
 import { postOrderDirectoryTraverse } from './utils/directoryTraverse'
@@ -56,18 +54,3 @@ async function init() {
 }
 
 init()
-
-async function dowloadTemplate(url: BaseTemplateList['value']['url'], root: string) {
-  const loading = ora(`${bold('正在下载模板...')}`).start()
-  const { cloneRepo, getRepoUrl } = await import('./utils/')
-  const repoUrlList = getRepoUrl(url)
-  try {
-    await cloneRepo(repoUrlList, root)
-  }
-  catch {
-    loading.fail(`${bold('模板下载失败')}`)
-    process.exit(1)
-  }
-
-  loading.succeed(`${bold('模板下载完成')}`)
-}

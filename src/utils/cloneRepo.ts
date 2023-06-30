@@ -1,36 +1,63 @@
 import { exec } from 'node:child_process'
 import { promises as fs } from 'node:fs'
 import { join } from 'node:path'
+import { bold } from 'kolorist'
 import type { BaseTemplateList } from '../question/template/type'
+import { ora } from './loading'
 
 async function removeGitFolder(localPath: string): Promise<void> {
   const gitFolderPath = join(localPath, '.git')
   await fs.rm(gitFolderPath, { recursive: true, force: true })
 }
 
-export function cloneRepo(gitUrl: string, localPath: string): Promise<void> {
-  return new Promise((resolve, reject) => {
-    exec(`git clone ${gitUrl} ${localPath}`, async (error) => {
-      if (error) {
-        console.error(`exec error: ${error}`)
-        reject(error)
-        return
-      }
+async function cloneRepo(gitUrls: string[], localPath: string): Promise<void> {
+  let lastError = null
 
-      try {
-        await removeGitFolder(localPath)
-        resolve()
-      }
-      catch (error) {
-        console.error('Failed to remove .git folder: ', error)
-        reject(error)
-      }
-    })
-  })
+  for (const gitUrl of gitUrls) {
+    try {
+      await new Promise<void>((resolve, reject) => {
+        exec(`git clone ${gitUrl} ${localPath}`, async (error) => {
+          if (error) {
+            reject(error)
+            return
+          }
+
+          try {
+            await removeGitFolder(localPath)
+            resolve()
+          }
+          catch (error) {
+            reject(error)
+          }
+        })
+      })
+      return
+    }
+    catch (error) {
+      lastError = error
+    }
+  }
+
+  if (lastError)
+    throw new Error('All URLs failed')
 }
 
-export function getRepoUrl(url: BaseTemplateList['value']['url']): string {
+function getRepoUrlList(url: BaseTemplateList['value']['url']) {
   const { github, gitee } = url
-  // 优先使用 gitee，没有则使用 github的镜像地址githubfast.com
-  return gitee! ?? github?.replace('github.com', 'githubfast.com')
+  // 返回一个数组优先使用 gitee，没有则使用 github的镜像地址githubfast.com，最后使用 github
+  return [gitee, github?.replace('github.com', 'githubfast.com'), github].filter(Boolean) as string[]
+}
+
+export async function dowloadTemplate(url: BaseTemplateList['value']['url'], root: string) {
+  const loading = ora(`${bold('正在下载模板...')}`).start()
+  const repoUrlList = getRepoUrlList(url)
+  try {
+    await cloneRepo(repoUrlList, root)
+  }
+  catch {
+    loading.fail(`${bold('模板下载失败')}`)
+    process.exit(1)
+  }
+
+  loading.succeed(`${bold('模板下载完成')}`)
 }
