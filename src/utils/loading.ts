@@ -11,6 +11,10 @@ class Ora {
     this.interval = null
   }
 
+  setFinishMessage(newMessage: string): string {
+    return newMessage + ' '.repeat(this.message.length - newMessage.length)
+  }
+
   start(): Ora {
     let i = 0
     this.interval = setInterval(() => {
@@ -24,14 +28,14 @@ class Ora {
     if (!this.interval)
       return
     clearInterval(this.interval)
-    process.stdout.write('\r' + `${red('✖')} ${message}\n`)
+    process.stdout.write('\r' + `${red('✖')} ${this.setFinishMessage(message)}\n`)
   }
 
   succeed(message: string): void {
     if (!this.interval)
       return
     clearInterval(this.interval)
-    process.stdout.write('\r' + `${green('✔')} ${message}\n`)
+    process.stdout.write('\r' + `${green('✔')} ${this.setFinishMessage(message)}\n`)
   }
 }
 

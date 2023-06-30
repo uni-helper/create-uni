@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 export function printBanner() {
-  const text = 'Uni-creator - 帮你快速创建 uni-app 项目'
+  const text = 'Uni-creator - 快速创建 uni-app 项目'
   let output = ''
 
   const startColor = { r: 0x3B, g: 0xD1, b: 0x91 }

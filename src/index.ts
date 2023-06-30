@@ -51,20 +51,23 @@ async function init() {
   else if (!existsSync(root))
     mkdirSync(root)
 
-  if (result.templateType!.type !== 'custom') {
-    const loading = ora(`${bold('正在下载模板...')}`).start()
-    const { cloneRepo, getRepoUrl } = await import('./utils/')
-    const repoUrl = getRepoUrl(result.templateType!.url)
-    try {
-      await cloneRepo(repoUrl, root)
-    }
-    catch {
-      loading.fail(`${bold('模板下载失败')}`)
-      process.exit(1)
-    }
-
-    loading.succeed(`${bold('模板下载完成')}`)
-  }
+  if (result.templateType!.type !== 'custom')
+    await dowloadTemplate(result.templateType!.url, root)
 }
 
 init()
+
+async function dowloadTemplate(url: BaseTemplateList['value']['url'], root: string) {
+  const loading = ora(`${bold('正在下载模板...')}`).start()
+  const { cloneRepo, getRepoUrl } = await import('./utils/')
+  const repoUrlList = getRepoUrl(url)
+  try {
+    await cloneRepo(repoUrlList, root)
+  }
+  catch {
+    loading.fail(`${bold('模板下载失败')}`)
+    process.exit(1)
+  }
+
+  loading.succeed(`${bold('模板下载完成')}`)
+}
