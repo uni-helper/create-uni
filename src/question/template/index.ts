@@ -9,7 +9,9 @@ export default (): PromptObject<string> => {
     choices: [
       {
         title: '自定义模板',
-        value: 'custom',
+        value: {
+          type: 'custom',
+        },
       },
       ...templateList,
     ],

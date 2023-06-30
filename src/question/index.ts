@@ -17,7 +17,7 @@ export async function question() {
 
   let answers = await prompts(questions, { onCancel })
 
-  if (answers.templateType === 'custom') {
+  if (answers.templateType.type === 'custom') {
     const modelList = await prompts(model(), { onCancel })
     answers = {
       ...answers,

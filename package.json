@@ -40,7 +40,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
+    "build": "node scripts/build.js",
     "dev": "unbuild --stub",
     "cuni": "node dist/index.cjs",
     "lint": "eslint .",
@@ -57,6 +57,7 @@
     "@types/node": "^18.16.16",
     "@types/prompts": "^2.4.4",
     "bumpp": "^9.1.0",
+    "esbuild": "^0.18.10",
     "eslint": "^8.41.0",
     "esno": "^0.16.3",
     "kolorist": "^1.8.0",

@@ -6,9 +6,9 @@ export default (): PromptObject<string>[] => {
   let targetDir = 'uni-app'
   return [
     {
-      name: 'ProjectName',
+      name: 'projectName',
       type: 'text',
-      message: 'Project name:',
+      message: '项目名称:',
       initial: targetDir,
       onState: state => (targetDir = String(state.value).trim() || targetDir),
     },
@@ -17,14 +17,14 @@ export default (): PromptObject<string>[] => {
       type: () => (canSkipEmptying(targetDir) ? null : 'confirm'),
       message: () => {
         const dirForPrompt
-          = targetDir === '.' ? 'Current directory' : `Target directory "${targetDir}"`
+          = targetDir === '.' ? '当前文件' : `目标文件"${targetDir}"`
 
-        return `${dirForPrompt} is not empty. Remove existing files and continue?`
+        return `${dirForPrompt}不是空的。要删除现有文件并继续吗？`
       },
     },
     {
       name: 'overwriteChecker',
-      type: (prev, values) => {
+      type: (_prev, values) => {
         if (values.shouldOverwrite === false)
           throw new Error(`${red('✖')} Operation cancelled`)
 
