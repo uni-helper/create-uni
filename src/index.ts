@@ -2,9 +2,9 @@
 
 import { join } from 'node:path'
 import { existsSync, mkdirSync, rmdirSync, unlinkSync } from 'node:fs'
-import ora from 'ora'
+
 import { bold } from 'kolorist'
-import { printBanner } from './utils'
+import { ora, printBanner } from './utils'
 import { question } from './question'
 import type { BaseTemplateList } from './question/template/type'
 import { postOrderDirectoryTraverse } from './utils/directoryTraverse'
