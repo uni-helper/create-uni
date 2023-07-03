@@ -5,7 +5,7 @@ export default (): PromptObject<string>[] => {
     {
       name: 'needsTypeScript',
       type: 'toggle',
-      message: 'Add TypeScript?',
+      message: '添加TypeScript?',
       initial: false,
       active: 'Yes',
       inactive: 'No',
@@ -13,7 +13,7 @@ export default (): PromptObject<string>[] => {
     {
       name: 'needsJsx',
       type: 'toggle',
-      message: 'Add JSX Support?',
+      message: '添加JSX?(不支持小程序平台)',
       initial: false,
       active: 'Yes',
       inactive: 'No',
@@ -21,7 +21,7 @@ export default (): PromptObject<string>[] => {
     {
       name: 'needsPinia',
       type: 'toggle',
-      message: 'Add Pinia for state management?',
+      message: '使用Pinia作为数据管理?',
       initial: false,
       active: 'Yes',
       inactive: 'No',
@@ -29,7 +29,7 @@ export default (): PromptObject<string>[] => {
     {
       name: 'needsVitest',
       type: 'toggle',
-      message: 'Add Vitest for Unit Testing?',
+      message: '使用vitest作为单元测试工具?',
       initial: false,
       active: 'Yes',
       inactive: 'No',
@@ -37,7 +37,7 @@ export default (): PromptObject<string>[] => {
     {
       name: 'needsEslint',
       type: 'toggle',
-      message: 'Add ESLint for code quality?',
+      message: '使用ESlint作代码检测?',
       initial: false,
       active: 'Yes',
       inactive: 'No',
