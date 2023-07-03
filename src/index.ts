@@ -1,7 +1,15 @@
 #!/usr/bin/env node
 
 import { basename, dirname, join, resolve } from 'node:path'
-import { existsSync, mkdirSync, readFileSync, renameSync, rmdirSync, unlinkSync, writeFileSync } from 'node:fs'
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  renameSync,
+  rmdirSync,
+  unlinkSync,
+  writeFileSync,
+} from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import ejs from 'ejs'
 import {
@@ -9,6 +17,7 @@ import {
   dowloadTemplate,
   preOrderDirectoryTraverse,
   printBanner,
+  printFinish,
   renderTemplate,
 } from './utils'
 import { question } from './question'
@@ -57,6 +66,12 @@ async function init() {
   else if (!existsSync(root))
     mkdirSync(root)
 
+  if (result.templateType!.type !== 'custom') {
+    await dowloadTemplate(result.templateType!.url, root)
+    printFinish(root, cwd)
+    return
+  }
+
   if (result.projectName) {
     const pkg = {
       name: result.projectName.toLocaleLowerCase().replace(/\s/g, '-'),
@@ -66,11 +81,6 @@ async function init() {
       resolve(root, 'package.json'),
       JSON.stringify(pkg, null, 2),
     )
-  }
-
-  if (result.templateType!.type !== 'custom') {
-    await dowloadTemplate(result.templateType!.url, root)
-    return
   }
 
   const __filenameNew = fileURLToPath(import.meta.url)
@@ -162,6 +172,8 @@ async function init() {
       },
     )
   }
+
+  printFinish(root, cwd)
 }
 
 try {

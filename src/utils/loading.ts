@@ -11,7 +11,7 @@ class Ora {
     this.interval = null
   }
 
-  setFinishMessage(newMessage: string): string {
+  private setFinishMessage(newMessage: string): string {
     return newMessage + ' '.repeat(this.message.length - newMessage.length)
   }
 
