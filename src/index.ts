@@ -57,6 +57,17 @@ async function init() {
   else if (!existsSync(root))
     mkdirSync(root)
 
+  if (result.projectName) {
+    const pkg = {
+      name: result.projectName.toLocaleLowerCase().replace(/\s/g, '-'),
+      version: '0.0.0',
+    }
+    writeFileSync(
+      resolve(root, 'package.json'),
+      JSON.stringify(pkg, null, 2),
+    )
+  }
+
   if (result.templateType!.type !== 'custom') {
     await dowloadTemplate(result.templateType!.url, root)
     return
@@ -73,6 +84,22 @@ async function init() {
   }
 
   render('base')
+
+  if (result.needsJsx)
+    render('config/jsx')
+
+  if (result.needsPinia)
+    render('config/pinia')
+  if (result.needsVitest)
+    render('config/vitest')
+
+  if (result.needsTypeScript) {
+    render('config/typescript')
+    render('tsconfig/base')
+
+    if (result.needsVitest)
+      render('tsconfig/vitest')
+  }
 
   const dataStore: Record<string, any> = {}
   // Process callbacks
@@ -137,4 +164,9 @@ async function init() {
   }
 }
 
-init()
+try {
+  await init()
+}
+catch {
+  process.exit(1)
+}

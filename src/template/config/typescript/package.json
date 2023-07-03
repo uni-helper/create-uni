@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false"
+  },
+  "devDependencies": {
+    "@dcloudio/types": "^3.3.3",
+    "@types/node": "^18.16.17",
+    "typescript": "~5.0.4",
+    "vue-tsc": "^1.6.5"
+  }
+}
