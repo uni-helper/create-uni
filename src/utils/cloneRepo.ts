@@ -4,6 +4,7 @@ import { join } from 'node:path'
 import { bold } from 'kolorist'
 import type { BaseTemplateList } from '../question/template/type'
 import { ora } from './loading'
+import { replacePackageName } from './setPackageName'
 
 async function removeGitFolder(localPath: string): Promise<void> {
   const gitFolderPath = join(localPath, '.git')
@@ -48,9 +49,9 @@ function getRepoUrlList(url: BaseTemplateList['value']['url']) {
   return [gitee, github?.replace('github.com', 'githubfast.com'), github].filter(Boolean) as string[]
 }
 
-export async function dowloadTemplate(url: BaseTemplateList['value']['url'], root: string) {
+export async function dowloadTemplate(data: BaseTemplateList['value'], name: string, root: string) {
   const loading = ora(`${bold('正在下载模板...')}`).start()
-  const repoUrlList = getRepoUrlList(url)
+  const repoUrlList = getRepoUrlList(data.url)
   try {
     await cloneRepo(repoUrlList, root)
   }
@@ -59,5 +60,8 @@ export async function dowloadTemplate(url: BaseTemplateList['value']['url'], roo
     process.exit(1)
   }
 
+  replacePackageName(root, name)
+
   loading.succeed(`${bold('模板下载完成')}`)
+  data.callBack?.(root)
 }

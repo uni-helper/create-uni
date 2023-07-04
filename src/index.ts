@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { basename, dirname, join, resolve } from 'node:path'
+import { basename, join, resolve } from 'node:path'
 import {
   existsSync,
   mkdirSync,
@@ -10,7 +10,6 @@ import {
   unlinkSync,
   writeFileSync,
 } from 'node:fs'
-import { fileURLToPath } from 'node:url'
 import ejs from 'ejs'
 import {
   FILES_TO_FILTER,
@@ -19,6 +18,7 @@ import {
   printBanner,
   printFinish,
   renderTemplate,
+  setPackageName,
 } from './utils'
 import { question } from './question'
 import type { BaseTemplateList } from './question/template/type'
@@ -67,25 +67,15 @@ async function init() {
     mkdirSync(root)
 
   if (result.templateType!.type !== 'custom') {
-    await dowloadTemplate(result.templateType!.url, root)
+    const { templateType, projectName } = result
+    await dowloadTemplate(templateType!, projectName!, root)
     printFinish(root, cwd)
     return
   }
 
-  if (result.projectName) {
-    const pkg = {
-      name: result.projectName.toLocaleLowerCase().replace(/\s/g, '-'),
-      version: '0.0.0',
-    }
-    writeFileSync(
-      resolve(root, 'package.json'),
-      JSON.stringify(pkg, null, 2),
-    )
-  }
+  setPackageName(result.projectName!, root)
 
-  const __filenameNew = fileURLToPath(import.meta.url)
-  const __dirnameNew = dirname(__filenameNew)
-  const templateRoot = resolve(__dirnameNew, 'template')
+  const templateRoot = resolve(__dirname, 'template')
 
   const callbacks: Function[] = []
   function render(templateName: string) {
@@ -98,8 +88,14 @@ async function init() {
   if (result.needsJsx)
     render('config/jsx')
 
-  if (result.needsPinia)
+  if (result.needsPinia) {
     render('config/pinia')
+    render('entry/pinia')
+  }
+  else {
+    render('entry/default')
+  }
+
   if (result.needsVitest)
     render('config/vitest')
 
@@ -110,6 +106,9 @@ async function init() {
     if (result.needsVitest)
       render('tsconfig/vitest')
   }
+
+  const codeTemplate = (result.needsTypeScript ? 'typescript-default' : 'default')
+  render(`code/${codeTemplate}`)
 
   const dataStore: Record<string, any> = {}
   // Process callbacks
@@ -176,9 +175,6 @@ async function init() {
   printFinish(root, cwd)
 }
 
-try {
-  await init()
-}
-catch {
-  process.exit(1)
-}
+init().catch((e) => {
+  console.error(e)
+})
