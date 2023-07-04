@@ -99,13 +99,11 @@ async function init() {
   if (result.needsVitest)
     render('config/vitest')
 
-  if (result.needsTypeScript) {
+  if (result.needsTypeScript)
     render('config/typescript')
-    render('tsconfig/base')
 
-    if (result.needsVitest)
-      render('tsconfig/vitest')
-  }
+  // if (result.needsVitest)
+  //   render('tsconfig/vitest')
 
   const codeTemplate = (result.needsTypeScript ? 'typescript-default' : 'default')
   render(`code/${codeTemplate}`)
