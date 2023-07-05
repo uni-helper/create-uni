@@ -26,21 +26,21 @@ export default (): PromptObject<string>[] => {
       active: 'Yes',
       inactive: 'No',
     },
-    {
-      name: 'needsVitest',
-      type: 'toggle',
-      message: '使用vitest作为单元测试工具?',
-      initial: false,
-      active: 'Yes',
-      inactive: 'No',
-    },
-    {
-      name: 'needsEslint',
-      type: 'toggle',
-      message: '使用ESlint作代码检测?',
-      initial: false,
-      active: 'Yes',
-      inactive: 'No',
-    },
+    // {
+    //   name: 'needsVitest',
+    //   type: 'toggle',
+    //   message: '使用vitest作为单元测试工具?',
+    //   initial: false,
+    //   active: 'Yes',
+    //   inactive: 'No',
+    // },
+    // {
+    //   name: 'needsEslint',
+    //   type: 'toggle',
+    //   message: '使用ESlint作代码检测?',
+    //   initial: false,
+    //   active: 'Yes',
+    //   inactive: 'No',
+    // },
   ]
 }

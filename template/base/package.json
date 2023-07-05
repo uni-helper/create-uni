@@ -60,8 +60,6 @@
     "@dcloudio/uni-cli-shared": "3.0.0-alpha-3070720230316001",
     "@dcloudio/uni-stacktracey": "3.0.0-alpha-3070720230316001",
     "@dcloudio/vite-plugin-uni": "3.0.0-alpha-3070720230316001",
-    "@uni-helper/uni-env": "^0.0.3",
-    "@uni-helper/volar-service-uni-pages": "^0.2.2",
     "sass": "1.63.6",
     "vite": " 4.3.9"
   }

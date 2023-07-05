@@ -48,6 +48,8 @@ async function init() {
 
   const cwd = process.cwd()
   const root = join(cwd, result.projectName!)
+  const userAgent = process.env.npm_config_user_agent ?? ''
+  const packageManager = /pnpm/.test(userAgent) ? 'pnpm' : /yarn/.test(userAgent) ? 'yarn' : 'npm'
 
   function emptyDir(dir: string) {
     if (!existsSync(dir))
@@ -69,7 +71,7 @@ async function init() {
   if (result.templateType!.type !== 'custom') {
     const { templateType, projectName } = result
     await dowloadTemplate(templateType!, projectName!, root)
-    printFinish(root, cwd)
+    printFinish(root, cwd, packageManager)
     return
   }
 
@@ -85,6 +87,9 @@ async function init() {
 
   render('base')
 
+  if (packageManager === 'pnpm')
+    render('pnpm')
+
   if (result.needsJsx)
     render('config/jsx')
 
@@ -96,8 +101,8 @@ async function init() {
     render('entry/default')
   }
 
-  if (result.needsVitest)
-    render('config/vitest')
+  // if (result.needsVitest)
+  //   render('config/vitest')
 
   if (result.needsTypeScript)
     render('config/typescript')
@@ -170,7 +175,7 @@ async function init() {
     )
   }
 
-  printFinish(root, cwd)
+  printFinish(root, cwd, packageManager)
 }
 
 init().catch((e) => {

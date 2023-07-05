@@ -55,7 +55,7 @@ export function renderTemplate(src: string, dest: string, callbacks: Function[])
     dest = path.resolve(path.dirname(dest), filename.replace(/^_/, '.'))
   }
 
-  if (filename === '_gitignore' && fs.existsSync(dest)) {
+  if ((filename === '_gitignore' || filename === '_npmrc') && fs.existsSync(dest)) {
     // append to existing .gitignore
     const existing = fs.readFileSync(dest, 'utf8')
     const newGitignore = fs.readFileSync(src, 'utf8')

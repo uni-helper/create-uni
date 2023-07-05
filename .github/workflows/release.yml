@@ -31,9 +31,8 @@ jobs:
 
       - name: Build
         run: nr build
-    
+
       - name: Publish to NPM
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-
