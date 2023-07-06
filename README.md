@@ -7,7 +7,7 @@
     <a href="https://www.npmjs.com/package/create-uni"><img src="https://img.shields.io/npm/v/create-uni?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a>
 </p>
 
-# 使用
+# 📦 使用
 
 ```shell
 # npm
@@ -20,11 +20,11 @@
     pnpm create uni
 ```
 
-<img src=".github/image/demo.png">
-
 ## 📖 介绍
 
-`create-uni` 是一个用于快速创建 uni-app 项目的脚手架工具，它可以帮助你快速创建一个基于vite的`uni-app`项目，同时提供了一些模板供你选择。
+`create-uni` 是一个用于快速创建 uni-app 项目的轻量脚手架工具，它可以帮助你快速创建一个基于`vite`和`vue3`的`uni-app`项目，同时提供了一些模板供你选择。
+
+<img src=".github/image/demo.png">
 
 ## 🤝 参与贡献
 

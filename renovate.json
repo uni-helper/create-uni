@@ -8,5 +8,5 @@
   ],
   "rangeStrategy": "bump",
   "labels": ["dependencies"],
-  "ignoreDeps": ["esbuild", "typescript"]
+  "ignoreDeps": ["esbuild", "typescript", "pinia"]
 }

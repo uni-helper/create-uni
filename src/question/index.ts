@@ -1,9 +1,9 @@
 import prompts from 'prompts'
 import { red } from 'kolorist'
 
-import projectName from './projectName.js'
+import projectName from './name'
 import model from './model'
-import template from './template/index.js'
+import template from './template'
 
 export async function question() {
   const questions = [
