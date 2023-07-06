@@ -38,6 +38,9 @@ jobs:
       - name: Build
         run: nr build
 
+      - name: Token
+        run: npm config set //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN
+
       - name: Publish to NPM
         run: npm publish
         env:
