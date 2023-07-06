@@ -8,5 +8,5 @@
   ],
   "rangeStrategy": "bump",
   "labels": ["dependencies"],
-  "ignoreDeps": ["esbuild", "typescript", "pinia"]
+  "ignoreDeps": ["esbuild", "typescript", "pinia", "@antfu/eslint-config"]
 }
