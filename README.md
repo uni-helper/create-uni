@@ -11,7 +11,7 @@
 
 ```shell
 # npm
-    npm create uni
+    npm create uni@latest
 
 # yarn
     yarn create uni
