@@ -1,7 +1,4 @@
-name: Release
-
-permissions:
-  contents: write
+name: release
 
 on:
   push:
@@ -11,37 +8,17 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
         with:
-          fetch-depth: 0
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-
-      - name: Set node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
+          node-version: 18
           cache: pnpm
-
-      - run: npx changelogithub
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-      - name: Setup
-        run: npm i -g @antfu/ni
-
-      - name: Install
-        run: nci
-
-      - name: Build
-        run: nr build
-
-      - name: Token
-        run: npm config set //registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}
-
-      - name: Publish to NPM
-        run: npm publish
+          registry-url: https://registry.npmjs.org
+      - run: corepack enable
+      - run: pnpm install
+      - run: pnpm publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
