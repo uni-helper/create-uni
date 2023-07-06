@@ -1,17 +1,17 @@
 {
   "name": "create-uni",
   "type": "module",
-  "version": "0.0.8",
+  "version": "0.0.81",
   "packageManager": "pnpm@8.6.6",
   "description": "An easy way to start a uni-app project",
   "author": "FliPPeDround <flippedround@qq.com>",
   "license": "MIT",
-  "homepage": "https://github.com/uni-helpe/create-uni#readme",
+  "homepage": "https://github.com/uni-helper/create-uni#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uni-helpe/create-uni.git"
+    "url": "git+https://github.com/uni-helper/create-uni.git"
   },
-  "bugs": "https://github.com/uni-helpe/create-uni/issues",
+  "bugs": "https://github.com/uni-helper/create-uni/issues",
   "keywords": [
     "uni",
     "uni-app",
