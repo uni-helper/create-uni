@@ -6,12 +6,12 @@
   "description": "An easy way to start a uni-app project",
   "author": "FliPPeDround <flippedround@qq.com>",
   "license": "MIT",
-  "homepage": "https://github.com/FliPPeDround/create-uni#readme",
+  "homepage": "https://github.com/uni-helpe/create-uni#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FliPPeDround/create-uni.git"
+    "url": "git+https://github.com/uni-helpe/create-uni.git"
   },
-  "bugs": "https://github.com/FliPPeDround/create-uni/issues",
+  "bugs": "https://github.com/uni-helpe/create-uni/issues",
   "keywords": [
     "uni",
     "uni-app",
