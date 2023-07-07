@@ -56,12 +56,12 @@ export async function dowloadTemplate(data: BaseTemplateList['value'], name: str
     await cloneRepo(repoUrlList, root)
   }
   catch {
-    loading.fail(`${bold('模板下载失败')}`)
+    loading.fail(`${bold('模板下载失败！')}`)
     process.exit(1)
   }
 
   replacePackageName(root, name)
 
-  loading.succeed(`${bold('模板下载完成')}`)
+  loading.succeed(`${bold('模板下载完成！')}`)
   data.callBack?.(root)
 }

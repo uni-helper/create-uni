@@ -30,12 +30,9 @@
   ],
   "scripts": {
     "build": "node scripts/build.js",
-    "dev": "unbuild --stub",
     "lint": "eslint .",
     "prepublishOnly": "nr build",
     "release": "bumpp",
-    "start": "esno src/index.ts",
-    "test": "vitest",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
@@ -49,17 +46,13 @@
     "ejs": "^3.1.9",
     "esbuild": "^0.18.10",
     "eslint": "^8.44.0",
-    "esno": "^0.16.3",
     "kolorist": "^1.8.0",
     "lint-staged": "^13.2.3",
     "pnpm": "^8.6.6",
     "prompts": "^2.4.2",
     "rimraf": "^5.0.1",
     "simple-git-hooks": "^2.8.1",
-    "typescript": "^5.0.4",
-    "unbuild": "^1.2.1",
-    "vite": "^4.3.9",
-    "vitest": "^0.32.4"
+    "typescript": "^5.0.4"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

@@ -42,5 +42,13 @@ export default (): PromptObject<string>[] => {
     //   active: 'Yes',
     //   inactive: 'No',
     // },
+    {
+      name: 'needsUnocss',
+      type: 'toggle',
+      message: '使用Unocss作为样式解决方案?',
+      initial: false,
+      active: 'Yes',
+      inactive: 'No',
+    },
   ]
 }

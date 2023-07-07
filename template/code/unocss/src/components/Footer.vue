@@ -1,6 +1,4 @@
 <script setup>
-import LogoGithub from './LogoGithub.vue'
-
 function handleClickGithub() {
   if (window?.open) {
     window.open('https://github.com/uni-helper/create-uni')
@@ -15,17 +13,12 @@ function handleClickGithub() {
 </script>
 
 <template>
-  <view class="footer">
-    <LogoGithub @click="handleClickGithub"/>
-  </view>
+  <view
+    i-carbon:logo-github
+    absolute
+    bottom-1rem left="50%"
+    translate-x="-50%"
+    color="#888"
+    @click="handleClickGithub"
+  />
 </template>
-
-<style>
-.footer{
-  position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #888;
-}
-</style>

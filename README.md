@@ -24,7 +24,7 @@
 
 `create-uni` 是一个用于快速创建 uni-app 项目的轻量脚手架工具，它可以帮助你快速创建一个基于`vite`和`vue3`的`uni-app`项目，同时提供了一些模板供你选择。
 
-<img src=".github/image/demo.png">
+<p align="center"><img  src=".github/image/demo.jpg"></p>
 
 ## 🤝 参与贡献
 

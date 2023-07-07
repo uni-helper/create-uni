@@ -7,8 +7,10 @@ export function printFinish(
   root: string,
   cwd: string,
   packageManager: 'pnpm' | 'npm' | 'yarn',
+  type: 'repo' | 'local' = 'local',
 ) {
-  console.log('\nDone. Now run:\n')
+  type === 'local' && console.log(bold('✔ 模板创建成功！'))
+  console.log()
   if (root !== cwd) {
     const cdProjectName = relative(cwd, root)
     console.log(
@@ -17,5 +19,4 @@ export function printFinish(
   }
   console.log(`  ${bold(green(getCommand(packageManager, 'install')))}`)
   console.log(`  ${bold(green(getCommand(packageManager, 'dev')))}`)
-  console.log()
 }

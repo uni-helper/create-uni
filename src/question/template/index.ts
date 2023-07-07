@@ -5,7 +5,7 @@ export default (): PromptObject<string> => {
   return {
     name: 'templateType',
     type: 'select',
-    message: '请选择 uni-app 模板',
+    message: '请选择 uni-app 模板？',
     choices: [
       {
         title: '自定义模板',

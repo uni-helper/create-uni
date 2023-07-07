@@ -34,9 +34,10 @@ async function init() {
     needsTypeScript?: boolean
     needsJsx?: boolean
     needsPinia?: boolean
-    needsVitest?: boolean
-    needsEslint?: boolean
-    needsPrettier?: boolean
+    // needsVitest?: boolean
+    // needsEslint?: boolean
+    // needsPrettier?: boolean
+    needsUnocss?: boolean
   } = {}
 
   try {
@@ -71,7 +72,7 @@ async function init() {
   if (result.templateType!.type !== 'custom') {
     const { templateType, projectName } = result
     await dowloadTemplate(templateType!, projectName!, root)
-    printFinish(root, cwd, packageManager)
+    printFinish(root, cwd, packageManager, 'repo')
     return
   }
 
@@ -86,33 +87,47 @@ async function init() {
     renderTemplate(templateDir, root, callbacks)
   }
 
+  // Render templates
   render('base')
 
-  if (packageManager === 'pnpm')
-    render('pnpm')
-
-  if (result.needsJsx)
-    render('config/jsx')
-
-  if (result.needsPinia) {
-    render('config/pinia')
-    render('entry/pinia')
+  const entry = {
+    pinia: result.needsPinia && !result.needsUnocss,
+    unocss: result.needsUnocss && !result.needsPinia,
+    piniaAndUnocss: result.needsPinia && result.needsUnocss,
+    default: !result.needsPinia && !result.needsUnocss,
   }
-  else {
-    render('entry/default')
+  for (const [key, needs] of Object.entries(entry)) {
+    if (needs)
+      render(`entry/${key}`)
   }
 
-  // if (result.needsVitest)
-  //   render('config/vitest')
+  const code = {
+    unocss: result.needsUnocss,
+    default: !result.needsUnocss,
+  }
+  for (const [key, needs] of Object.entries(code)) {
+    if (needs)
+      render(`code/${key}`)
+  }
 
-  if (result.needsTypeScript)
-    render('config/typescript')
+  const config = {
+    jsx: result.needsJsx,
+    pinia: result.needsPinia,
+    typescript: result.needsTypeScript,
+    unocss: result.needsUnocss,
+  }
+  for (const [key, needs] of Object.entries(config)) {
+    if (needs)
+      render(`config/${key}`)
+  }
 
-  // if (result.needsVitest)
-  //   render('tsconfig/vitest')
-
-  const codeTemplate = (result.needsTypeScript ? 'typescript-default' : 'default')
-  render(`code/${codeTemplate}`)
+  const manager = {
+    pnpm: packageManager === 'pnpm',
+  }
+  for (const [key, needs] of Object.entries(manager)) {
+    if (needs)
+      render(`manager/${key}`)
+  }
 
   const dataStore: Record<string, any> = {}
   // Process callbacks
@@ -163,15 +178,38 @@ async function init() {
     const indexHtmlPath = resolve(root, 'index.html')
     const indexHtmlContent = readFileSync(indexHtmlPath, 'utf8')
     writeFileSync(indexHtmlPath, indexHtmlContent.replace('src/main.js', 'src/main.ts'))
+
+    // Rename <script setup> To <script setup lang="ts">
+    preOrderDirectoryTraverse(
+      resolve(root, 'src'),
+      () => {},
+      (filepath) => {
+        if (filepath.endsWith('.vue')) {
+          const vueContent = readFileSync(filepath, 'utf8')
+          const vueContentWithTs = vueContent.replace('<script setup>', '<script setup lang="ts">')
+          writeFileSync(filepath, vueContentWithTs)
+        }
+      },
+    )
   }
   else {
-  // Remove all the remaining `.ts` files
+    // Remove all the remaining `.ts` files
     preOrderDirectoryTraverse(
       root,
       () => {},
       (filepath) => {
-        if (filepath.endsWith('.ts'))
+        if (filepath.endsWith('uno.config.ts')) {
+          // 移除文件里的类型声明
+          const unoConfigContent = readFileSync(filepath, 'utf8')
+          const unoConfigContentWithoutType
+          = unoConfigContent.replace(
+`import type { Preset, SourceCodeTransformer } from 'unocss'
+
+`, '').replace(': Preset[]', '').replace(': SourceCodeTransformer[]', '')
+          const newFilepath = filepath.replace(/\.ts$/, '.js')
           unlinkSync(filepath)
+          writeFileSync(newFilepath, unoConfigContentWithoutType)
+        }
       },
     )
   }
