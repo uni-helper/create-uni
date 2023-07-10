@@ -11,18 +11,28 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install pnpm
       - uses: pnpm/action-setup@v2
+
+      - name: Set node
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 18.x
           cache: pnpm
           registry-url: https://registry.npmjs.org
-      - run: corepack enable
+
+      - name: Publish github
+      - run: npx changelogithub
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Install
       - run: pnpm install
+
+      - name: Publish npm
       - run: pnpm publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
-      - run: pnpx changelogithub
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
