@@ -17,6 +17,7 @@ import {
   preOrderDirectoryTraverse,
   printBanner,
   printFinish,
+  renderLint,
   renderTemplate,
   setPackageName,
 } from './utils'
@@ -35,8 +36,8 @@ async function init() {
     needsJsx?: boolean
     needsPinia?: boolean
     // needsVitest?: boolean
-    // needsEslint?: boolean
-    // needsPrettier?: boolean
+    needsEslint?: boolean
+    needsPrettier?: boolean
     needsUnocss?: boolean
   } = {}
 
@@ -128,6 +129,13 @@ async function init() {
     if (needs)
       render(`manager/${key}`)
   }
+
+  const lint = {
+    eslint: result.needsEslint!,
+    prettier: result.needsPrettier!,
+    ts: result.needsTypeScript!,
+  }
+  renderLint(root, lint)
 
   const dataStore: Record<string, any> = {}
   // Process callbacks
