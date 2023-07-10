@@ -3,7 +3,6 @@
     "type-check": "vue-tsc --noEmit"
   },
   "devDependencies": {
-    "@dcloudio/types": "^3.3.3",
     "@types/node": "^18.16.19",
     "@uni-helper/uni-app-types": "^0.5.8",
     "@vue/tsconfig": "^0.4.0",

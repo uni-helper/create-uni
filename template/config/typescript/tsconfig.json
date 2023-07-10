@@ -8,7 +8,12 @@
       "@/*": ["./src/*"]
     },
     "lib": ["esnext", "dom"],
-    "types": ["@dcloudio/types", "@uni-helper/uni-app-types"]
+    "types": [
+      "@dcloudio/types",
+      "@uni-helper/uni-app-types",
+      "miniprogram-api-typings",
+			"mini-types"
+    ]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "vueCompilerOptions": {

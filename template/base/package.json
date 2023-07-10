@@ -56,6 +56,8 @@
   },
   "devDependencies": {
     "@dcloudio/types": "^3.3.3",
+    "miniprogram-api-typings": "^3.10.0",
+    "mini-types": "^0.1.7",
     "@dcloudio/uni-automator": "3.0.0-alpha-3080720230627002",
     "@dcloudio/uni-cli-shared": "3.0.0-alpha-3080720230627002",
     "@dcloudio/uni-stacktracey": "3.0.0-alpha-3080720230627002",

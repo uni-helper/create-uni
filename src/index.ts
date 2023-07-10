@@ -115,6 +115,7 @@ async function init() {
     jsx: result.needsJsx,
     pinia: result.needsPinia,
     typescript: result.needsTypeScript,
+    js: !result.needsTypeScript,
     unocss: result.needsUnocss,
   }
   for (const [key, needs] of Object.entries(config)) {
