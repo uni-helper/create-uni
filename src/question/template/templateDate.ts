@@ -1,11 +1,12 @@
 import { readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { bold, lightCyan } from 'kolorist'
+import { bold, dim, green } from 'kolorist'
 import type { TemplateList } from './type'
 
 export const templateList: TemplateList[] = [
   {
     title: `vitesse-uni-app(${bold('推荐')})`,
+    description: `由${green('Uni Helper')}${dim('(https://github.com/uni-helper)')}维护的快速启动模板`,
     value: {
       type: 'vitesse',
       url: {
@@ -28,6 +29,5 @@ export const templateList: TemplateList[] = [
         writeFileSync(pkgPath, JSON.stringify(packageJson, null, 2))
       },
     },
-    description: `由${lightCyan('Uni Helper')}维护的快速启动模板`,
   },
 ]

@@ -6,6 +6,7 @@ import { sortDependencies } from './sortDependencies'
 
 interface LintConfig {
   eslint: boolean
+  style: 'default' | 'airbnb' | 'standard'
   prettier: boolean
   ts: boolean
 }
@@ -14,11 +15,12 @@ export function renderLint(root: string, lint: LintConfig) {
   if (!lint.eslint)
     return
 
+  console.log(lint.style)
   const { pkg, files } = createESLintConfig({
     vueVersion: '3.x',
-    styleGuide: 'default',
-    hasTypeScript: lint.ts || false,
-    needsPrettier: lint.prettier || false,
+    styleGuide: lint.style,
+    hasTypeScript: lint.ts,
+    needsPrettier: lint.prettier,
   })
 
   const scripts: Record<string, string> = {

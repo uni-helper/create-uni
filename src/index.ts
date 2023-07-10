@@ -36,6 +36,7 @@ async function init() {
     needsPinia?: boolean
     // needsVitest?: boolean
     needsEslint?: boolean
+    styleGuide?: 'default' | 'airbnb' | 'standard'
     needsPrettier?: boolean
     needsUnocss?: boolean
   } = {}
@@ -131,9 +132,10 @@ async function init() {
   }
 
   const lint = {
-    eslint: result.needsEslint!,
-    prettier: result.needsPrettier!,
-    ts: result.needsTypeScript!,
+    eslint: result.needsEslint || false,
+    style: result.styleGuide || 'default',
+    prettier: result.needsPrettier || false,
+    ts: result.needsTypeScript || false,
   }
   renderLint(root, lint)
 

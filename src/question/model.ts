@@ -1,3 +1,4 @@
+import { dim } from 'kolorist'
 import type { PromptObject } from 'prompts'
 
 export default (): PromptObject<string>[] => {
@@ -26,14 +27,6 @@ export default (): PromptObject<string>[] => {
       active: 'Yes',
       inactive: 'No',
     },
-    // {
-    //   name: 'needsVitest',
-    //   type: 'toggle',
-    //   message: '使用vitest作为单元测试工具?',
-    //   initial: false,
-    //   active: 'Yes',
-    //   inactive: 'No',
-    // },
     {
       name: 'needsUnocss',
       type: 'toggle',
@@ -49,6 +42,33 @@ export default (): PromptObject<string>[] => {
       initial: false,
       active: 'Yes',
       inactive: 'No',
+    },
+    {
+      name: 'styleGuide',
+      type: (_prev, values) => {
+        if (!values.needsEslint)
+          return null
+
+        return 'select'
+      },
+      message: '选择ESlint风格?',
+      choices: [
+        {
+          title: 'default',
+          description: 'Default',
+          value: 'default',
+        },
+        {
+          title: 'airbnb',
+          description: `Airbnb ${dim('(https://airbnb.io/javascript/)')}`,
+          value: 'airbnb',
+        },
+        {
+          title: 'standard',
+          description: `Standard ${dim('(https://standardjs.com/)')}`,
+          value: 'standard',
+        },
+      ],
     },
     {
       name: 'needsPrettier',

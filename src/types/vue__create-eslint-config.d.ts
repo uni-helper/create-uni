@@ -1,7 +1,7 @@
 declare module '@vue/create-eslint-config' {
   export default function createESLintConfig(options: {
     vueVersion: '3.x',
-    styleGuide: 'default',
+    styleGuide: 'default' | 'airbnb' | 'standard',
     hasTypeScript: boolean,
     needsPrettier: boolean,
   }): {
