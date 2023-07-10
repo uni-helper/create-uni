@@ -12,7 +12,6 @@ import {
 } from 'node:fs'
 import ejs from 'ejs'
 import {
-  FILES_TO_FILTER,
   dowloadTemplate,
   preOrderDirectoryTraverse,
   printBanner,
@@ -159,26 +158,18 @@ async function init() {
   )
 
   if (result.needsTypeScript) {
-  // Convert the JavaScript template to the TypeScript
-  // Check all the remaining `.js` files:
-  //   - If the corresponding TypeScript version already exists, remove the `.js` version.
-  //   - Otherwise, rename the `.js` file to `.ts`
-  // Remove `jsconfig.json`, because we already have tsconfig.json
-  // `jsconfig.json` is not reused, because we use solution-style `tsconfig`s, which are much more complicated.
+    // Rename `.js` to `.ts`
     preOrderDirectoryTraverse(
       root,
       () => {},
       (filepath) => {
-        if (filepath.endsWith('.js') && !FILES_TO_FILTER.includes(basename(filepath))) {
+        if (filepath.endsWith('.js')) {
           const tsFilePath = filepath.replace(/\.js$/, '.ts')
           if (existsSync(tsFilePath))
             unlinkSync(filepath)
 
           else
             renameSync(filepath, tsFilePath)
-        }
-        else if (basename(filepath) === 'jsconfig.json') {
-          unlinkSync(filepath)
         }
       },
     )
@@ -207,7 +198,7 @@ async function init() {
       root,
       () => {},
       (filepath) => {
-        if (filepath.endsWith('uno.config.ts')) {
+        if (basename(filepath) === 'uno.config.ts') {
           // 移除文件里的类型声明
           const unoConfigContent = readFileSync(filepath, 'utf8')
           const unoConfigContentWithoutType
