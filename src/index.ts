@@ -18,7 +18,7 @@ import {
   printFinish,
   renderLint,
   renderTemplate,
-  setPackageName,
+  replaceProjectName,
 } from './utils'
 import { question } from './question'
 import type { BaseTemplateList } from './question/template/type'
@@ -76,8 +76,6 @@ async function init() {
     printFinish(root, cwd, packageManager, 'repo')
     return
   }
-
-  setPackageName(result.projectName!, root)
 
   const templateRoot = resolve(__dirname, 'template')
 
@@ -215,6 +213,7 @@ async function init() {
       },
     )
   }
+  replaceProjectName(root, result.projectName!)
 
   printFinish(root, cwd, packageManager)
 }

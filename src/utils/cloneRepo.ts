@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import { bold } from 'kolorist'
 import type { BaseTemplateList } from '../question/template/type'
 import { ora } from './loading'
-import { replacePackageName } from './setPackageName'
+import { replaceProjectName } from './setPackageName'
 
 async function removeGitFolder(localPath: string): Promise<void> {
   const gitFolderPath = join(localPath, '.git')
@@ -60,7 +60,7 @@ export async function dowloadTemplate(data: BaseTemplateList['value'], name: str
     process.exit(1)
   }
 
-  replacePackageName(root, name)
+  replaceProjectName(root, name)
 
   loading.succeed(`${bold('模板下载完成！')}`)
   data.callBack?.(root)

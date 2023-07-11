@@ -1,4 +1,6 @@
 {
+  "name": "uni-app",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "uni",

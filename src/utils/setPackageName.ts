@@ -1,28 +1,17 @@
 import { readFileSync, writeFileSync } from 'node:fs'
-import { join, resolve } from 'node:path'
+import { join } from 'node:path'
 
-function getPackageInfo(name: string) {
-  return {
-    name: name.toLocaleLowerCase().replace(/\s/g, '-'),
-    version: '0.0.0',
-  }
+function replaceNameContent(filePath: string, projectName: string) {
+  const fileContent = JSON.parse(readFileSync(filePath, 'utf8'))
+  fileContent.name = projectName
+  writeFileSync(filePath, JSON.stringify(fileContent, null, 2))
 }
 
-export function setPackageName(name: string, root: string) {
-  if (!name)
-    return
-  writeFileSync(
-    resolve(root, 'package.json'),
-    JSON.stringify(getPackageInfo(name), null, 2),
-  )
-}
-
-export function replacePackageName(root: string, name: string) {
+export function replaceProjectName(root: string, name: string) {
+  const projectName = name.toLocaleLowerCase().replace(/\s/g, '-')
   const pkgPath = join(root, 'package.json')
+  const manifestPath = join(root, 'src', 'manifest.json')
 
-  const packageJson = JSON.parse(readFileSync(pkgPath, 'utf8'))
-
-  Object.assign(packageJson, getPackageInfo(name))
-
-  writeFileSync(pkgPath, JSON.stringify(packageJson, null, 2))
+  replaceNameContent(manifestPath, projectName)
+  replaceNameContent(pkgPath, projectName)
 }
