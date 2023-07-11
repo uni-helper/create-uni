@@ -5,7 +5,7 @@ import type { TemplateList } from './type'
 
 export const templateList: TemplateList[] = [
   {
-    title: `vitesse-uni-app(${bold('推荐')})`,
+    title: `vitesse-uni-app${dim('(推荐)')}`,
     description: `由${green('Uni Helper')}${dim('(https://github.com/uni-helper)')}维护的快速启动模板`,
     value: {
       type: 'vitesse',

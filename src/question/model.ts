@@ -14,7 +14,7 @@ export default (): PromptObject<string>[] => {
     {
       name: 'needsJsx',
       type: 'toggle',
-      message: '添加JSX?(不支持小程序平台)',
+      message: `添加JSX?${dim('(不支持小程序平台)')}`,
       initial: false,
       active: 'Yes',
       inactive: 'No',
@@ -54,17 +54,17 @@ export default (): PromptObject<string>[] => {
       message: '选择ESlint风格?',
       choices: [
         {
-          title: 'default',
+          title: 'Default',
           description: 'Default',
           value: 'default',
         },
         {
-          title: 'airbnb',
+          title: 'Airbnb',
           description: `Airbnb ${dim('(https://airbnb.io/javascript/)')}`,
           value: 'airbnb',
         },
         {
-          title: 'standard',
+          title: 'Standard',
           description: `Standard ${dim('(https://standardjs.com/)')}`,
           value: 'standard',
         },

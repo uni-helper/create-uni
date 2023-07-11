@@ -14,13 +14,16 @@ export default (): PromptObject<string>[] => {
     },
     {
       name: 'shouldOverwrite',
-      type: () => (canSkipEmptying(targetDir) ? null : 'confirm'),
+      type: () => (canSkipEmptying(targetDir) ? null : 'toggle'),
       message: () => {
         const dirForPrompt
           = targetDir === '.' ? '当前文件' : `目标文件"${targetDir}"`
 
         return `${dirForPrompt}不是空的。要删除现有文件并继续吗？`
       },
+      initial: false,
+      active: 'Yes',
+      inactive: 'No',
     },
     {
       name: 'overwriteChecker',

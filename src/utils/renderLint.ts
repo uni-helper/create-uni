@@ -15,7 +15,6 @@ export function renderLint(root: string, lint: LintConfig) {
   if (!lint.eslint)
     return
 
-  console.log(lint.style)
   const { pkg, files } = createESLintConfig({
     vueVersion: '3.x',
     styleGuide: lint.style,
