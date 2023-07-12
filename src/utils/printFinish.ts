@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { relative } from 'node:path'
 import { bold, green } from 'kolorist'
+import figures from 'prompts/lib/util/figures.js'
 import { getCommand } from './getCommand'
 
 export function printFinish(
@@ -9,7 +10,7 @@ export function printFinish(
   packageManager: 'pnpm' | 'npm' | 'yarn',
   type: 'repo' | 'local' = 'local',
 ) {
-  type === 'local' && console.log(bold('✔ 模板创建成功！'))
+  type === 'local' && console.log(green(figures.tick), bold('模板创建成功！'))
   console.log()
   if (root !== cwd) {
     const cdProjectName = relative(cwd, root)
