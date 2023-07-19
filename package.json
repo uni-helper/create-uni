@@ -30,6 +30,7 @@
   ],
   "scripts": {
     "build": "node scripts/build.js",
+    "dev": "node outfile.cjs",
     "lint": "eslint .",
     "prepublishOnly": "nr build",
     "release": "bumpp",

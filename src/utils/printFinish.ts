@@ -20,4 +20,5 @@ export function printFinish(
   }
   console.log(`  ${bold(green(getCommand(packageManager, 'install')))}`)
   console.log(`  ${bold(green(getCommand(packageManager, 'dev')))}`)
+  console.log()
 }

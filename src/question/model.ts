@@ -1,4 +1,4 @@
-import { dim } from 'kolorist'
+import { dim, italic, link, reset } from 'kolorist'
 import type { PromptObject } from 'prompts'
 
 export default (): PromptObject<string>[] => {
@@ -14,7 +14,7 @@ export default (): PromptObject<string>[] => {
     {
       name: 'needsJsx',
       type: 'toggle',
-      message: `添加JSX?${dim('(不支持小程序平台)')}`,
+      message: `添加JSX?${link(reset(italic(dim('(不支持小程序平台)'))), 'https://uniapp.dcloud.net.cn/tutorial/syntax-jsx.html#jsx-tsx-%E6%94%AF%E6%8C%81')}`,
       initial: false,
       active: 'Yes',
       inactive: 'No',
@@ -52,20 +52,18 @@ export default (): PromptObject<string>[] => {
         return 'select'
       },
       message: '选择ESlint风格?',
+      hint: '使用方向键选择，回车确认',
       choices: [
         {
           title: 'Default',
-          description: 'Default',
           value: 'default',
         },
         {
           title: 'Airbnb',
-          description: `Airbnb ${dim('(https://airbnb.io/javascript/)')}`,
           value: 'airbnb',
         },
         {
           title: 'Standard',
-          description: `Standard ${dim('(https://standardjs.com/)')}`,
           value: 'standard',
         },
       ],
