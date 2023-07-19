@@ -1,4 +1,4 @@
-import { green } from 'kolorist'
+import { lightCyan } from 'kolorist'
 
 /* eslint-disable no-console */
 export function printBanner() {
@@ -16,9 +16,9 @@ export function printBanner() {
     colorText += `\x1B[38;2;${red};${green};${blue}m${text[i]}\x1B[0m`
   }
 
-  const output = process.stdout.isTTY && process.stdout.getColorDepth() > 8
+  const output = process.stdout.isTTY && process.stdout.getColorDepth() >= 8
     ? colorText
-    : green(text)
+    : lightCyan(text)
 
   console.log()
   console.log(output)
