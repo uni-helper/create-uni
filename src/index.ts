@@ -44,7 +44,8 @@ async function init() {
   try {
     result = await question()
   }
-  catch {
+  catch(cancelled) {
+    console.log((<{message:string}>cancelled).message)
     process.exit(1)
   }
 

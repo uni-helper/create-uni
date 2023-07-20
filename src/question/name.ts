@@ -1,6 +1,7 @@
 import type { PromptObject } from 'prompts'
-import { red } from 'kolorist'
+import { bold, red } from 'kolorist'
 import { canSkipEmptying } from '../utils'
+import figures from 'prompts/lib/util/figures.js'
 
 export default (): PromptObject<string>[] => {
   let targetDir = 'uni-app'
@@ -29,7 +30,7 @@ export default (): PromptObject<string>[] => {
       name: 'overwriteChecker',
       type: (_prev, values) => {
         if (values.shouldOverwrite === false)
-          throw new Error(`${red('✖')} Operation cancelled`)
+          throw new Error(`${red(figures.cross)} ${bold('操作已取消')}`)
 
         return null
       },
