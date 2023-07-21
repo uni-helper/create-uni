@@ -1,12 +1,10 @@
 import prompts from 'prompts'
 import { bold, red } from 'kolorist'
 
+import figures from 'prompts/lib/util/figures.js'
 import projectName from './name'
 import model from './model'
 import template from './template'
-
-import figures from 'prompts/lib/util/figures.js'
-
 
 export async function question() {
   const questions = [

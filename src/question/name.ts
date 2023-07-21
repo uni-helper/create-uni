@@ -1,7 +1,7 @@
 import type { PromptObject } from 'prompts'
 import { bold, red } from 'kolorist'
-import { canSkipEmptying } from '../utils'
 import figures from 'prompts/lib/util/figures.js'
+import { canSkipEmptying } from '../utils'
 
 export default (): PromptObject<string>[] => {
   let targetDir = 'uni-app'

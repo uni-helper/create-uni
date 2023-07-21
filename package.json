@@ -32,6 +32,7 @@
     "build": "node scripts/build.js",
     "dev": "node outfile.cjs",
     "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "prepublishOnly": "nr build",
     "release": "bumpp",
     "typecheck": "tsc --noEmit"

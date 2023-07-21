@@ -44,8 +44,9 @@ async function init() {
   try {
     result = await question()
   }
-  catch(cancelled) {
-    console.log((<{message:string}>cancelled).message)
+  catch (cancelled) {
+    // eslint-disable-next-line no-console
+    console.log((<{ message: string }>cancelled).message)
     process.exit(1)
   }
 
