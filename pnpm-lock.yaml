@@ -9,8 +9,8 @@ devDependencies:
     specifier: ^0.39.7
     version: 0.39.7(eslint@8.45.0)(typescript@5.0.4)
   '@antfu/ni':
-    specifier: ^0.21.4
-    version: 0.21.4
+    specifier: ^0.21.5
+    version: 0.21.5
   '@antfu/utils':
     specifier: ^0.7.5
     version: 0.7.5
@@ -18,14 +18,14 @@ devDependencies:
     specifier: ^3.1.2
     version: 3.1.2
   '@types/node':
-    specifier: ^18.16.19
-    version: 18.16.19
+    specifier: ^18.17.0
+    version: 18.17.0
   '@types/prompts':
     specifier: ^2.4.4
     version: 2.4.4
   '@vue/create-eslint-config':
-    specifier: ^0.2.1
-    version: 0.2.1
+    specifier: ^0.3.0
+    version: 0.3.0
   bumpp:
     specifier: ^9.1.1
     version: 9.1.1
@@ -45,14 +45,14 @@ devDependencies:
     specifier: ^13.2.3
     version: 13.2.3
   pnpm:
-    specifier: ^8.6.8
-    version: 8.6.8
+    specifier: ^8.6.10
+    version: 8.6.10
   prompts:
     specifier: ^2.4.2
     version: 2.4.2
   simple-git-hooks:
-    specifier: ^2.8.1
-    version: 2.8.1
+    specifier: ^2.9.0
+    version: 2.9.0
   typescript:
     specifier: ^5.0.4
     version: 5.0.4
@@ -160,8 +160,8 @@ packages:
       - typescript
     dev: true
 
-  /@antfu/ni@0.21.4:
-    resolution: {integrity: sha512-O0Uv9LbLDSoEg26fnMDdDRiPwFJnQSoD4WnrflDwKCJm8Cx/0mV4cGxwBLXan5mGIrpK4Dd7vizf4rQm0QCEAA==}
+  /@antfu/ni@0.21.5:
+    resolution: {integrity: sha512-rFmuqZMFa1OTRbxdu3vmfytsy1CtsIUFH0bO85rZ1xdu2uLoioSaEi6iOULDVTQUrnes50jMs+UW355Ndj7Oxg==}
     hasBin: true
     dev: true
 
@@ -490,8 +490,8 @@ packages:
       '@types/unist': 2.0.6
     dev: true
 
-  /@types/node@18.16.19:
-    resolution: {integrity: sha512-IXl7o+R9iti9eBW4Wg2hx1xQDig183jj7YLn8F7udNceyfkbn1ZxmzZXuak20gR40D7pIkIY1kYGx5VIGbaHKA==}
+  /@types/node@18.17.0:
+    resolution: {integrity: sha512-GXZxEtOxYGFchyUzxvKI14iff9KZ2DI+A6a37o6EQevtg6uO9t+aUZKcaC1Te5Ng1OnLM7K9NVVj+FbecD9cJg==}
     dev: true
 
   /@types/normalize-package-data@2.4.1:
@@ -501,7 +501,7 @@ packages:
   /@types/prompts@2.4.4:
     resolution: {integrity: sha512-p5N9uoTH76lLvSAaYSZtBCdEXzpOOufsRjnhjVSrZGXikVGHX9+cc9ERtHRV4hvBKHyZb1bg4K+56Bd2TqUn4A==}
     dependencies:
-      '@types/node': 18.16.19
+      '@types/node': 18.17.0
       kleur: 3.0.3
     dev: true
 
@@ -642,7 +642,7 @@ packages:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.5.1
+      semver: 7.5.3
       tsutils: 3.21.0(typescript@5.0.4)
       typescript: 5.0.4
     transitivePeerDependencies:
@@ -705,8 +705,8 @@ packages:
       eslint-visitor-keys: 3.4.1
     dev: true
 
-  /@vue/create-eslint-config@0.2.1:
-    resolution: {integrity: sha512-NV8stPaqaeD4Dg45mUsnnOfqulEo7TKESLnPGzq8DgiZcchK0tw+448VxENw4vDURJtofiFkTfjldn7DJN0XHw==}
+  /@vue/create-eslint-config@0.3.0:
+    resolution: {integrity: sha512-9QrE6vYvN1GSjEMs0NufiIVKPehwlfHxSlMYRcVsMgbhXTa91THfrCyU+cujrq86CP1c29oxxD6yFAZD/bAS8g==}
     engines: {node: ^16.14.0 || >= 18.0.0}
     hasBin: true
     dependencies:
@@ -2764,8 +2764,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /pnpm@8.6.8:
-    resolution: {integrity: sha512-OtrCRUE7VqRyKly9E3gfExZHOAHtFDpmulyVFKrnl3v/n2xJckdueVumWJqUA5FHxcRP/T42r8P8CDr9duPP9w==}
+  /pnpm@8.6.10:
+    resolution: {integrity: sha512-EBlPdgrAqmIDK6lflNm8M4lueWGM4PKJIDngt6vJ1+fmzh3e0482tg52nUjiuGvkzZ2sngA181GLqknXhAHgIg==}
     engines: {node: '>=16.14'}
     hasBin: true
     dev: true
@@ -2982,8 +2982,8 @@ packages:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
     dev: true
 
-  /simple-git-hooks@2.8.1:
-    resolution: {integrity: sha512-DYpcVR1AGtSfFUNzlBdHrQGPsOhuuEJ/FkmPOOlFysP60AHd3nsEpkGq/QEOdtUyT1Qhk7w9oLmFoMG+75BDog==}
+  /simple-git-hooks@2.9.0:
+    resolution: {integrity: sha512-waSQ5paUQtyGC0ZxlHmcMmD9I1rRXauikBwX31bX58l5vTOhCEcBC5Bi+ZDkPXTjDnZAF8TbCqKBY+9+sVPScw==}
     hasBin: true
     requiresBuild: true
     dev: true
