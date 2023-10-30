@@ -12,18 +12,6 @@ export const templateList: TemplateList[] = [
       url: {
         github: 'https://github.com/uni-helper/vitesse-uni-app.git',
       },
-      callBack(root) {
-        const isWin = process.platform === 'win32'
-        if (isWin)
-          return
-        rmSync(join(root, 'patches'), { recursive: true })
-
-        const pkgPath = join(root, 'package.json')
-        const packageJson = JSON.parse(readFileSync(pkgPath, 'utf8'))
-        delete packageJson.pnpm
-
-        writeFileSync(pkgPath, JSON.stringify(packageJson, null, 2))
-      },
     },
   },
 ]
