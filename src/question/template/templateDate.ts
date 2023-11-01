@@ -1,6 +1,4 @@
-import { readFileSync, rmSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
-import { bold, dim, green, link } from 'kolorist'
+import { dim, green, link } from 'kolorist'
 import type { TemplateList } from './type'
 
 export const templateList: TemplateList[] = [

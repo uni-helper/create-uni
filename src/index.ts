@@ -11,7 +11,12 @@ import {
   writeFileSync,
 } from 'node:fs'
 import ejs from 'ejs'
+import minimist from 'minimist'
+import prompts from 'prompts'
+import { bold, red } from 'kolorist'
+import figures from 'prompts/lib/util/figures.js'
 import {
+  canSkipEmptying,
   dowloadTemplate,
   preOrderDirectoryTraverse,
   printBanner,
@@ -23,9 +28,20 @@ import {
 import { question } from './question'
 import type { BaseTemplateList } from './question/template/type'
 import { postOrderDirectoryTraverse } from './utils/directoryTraverse'
+import filePrompt from './question/file'
+import { templateList } from './question/template/templateDate'
 
 async function init() {
   printBanner()
+
+  const argv = minimist(process.argv.slice(2), {
+    alias: {
+      templateType: ['t'],
+    },
+    string: ['_'],
+  })
+  const projectName = argv._[0]
+  const templateType = templateList.find(item => item.value.type === argv?.t)?.value
 
   let result: {
     projectName?: string
@@ -41,13 +57,29 @@ async function init() {
     needsUnocss?: boolean
   } = {}
 
-  try {
-    result = await question()
-  }
-  catch (cancelled) {
+  if (!projectName) {
+    try {
+      result = await question()
+    }
+    catch (cancelled) {
     // eslint-disable-next-line no-console
-    console.log((<{ message: string }>cancelled).message)
-    process.exit(1)
+      console.log((<{ message: string }>cancelled).message)
+      process.exit(1)
+    }
+  }
+  else {
+    if (!templateType) {
+      // eslint-disable-next-line no-console
+      console.log(`${red(figures.cross)} ${bold('未获取到指定模板')}`)
+      process.exit(1)
+    }
+    result = {
+      projectName,
+      shouldOverwrite: canSkipEmptying(projectName)
+        ? true
+        : (await prompts(filePrompt(projectName))).shouldOverwrite,
+      templateType,
+    }
   }
 
   const cwd = process.cwd()

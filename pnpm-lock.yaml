@@ -17,6 +17,9 @@ devDependencies:
   '@types/ejs':
     specifier: ^3.1.2
     version: 3.1.2
+  '@types/minimist':
+    specifier: ^1.2.4
+    version: 1.2.4
   '@types/node':
     specifier: ^18.17.3
     version: 18.17.3
@@ -44,6 +47,9 @@ devDependencies:
   lint-staged:
     specifier: ^13.2.3
     version: 13.2.3
+  minimist:
+    specifier: ^1.2.8
+    version: 1.2.8
   pnpm:
     specifier: ^8.6.12
     version: 8.6.12
@@ -493,6 +499,10 @@ packages:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
     dependencies:
       '@types/unist': 2.0.6
+    dev: true
+
+  /@types/minimist@1.2.4:
+    resolution: {integrity: sha512-Kfe/D3hxHTusnPNRbycJE1N77WHDsdS4AjUYIzlDzhDrS47NrwuL3YW4VITxwR7KCVpzwgy4Rbj829KSSQmwXQ==}
     dev: true
 
   /@types/node@18.17.3:
@@ -2510,6 +2520,10 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       brace-expansion: 2.0.1
+    dev: true
+
+  /minimist@1.2.8:
+    resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: true
 
   /minipass@3.3.6:
