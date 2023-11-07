@@ -43,7 +43,7 @@
     "@antfu/utils": "^0.7.5",
     "@types/ejs": "^3.1.2",
     "@types/minimist": "^1.2.4",
-    "@types/node": "^18.17.3",
+    "@types/node": "^20.9.0",
     "@types/prompts": "^2.4.4",
     "@vue/create-eslint-config": "^0.3.1",
     "bumpp": "^9.1.1",
