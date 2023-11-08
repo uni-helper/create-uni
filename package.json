@@ -38,14 +38,13 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.39.7",
     "@antfu/ni": "^0.21.5",
     "@antfu/utils": "^0.7.5",
     "@types/ejs": "^3.1.2",
     "@types/minimist": "^1.2.4",
     "@types/node": "^18.17.3",
     "@types/prompts": "^2.4.4",
-    "@vue/create-eslint-config": "^0.3.1",
+    "@uni-helper/eslint-config": "^0.0.2",
     "bumpp": "^9.1.1",
     "ejs": "^3.1.9",
     "esbuild": "^0.18.10",

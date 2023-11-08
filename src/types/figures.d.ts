@@ -11,6 +11,6 @@ declare module 'prompts/lib/util/figures.js' {
     ellipsis: '…',
     pointerSmall: '›',
     line: '─',
-    pointer: '❯'
+    pointer: '❯',
   } as const
 }

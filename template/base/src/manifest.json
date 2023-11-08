@@ -5,6 +5,9 @@
   "versionName": "1.0.0",
   "versionCode": "100",
   "transformPx": false,
+  "uniStatistics": {
+    "enable": false
+  },
   "app-plus": {
     "usingComponents": true,
     "nvueStyleCompiler": "uni-app",
@@ -40,6 +43,10 @@
       "sdkConfigs": {}
     }
   },
+  "h5": {
+    "darkmode": true,
+    "themeLocation": "theme.json"
+  },
   "quickapp": {},
   "mp-weixin": {
     "appid": "",
@@ -58,13 +65,6 @@
   },
   "mp-toutiao": {
     "usingComponents": true
-  },
-  "h5": {
-    "darkmode": true,
-    "themeLocation": "theme.json"
-  },
-  "uniStatistics": {
-    "enable": false
   },
   "vueVersion": "3"
 }

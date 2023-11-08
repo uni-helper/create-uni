@@ -1,7 +1,7 @@
 <script setup>
+import { ref } from 'vue'
 import Footer from '@/components/Footer.vue'
 
-import { ref } from 'vue'
 const title = ref('✨ Hello Uni App! ✨')
 </script>
 
@@ -20,5 +20,5 @@ const title = ref('✨ Hello Uni App! ✨')
       {{ title }}
     </text>
   </view>
-  <Footer/>
+  <Footer />
 </template>

@@ -16,7 +16,7 @@ function handleClickGithub() {
 
 <template>
   <view class="footer">
-    <LogoGithub @click="handleClickGithub"/>
+    <LogoGithub @click="handleClickGithub" />
   </view>
 </template>
 

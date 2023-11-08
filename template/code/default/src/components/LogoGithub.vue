@@ -7,4 +7,3 @@
     />
   </svg>
 </template>
-

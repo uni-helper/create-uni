@@ -10,6 +10,7 @@ import {
   unlinkSync,
   writeFileSync,
 } from 'node:fs'
+import process from 'node:process'
 import ejs from 'ejs'
 import minimist from 'minimist'
 import prompts from 'prompts'
@@ -21,7 +22,6 @@ import {
   preOrderDirectoryTraverse,
   printBanner,
   printFinish,
-  renderLint,
   renderTemplate,
   replaceProjectName,
 } from './utils'
@@ -52,8 +52,6 @@ async function init() {
     needsPinia?: boolean
     // needsVitest?: boolean
     needsEslint?: boolean
-    styleGuide?: 'default' | 'airbnb' | 'standard'
-    needsPrettier?: boolean
     needsUnocss?: boolean
   } = {}
 
@@ -149,6 +147,7 @@ async function init() {
     typescript: result.needsTypeScript,
     js: !result.needsTypeScript,
     unocss: result.needsUnocss,
+    lint: result.needsEslint,
   }
   for (const [key, needs] of Object.entries(config)) {
     if (needs)
@@ -162,14 +161,6 @@ async function init() {
     if (needs)
       render(`manager/${key}`)
   }
-
-  const lint = {
-    eslint: result.needsEslint || false,
-    style: result.styleGuide || 'default',
-    prettier: result.needsPrettier || false,
-    ts: result.needsTypeScript || false,
-  }
-  renderLint(root, lint)
 
   const dataStore: Record<string, any> = {}
   // Process callbacks
@@ -197,7 +188,7 @@ async function init() {
       root,
       () => {},
       (filepath) => {
-        if (filepath.endsWith('.js')) {
+        if (filepath.endsWith('.js') && !filepath.endsWith('eslint.config.js')) {
           const tsFilePath = filepath.replace(/\.js$/, '.ts')
           if (existsSync(tsFilePath))
             unlinkSync(filepath)
@@ -239,7 +230,9 @@ async function init() {
           = unoConfigContent.replace(
 `import type { Preset, SourceCodeTransformer } from 'unocss'
 
-`, '').replace(': Preset[]', '').replace(': SourceCodeTransformer[]', '')
+`,
+'',
+          ).replace(': Preset[]', '').replace(': SourceCodeTransformer[]', '')
           const newFilepath = filepath.replace(/\.ts$/, '.js')
           unlinkSync(filepath)
           writeFileSync(newFilepath, unoConfigContentWithoutType)

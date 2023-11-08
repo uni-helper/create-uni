@@ -1,7 +1,7 @@
 <script setup>
+import { ref } from 'vue'
 import Footer from '@/components/Footer.vue'
 
-import { ref } from 'vue'
 const title = ref('✨ Hello Uni App! ✨')
 </script>
 
@@ -12,10 +12,12 @@ const title = ref('✨ Hello Uni App! ✨')
       src="/static/logo.svg"
       width="125" height="125"
     />
-    <text class="title">{{ title }}</text>
+    <text class="title">
+      {{ title }}
+    </text>
   </view>
-  
-  <Footer/>
+
+  <Footer />
 </template>
 
 <style scoped>

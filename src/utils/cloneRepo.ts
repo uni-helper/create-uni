@@ -1,6 +1,7 @@
 import { exec } from 'node:child_process'
 import { promises as fs } from 'node:fs'
 import { join } from 'node:path'
+import process from 'node:process'
 import { bold } from 'kolorist'
 import type { BaseTemplateList } from '../question/template/type'
 import { ora } from './loading'

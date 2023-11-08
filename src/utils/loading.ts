@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { green, red } from 'kolorist'
 import figures from 'prompts/lib/util/figures.js'
 

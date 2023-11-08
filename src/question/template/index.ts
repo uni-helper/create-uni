@@ -6,7 +6,7 @@ export default (): PromptObject<string> => {
     name: 'templateType',
     type: 'select',
     message: '请选择 uni-app 模板？',
-    hint: "使用方向键选择，回车确认",
+    hint: '使用方向键选择，回车确认',
     choices: [
       {
         title: '自定义模板',

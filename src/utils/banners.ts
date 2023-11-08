@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { lightCyan } from 'kolorist'
 
 /* eslint-disable no-console */

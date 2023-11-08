@@ -43,43 +43,5 @@ export default (): PromptObject<string>[] => {
       active: 'Yes',
       inactive: 'No',
     },
-    {
-      name: 'styleGuide',
-      type: (_prev, values) => {
-        if (!values.needsEslint)
-          return null
-
-        return 'select'
-      },
-      message: '选择ESlint风格?',
-      hint: '使用方向键选择，回车确认',
-      choices: [
-        {
-          title: 'Default',
-          value: 'default',
-        },
-        {
-          title: 'Airbnb',
-          value: 'airbnb',
-        },
-        {
-          title: 'Standard',
-          value: 'standard',
-        },
-      ],
-    },
-    {
-      name: 'needsPrettier',
-      type: (_prev, values) => {
-        if (!values.needsEslint)
-          return null
-
-        return 'toggle'
-      },
-      message: '使用Prettier作代码格式化?',
-      initial: false,
-      active: 'Yes',
-      inactive: 'No',
-    },
   ]
 }
