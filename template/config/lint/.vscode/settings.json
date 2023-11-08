@@ -1,10 +1,5 @@
 {
-  "cSpell.words": [
-    "bumpp",
-    "esno",
-    "gitee",
-    "kolorist"
-  ],
+  // Enable the ESlint flat config support
   "eslint.experimental.useFlatConfig": true,
   // Disable the default formatter, use eslint instead
   "prettier.enable": false,
@@ -38,5 +33,9 @@
     "json",
     "jsonc",
     "yaml"
-  ]
+  ],
+  "files.associations": {
+    "pages.json": "jsonc",
+    "manifest.json": "jsonc"
+  }
 }
