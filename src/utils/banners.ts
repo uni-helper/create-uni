@@ -17,7 +17,7 @@ export function printBanner() {
     colorText += `\x1B[38;2;${red};${green};${blue}m${text[i]}\x1B[0m`
   }
 
-  const output = process.stdout.isTTY && process.stdout.getColorDepth() >= 8
+  const output = process.stdout.isTTY && process.stdout.getColorDepth() > 8
     ? colorText
     : lightCyan(text)
 
