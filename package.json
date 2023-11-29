@@ -1,7 +1,7 @@
 {
   "name": "create-uni",
   "type": "module",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "packageManager": "pnpm@8.6.12",
   "description": "An easy way to start a uni-app project",
   "author": "FliPPeDround <flippedround@qq.com>",
@@ -34,7 +34,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prepublishOnly": "nr build",
-    "release": "uvm && bumpp",
+    "release": "pnpm uvm && bumpp",
     "typecheck": "tsc --noEmit",
     "uvm": "cd ./template/base && npx @dcloudio/uvm@latest --manager pnpm"
   },
