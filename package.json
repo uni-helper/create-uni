@@ -35,7 +35,8 @@
     "lint:fix": "eslint --fix .",
     "prepublishOnly": "nr build",
     "release": "bumpp",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "uvm": "cd ./template/base && npx @dcloudio/uvm@latest"
   },
   "devDependencies": {
     "@antfu/ni": "^0.21.5",
