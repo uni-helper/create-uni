@@ -48,7 +48,6 @@ async function init() {
     shouldOverwrite?: boolean
     templateType?: BaseTemplateList['value']
     needsTypeScript?: boolean
-    needsJsx?: boolean
     needsPinia?: boolean
     // needsVitest?: boolean
     needsEslint?: boolean
@@ -142,7 +141,6 @@ async function init() {
   }
 
   const config = {
-    jsx: result.needsJsx,
     pinia: result.needsPinia,
     typescript: result.needsTypeScript,
     js: !result.needsTypeScript,

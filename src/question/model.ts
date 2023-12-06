@@ -1,4 +1,3 @@
-import { dim, italic, link, reset } from 'kolorist'
 import type { PromptObject } from 'prompts'
 
 export default (): PromptObject<string>[] => {
@@ -12,14 +11,6 @@ export default (): PromptObject<string>[] => {
       inactive: 'No',
     },
     {
-      name: 'needsJsx',
-      type: 'toggle',
-      message: `添加JSX?${link(reset(italic(dim('(不支持小程序平台)'))), 'https://uniapp.dcloud.net.cn/tutorial/syntax-jsx.html#jsx-tsx-%E6%94%AF%E6%8C%81')}`,
-      initial: false,
-      active: 'Yes',
-      inactive: 'No',
-    },
-    {
       name: 'needsPinia',
       type: 'toggle',
       message: '使用Pinia作为数据管理?',
@@ -27,6 +18,33 @@ export default (): PromptObject<string>[] => {
       active: 'Yes',
       inactive: 'No',
     },
+    // {
+    //   name: 'needComponent',
+    //   type: 'toggle',
+    //   message: '使用扩展组件库？',
+    //   initial: false,
+    //   active: 'Yss',
+    //   inactive: 'No',
+    // },
+    // {
+    //   name: 'componentName',
+    //   type: (_prev, values) => {
+    //     if (!values.needComponent)
+    //       return null
+
+    //     return 'select'
+    //   },
+    //   message: '选择需要的组件库?',
+    //   hint: '使用方向键选择，回车确认',
+    //   initial: 0,
+    //   choices: [
+    //     {
+    //       title: 'Uni-UI',
+    //       description: `由${link(green('Uni App'), 'https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html')}官方组件库`,
+    //       value: 'uni',
+    //     },
+    //   ],
+    // },
     {
       name: 'needsUnocss',
       type: 'toggle',

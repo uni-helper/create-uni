@@ -4,7 +4,9 @@
     "dcloudio",
     "esno",
     "gitee",
-    "kolorist"
+    "kolorist",
+    "Pinia",
+    "Unocss"
   ],
   "eslint.experimental.useFlatConfig": true,
   "prettier.enable": false,
