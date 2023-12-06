@@ -15,8 +15,8 @@ export default (targetDir: string): PromptObject<string>[] => {
         return `${dirForPrompt}不是空的。要删除现有文件并继续吗？`
       },
       initial: false,
-      active: 'Yes',
-      inactive: 'No',
+      active: '是',
+      inactive: '否',
     },
     {
       name: 'overwriteChecker',
