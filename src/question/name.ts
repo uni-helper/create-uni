@@ -7,7 +7,7 @@ export default (): PromptObject<string>[] => {
     {
       name: 'projectName',
       type: 'text',
-      message: '项目名称:',
+      message: '请输入项目名称:',
       initial: targetDir,
       onState: state => (targetDir = String(state.value).trim() || targetDir),
     },

@@ -5,7 +5,7 @@ export default (): PromptObject<string>[] => {
     {
       name: 'needsTypeScript',
       type: 'toggle',
-      message: '添加TypeScript?',
+      message: '是否使用 TypeScript 语法？',
       initial: false,
       active: 'Yes',
       inactive: 'No',
@@ -13,7 +13,7 @@ export default (): PromptObject<string>[] => {
     {
       name: 'needsPinia',
       type: 'toggle',
-      message: '使用Pinia作为数据管理?',
+      message: '是否引入 Pinia 用于状态管理？',
       initial: false,
       active: 'Yes',
       inactive: 'No',
@@ -48,7 +48,7 @@ export default (): PromptObject<string>[] => {
     {
       name: 'needsUnocss',
       type: 'toggle',
-      message: '使用Unocss作为样式解决方案?',
+      message: '是否使用 Unocss 作为样式解决方案?',
       initial: false,
       active: 'Yes',
       inactive: 'No',
@@ -56,7 +56,7 @@ export default (): PromptObject<string>[] => {
     {
       name: 'needsEslint',
       type: 'toggle',
-      message: '使用ESlint作代码检测?',
+      message: '是否引入 ESLint 用于代码质量检测？?',
       initial: false,
       active: 'Yes',
       inactive: 'No',
