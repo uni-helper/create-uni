@@ -49,6 +49,8 @@ async function init() {
     templateType?: BaseTemplateList['value']
     needsTypeScript?: boolean
     needsPinia?: boolean
+    needsUI?: boolean
+    UIName?: string
     // needsVitest?: boolean
     needsEslint?: boolean
     needsUnocss?: boolean
@@ -121,10 +123,8 @@ async function init() {
   render('base')
 
   const entry = {
-    pinia: result.needsPinia && !result.needsUnocss,
-    unocss: result.needsUnocss && !result.needsPinia,
-    piniaAndUnocss: result.needsPinia && result.needsUnocss,
-    default: !result.needsPinia && !result.needsUnocss,
+    pinia: result.needsPinia,
+    unocss: result.needsUnocss,
   }
   for (const [key, needs] of Object.entries(entry)) {
     if (needs)
@@ -132,9 +132,10 @@ async function init() {
   }
 
   const code = {
-    unocss: result.needsUnocss,
-    default: !result.needsUnocss,
+    unocss: result.needsUnocss && !result.needsUI,
+    [result.UIName!]: result.needsUI,
   }
+
   for (const [key, needs] of Object.entries(code)) {
     if (needs)
       render(`code/${key}`)

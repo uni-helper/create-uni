@@ -1,3 +1,4 @@
+import { green, link } from 'kolorist'
 import type { PromptObject } from 'prompts'
 
 export default (): PromptObject<string>[] => {
@@ -18,33 +19,33 @@ export default (): PromptObject<string>[] => {
       active: '是',
       inactive: '否',
     },
-    // {
-    //   name: 'needComponent',
-    //   type: 'toggle',
-    //   message: '使用扩展组件库？',
-    //   initial: false,
-    //   active: 'Yss',
-    //   inactive: '否',
-    // },
-    // {
-    //   name: 'componentName',
-    //   type: (_prev, values) => {
-    //     if (!values.needComponent)
-    //       return null
+    {
+      name: 'needsUI',
+      type: 'toggle',
+      message: '是否引入组件库？',
+      initial: false,
+      active: '是',
+      inactive: '否',
+    },
+    {
+      name: 'UIName',
+      type: (_prev, values) => {
+        if (!values.needsUI)
+          return null
 
-    //     return 'select'
-    //   },
-    //   message: '选择需要的组件库?',
-    //   hint: '使用方向键选择，回车确认',
-    //   initial: 0,
-    //   choices: [
-    //     {
-    //       title: 'Uni-UI',
-    //       description: `由${link(green('Uni App'), 'https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html')}官方组件库`,
-    //       value: 'uni',
-    //     },
-    //   ],
-    // },
+        return 'select'
+      },
+      message: '选择需要的组件库？',
+      hint: '使用方向键选择，回车确认',
+      initial: 0,
+      choices: [
+        {
+          title: 'Uni-UI',
+          description: `由${link(green('Uni App'), 'https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html')}官方组件库`,
+          value: 'uni',
+        },
+      ],
+    },
     {
       name: 'needsUnocss',
       type: 'toggle',
