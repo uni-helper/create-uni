@@ -41,8 +41,8 @@ export default (): PromptObject<string>[] => {
       choices: [
         {
           title: 'Uni-UI',
-          description: `由${link(green('Uni App'), 'https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html')}官方组件库`,
-          value: 'uni',
+          description: `${link(green('Uni App'), 'https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html')}官方组件库`,
+          value: 'uniUI',
         },
       ],
     },
@@ -57,7 +57,7 @@ export default (): PromptObject<string>[] => {
     {
       name: 'needsEslint',
       type: 'toggle',
-      message: '是否引入 ESLint 用于代码质量检测？?',
+      message: '是否引入 ESLint 用于代码质量检测？',
       initial: false,
       active: '是',
       inactive: '否',

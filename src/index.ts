@@ -51,7 +51,6 @@ async function init() {
     needsPinia?: boolean
     needsUI?: boolean
     UIName?: string
-    // needsVitest?: boolean
     needsEslint?: boolean
     needsUnocss?: boolean
   } = {}
@@ -122,43 +121,19 @@ async function init() {
   // Render templates
   render('base')
 
-  const entry = {
-    pinia: result.needsPinia,
-    unocss: result.needsUnocss,
-  }
-  for (const [key, needs] of Object.entries(entry)) {
-    if (needs)
-      render(`entry/${key}`)
-  }
-
-  const code = {
-    unocss: result.needsUnocss && !result.needsUI,
-    [result.UIName!]: result.needsUI,
-  }
-
-  for (const [key, needs] of Object.entries(code)) {
-    if (needs)
-      render(`code/${key}`)
-  }
-
   const config = {
-    pinia: result.needsPinia,
-    typescript: result.needsTypeScript,
     js: !result.needsTypeScript,
+    typescript: result.needsTypeScript,
+    pinia: result.needsPinia,
+    [result.UIName!]: result.needsUI,
     unocss: result.needsUnocss,
     lint: result.needsEslint,
+    pnpm: packageManager === 'pnpm',
   }
+
   for (const [key, needs] of Object.entries(config)) {
     if (needs)
       render(`config/${key}`)
-  }
-
-  const manager = {
-    pnpm: packageManager === 'pnpm',
-  }
-  for (const [key, needs] of Object.entries(manager)) {
-    if (needs)
-      render(`manager/${key}`)
   }
 
   const dataStore: Record<string, any> = {}
