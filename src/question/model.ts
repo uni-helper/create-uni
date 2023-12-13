@@ -29,8 +29,8 @@ export default (): PromptObject<string>[] => {
     },
     {
       name: 'UIName',
-      type: (_prev, values) => {
-        if (!values.needsUI)
+      type: (prevValue) => {
+        if (!prevValue)
           return null
 
         return 'select'

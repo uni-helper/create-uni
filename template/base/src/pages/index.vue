@@ -1,37 +1,20 @@
 <script setup>
-import { ref } from 'vue'
-import Footer from '@/components/Footer.vue'
-
-const title = ref('✨ Hello Uni App! ✨')
+import AppLogos from '@/components/AppLogos.vue'
+import InputEntry from '@/components/InputEntry.vue'
+import AppFooter from '@/components/AppFooter.vue'
 </script>
 
 <template>
-  <view class="main">
-    <image
-      alt="uni helper logo"
-      src="/static/logo.svg"
-      width="125" height="125"
-    />
-    <text class="title">
-      {{ title }}
-    </text>
+  <view class="root-container">
+    <AppLogos />
+    <InputEntry />
+    <AppFooter />
   </view>
-
-  <Footer />
 </template>
 
 <style scoped>
-.main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.title {
-  margin-top: 2rem;
-  font-size: 40rpx;
-  font-weight: bold;
-  color: #888;
+.root-container {
+  padding: 5rem 2.5rem;
+  text-align: center;
 }
 </style>

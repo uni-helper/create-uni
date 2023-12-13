@@ -121,11 +121,20 @@ async function init() {
   // Render templates
   render('base')
 
+  const UI = {
+    [result.UIName!]: result.needsUI,
+    unocss: result.needsUnocss,
+  }
+
+  for (const [key, needs] of Object.entries(UI)) {
+    if (needs)
+      render(`UI/${key}`)
+  }
+
   const config = {
     js: !result.needsTypeScript,
     typescript: result.needsTypeScript,
     pinia: result.needsPinia,
-    [result.UIName!]: result.needsUI,
     unocss: result.needsUnocss,
     lint: result.needsEslint,
     pnpm: packageManager === 'pnpm',
