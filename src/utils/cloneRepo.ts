@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import process from 'node:process'
 import { bold } from 'kolorist'
 import type { BaseTemplateList } from '../question/template/type'
-import { ora } from './loading'
+import type { Ora } from './loading'
 import { replaceProjectName } from './setPackageName'
 
 async function removeGitFolder(localPath: string): Promise<void> {
@@ -50,19 +50,16 @@ function getRepoUrlList(url: BaseTemplateList['value']['url']) {
   return [gitee, github?.replace('github.com', 'githubfast.com'), github].filter(Boolean) as string[]
 }
 
-export async function dowloadTemplate(data: BaseTemplateList['value'], name: string, root: string) {
-  const loading = ora(`${bold('正在下载模板...')}`).start()
+export async function dowloadTemplate(data: BaseTemplateList['value'], name: string, root: string, loading: Ora) {
   const repoUrlList = getRepoUrlList(data.url)
   try {
     await cloneRepo(repoUrlList, root)
   }
   catch {
-    loading.fail(`${bold('模板下载失败！')}`)
+    loading.fail(`${bold('模板创建失败！')}`)
     process.exit(1)
   }
 
   replaceProjectName(root, name)
-
-  loading.succeed(`${bold('模板下载完成！')}`)
   data.callBack?.(root)
 }

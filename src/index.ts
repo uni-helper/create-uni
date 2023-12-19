@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import { basename, join, resolve } from 'node:path'
 import {
   existsSync,
   mkdirSync,
@@ -10,26 +9,28 @@ import {
   unlinkSync,
   writeFileSync,
 } from 'node:fs'
+import { basename, join, resolve } from 'node:path'
 import process from 'node:process'
 import ejs from 'ejs'
+import { bold, red } from 'kolorist'
 import minimist from 'minimist'
 import prompts from 'prompts'
-import { bold, red } from 'kolorist'
 import figures from 'prompts/lib/util/figures.js'
+import { question } from './question'
+import filePrompt from './question/file'
+import { templateList } from './question/template/templateDate'
+import type { BaseTemplateList } from './question/template/type'
 import {
   canSkipEmptying,
   dowloadTemplate,
+  ora,
   preOrderDirectoryTraverse,
   printBanner,
   printFinish,
   renderTemplate,
   replaceProjectName,
 } from './utils'
-import { question } from './question'
-import type { BaseTemplateList } from './question/template/type'
 import { postOrderDirectoryTraverse } from './utils/directoryTraverse'
-import filePrompt from './question/file'
-import { templateList } from './question/template/templateDate'
 
 async function init() {
   printBanner()
@@ -80,6 +81,7 @@ async function init() {
     }
   }
 
+  const loading = ora(`${bold('正在创建模板...')}`).start()
   const cwd = process.cwd()
   const root = join(cwd, result.projectName!)
   const userAgent = process.env.npm_config_user_agent ?? ''
@@ -104,8 +106,8 @@ async function init() {
 
   if (result.templateType!.type !== 'custom') {
     const { templateType, projectName } = result
-    await dowloadTemplate(templateType!, projectName!, root)
-    printFinish(root, cwd, packageManager, 'repo')
+    await dowloadTemplate(templateType!, projectName!, root, loading)
+    printFinish(root, cwd, packageManager, loading)
     return
   }
 
@@ -225,7 +227,7 @@ async function init() {
   }
   replaceProjectName(root, result.projectName!)
 
-  printFinish(root, cwd, packageManager)
+  printFinish(root, cwd, packageManager, loading)
 }
 
 init().catch((e) => {

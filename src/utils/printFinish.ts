@@ -1,16 +1,16 @@
 /* eslint-disable no-console */
 import { relative } from 'node:path'
 import { bold, green } from 'kolorist'
-import figures from 'prompts/lib/util/figures.js'
 import { getCommand } from './getCommand'
+import type { Ora } from './loading'
 
 export function printFinish(
   root: string,
   cwd: string,
   packageManager: 'pnpm' | 'npm' | 'yarn',
-  type: 'repo' | 'local' = 'local',
+  loading: Ora,
 ) {
-  type === 'local' && console.log(green(figures.tick), bold('模板创建成功！'))
+  loading.succeed(`${bold('模板创建完成！')}`)
   console.log()
   if (root !== cwd) {
     const cdProjectName = relative(cwd, root)

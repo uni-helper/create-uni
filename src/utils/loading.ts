@@ -3,7 +3,7 @@ import { green, red } from 'kolorist'
 import figures from 'prompts/lib/util/figures.js'
 
 const frames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
-class Ora {
+export class Ora {
   private message: string
   private interval: NodeJS.Timeout | null
 
