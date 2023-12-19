@@ -1,5 +1,5 @@
-import { green, link } from 'kolorist'
 import type { PromptObject } from 'prompts'
+import { UIList } from './UI/UIDate'
 
 export default (): PromptObject<string>[] => {
   return [
@@ -38,13 +38,7 @@ export default (): PromptObject<string>[] => {
       message: '选择需要的组件库？',
       hint: '使用方向键选择，回车确认',
       initial: 0,
-      choices: [
-        {
-          title: 'Uni-UI',
-          description: `${link(green('Uni App'), 'https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html')}官方组件库`,
-          value: 'uni',
-        },
-      ],
+      choices: UIList,
     },
     {
       name: 'needsUnocss',

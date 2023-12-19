@@ -18,6 +18,7 @@ import prompts from 'prompts'
 import figures from 'prompts/lib/util/figures.js'
 import { question } from './question'
 import filePrompt from './question/file'
+import { UIList } from './question/UI/UIDate'
 import { templateList } from './question/template/templateDate'
 import type { BaseTemplateList } from './question/template/type'
 import type {
@@ -42,11 +43,15 @@ async function init() {
   const argv = minimist(process.argv.slice(2), {
     alias: {
       templateType: ['t'],
+      needsTypeScript: ['ts'],
+      needsPinia: ['pinia', 'p'],
+      UIName: ['ui', 'u'],
+      needsEslint: ['eslint', 'e'],
+      needsUnocss: ['unocss', 'c'],
     },
     string: ['_'],
   })
   const projectName = argv._[0]
-  const templateType = templateList.find(item => item.value.type === argv?.t)?.value
 
   let result: {
     projectName?: string
@@ -71,9 +76,16 @@ async function init() {
     }
   }
   else {
-    if (!templateType) {
+    const templateType = templateList.find(item => item.value.type === argv?.t)?.value
+    const UIName = UIList.find(item => item.value === argv.UIName)?.value
+    if (!templateType && argv?.templateType) {
       // eslint-disable-next-line no-console
       console.log(`${red(figures.cross)} ${bold('未获取到指定模板')}`)
+      process.exit(1)
+    }
+    if (!UIName && argv?.UIName) {
+      // eslint-disable-next-line no-console
+      console.log(`${red(figures.cross)} ${bold('未获取到指定UI')}`)
       process.exit(1)
     }
     result = {
@@ -81,7 +93,13 @@ async function init() {
       shouldOverwrite: canSkipEmptying(projectName)
         ? true
         : (await prompts(filePrompt(projectName))).shouldOverwrite,
-      templateType,
+      templateType: templateType || <BaseTemplateList['value']>{ type: 'custom' },
+      needsTypeScript: argv['needsTypeScript'!],
+      needsPinia: argv['needsPinia'!],
+      needsUI: Boolean(UIName),
+      UIName: argv['UIName'!],
+      needsEslint: argv['needsEslint'!],
+      needsUnocss: argv['needsUnocss'!],
     }
   }
 
