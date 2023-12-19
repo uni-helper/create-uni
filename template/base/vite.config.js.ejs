@@ -8,7 +8,9 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [
   <%_ for (const { initializer } of plugins) { _%>
+  <%_ if (initializer) { _%>
     <%- initializer _%>,
+  <%_ } _%>
   <%_ } _%>
   ],
   resolve: {

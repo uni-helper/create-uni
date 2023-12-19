@@ -20,6 +20,9 @@ import { question } from './question'
 import filePrompt from './question/file'
 import { templateList } from './question/template/templateDate'
 import type { BaseTemplateList } from './question/template/type'
+import type {
+  Ora,
+} from './utils'
 import {
   canSkipEmptying,
   dowloadTemplate,
@@ -32,6 +35,7 @@ import {
 } from './utils'
 import { postOrderDirectoryTraverse } from './utils/directoryTraverse'
 
+let loading: Ora
 async function init() {
   printBanner()
 
@@ -81,7 +85,7 @@ async function init() {
     }
   }
 
-  const loading = ora(`${bold('正在创建模板...')}`).start()
+  loading = ora(`${bold('正在创建模板...')}`).start()
   const cwd = process.cwd()
   const root = join(cwd, result.projectName!)
   const userAgent = process.env.npm_config_user_agent ?? ''
@@ -139,7 +143,8 @@ async function init() {
     pinia: result.needsPinia,
     unocss: result.needsUnocss,
     lint: result.needsEslint,
-    pnpm: packageManager === 'pnpm',
+    autoImport: result.needsUI,
+    [result.UIName!]: result.needsUI,
   }
 
   for (const [key, needs] of Object.entries(config)) {
@@ -231,5 +236,6 @@ async function init() {
 }
 
 init().catch((e) => {
+  loading.fail(`${bold('模板创建失败！')}`)
   console.error(e)
 })

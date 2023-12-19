@@ -42,7 +42,7 @@ export default (): PromptObject<string>[] => {
         {
           title: 'Uni-UI',
           description: `${link(green('Uni App'), 'https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html')}官方组件库`,
-          value: 'uniUI',
+          value: 'uni',
         },
       ],
     },
