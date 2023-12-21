@@ -7,7 +7,9 @@
     "types": [
       "@dcloudio/types",
       "miniprogram-api-typings",
-      "mini-types"
+      "mini-types",
+      "@uni-helper/uni-app-types"
     ]
-  }
+  },
+  "include": ["**/*.d.ts", "src/**/*.vue"]
 }

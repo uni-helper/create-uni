@@ -6,7 +6,7 @@
     "@types/node": "^18.17.3",
     "@uni-helper/uni-app-types": "^0.5.8",
     "@vue/tsconfig": "^0.4.0",
-    "typescript": "~5.0.4",
+    "typescript": "^5.0.4",
     "vue-tsc": "^1.8.8"
   }
 }

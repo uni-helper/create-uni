@@ -5,7 +5,7 @@ export default function getData({ oldData }) {
     initializer: `Components({
       dts: true,
       resolvers: [UniUIResolver()]
-    }),`,
+    })`,
   }
 
   return {

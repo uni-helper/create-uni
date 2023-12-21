@@ -162,7 +162,7 @@ async function init() {
     unocss: result.needsUnocss,
     lint: result.needsEslint,
     autoImport: result.needsUI,
-    [result.UIName!]: result.needsUI,
+    [`UI/${result.UIName!}`]: result.needsUI,
   }
 
   for (const [key, needs] of Object.entries(config)) {
