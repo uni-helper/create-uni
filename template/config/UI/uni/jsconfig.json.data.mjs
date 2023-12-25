@@ -1,7 +1,7 @@
 export default function getData({ oldData }) {
   const uniUIConfig = {
     id: 'uniUIConfig',
-    types: ['@uni-helper/uni-ui-type'],
+    types: ['@uni-helper/uni-ui-types'],
   }
   return {
     ...oldData,
