@@ -146,8 +146,8 @@ async function init() {
   render('base')
 
   const UI = {
+    unocss: result.needsUnocss || result.UIName === 'ano',
     [result.UIName!]: result.needsUI,
-    unocss: result.needsUnocss,
   }
 
   for (const [key, needs] of Object.entries(UI)) {
@@ -158,7 +158,7 @@ async function init() {
   const config = {
     typescript: result.needsTypeScript,
     pinia: result.needsPinia,
-    unocss: result.needsUnocss,
+    unocss: result.needsUnocss || result.UIName === 'ano',
     lint: result.needsEslint,
     autoImport: result.needsUI,
     [`UI/${result.UIName!}`]: result.needsUI,

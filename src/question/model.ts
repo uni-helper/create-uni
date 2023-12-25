@@ -42,7 +42,12 @@ export default (): PromptObject<string>[] => {
     },
     {
       name: 'needsUnocss',
-      type: 'toggle',
+      type: (prevValue) => {
+        if (prevValue === 'ano')
+          return null
+
+        return 'toggle'
+      },
       message: '是否使用 Unocss 作为样式解决方案?',
       initial: false,
       active: '是',

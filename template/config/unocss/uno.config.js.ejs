@@ -1,0 +1,34 @@
+import {
+  defineConfig,
+  presetIcons,
+  transformerDirectives,
+  transformerVariantGroup,
+} from 'unocss'
+
+<%_ for (const { importer } of config) { _%>
+<%_ if (importer) { _%>
+<%- importer %>
+<%_ } _%>
+<%_ } _%>
+
+export default defineConfig({
+  presets: [
+    <%_ for (const { initializer } of config) { _%>
+    <%_ if (initializer) { _%>
+    <%- initializer _%>,
+    <%_ } _%>
+    <%_ } _%>
+    presetIcons({
+      scale: 1.2,
+      warn: true,
+      extraProperties: {
+        'display': 'inline-block',
+        'vertical-align': 'middle',
+      },
+    }),
+  ],
+  transformers: [
+    transformerDirectives(),
+    transformerVariantGroup(),
+  ],
+})
