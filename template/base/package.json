@@ -65,6 +65,7 @@
     "@dcloudio/uni-stacktracey": "3.0.0-3090820231124001",
     "@dcloudio/vite-plugin-uni": "3.0.0-3090820231124001",
     "@uni-helper/uni-app-types": "^0.5.8",
+    "@uni-helper/uni-cloud-types": "^0.5.2",
     "@vue/runtime-core": "3.3.7",
     "mini-types": "^0.1.7",
     "miniprogram-api-typings": "^3.11.0",
