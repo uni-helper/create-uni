@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "@dcloudio/uni-ui": "^1.4.28"
+  },
+  "devDependencies": {
+    "@uni-helper/uni-ui-types": "0.5.11"
   }
 }

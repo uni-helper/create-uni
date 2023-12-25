@@ -156,7 +156,6 @@ async function init() {
   }
 
   const config = {
-    js: !result.needsTypeScript,
     typescript: result.needsTypeScript,
     pinia: result.needsPinia,
     unocss: result.needsUnocss,
@@ -191,13 +190,22 @@ async function init() {
   )
 
   if (result.needsTypeScript) {
-    // Rename `.js` to `.ts`
     preOrderDirectoryTraverse(
       root,
       () => {},
       (filepath) => {
+        // Rename `.js` to `.ts`
         if (filepath.endsWith('.js') && !filepath.endsWith('eslint.config.js')) {
           const tsFilePath = filepath.replace(/\.js$/, '.ts')
+          if (existsSync(tsFilePath))
+            unlinkSync(filepath)
+
+          else
+            renameSync(filepath, tsFilePath)
+        }
+        // Rename 'jsconfig.json' to 'tsconfig.json
+        else if (filepath.endsWith('jsconfig.json')) {
+          const tsFilePath = filepath.replace('jsconfig.json', 'tsconfig.json')
           if (existsSync(tsFilePath))
             unlinkSync(filepath)
 

@@ -1,0 +1,49 @@
+{
+  <%_ for (const { extensions } of config) { _%>
+  <%_ if (extensions) { _%>
+  <%- extensions %>,
+  <%_ } _%>
+  <%_ } _%>
+  "compilerOptions": {
+    <%_ for (const { options } of config) { _%>
+    <%_ if (options) { _%>
+    <%- options %>
+    <%_ } _%>
+    <%_ } _%>
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": [
+      "@dcloudio/types",
+      "miniprogram-api-typings",
+      "mini-types",
+      <%_ for (const { types } of config) { _%>
+      <%_ if (types) { _%>
+      <%_ for (const  type  of types) { _%>
+      <%_ if (type) { _%>
+      "<%- type %>",
+      <%_ } _%>
+      <%_ } _%>
+      <%_ } _%>
+      <%_ } _%>
+      "@uni-helper/uni-app-types"
+    ]
+  },
+  "include": [
+    "**/*.d.ts",
+    <%_ for (const { includes } of config) { _%>
+    <%_ if (includes) { _%>
+    <%_ for (const  include  of includes) { _%>
+    <%_ if (include) { _%>
+    "<%- include %>",
+    <%_ } _%>
+    <%_ } _%>
+    <%_ } _%>
+    <%_ } _%>
+    "src/**/*.vue"
+  ],
+  "vueCompilerOptions": {
+    "nativeTags": ["block", "component", "template", "slot"]
+  }
+}
