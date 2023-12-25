@@ -43,7 +43,7 @@ export function renderTemplate(src: string, dest: string, callbacks: Callback[])
     return
   }
 
-  if (filename === 'extensions.json' && fs.existsSync(dest)) {
+  if ((filename === 'extensions.json' || filename === 'settings.json') && fs.existsSync(dest)) {
     // merge instead of overwriting
     const existing = JSON.parse(fs.readFileSync(dest, 'utf8'))
     const newExtensions = JSON.parse(fs.readFileSync(src, 'utf8'))
