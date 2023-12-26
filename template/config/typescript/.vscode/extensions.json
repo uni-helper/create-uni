@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "vue.vscode-typescript-vue-plugin",
+    "yoavbls.pretty-ts-errors",
+    "johnsoncodehk.vscode-tsconfig-helper"
+  ]
+}

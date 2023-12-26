@@ -1,7 +1,7 @@
 {
   "recommendations": [
     "vue.volar",
-    "Vue.vscode-typescript-vue-plugin",
+    "mrmaoddxxaa.create-uniapp-view",
     "uni-helper.uni-helper-vscode"
   ]
 }

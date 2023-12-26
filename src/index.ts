@@ -9,7 +9,7 @@ import {
   unlinkSync,
   writeFileSync,
 } from 'node:fs'
-import { basename, join, resolve } from 'node:path'
+import { join, resolve } from 'node:path'
 import process from 'node:process'
 import ejs from 'ejs'
 import { bold, red } from 'kolorist'
@@ -229,29 +229,6 @@ async function init() {
           const vueContent = readFileSync(filepath, 'utf8')
           const vueContentWithTs = vueContent.replace('<script setup>', '<script setup lang="ts">')
           writeFileSync(filepath, vueContentWithTs)
-        }
-      },
-    )
-  }
-  else {
-    // Remove all the remaining `.ts` files
-    preOrderDirectoryTraverse(
-      root,
-      () => {},
-      (filepath) => {
-        if (basename(filepath) === 'uno.config.ts') {
-          // 移除文件里的类型声明
-          const unoConfigContent = readFileSync(filepath, 'utf8')
-          const unoConfigContentWithoutType
-          = unoConfigContent.replace(
-`import type { Preset, SourceCodeTransformer } from 'unocss'
-
-`,
-'',
-          ).replace(': Preset[]', '').replace(': SourceCodeTransformer[]', '')
-          const newFilepath = filepath.replace(/\.ts$/, '.js')
-          unlinkSync(filepath)
-          writeFileSync(newFilepath, unoConfigContentWithoutType)
         }
       },
     )
