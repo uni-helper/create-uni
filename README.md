@@ -40,7 +40,7 @@ npm create uni <项目名称> --ts -u ano -e
 ```
 
 ### 参数说明
-| 配置项 | 参数 | 别名 | 可选值|
+| 配置项 | 参数 | 别名 | 可选值 |
 |  :---: | :---: | :---: | :---: |
 | Template | —— | t | vitesse |
 | TypeScript | ts | —— | —— |

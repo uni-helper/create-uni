@@ -12,7 +12,7 @@ export default (targetDir?: string): PromptObject<string>[] => {
         const _targetDir = targetDir ?? prevValue
         const dirForPrompt = _targetDir === '.' ? '当前文件' : `目标文件"${_targetDir}"`
 
-        return `${dirForPrompt}不是空的。要删除现有文件并继续吗？`
+        return `${dirForPrompt}非空，是否覆盖？`
       },
       initial: false,
       active: '是',
