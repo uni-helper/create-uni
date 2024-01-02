@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  schedule:
+    - cron: '0 1 * * 1'
+
+  push:
+    branches:
+      - main
+
+jobs:
+  update-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Set node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+          cache: pnpm
+
+      - run: corepack enable
+
+      - name: update script
+        run: pnpm run up
+
+      - name: Commit and push if changes are made
+        run: |
+          git config --global user.email "734243792@qq.com"
+          git config --global user.name "FliPPeDround"
+          git add -A
+          git commit -m "chore: update deps" && pnpm run release || echo "No changes to commit"
+          git push
