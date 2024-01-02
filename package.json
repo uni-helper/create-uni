@@ -34,10 +34,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prepublishOnly": "nr build",
-    "release": "pnpm run up && pnpm uvm && bumpp",
+    "release": "pnpm run up && bumpp",
     "typecheck": "tsc --noEmit",
-    "up": "cd ./template && taze major -w -r",
-    "uvm": "cd ./template/base && npx @dcloudio/uvm@latest --manager pnpm"
+    "up": "cd ./template && taze major -w -r && cd ./base && npx @dcloudio/uvm@latest --manager pnpm"
   },
   "devDependencies": {
     "@antfu/ni": "^0.21.12",
