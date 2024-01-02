@@ -33,5 +33,15 @@ jobs:
           git config --global user.email "734243792@qq.com"
           git config --global user.name "FliPPeDround"
           git add -A
-          git commit -m "chore: update deps" && pnpm run release || echo "No changes to commit"
-          git push
+          git commit -m "chore: update deps" || echo "No changes to commit"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: update deps'
+          title: 'chore: update deps'
+          body: Update dependencies
+          branch: update-deps
+          delete-branch: true
+          base: main
