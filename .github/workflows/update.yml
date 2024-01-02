@@ -14,10 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create a new branch
-        run: |
-          git checkout -b chore/update
-
       - name: Install pnpm
         uses: pnpm/action-setup@v2
 
@@ -40,12 +36,12 @@ jobs:
           git commit -m "chore: update deps" || echo "No changes to commit"
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'chore: update deps'
           title: 'chore: update deps'
           body: Update dependencies
-          branch: chore/update
+          branch: chore/update-deps
           delete-branch: true
           base: main
