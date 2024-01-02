@@ -34,7 +34,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prepublishOnly": "nr build",
-    "release": "pnpm run up && bumpp",
+    "release": "bumpp",
     "typecheck": "tsc --noEmit",
     "up": "cd ./template && taze major -w -r && cd ./base && npx @dcloudio/uvm@latest --manager pnpm"
   },
