@@ -39,12 +39,6 @@ jobs:
           git add -A
           git commit -m "chore: update deps" || echo "No changes to commit"
 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: chore/update
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
@@ -52,6 +46,6 @@ jobs:
           commit-message: 'chore: update deps'
           title: 'chore: update deps'
           body: Update dependencies
-          branch: update-deps
+          branch: chore/update
           delete-branch: true
           base: main
