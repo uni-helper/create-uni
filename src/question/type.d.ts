@@ -1,4 +1,4 @@
-export interface UIListType {
+export interface ModelType {
   title: string
   description: string
   value: string

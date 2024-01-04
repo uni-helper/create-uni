@@ -18,7 +18,7 @@ import prompts from 'prompts'
 import figures from 'prompts/lib/util/figures.js'
 import { question } from './question'
 import filePrompt from './question/file'
-import { UIList } from './question/UI/UIDate'
+import { UIList } from './question/UI/choices'
 import { templateList } from './question/template/templateDate'
 import type { BaseTemplateList } from './question/template/type'
 import type {
@@ -68,6 +68,7 @@ async function init() {
   if (!projectName) {
     try {
       result = await question()
+      console.log(result)
     }
     catch (cancelled) {
     // eslint-disable-next-line no-console
