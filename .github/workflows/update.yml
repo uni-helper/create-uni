@@ -4,10 +4,6 @@ on:
   schedule:
     - cron: '0 1 * * 1'
 
-  push:
-    branches:
-      - main
-
 jobs:
   update-dependencies:
     runs-on: ubuntu-latest

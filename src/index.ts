@@ -21,9 +21,7 @@ import filePrompt from './question/file'
 import { UIList } from './question/UI/choices'
 import { templateList } from './question/template/templateDate'
 import type { BaseTemplateList } from './question/template/type'
-import type {
-  Ora,
-} from './utils'
+import type { Ora } from './utils'
 import {
   canSkipEmptying,
   dowloadTemplate,
