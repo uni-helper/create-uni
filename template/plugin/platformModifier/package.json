@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@uni-helper/vite-plugin-uni-platform-modifier": "^0.0.2"
+  }
+}

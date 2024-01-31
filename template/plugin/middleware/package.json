@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@uni-helper/vite-plugin-uni-middleware": "^0.0.1"
+  }
+}

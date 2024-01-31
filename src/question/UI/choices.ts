@@ -5,7 +5,7 @@ export const UIList: ModelType[] = [
   {
     title: '暂不引入组件库',
     description: '',
-    value: '',
+    value: null,
   },
   {
     title: green('Uni UI'),

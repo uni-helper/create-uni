@@ -1,5 +1,5 @@
 export interface ModelType {
   title: string
   description: string
-  value: string
+  value: string | null
 }

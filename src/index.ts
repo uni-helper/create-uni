@@ -42,10 +42,10 @@ async function init() {
     alias: {
       templateType: ['t'],
       needsTypeScript: ['ts'],
-      needsPinia: ['pinia', 'p'],
+      pluginList: ['p'],
+      modelList: ['m'],
       UIName: ['ui', 'u'],
       needsEslint: ['eslint', 'e'],
-      needsUnocss: ['unocss', 'c'],
     },
     string: ['_'],
   })
@@ -56,11 +56,10 @@ async function init() {
     shouldOverwrite?: boolean
     templateType?: BaseTemplateList['value']
     needsTypeScript?: boolean
-    needsPinia?: boolean
-    needsUI?: boolean
-    UIName?: string
+    pluginList?: string[]
+    modelList?: string[]
+    UIName?: string | null
     needsEslint?: boolean
-    needsUnocss?: boolean
   } = {}
 
   if (!projectName) {
@@ -94,11 +93,10 @@ async function init() {
         : (await prompts(filePrompt(projectName))).shouldOverwrite,
       templateType: templateType || <BaseTemplateList['value']>{ type: 'custom' },
       needsTypeScript: argv['needsTypeScript'!],
-      needsPinia: argv['needsPinia'!],
-      needsUI: Boolean(UIName),
+      pluginList: argv['pluginList'!],
+      modelList: argv['modelList'!],
       UIName: argv['UIName'!],
       needsEslint: argv['needsEslint'!],
-      needsUnocss: argv['needsUnocss'!],
     }
   }
 
@@ -144,28 +142,39 @@ async function init() {
   // Render templates
   render('base')
 
-  const UI = {
-    unocss: result.needsUnocss || result.UIName === 'ano',
-    [result.UIName!]: result.needsUI,
-  }
+  const needUI = result.UIName !== null
+  const needUnocss = result.modelList?.includes('unocss') || result.UIName === 'ano'
 
-  for (const [key, needs] of Object.entries(UI)) {
-    if (needs)
-      render(`UI/${key}`)
-  }
-
+  // Render Config
   const config = {
     typescript: result.needsTypeScript,
-    pinia: result.needsPinia,
-    unocss: result.needsUnocss || result.UIName === 'ano',
     lint: result.needsEslint,
-    autoImport: result.needsUI,
-    [`UI/${result.UIName!}`]: result.needsUI,
   }
 
   for (const [key, needs] of Object.entries(config)) {
     if (needs)
       render(`config/${key}`)
+  }
+
+  // Render Plugins
+  result.pluginList?.forEach((plugin) => {
+    render(`plugin/${plugin}`)
+  })
+
+  // Render Models
+  result.modelList?.forEach((model) => {
+    render(`model/${model}`)
+  })
+
+  // Render UI
+  const UI = {
+    unocss: needUnocss,
+    [result.UIName!]: needUI,
+  }
+
+  for (const [key, needs] of Object.entries(UI)) {
+    if (needs)
+      render(`UI/${key}`)
   }
 
   const dataStore: Record<string, any> = {}
