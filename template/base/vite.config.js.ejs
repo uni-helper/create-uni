@@ -6,6 +6,11 @@ import { defineConfig } from 'vite'
 <%_ } _%>
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
   plugins: [
   <%_ for (const { initializer } of plugins) { _%>
   <%_ if (initializer) { _%>
@@ -13,9 +18,7 @@ export default defineConfig({
   <%_ } _%>
   <%_ } _%>
   ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  }
+  <%_ if (extraConfig) { _%>
+  <%- extraConfig _%>,
+  <%_ } _%>
 })

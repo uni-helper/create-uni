@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@uni-helper/uni-use": "^0.19.6",
+    "@vueuse/core": "^9.0.0"
+  }
+}
