@@ -1,7 +1,7 @@
 import { trueColor as rgb } from 'kolorist'
 import type { ModelType } from '../type'
 
-export const modelList: ModelType[] = [
+export default [
   {
     title: rgb(235, 186, 43)('Pinia'),
     value: 'pinia',
@@ -15,7 +15,7 @@ export const modelList: ModelType[] = [
   {
     title: rgb(108, 92, 231)('uni-network'),
     value: 'uniNetwork',
-    description: '为 uni-app 打造的基于 Promise 的 HTTP 客户端',
+    description: '为 uni-app 打造的基于 Promise 的网络请求库',
   },
   {
     title: rgb(63, 168, 125)('uni-use'),
@@ -27,4 +27,4 @@ export const modelList: ModelType[] = [
     value: 'uniPromises',
     description: 'uni-app promise 化的 API',
   },
-]
+] as ModelType[]

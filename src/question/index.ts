@@ -3,7 +3,7 @@ import { bold, red } from 'kolorist'
 
 import figures from 'prompts/lib/util/figures.js'
 import projectName from './name'
-import model from './model'
+import choices from './choices'
 import template from './template'
 
 export async function question() {
@@ -19,10 +19,10 @@ export async function question() {
   let answers = await prompts(questions, { onCancel })
 
   if (answers.templateType.type === 'custom') {
-    const modelList = await prompts(model(), { onCancel })
+    const allList = await prompts(choices(), { onCancel })
     answers = {
       ...answers,
-      ...modelList,
+      ...allList,
     }
   }
 

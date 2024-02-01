@@ -19,6 +19,8 @@ import figures from 'prompts/lib/util/figures.js'
 import { question } from './question'
 import filePrompt from './question/file'
 import { UIList } from './question/UI/choices'
+import PLUGINS from './question/plugin/choices'
+import MODULES from './question/module/choices'
 import { templateList } from './question/template/templateDate'
 import type { BaseTemplateList } from './question/template/type'
 import type { Ora } from './utils'
@@ -65,7 +67,6 @@ async function init() {
   if (!projectName) {
     try {
       result = await question()
-      console.log(result)
     }
     catch (cancelled) {
     // eslint-disable-next-line no-console
@@ -78,14 +79,31 @@ async function init() {
     const UIName = UIList.find(item => item.value === argv.UIName)?.value
     if (!templateType && argv?.templateType) {
       // eslint-disable-next-line no-console
-      console.log(`${red(figures.cross)} ${bold('未获取到指定模板')}`)
+      console.log(`${red(figures.cross)} ${bold(`未获取到${templateType}模板`)}`)
       process.exit(1)
     }
     if (!UIName && argv?.UIName) {
       // eslint-disable-next-line no-console
-      console.log(`${red(figures.cross)} ${bold('未获取到指定UI')}`)
+      console.log(`${red(figures.cross)} ${bold(`未获取到${UIName}UI库`)}`)
       process.exit(1)
     }
+    const pluginList = [argv['pluginList'!]].flat()
+    pluginList.forEach((item) => {
+      if (!PLUGINS.some(plugin => plugin.value === item)) {
+        // eslint-disable-next-line no-console
+        console.log(`${red(figures.cross)} ${bold(`未获取到${item}插件`)}`)
+        process.exit(1)
+      }
+    })
+    const modelList = [argv['modelList'!]].flat()
+    modelList.forEach((item) => {
+      if (!MODULES.some(module => module.value === item)) {
+        // eslint-disable-next-line no-console
+        console.log(`${red(figures.cross)} ${bold(`未获取到${item}库`)}`)
+        process.exit(1)
+      }
+    })
+
     result = {
       projectName,
       shouldOverwrite: canSkipEmptying(projectName)
@@ -93,8 +111,8 @@ async function init() {
         : (await prompts(filePrompt(projectName))).shouldOverwrite,
       templateType: templateType || <BaseTemplateList['value']>{ type: 'custom' },
       needsTypeScript: argv['needsTypeScript'!],
-      pluginList: argv['pluginList'!],
-      modelList: argv['modelList'!],
+      pluginList,
+      modelList,
       UIName: argv['UIName'!],
       needsEslint: argv['needsEslint'!],
     }
@@ -142,7 +160,6 @@ async function init() {
   // Render templates
   render('base')
 
-  const needUI = result.UIName !== null
   const needUnocss = result.modelList?.includes('unocss') || result.UIName === 'ano'
 
   // Render Config
@@ -167,7 +184,7 @@ async function init() {
   // Render UI
   const UI = {
     unocss: needUnocss,
-    [result.UIName!]: needUI,
+    [result.UIName!]: Boolean(result.UIName),
   }
 
   for (const [key, needs] of Object.entries(UI)) {

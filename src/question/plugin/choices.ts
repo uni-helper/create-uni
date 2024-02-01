@@ -1,7 +1,7 @@
 import { trueColor as rgb } from 'kolorist'
 import type { ModelType } from '../type'
 
-export const configList: ModelType[] = [
+export default [
   {
     title: rgb(236, 112, 99)('vite-plugin-uni-components'),
     value: 'import',
@@ -37,4 +37,4 @@ export const configList: ModelType[] = [
     value: 'middleware',
     description: '使用路由中间件',
   },
-]
+] as ModelType[]

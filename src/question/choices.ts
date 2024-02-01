@@ -1,8 +1,8 @@
 import type { PromptObject } from 'prompts'
 import { gray } from 'kolorist'
 import { UIList } from './UI/choices'
-import { modelList } from './tool/choices'
-import { configList } from './plugin/choices'
+import MODULES from './module/choices'
+import PLUGINS from './plugin/choices'
 
 export default (): PromptObject<string>[] => {
   const instructions = gray('使用↑↓选择，空格或←→选中，a全选，回车确认')
@@ -21,14 +21,14 @@ export default (): PromptObject<string>[] => {
       type: 'multiselect',
       message: '选择需要的vite插件？',
       instructions,
-      choices: configList,
+      choices: PLUGINS,
     },
     {
       name: 'modelList',
       type: 'multiselect',
       message: '选择需要的库？',
       instructions,
-      choices: modelList,
+      choices: MODULES,
     },
     {
       name: 'UIName',
