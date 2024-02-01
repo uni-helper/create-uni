@@ -36,24 +36,47 @@
 ## 🚤 快速使用
 
 ```shell
-npm create uni <项目名称> --ts -u ano -e
+npm create uni <项目名称> --ts -m pinia -m uniUse -u ano -e
 ```
 
 ### 参数说明
+
 | 配置项 | 参数 | 别名 | 可选值 |
 |  :---: | :---: | :---: | :---: |
 | Template | —— | t | vitesse |
 | TypeScript | ts | —— | —— |
-| Pinia | pinia | p | —— |
+| Plugin | pluginList | p | 见[插件列表](#📦插件列表) |
+| Module | moduleList | m | 见[模块列表](#📦模块列表) |
 | UI | ui | u | uni/ano |
-| Unocss | unocss | c | —— |
 | Eslint | eslint | -e | —— |
+
+#### 📦插件列表
+
+| 插件名 | 描述 | 参数名 |
+| :---: | :---: | :---: |
+| [vite-plugin-uni-components](https://github.com/uni-helper/vite-plugin-uni-components) | 按需自动引入组件 | import |
+| [vite-plugin-uni-pages](https://github.com/uni-helper/vite-plugin-uni-pages) | 提供基于文件系统的路由 | pages |
+| [vite-plugin-uni-layouts](https://github.com/uni-helper/vite-plugin-uni-layouts) | 提供类 nuxt 的 layouts 系统 | layouts |
+| [vite-plugin-uni-manifest](https://github.com/uni-helper/vite-plugin-uni-manifest) | 自动生成 manifest.json 文件 | manifest |
+| [vite-plugin-uni-platform](https://github.com/uni-helper/vite-plugin-uni-platform) | 基于文件名 (*.<h5\|mp-weixin\|app>.*) 的按平台编译插件 | filePlatform |
+| [vite-plugin-uni-platform-modifier](https://github.com/uni-helper/vite-plugin-uni-platform-modifier) | 为属性、指令提供平台修饰符并按需编译 | platformModifier |
+| [vite-plugin-uni-middleware](https://github.com/uni-helper/vite-plugin-uni-middleware) | 使用路由中间件 | middleware |
+
+#### 📦模块列表
+
+| 模块名 | 描述 | 参数名 |
+| :---: | :---: | :---: |
+| [pinia](https://github.com/vuejs/pinia) | 符合直觉的 Vue.js 状态管理库 | pinia |
+| [unocss](https://github.com/antfu/unocss) | 即时按需的原子级 CSS 引擎 | unocss |
+| [uni-network](https://github.com/uni-helper/uni-network) | 为 uni-app 打造的基于 Promise 的网络请求库 | uniNetwork |
+| [uni-use](https://github.com/uni-helper/uni-use) | uni-app 组合式工具集 | uniUse |
+| [uni-promises](https://github.com/uni-helper/uni-promises) | 为 uni-app 提供的 Promise 包装器 | uniPromises |
 
 ## 🤝 参与贡献
 
 - 提交新功能
 - 解决[`issues`](https://github.com/uni-helper/create-uni/issues)
-- 提交新[`模板`](./src/question/template/)/[`UI`](./src/question/UI/)
+- 提交新[`模板`](./src/question/template/)/[`Plugin`](./src/question/plugin/choices.ts)/[`module`](./src/question/module/choices.ts)/[`UI`](./src/question/UI/)
 
 ## 🌸 感谢
 
