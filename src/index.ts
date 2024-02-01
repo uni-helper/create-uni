@@ -157,14 +157,12 @@ async function init() {
   }
 
   // Render Plugins
-  result.pluginList?.forEach((plugin) => {
-    render(`plugin/${plugin}`)
-  })
+  result.pluginList?.forEach(plugin => render(`plugin/${plugin}`))
 
   // Render Models
-  result.modelList?.forEach((model) => {
-    render(`model/${model}`)
-  })
+  result.modelList?.forEach(model => render(`model/${model}`))
+  if (needUnocss && !result.modelList?.includes('unocss'))
+    render('model/unocss')
 
   // Render UI
   const UI = {

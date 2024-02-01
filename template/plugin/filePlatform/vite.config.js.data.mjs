@@ -1,6 +1,6 @@
 export default function getData({ oldData }) {
   const platformPlugin = {
-    name: 'platform',
+    id: 'platform',
     importer: `import UniPlatform from '@uni-helper/vite-plugin-uni-platform'`,
     initializer: `// https://github.com/uni-helper/vite-plugin-uni-platform
     UniPlatform()`,

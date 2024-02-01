@@ -4,7 +4,7 @@ import type { ModelType } from '../type'
 export const configList: ModelType[] = [
   {
     title: rgb(236, 112, 99)('vite-plugin-uni-components'),
-    value: 'improt',
+    value: 'import',
     description: '按需自动引入组件',
   },
   {

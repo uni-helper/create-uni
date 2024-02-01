@@ -1,6 +1,6 @@
 export default function getData({ oldData }) {
   const pagesPlugin = {
-    name: 'pages',
+    id: 'pages',
     importer: `import UniPages from '@uni-helper/vite-plugin-uni-pages'`,
     initializer: `// https://github.com/uni-helper/vite-plugin-uni-pages
     UniPages()`,

@@ -1,6 +1,6 @@
 export default function getData({ oldData }) {
   const UnoCSSPlugin = {
-    name: 'UnoCSS',
+    id: 'UnoCSS',
     importer: 'import UnoCSS from \'unocss/vite\'',
     initializer: 'UnoCSS()',
   }

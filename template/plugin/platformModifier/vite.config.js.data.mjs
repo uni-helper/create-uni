@@ -1,6 +1,6 @@
 export default function getData({ oldData }) {
   const platformModifierPlugin = {
-    name: 'platformModifier',
+    id: 'platformModifier',
     importer: `import UniPlatformModifier from '@uni-helper/vite-plugin-uni-platform-modifier'`,
     initializer: `// https://github.com/uni-helper/vite-plugin-uni-platform-modifier
     UniPlatformModifier()`,
