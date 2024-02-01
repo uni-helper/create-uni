@@ -5,5 +5,6 @@ export default function getData() {
       importer: 'import uni from \'@dcloudio/vite-plugin-uni\'',
       initializer: 'uni()',
     }],
+    extraConfig: null,
   }
 }

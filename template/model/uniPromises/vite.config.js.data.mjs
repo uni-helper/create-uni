@@ -1,18 +1,16 @@
 export default function getData({ oldData }) {
   const promisesextraConfig = {
     id: 'uniPromises',
-    extraConfig: `build: {
-      target: 'es6',
-      cssTarget: 'chrome61', // https://cn.vitejs.dev/config/build-options.html#build-csstarget
-    },
-    optimizeDeps: {
-      exclude: ['vue-demi'],
-    }`,
+    data: `build: {
+    target: 'es6',
+    cssTarget: 'chrome61', // https://cn.vitejs.dev/config/build-options.html#build-csstarget
+  },
+  optimizeDeps: {
+    exclude: ['vue-demi'],
+  }`,
   }
   return {
     ...oldData,
-    extraConfig: oldData.extraConfig.flatMap(config =>
-      config.id === 'uniUse' ? [...config, ...promisesextraConfig] : config,
-    ),
+    extraConfig: oldData?.extraConfig?.id === 'uniUse' ? oldData.extraConfig : promisesextraConfig,
   }
 }

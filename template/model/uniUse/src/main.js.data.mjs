@@ -8,8 +8,10 @@ import 'core-js/actual/promise/finally';`,
   }
   return {
     ...oldData,
-    plugins: oldData.plugins.flatMap(plugin =>
-      plugin.id === 'vue' ? [uniUsePlugin, plugin] : plugin,
-    ),
+    plugins: oldData.plugins.some(item => item.id === 'uniPromises')
+      ? oldData.plugins
+      : oldData.plugins.flatMap(plugin =>
+        plugin.id === 'vue' ? [plugin, uniUsePlugin] : plugin,
+      ),
   }
 }
