@@ -45,7 +45,7 @@ async function init() {
       templateType: ['t'],
       needsTypeScript: ['ts'],
       pluginList: ['p'],
-      modelList: ['m'],
+      moduleList: ['m'],
       UIName: ['ui', 'u'],
       needsEslint: ['eslint', 'e'],
     },
@@ -59,7 +59,7 @@ async function init() {
     templateType?: BaseTemplateList['value']
     needsTypeScript?: boolean
     pluginList?: string[]
-    modelList?: string[]
+    moduleList?: string[]
     UIName?: string | null
     needsEslint?: boolean
   } = {}
@@ -95,8 +95,8 @@ async function init() {
         process.exit(1)
       }
     })
-    const modelList = [argv['modelList'!]].flat()
-    modelList.forEach((item) => {
+    const moduleList = [argv['moduleList'!]].flat()
+    moduleList.forEach((item) => {
       if (!MODULES.some(module => module.value === item)) {
         // eslint-disable-next-line no-console
         console.log(`${red(figures.cross)} ${bold(`未获取到${item}库`)}`)
@@ -112,7 +112,7 @@ async function init() {
       templateType: templateType || <BaseTemplateList['value']>{ type: 'custom' },
       needsTypeScript: argv['needsTypeScript'!],
       pluginList,
-      modelList,
+      moduleList,
       UIName: argv['UIName'!],
       needsEslint: argv['needsEslint'!],
     }
@@ -160,7 +160,7 @@ async function init() {
   // Render templates
   render('base')
 
-  const needUnocss = result.modelList?.includes('unocss') || result.UIName === 'ano'
+  const needUnocss = result.moduleList?.includes('unocss') || result.UIName === 'ano'
 
   // Render Config
   const config = {
@@ -176,10 +176,10 @@ async function init() {
   // Render Plugins
   result.pluginList?.forEach(plugin => render(`plugin/${plugin}`))
 
-  // Render Models
-  result.modelList?.forEach(model => render(`model/${model}`))
-  if (needUnocss && !result.modelList?.includes('unocss'))
-    render('model/unocss')
+  // Render modules
+  result.moduleList?.forEach(module => render(`module/${module}`))
+  if (needUnocss && !result.moduleList?.includes('unocss'))
+    render('module/unocss')
 
   // Render UI
   const UI = {
