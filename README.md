@@ -45,8 +45,8 @@ npm create uni <项目名称> --ts -m pinia -m uniUse -u ano -e
 |  :---: | :---: | :---: | :---: |
 | Template | —— | t | vitesse |
 | TypeScript | ts | —— | —— |
-| Plugin | pluginList | p | 见[插件列表](#📦插件列表) |
-| Module | moduleList | m | 见[模块列表](#📦模块列表) |
+| Plugin | pluginList | p | 见[插件列表](#插件列表) |
+| Module | moduleList | m | 见[模块列表](#模块列表) |
 | UI | ui | u | uni/ano |
 | Eslint | eslint | -e | —— |
 
