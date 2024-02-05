@@ -3,7 +3,7 @@ import type { ModelType } from '../type'
 
 export const UIList: ModelType[] = [
   {
-    title: '暂不引入组件库',
+    title: '不需要组件库',
     description: '',
     value: null,
   },

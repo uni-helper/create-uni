@@ -161,6 +161,7 @@ async function init() {
   render('base')
 
   const needUnocss = result.moduleList?.includes('unocss') || result.UIName === 'ano'
+  const needUI = Boolean(result.UIName)
 
   // Render Config
   const config = {
@@ -175,6 +176,8 @@ async function init() {
 
   // Render Plugins
   result.pluginList?.forEach(plugin => render(`plugin/${plugin}`))
+  if (needUI)
+    render('plugin/import')
 
   // Render modules
   result.moduleList?.forEach(module => render(`module/${module}`))
@@ -184,7 +187,7 @@ async function init() {
   // Render UI
   const UI = {
     unocss: needUnocss,
-    [result.UIName!]: Boolean(result.UIName),
+    [result.UIName!]: needUI,
   }
 
   for (const [key, needs] of Object.entries(UI)) {

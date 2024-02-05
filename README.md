@@ -86,11 +86,10 @@ npm create uni <项目名称> --ts -m pinia -m uniUse -u ano -e
 
 [MIT LICENSE](./LICENSE)
 
-## [Sponsors](https://github.com/FliPPeDround/sponsors)
+## 🙇🏻‍♂️[赞助](https://afdian.net/a/flippedround)
 
 <p align="center">
-  <a href="https://cdn.jsdelivr.net/gh/FliPPeDround/sponsors/sponsorkit/sponsors.svg">
+  <a href="https://afdian.net/a/flippedround">
     <img alt="sponsors" src="https://cdn.jsdelivr.net/gh/FliPPeDround/sponsors/sponsorkit/sponsors.svg"/>
   </a>
 </p>
-

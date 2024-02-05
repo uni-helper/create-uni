@@ -24,7 +24,7 @@ export default (): PromptObject<string>[] => {
       choices: PLUGINS,
     },
     {
-      name: 'modelList',
+      name: 'moduleList',
       type: 'multiselect',
       message: '选择需要的库？',
       instructions,
