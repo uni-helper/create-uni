@@ -1,11 +1,12 @@
 {
   "name": "create-uni",
   "type": "module",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "packageManager": "pnpm@8.6.12",
   "description": "An easy way to start a uni-app project",
   "author": "FliPPeDround <flippedround@qq.com>",
   "license": "MIT",
+  "funding": "https://afdian.net/a/flippedround",
   "homepage": "https://github.com/uni-helper/create-uni#readme",
   "repository": {
     "type": "git",
