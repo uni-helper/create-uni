@@ -12,16 +12,11 @@ import {
 import { join, resolve } from 'node:path'
 import process from 'node:process'
 import ejs from 'ejs'
-import { bold, red } from 'kolorist'
+import { bold } from 'kolorist'
 import minimist from 'minimist'
 import prompts from 'prompts'
-import figures from 'prompts/lib/util/figures.js'
 import { question } from './question'
 import filePrompt from './question/file'
-import { UIList } from './question/UI/choices'
-import PLUGINS from './question/plugin/choices'
-import MODULES from './question/module/choices'
-import { templateList } from './question/template/templateDate'
 import type { BaseTemplateList } from './question/template/type'
 import type { Ora } from './utils'
 import {
@@ -34,6 +29,13 @@ import {
   renderTemplate,
   replaceProjectName,
 } from './utils'
+
+import {
+  validateModules,
+  validatePlugins,
+  validateTemplateType,
+  validateUIName,
+} from './utils/validateArgv'
 import { postOrderDirectoryTraverse } from './utils/directoryTraverse'
 
 let loading: Ora
@@ -75,45 +77,23 @@ async function init() {
     }
   }
   else {
-    const templateType = templateList.find(item => item.value.type === argv?.t)?.value
-    const UIName = UIList.find(item => item.value === argv.UIName)?.value
-    if (!templateType && argv?.templateType) {
-      // eslint-disable-next-line no-console
-      console.log(`${red(figures.cross)} ${bold(`未获取到${templateType}模板`)}`)
-      process.exit(1)
-    }
-    if (!UIName && argv?.UIName) {
-      // eslint-disable-next-line no-console
-      console.log(`${red(figures.cross)} ${bold(`未获取到${UIName}UI库`)}`)
-      process.exit(1)
-    }
-    const pluginList = [argv['pluginList'!]].flat()
-    pluginList.forEach((item) => {
-      if (!PLUGINS.some(plugin => plugin.value === item)) {
-        // eslint-disable-next-line no-console
-        console.log(`${red(figures.cross)} ${bold(`未获取到${item}插件`)}`)
-        process.exit(1)
-      }
-    })
-    const moduleList = [argv['moduleList'!]].flat()
-    moduleList.forEach((item) => {
-      if (!MODULES.some(module => module.value === item)) {
-        // eslint-disable-next-line no-console
-        console.log(`${red(figures.cross)} ${bold(`未获取到${item}库`)}`)
-        process.exit(1)
-      }
-    })
+    const templateType = validateTemplateType(argv.templateType)
+    const UIName = validateUIName(argv.UIName)
+    const pluginList = validatePlugins(argv.pluginList)
+    const moduleList = validateModules(argv.moduleList)
+
+    const shouldOverwrite = canSkipEmptying(projectName)
+      ? true
+      : (await prompts(filePrompt(projectName))).shouldOverwrite
 
     result = {
       projectName,
-      shouldOverwrite: canSkipEmptying(projectName)
-        ? true
-        : (await prompts(filePrompt(projectName))).shouldOverwrite,
-      templateType: templateType || <BaseTemplateList['value']>{ type: 'custom' },
+      shouldOverwrite,
+      templateType,
       needsTypeScript: argv['needsTypeScript'!],
       pluginList,
       moduleList,
-      UIName: argv['UIName'!],
+      UIName,
       needsEslint: argv['needsEslint'!],
     }
   }
@@ -148,7 +128,7 @@ async function init() {
     return
   }
 
-  const templateRoot = resolve(__dirname, 'template')
+  const templateRoot = resolve(__dirname, './../template')
 
   type Callback = (dataStore: Record<string, any>) => void
   const callbacks: Callback[] = []
