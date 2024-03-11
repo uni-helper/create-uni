@@ -1,5 +1,5 @@
 {
-  "devDependencies": {
+  "dependencies": {
     "@uni-helper/uni-promises": "^0.2.1"
   }
 }
