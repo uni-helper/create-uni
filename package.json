@@ -30,8 +30,8 @@
     "template"
   ],
   "scripts": {
-    "build": "node scripts/build.js",
-    "dev": "node outfile.cjs",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prepublishOnly": "nr build",
@@ -57,6 +57,7 @@
     "pnpm": "^8.15.1",
     "prompts": "^2.4.2",
     "simple-git-hooks": "^2.9.0",
+    "tsup": "^8.0.2",
     "typescript": "^5.3.3"
   },
   "simple-git-hooks": {
