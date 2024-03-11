@@ -4,10 +4,8 @@ export default defineConfig({
   entry: {
     outfile: 'src/index.ts',
   },
-  outDir: '.',
   format: 'cjs',
   platform: 'node',
   target: 'node14',
   minify: true,
-  bundle: true,
 })

@@ -23,10 +23,10 @@
   ],
   "sideEffects": false,
   "bin": {
-    "create-uni": "outfile.cjs"
+    "create-uni": "dist/outfile.cjs"
   },
   "files": [
-    "outfile.cjs",
+    "dist/outfile.cjs",
     "template"
   ],
   "scripts": {
