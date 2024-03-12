@@ -123,7 +123,6 @@ jobs:
             flag-for-module-uniUse: -m uniUse
             flag-for-module-uniPromises: -m uniPromises
             flag-for-ui-uni: -u uni
-            flag-for-ui-ano: -u ano
 
           - node-version: 18
             os: ubuntu-latest
