@@ -117,10 +117,7 @@ jobs:
         flag-for-ui-uni: ['', -u uni]
         flag-for-ui-ano: ['', -u ano]
 
-        node-version: [18]
-        os: [ubuntu-latest]
-
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     env:
       FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-template }} ${{ matrix.flag-for-plugin-import }} ${{ matrix.flag-for-plugin-pages }} ${{ matrix.flag-for-plugin-layouts }} ${{ matrix.flag-for-plugin-manifest }} ${{ matrix.flag-for-plugin-filePlatform }} ${{ matrix.flag-for-plugin-platformModifier }} ${{ matrix.flag-for-plugin-middleware }} ${{ matrix.flag-for-module-pinia }} ${{ matrix.flag-for-module-unocss }} ${{ matrix.flag-for-module-uniNetwork }} ${{ matrix.flag-for-module-uniUse }} ${{ matrix.flag-for-module-uniPromises }} ${{ matrix.flag-for-ui-uni }} ${{ matrix.flag-for-ui-ano }}
     steps:
@@ -130,7 +127,7 @@ jobs:
           version: 8
       - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
           cache: pnpm
       - uses: actions/cache/save@v4
         id: cache-restore
