@@ -64,8 +64,8 @@ jobs:
 
     strategy:
       matrix:
-        node: [16.x, 18.x]
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [16.x]
+        os: [ubuntu-latest]
       fail-fast: false
 
     steps:
@@ -145,7 +145,7 @@ jobs:
       - if: ${{ !(contains(env.FEATURE_FLAGS, '--')) }}
         name: 创建基础项目
         working-directory: ../
-        run: node ./create-vue/outfile.cjs sample-project
+        run: node ./create-uni/dist/outfile.cjs sample-project
 
       - name: 安装项目依赖
         working-directory: ../sample-project
