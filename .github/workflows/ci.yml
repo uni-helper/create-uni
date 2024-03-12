@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    tags-ignore:
+      - 'v*'
 
   pull_request:
     branches:
@@ -123,7 +125,7 @@ jobs:
             flag-for-module-uniNetwork: -m uniNetwork
             flag-for-module-uniUse: -m uniUse
             flag-for-module-uniPromises: -m uniPromises
-            flag-for-uni: -u uni
+            flag-for-ui: -u uni
 
           - node-version: 18
             os: windows-latest
@@ -141,7 +143,7 @@ jobs:
             flag-for-module-uniNetwork: -m uniNetwork
             flag-for-module-uniUse: -m uniUse
             flag-for-module-uniPromises: -m uniPromises
-            flag-for-uni: -u uni
+            flag-for-ui: -u uni
 
           - node-version: 18
             os: macos-latest
@@ -159,7 +161,7 @@ jobs:
             flag-for-module-uniNetwork: -m uniNetwork
             flag-for-module-uniUse: -m uniUse
             flag-for-module-uniPromises: -m uniPromises
-            flag-for-uni: -u uni
+            flag-for-ui: -u uni
 
           - node-version: 18
             os: ubuntu-latest
@@ -168,7 +170,7 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.os == 'windows-latest' }}
     env:
-      FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-plugin }} ${{ matrix.flag-for-modulea }} ${{ matrix.flag-for-ui }} ${{ matrix.flag-for-plugin-import }} ${{ matrix.flag-for-plugin-pages }} ${{ matrix.flag-for-plugin-layouts }} ${{ matrix.flag-for-plugin-manifest }} ${{ matrix.flag-for-plugin-filePlatform }} ${{ matrix.flag-for-plugin-platformModifier }} ${{ matrix.flag-for-plugin-middleware }} ${{ matrix.flag-for-module-pinia }} ${{ matrix.flag-for-module-unocss }} ${{ matrix.flag-for-module-uniNetwork }} ${{ matrix.flag-for-module-uniUse }} ${{ matrix.flag-for-module-uniPromises }} ${{ matrix.flag-for-uni }} ${{ matrix.flag-for-template }}
+      FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-plugin }} ${{ matrix.flag-for-modulea }} ${{ matrix.flag-for-ui }} ${{ matrix.flag-for-plugin-import }} ${{ matrix.flag-for-plugin-pages }} ${{ matrix.flag-for-plugin-layouts }} ${{ matrix.flag-for-plugin-manifest }} ${{ matrix.flag-for-plugin-filePlatform }} ${{ matrix.flag-for-plugin-platformModifier }} ${{ matrix.flag-for-plugin-middleware }} ${{ matrix.flag-for-module-pinia }} ${{ matrix.flag-for-module-unocss }} ${{ matrix.flag-for-module-uniNetwork }} ${{ matrix.flag-for-module-uniUse }} ${{ matrix.flag-for-module-uniPromises }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
@@ -187,12 +189,12 @@ jobs:
         if: steps.cache-restore.outputs.cache-hit != 'true'
         run: pnpm install && pnpm build
 
-      - if: ${{ (contains(env.FEATURE_FLAGS, '-')) }}
+      - if: ${{ (contains(env.FEATURE_FLAGS, '-')) || (matrix.flag-for-template == '-t vitesse') }}
         name: 创建多参数项目
         working-directory: ../
-        run: node ./create-uni/dist/outfile.cjs sample-project ${{ env.FEATURE_FLAGS }}
+        run: node ./create-uni/dist/outfile.cjs sample-project ${{ env.FEATURE_FLAGS }} ${{ matrix.flag-for-template }}
 
-      - if: ${{ !(contains(env.FEATURE_FLAGS, '-')) }}
+      - if: ${{ !(contains(env.FEATURE_FLAGS, '-')) && (matrix.flag-for-template != '-t vitesse')}}
         name: 创建基础项目
         working-directory: ../
         run: node ./create-uni/dist/outfile.cjs sample-project
