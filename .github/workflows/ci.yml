@@ -137,12 +137,12 @@ jobs:
         if: steps.cache-restore.outputs.cache-hit != 'true'
         run: pnpm install && pnpm build
 
-      - if: ${{ (contains(env.FEATURE_FLAGS, '--')) }}
+      - if: ${{ (contains(env.FEATURE_FLAGS, '-')) }}
         name: 创建多参数项目
         working-directory: ../
         run: node ./create-uni/dist/outfile.cjs sample-project ${{ env.FEATURE_FLAGS }}
 
-      - if: ${{ !(contains(env.FEATURE_FLAGS, '--')) }}
+      - if: ${{ !(contains(env.FEATURE_FLAGS, '-')) }}
         name: 创建基础项目
         working-directory: ../
         run: node ./create-uni/dist/outfile.cjs sample-project
