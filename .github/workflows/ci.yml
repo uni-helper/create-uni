@@ -161,17 +161,9 @@ jobs:
       FEATURE_FLAGS: ${{ matrix.flag-for-template }} ${{ matrix.flag-for-all }}
     steps:
       - uses: actions/checkout@v4
-      - name: Set up PNPM version
-        id: pnpm_version
-        run: |
-          if [[ "${{ matrix.node-version }}" == "14.x" ]]; then
-            echo "::set-output name=version::7"
-          else
-            echo "::set-output name=version::8"
-          fi
       - uses: pnpm/action-setup@v2
         with:
-          version: ${{ steps.pnpm_version.outputs.version }}
+          version: 7
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
