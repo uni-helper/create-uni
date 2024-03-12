@@ -91,6 +91,7 @@ jobs:
 
       - uses: actions/cache/save@v4
         id: cache
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.node == '18.x' }}
         with:
           path: dist/outfile.cjs
           key: ${{ github.sha }}-${{ hashFiles('pnpm-lock.yaml') }}
@@ -183,7 +184,7 @@ jobs:
       - uses: actions/cache/save@v4
         id: cache-restore
         with:
-          path: ./dist/outfile.cjs
+          path: dist/outfile.cjs
           key: ${{ github.sha }}-${{ hashFiles('pnpm-lock.yaml') }}
       - name: 当没有缓存时，执行构建
         if: steps.cache-restore.outputs.cache-hit != 'true'
