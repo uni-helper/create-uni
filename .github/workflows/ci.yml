@@ -106,9 +106,6 @@ jobs:
         flag-for-modulea: ['', -m pinia -m unocss, -m uniNetwork -m uniUse -m uniPromises]
         flag-for-ui: ['', -u uni, -u ano]
 
-        node-version: [18]
-        os: [ubuntu-latest]
-
         include:
           - node-version: 18
             os: ubuntu-latest
@@ -168,7 +165,7 @@ jobs:
             os: ubuntu-latest
             flag-for-template: -t vitesse
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.os == 'windows-latest' }}
     env:
       FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-plugin }} ${{ matrix.flag-for-modulea }} ${{ matrix.flag-for-ui }} ${{ matrix.flag-for-plugin-import }} ${{ matrix.flag-for-plugin-pages }} ${{ matrix.flag-for-plugin-layouts }} ${{ matrix.flag-for-plugin-manifest }} ${{ matrix.flag-for-plugin-filePlatform }} ${{ matrix.flag-for-plugin-platformModifier }} ${{ matrix.flag-for-plugin-middleware }} ${{ matrix.flag-for-module-pinia }} ${{ matrix.flag-for-module-unocss }} ${{ matrix.flag-for-module-uniNetwork }} ${{ matrix.flag-for-module-uniUse }} ${{ matrix.flag-for-module-uniPromises }} ${{ matrix.flag-for-uni }} ${{ matrix.flag-for-template }}
@@ -179,7 +176,7 @@ jobs:
           version: 8
       - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
           cache: pnpm
       - uses: actions/cache/restore@v4
         id: cache-restore
