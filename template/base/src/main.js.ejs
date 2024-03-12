@@ -1,16 +1,16 @@
-<%_ for (const { importer } of plugins) { _%>
+<%_ for (const { importer } of entries) { _%>
 <%- importer %>
 <%_ } _%>
 import App from './App.vue'
 
 export function createApp() {
-  <%_ for (const { use } of plugins) { _%>
+  <%_ for (const { use } of entries) { _%>
   <%_ if (use) { _%>
   <%- use %>
   <%_ } _%>
   <%_ } _%>
   return {
-    <%_ for (const { returner } of plugins) { _%>
+    <%_ for (const { returner } of entries) { _%>
     <%_ if (returner) { _%>
     <%- returner %>
     <%_ } _%>

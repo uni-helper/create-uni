@@ -1,6 +1,6 @@
 export default function getData() {
   return {
-    plugins: [{
+    entries: [{
       id: 'vue',
       importer: `import { createSSRApp } from 'vue'`,
       use: 'const app = createSSRApp(App)',

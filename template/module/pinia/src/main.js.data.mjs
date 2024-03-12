@@ -1,5 +1,5 @@
 export default function getData({ oldData }) {
-  const piniaPlugin = {
+  const piniaEntries = {
     id: 'pinia',
     importer: 'import * as Pinia from \'pinia\'',
     use: 'app.use(Pinia.createPinia())',
@@ -7,8 +7,8 @@ export default function getData({ oldData }) {
   }
   return {
     ...oldData,
-    plugins: oldData.plugins.flatMap(plugin =>
-      plugin.id === 'vue' ? [plugin, piniaPlugin] : plugin,
+    entries: oldData.entries.flatMap(entry =>
+      plugin.id === 'vue' ? [entry, piniaEntries] : entry,
     ),
   }
 }

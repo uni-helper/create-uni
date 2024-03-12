@@ -156,7 +156,7 @@ async function init() {
 
   // Render Plugins
   result.pluginList?.forEach(plugin => render(`plugin/${plugin}`))
-  if (needUI)
+  if (needUI && !result.pluginList?.includes('import'))
     render('plugin/import')
 
   // Render modules
