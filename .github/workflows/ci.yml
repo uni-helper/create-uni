@@ -101,7 +101,6 @@ jobs:
       matrix:
         flag-for-ts: ['', --ts]
         flag-for-eslint: ['', -e]
-        flag-for-template: ['', -t vitesse]
         flag-for-plugin-import: ['', -p import]
         flag-for-plugin-pages: ['', -p pages]
         flag-for-plugin-layouts: ['', -p layouts]
@@ -119,7 +118,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-template }} ${{ matrix.flag-for-plugin-import }} ${{ matrix.flag-for-plugin-pages }} ${{ matrix.flag-for-plugin-layouts }} ${{ matrix.flag-for-plugin-manifest }} ${{ matrix.flag-for-plugin-filePlatform }} ${{ matrix.flag-for-plugin-platformModifier }} ${{ matrix.flag-for-plugin-middleware }} ${{ matrix.flag-for-module-pinia }} ${{ matrix.flag-for-module-unocss }} ${{ matrix.flag-for-module-uniNetwork }} ${{ matrix.flag-for-module-uniUse }} ${{ matrix.flag-for-module-uniPromises }} ${{ matrix.flag-for-ui-uni }} ${{ matrix.flag-for-ui-ano }}
+      FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-plugin-import }} ${{ matrix.flag-for-plugin-pages }} ${{ matrix.flag-for-plugin-layouts }} ${{ matrix.flag-for-plugin-manifest }} ${{ matrix.flag-for-plugin-filePlatform }} ${{ matrix.flag-for-plugin-platformModifier }} ${{ matrix.flag-for-plugin-middleware }} ${{ matrix.flag-for-module-pinia }} ${{ matrix.flag-for-module-unocss }} ${{ matrix.flag-for-module-uniNetwork }} ${{ matrix.flag-for-module-uniUse }} ${{ matrix.flag-for-module-uniPromises }} ${{ matrix.flag-for-ui-uni }} ${{ matrix.flag-for-ui-ano }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
