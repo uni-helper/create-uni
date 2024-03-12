@@ -181,7 +181,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: pnpm
-      - uses: actions/cache/save@v4
+      - uses: actions/cache/restore@v4
         id: cache-restore
         with:
           path: dist/outfile.cjs
