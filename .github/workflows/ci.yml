@@ -101,8 +101,8 @@ jobs:
       matrix:
         flag-for-ts: ['', --ts]
         flag-for-eslint: ['', -e]
-        flag-for-plugin: ['', -p import, -p pages, -p layouts, -p manifest, -p filePlatform, -p platformModifier, -p middleware]
-        flag-for-modulea: ['', -m pinia, -m unocss, -m uniNetwork, -m uniUse, -m uniPromises]
+        flag-for-plugin: ['', -p import, -p pages, -p layouts, -p manifest]
+        flag-for-modulea: ['', -m pinia, -m unocss, -m uniNetwork, -m uniUse]
         flag-for-ui: ['', -u uni, -u uni]
 
         # include:
