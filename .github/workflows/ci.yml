@@ -105,32 +105,32 @@ jobs:
         flag-for-modulea: ['', -m pinia -m unocss, -m uniNetwork -m uniUse]
         flag-for-ui: ['', -u uni, -u uni]
 
-        # include:
-        #   - node-version: 18
-        #     os: ubuntu-latest
-        #     flag-for-ts: --ts
-        #     flag-for-eslint: -e
-        #     flag-for-plugin-import: -p import
-        #     flag-for-plugin-pages: -p pages
-        #     flag-for-plugin-layouts: -p layouts
-        #     flag-for-plugin-manifest: -p manifest
-        #     flag-for-plugin-filePlatform: -p filePlatform
-        #     flag-for-plugin-platformModifier: -p platformModifier
-        #     flag-for-plugin-middleware: -p middleware
-        #     flag-for-module-pinia: -m pinia
-        #     flag-for-module-unocss: -m unocss
-        #     flag-for-module-uniNetwork: -m uniNetwork
-        #     flag-for-module-uniUse: -m uniUse
-        #     flag-for-module-uniPromises: -m uniPromises
-        #     flag-for-ui-uni: -u uni
+        include:
+          - node-version: 18
+            os: ubuntu-latest
+            flag-for-ts: --ts
+            flag-for-eslint: -e
+            flag-for-plugin-import: -p import
+            flag-for-plugin-pages: -p pages
+            flag-for-plugin-layouts: -p layouts
+            flag-for-plugin-manifest: -p manifest
+            flag-for-plugin-filePlatform: -p filePlatform
+            flag-for-plugin-platformModifier: -p platformModifier
+            flag-for-plugin-middleware: -p middleware
+            flag-for-module-pinia: -m pinia
+            flag-for-module-unocss: -m unocss
+            flag-for-module-uniNetwork: -m uniNetwork
+            flag-for-module-uniUse: -m uniUse
+            flag-for-module-uniPromises: -m uniPromises
+            flag-for-ui: ['', -u uni, -u uni]
 
-        #   - node-version: 18
-        #     os: ubuntu-latest
-        #     flag-for-template: -t vitesse
+          - node-version: 18
+            os: ubuntu-latest
+            flag-for-template: -t vitesse
 
     runs-on: ubuntu-latest
     env:
-      FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-plugin }} ${{ matrix.flag-for-modulea }} ${{ matrix.flag-for-ui }}
+      FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-plugin }} ${{ matrix.flag-for-modulea }} ${{ matrix.flag-for-ui }} ${{ matrix.flag-for-plugin-import }} ${{ matrix.flag-for-plugin-pages }} ${{ matrix.flag-for-plugin-layouts }} ${{ matrix.flag-for-plugin-manifest }} ${{ matrix.flag-for-plugin-filePlatform }} ${{ matrix.flag-for-plugin-platformModifier }} ${{ matrix.flag-for-plugin-middleware }} ${{ matrix.flag-for-module-pinia }} ${{ matrix.flag-for-module-unocss }} ${{ matrix.flag-for-module-uniNetwork }} ${{ matrix.flag-for-module-uniUse }} ${{ matrix.flag-for-module-uniPromises }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
