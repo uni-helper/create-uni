@@ -8,7 +8,7 @@ export default function getData({ oldData }) {
   return {
     ...oldData,
     entries: oldData.entries.flatMap(entry =>
-      plugin.id === 'vue' ? [entry, piniaEntries] : entry,
+      entry.id === 'vue' ? [entry, piniaEntries] : entry,
     ),
   }
 }

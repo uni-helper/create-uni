@@ -247,4 +247,5 @@ async function init() {
 init().catch((e) => {
   loading.fail(`${bold('模板创建失败！')}`)
   console.error(e)
+  process.exit(1)
 })
