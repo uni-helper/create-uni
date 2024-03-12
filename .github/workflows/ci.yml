@@ -93,10 +93,9 @@ jobs:
 
       - uses: actions/cache/save@v4
         id: cache
-        if: ${{ matrix.os == 'ubuntu-latest' && matrix.node == '18.x' }}
         with:
           path: dist/outfile.cjs
-          key: ${{ github.sha }}-${{ hashFiles('pnpm-lock.yaml') }}
+          key: ${{ github.sha }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ matrix.os }}-${{ matrix.node }}
 
   test:
     needs: build
@@ -108,7 +107,10 @@ jobs:
         flag-for-modulea: ['', -m pinia -m unocss, -m uniNetwork -m uniUse -m uniPromises]
         flag-for-ui: ['', -u uni, -u ano]
 
-    runs-on: ubuntu-latest
+        node: [18.x]
+        os: [ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
     env:
       FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-plugin }} ${{ matrix.flag-for-modulea }} ${{ matrix.flag-for-ui }}
     steps:
@@ -118,13 +120,13 @@ jobs:
           version: 8
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: ${{ matrix.node }}
           cache: pnpm
       - uses: actions/cache/restore@v4
         id: cache-restore
         with:
           path: dist/outfile.cjs
-          key: ${{ github.sha }}-${{ hashFiles('pnpm-lock.yaml') }}
+          key: ${{ github.sha }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ matrix.os }}-${{ matrix.node }}
       - name: 当没有缓存时，执行构建
         if: steps.cache-restore.outputs.cache-hit != 'true'
         run: pnpm install && pnpm build
@@ -153,7 +155,7 @@ jobs:
       matrix:
         flag-for-all: [--ts -e -p import -p pages -p layouts -p manifest -p filePlatform -p platformModifier -p middleware -m pinia -m unocss -m uniNetwork -m uniUse -m uniPromises -u uni]
         flag-for-template: ['', -t vitesse]
-        node-version: [16.x, 18.x]
+        node: [16.x, 18.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
@@ -166,13 +168,13 @@ jobs:
           version: 8
       - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ matrix.node }}
           cache: pnpm
       - uses: actions/cache/restore@v4
         id: cache-restore
         with:
           path: dist/outfile.cjs
-          key: ${{ github.sha }}-${{ hashFiles('pnpm-lock.yaml') }}
+          key: ${{ github.sha }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ matrix.os }}-${{ matrix.node }}
       - name: 当没有缓存时，执行构建
         if: steps.cache-restore.outputs.cache-hit != 'true'
         run: pnpm install && pnpm build
