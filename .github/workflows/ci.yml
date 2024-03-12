@@ -103,11 +103,7 @@ jobs:
         flag-for-eslint: ['', -e]
         flag-for-plugin-import: ['', -p import]
         flag-for-module-pinia: ['', -m pinia]
-        flag-for-module-unocss: ['', -m unocss]
-        flag-for-module-uniNetwork: ['', -m uniNetwork]
-        flag-for-module-uniUse: ['', -m uniUse]
         flag-for-ui-uni: ['', -u uni]
-        flag-for-ui-ano: ['', -u ano]
 
         include:
           - node-version: 18
