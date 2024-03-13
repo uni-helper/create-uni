@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.2.0",
   "packageManager": "pnpm@8.6.12",
-  "description": "An easy way to start a uni-app project",
+  "description": "轻松创建你的 uni-app 项目",
   "author": "FliPPeDround <flippedround@qq.com>",
   "license": "MIT",
   "funding": "https://afdian.net/a/flippedround",
@@ -19,7 +19,8 @@
     "create-uni",
     "cli",
     "vue",
-    "miniapp"
+    "miniapp",
+    "create"
   ],
   "sideEffects": false,
   "bin": {
@@ -49,12 +50,10 @@
     "@uni-helper/eslint-config": "^0.0.5",
     "bumpp": "^9.3.0",
     "ejs": "^3.1.9",
-    "esbuild": "^0.18.20",
     "eslint": "^8.56.0",
     "kolorist": "^1.8.0",
     "lint-staged": "^15.2.1",
     "minimist": "^1.2.8",
-    "pnpm": "^8.15.1",
     "prompts": "^2.4.2",
     "simple-git-hooks": "^2.9.0",
     "tsup": "^8.0.2",
