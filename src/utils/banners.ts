@@ -1,5 +1,5 @@
 import process from 'node:process'
-import { lightCyan } from 'kolorist'
+import { bold, lightCyan } from 'kolorist'
 
 /* eslint-disable no-console */
 export function printBanner() {
@@ -14,12 +14,12 @@ export function printBanner() {
     const red = Math.round(startColor.r + (endColor.r - startColor.r) * ratio)
     const green = Math.round(startColor.g + (endColor.g - startColor.g) * ratio)
     const blue = Math.round(startColor.b + (endColor.b - startColor.b) * ratio)
-    colorText += `\x1B[38;2;${red};${green};${blue}m${text[i]}\x1B[0m`
+    colorText += bold(`\x1B[38;2;${red};${green};${blue}m${text[i]}\x1B[0m`)
   }
 
   const output = process.stdout.isTTY && process.stdout.getColorDepth() > 8
     ? colorText
-    : lightCyan(text)
+    : lightCyan(bold(text))
 
   console.log()
   console.log(output)
