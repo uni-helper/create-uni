@@ -1,3 +1,4 @@
+import process from 'node:process'
 import type { PromptObject } from 'prompts'
 import { bold, red } from 'kolorist'
 import figures from 'prompts/lib/util/figures.js'
@@ -21,8 +22,10 @@ export default (targetDir?: string): PromptObject<string>[] => {
     {
       name: 'overwriteChecker',
       type: (prevValues) => {
-        if (prevValues === false)
-          throw new Error(`${red(figures.cross)} ${bold('操作已取消')}`)
+        if (prevValues === false) {
+          console.log(`${red(figures.cross)} ${bold('操作已取消')}`)
+          process.exit(1)
+        }
 
         return null
       },
