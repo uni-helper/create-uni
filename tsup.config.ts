@@ -7,5 +7,5 @@ export default defineConfig({
   format: 'cjs',
   platform: 'node',
   target: 'node14',
-  minify: true,
+  // minify: true,
 })

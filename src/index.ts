@@ -38,10 +38,10 @@ import {
 } from './utils/validateArgv'
 import { postOrderDirectoryTraverse } from './utils/directoryTraverse'
 
+import { getUniAppInfo } from './commands/info'
+
 let loading: Ora
 async function init() {
-  printBanner()
-
   const argv = minimist(process.argv.slice(2), {
     alias: {
       templateType: ['t'],
@@ -53,6 +53,12 @@ async function init() {
     },
     string: ['_'],
   })
+
+  if (argv.info)
+    getUniAppInfo()
+
+  printBanner()
+
   const projectName = argv._[0]
 
   let result: {

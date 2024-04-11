@@ -29,6 +29,9 @@ devDependencies:
   bumpp:
     specifier: ^9.3.0
     version: 9.3.0
+  destr:
+    specifier: ^2.0.3
+    version: 2.0.3
   ejs:
     specifier: ^3.1.9
     version: 3.1.9
@@ -44,6 +47,12 @@ devDependencies:
   minimist:
     specifier: ^1.2.8
     version: 1.2.8
+  pathe:
+    specifier: ^1.1.2
+    version: 1.1.2
+  pkg-types:
+    specifier: ^1.0.3
+    version: 1.0.3
   prompts:
     specifier: ^2.4.2
     version: 2.4.2
@@ -1263,8 +1272,8 @@ packages:
     resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
     dev: true
 
-  /destr@2.0.2:
-    resolution: {integrity: sha512-65AlobnZMiCET00KaFFjUefxDX0khFA/E4myqZ7a6Sq1yZtR8+FVIvilVX66vF2uobSumxooYZChiRPCKNqhmg==}
+  /destr@2.0.3:
+    resolution: {integrity: sha512-2N3BOUU4gYMpTP24s5rF5iP7BDr7uNTCs4ozw3kf/eKfvWSIu93GEBi5m427YoyJoeOzQ5smuu4nNAPGb8idSQ==}
     dev: true
 
   /dir-glob@3.0.1:
@@ -2816,7 +2825,7 @@ packages:
     resolution: {integrity: sha512-lNeOl38Ws0eNxpO3+wD1I9rkHGQyj1NU1jlzv4go2CtEnEQEUfqnIvZG7W+bC/aXdJ27n5x/yUjb6RoT9tko+Q==}
     dependencies:
       defu: 6.1.4
-      destr: 2.0.2
+      destr: 2.0.3
       flat: 5.0.2
     dev: true
 
