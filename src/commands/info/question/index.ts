@@ -3,14 +3,14 @@ import prompts from 'prompts'
 import { bold, gray, red } from 'kolorist'
 import figures from 'prompts/lib/util/figures.js'
 
-export async function question(choices: string[]) {
+export async function question(choices: string[], message: string) {
   const instructions = gray('使用↑↓选择，空格或←→选中，a全选，回车确认')
 
   const questions = [
     {
       name: 'errorIndexList',
       type: 'multiselect',
-      message: '请选择遇到问题的库？',
+      message,
       instructions,
       choices,
     },

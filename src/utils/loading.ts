@@ -38,6 +38,13 @@ export class Ora {
     clearInterval(this.interval)
     process.stdout.write('\r' + `${green(figures.tick)} ${this.setFinishMessage(message)}\n`)
   }
+
+  finish(): void {
+    if (!this.interval)
+      return
+    clearInterval(this.interval)
+    process.stdout.write('')
+  }
 }
 
 export function ora(message: string) {
