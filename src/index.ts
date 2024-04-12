@@ -12,9 +12,10 @@ import {
 import { join, resolve } from 'node:path'
 import process from 'node:process'
 import ejs from 'ejs'
-import { bold } from 'kolorist'
+import { bold, red } from 'kolorist'
 import minimist from 'minimist'
 import prompts from 'prompts'
+import figures from 'prompts/lib/util/figures.js'
 import { question } from './question'
 import filePrompt from './question/file'
 import type { BaseTemplateList } from './question/template/type'
@@ -250,8 +251,7 @@ async function init() {
   printFinish(root, cwd, packageManager, loading)
 }
 
-init().catch((e) => {
-  loading.fail(`${bold('模板创建失败！')}`)
-  console.error(e)
-  process.exit(1)
+init().catch(() => {
+  console.log(`${red(figures.cross)} ${bold('操作已取消')}`)
+  process.exit(0)
 })
