@@ -55,7 +55,7 @@ async function init() {
   })
 
   if (argv.info)
-    getUniAppInfo()
+    await getUniAppInfo()
 
   printBanner()
 

@@ -14,6 +14,9 @@ devDependencies:
   '@types/ejs':
     specifier: ^3.1.5
     version: 3.1.5
+  '@types/envinfo':
+    specifier: ^7.8.3
+    version: 7.8.3
   '@types/minimist':
     specifier: ^1.2.5
     version: 1.2.5
@@ -29,12 +32,12 @@ devDependencies:
   bumpp:
     specifier: ^9.3.0
     version: 9.3.0
-  destr:
-    specifier: ^2.0.3
-    version: 2.0.3
   ejs:
     specifier: ^3.1.9
     version: 3.1.9
+  envinfo:
+    specifier: ^7.12.0
+    version: 7.12.0
   eslint:
     specifier: ^8.56.0
     version: 8.56.0
@@ -44,15 +47,12 @@ devDependencies:
   lint-staged:
     specifier: ^15.2.1
     version: 15.2.1
+  local-pkg:
+    specifier: ^0.5.0
+    version: 0.5.0
   minimist:
     specifier: ^1.2.8
     version: 1.2.8
-  pathe:
-    specifier: ^1.1.2
-    version: 1.1.2
-  pkg-types:
-    specifier: ^1.0.3
-    version: 1.0.3
   prompts:
     specifier: ^2.4.2
     version: 2.4.2
@@ -698,6 +698,10 @@ packages:
     resolution: {integrity: sha512-nv+GSx77ZtXiJzwKdsASqi+YQ5Z7vwHsTP0JY2SiQgjGckkBRKZnk8nIM+7oUZ1VCtuTz0+By4qVR7fqzp/Dfg==}
     dev: true
 
+  /@types/envinfo@7.8.3:
+    resolution: {integrity: sha512-qzV1XMjmzgmndci6L5HlzExf4w9A5jQPNpW/t4sSljErKbS8y6231ToHO9ir2Xjf+2zG1C540+Wmh0zpUsGu0A==}
+    dev: true
+
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
     dev: true
@@ -1317,6 +1321,12 @@ packages:
 
   /emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
+    dev: true
+
+  /envinfo@7.12.0:
+    resolution: {integrity: sha512-Iw9rQJBGpJRd3rwXm9ft/JiGoAZmLxxJZELYDQoPRZ4USVhkKtIcNBPw6U+/K2mBpaqM25JSV6Yl4Az9vO2wJg==}
+    engines: {node: '>=4'}
+    hasBin: true
     dev: true
 
   /error-ex@1.3.2:
