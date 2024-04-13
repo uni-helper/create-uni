@@ -12,7 +12,7 @@ import {
 import { join, resolve } from 'node:path'
 import process from 'node:process'
 import ejs from 'ejs'
-import { bold, red } from 'kolorist'
+import { bold, green, red } from 'kolorist'
 import minimist from 'minimist'
 import prompts from 'prompts'
 import figures from 'prompts/lib/util/figures.js'
@@ -253,5 +253,7 @@ async function init() {
 
 init().catch(() => {
   console.log(`${red(figures.cross)} ${bold('操作已取消')}`)
+  console.log()
+  console.log(`🚀 遇到问题? 快速反馈：${green('https://github.com/uni-helper/create-uni/issues/new/choose')}`)
   process.exit(0)
 })

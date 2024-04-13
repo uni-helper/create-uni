@@ -39,6 +39,11 @@
 npm create uni <项目名称> --ts -m pinia -m uniUse -u ano -e
 ```
 
+```shell
+npm create uni --info 
+# --info  获取当前项目环境信息
+```
+
 ### 参数说明
 
 | 配置项 | 参数 | 别名 | 可选值 |
@@ -49,6 +54,7 @@ npm create uni <项目名称> --ts -m pinia -m uniUse -u ano -e
 | Module | moduleList | m | 见[模块列表](#模块列表) |
 | UI | ui | u | uni/ano |
 | Eslint | eslint | e | —— |
+| info | info |  —— | —— |
 
 #### 📦插件列表
 
