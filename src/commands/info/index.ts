@@ -1,17 +1,20 @@
 import process from 'node:process'
 import { execSync } from 'node:child_process'
-import { getPackageInfo } from 'local-pkg'
+import { getPackageInfo, isPackageExists } from 'local-pkg'
 import envinfo from 'envinfo'
-import { gray, link } from 'kolorist'
+import { gray, link, yellow } from 'kolorist'
 import { ora } from '../../utils'
 import { question } from './question'
 
 async function getuniHelperDependencies() {
-  const { packageJson } = (await getPackageInfo('.')) ?? {}
-  if (!packageJson) {
-    console.error('package.json not found')
-    process.exit(0)
+  const isUniPkg = isPackageExists('@dcloudio/uni-app')
+  if (!isUniPkg) {
+    console.log(yellow('当前目录未安装uni-app，无法获取依赖信息'))
+    console.log('')
+    return []
   }
+
+  const { packageJson } = (await getPackageInfo('.'))!
   const dependencies = Object.keys({ ...packageJson.dependencies, ...packageJson.devDependencies })
   const uniHelperDependencies = dependencies.filter(item => item.includes('@uni-helper'))
   return uniHelperDependencies
@@ -28,10 +31,12 @@ async function getBaseDependencies() {
   const baseDependencies = []
   for (const name of baseDependenciesName) {
     const packageInfo = await getPackageInfo(name)
-    baseDependencies.push({
-      name,
-      version: packageInfo?.version,
-    })
+    if (packageInfo?.version) {
+      baseDependencies.push({
+        name,
+        version: packageInfo,
+      })
+    }
   }
 
   return baseDependencies
@@ -39,6 +44,9 @@ async function getBaseDependencies() {
 
 async function getErrorDependencies() {
   const uniHelperDependencies = await getuniHelperDependencies()
+  if (uniHelperDependencies.length === 0)
+    return []
+
   const { errorIndexList } = await question(uniHelperDependencies, '请选择需要反馈的依赖')
 
   const errorDependencies = []
@@ -49,11 +57,10 @@ async function getErrorDependencies() {
   }
   return errorDependencies
 }
-
 async function getVSCodeInfo() {
   const vscode = await envinfo.helpers.getVSCodeInfo()
   if (vscode.length !== 3)
-    return
+    return null
   return {
     name: vscode[0],
     version: vscode[1],
@@ -91,12 +98,20 @@ function paserExtensionList(list: string[]) {
 
 async function getErrorExtensions() {
   const loading = ora('正在获取插件信息...').start()
-  const { path } = (await getVSCodeInfo())!
-  const extensions = getVSCodeExtensions(path)
+  const vscodeInfo = await getVSCodeInfo()
+  if (!vscodeInfo) {
+    loading.fail('未找到vscode, 无法获取插件信息')
+    console.log('')
+    return { errorExtensions: [], volarExtensions: [] }
+  }
+
+  const extensions = getVSCodeExtensions(vscodeInfo!.path)
   const uniHelperExtensions = paserExtensionList(getUniHelperExtensions(extensions))
   const volarExtensions = paserExtensionList(getVolarExtensions(extensions))
   const choices = uniHelperExtensions.map(item => item.name)
   loading.finish()
+  if (uniHelperExtensions.length === 0)
+    return { errorExtensions: [], volarExtensions }
 
   const { errorIndexList } = await question(choices, '请选择需要反馈的vscode插件')
 
@@ -114,8 +129,8 @@ async function getErrorExtensions() {
 
 export async function getBaseEnvInfo() {
   const os = (await envinfo.helpers.getOSInfo())?.[1]
-  const node = (await envinfo.helpers.getNodeInfo())?.[1]
   const vscode = (await getVSCodeInfo())?.version
+  const node = (await envinfo.helpers.getNodeInfo())?.[1]
   return {
     os,
     node,
@@ -153,8 +168,10 @@ export async function getUniAppInfo() {
   console.log('基础环境信息:')
   console.table(baseEnvInfoStr)
 
-  console.log('基础依赖信息:')
-  console.log(baseDependenciesStr)
+  if (baseDependencies.length > 0) {
+    console.log('基础依赖信息:')
+    console.log(baseDependenciesStr)
+  }
 
   if (errorDependencies.length > 0) {
     console.log('uni-helper依赖信息:')
@@ -171,6 +188,7 @@ export async function getUniAppInfo() {
   console.log(
     `${[
       gray('感谢使用uni-helper，请提供以上信息以便我们排查问题。'),
+      '',
       '👉 uni-help官网: https://uni-helper.js.org/',
       '👉 改进建议: https://github.com/uni-helper/create-uni/issues/new/choose',
     ].join('\n')}\n`,
