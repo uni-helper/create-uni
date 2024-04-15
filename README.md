@@ -40,7 +40,7 @@ npm create uni <项目名称> --ts -m pinia -m uniUse -u ano -e
 ```
 
 ```shell
-npm create uni --info 
+npx create-uni@latest --info 
 # --info  获取当前项目环境信息
 ```
 
@@ -54,7 +54,7 @@ npm create uni --info
 | Module | moduleList | m | 见[模块列表](#模块列表) |
 | UI | ui | u | uni/ano |
 | Eslint | eslint | e | —— |
-| info | info |  —— | —— |
+| info | info |  —— | all |
 
 #### 📦插件列表
 
