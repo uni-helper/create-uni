@@ -6,6 +6,14 @@ import { gray, link, yellow } from 'kolorist'
 import { ora } from '../../utils'
 import { question } from './question'
 
+const uniDependenciesMap = {
+  '@uni-helper/uni-use': ['@vueuse/core'],
+  '@uni-helper/axios-adapter': ['axios'],
+  '@uni-helper/uni-preset-uni': ['unocss'],
+  '@uni-helper/eslint-config': ['eslint'],
+  '@uni-helper/vite-plugin-uni-tailwind': ['tailwindcss'],
+} as Record<string, string[]>
+
 async function getuniHelperDependencies() {
   const isUniPkg = isPackageExists('@dcloudio/uni-app')
   if (!isUniPkg) {
@@ -34,7 +42,7 @@ async function getBaseDependencies() {
     if (packageInfo?.version) {
       baseDependencies.push({
         name,
-        version: packageInfo,
+        version: packageInfo.version,
       })
     }
   }
@@ -57,6 +65,7 @@ async function getErrorDependencies() {
   }
   return errorDependencies
 }
+
 async function getVSCodeInfo() {
   const vscode = await envinfo.helpers.getVSCodeInfo()
   if (vscode.length !== 3)
@@ -143,6 +152,7 @@ export async function getUniAppInfo() {
   const { errorExtensions, volarExtensions } = await getErrorExtensions()
   const baseEnvInfo = await getBaseEnvInfo()
   const baseDependencies = await getBaseDependencies()
+  console.log(baseDependencies)
   const splitter = '----------------------------------------------'
 
   let baseEnvInfoStr = ''
@@ -156,8 +166,15 @@ export async function getUniAppInfo() {
     baseDependenciesStr += `- ${name}: \`${version}\`\n`
 
   let errorDependenciesStr = ''
-  for (const { name, version, bugs } of errorDependencies)
+  for (const { name, version, bugs } of errorDependencies) {
     errorDependenciesStr += `- ${link(name, bugs!)}: \`${version}\`\n`
+    if (uniDependenciesMap[name]) {
+      for (const uniDependency of uniDependenciesMap[name]) {
+        const { version } = await getDependenciesVersionAndBugs(uniDependency)
+        errorDependenciesStr += `  - ${uniDependency}: \`${version}\`\n`
+      }
+    }
+  }
 
   let errorExtensionsStr = ''
   for (const { name, version, bugs } of errorExtensions)
