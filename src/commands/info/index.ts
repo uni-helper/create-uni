@@ -206,7 +206,7 @@ export async function getUniAppInfo() {
     `${[
       gray('感谢使用uni-helper，请提供以上信息以便我们排查问题。'),
       '',
-      '👉 uni-help官网: https://uni-helper.js.org/',
+      '👉 uni-helper 官网: https://uni-helper.js.org/',
       '👉 改进建议: https://github.com/uni-helper/create-uni/issues/new/choose',
     ].join('\n')}\n`,
   )
