@@ -18,8 +18,9 @@ export class Ora {
 
   start(): Ora {
     let i = 0
+    process.stdout.write('\r' + `${green(frames[i % 9])} ${this.message}`)
     this.interval = setInterval(() => {
-      process.stdout.write('\r' + `${frames[i % 9]} ${this.message}`)
+      process.stdout.write('\r' + `${green(frames[i % 9])} ${this.message}`)
       i++
     }, 100)
     return this

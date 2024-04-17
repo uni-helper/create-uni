@@ -38,7 +38,7 @@ import {
   validateUIName,
 } from './utils/validateArgv'
 import { postOrderDirectoryTraverse } from './utils/directoryTraverse'
-
+import { onCancel } from './question/onCancel'
 import { getUniAppInfo } from './commands/info'
 
 let loading: Ora
@@ -91,7 +91,7 @@ async function init() {
 
     const shouldOverwrite = canSkipEmptying(projectName)
       ? true
-      : (await prompts(filePrompt(projectName))).shouldOverwrite
+      : (await prompts(filePrompt(projectName), { onCancel })).shouldOverwrite
 
     result = {
       projectName,
@@ -251,9 +251,10 @@ async function init() {
   printFinish(root, cwd, packageManager, loading)
 }
 
-init().catch(() => {
-  console.log(`${red(figures.cross)} ${bold('操作已取消')}`)
-  console.log()
-  console.log(`🚀 遇到问题? 快速反馈：${green('https://github.com/uni-helper/create-uni/issues/new/choose')}`)
-  process.exit(0)
-})
+init()
+  .catch((error) => {
+    console.log(`${red(figures.cross)} ${bold('操作已取消')}`)
+    console.log(error.message.includes('操作已取消') ? '' : error)
+    console.log(`🚀 遇到问题? 快速反馈：${green('https://github.com/uni-helper/create-uni/issues/new/choose')}`)
+    process.exit(0)
+  })
