@@ -6,5 +6,6 @@ export default function getData() {
       initializer: 'uni()',
     }],
     extraConfig: null,
+    dynamic: false,
   }
 }

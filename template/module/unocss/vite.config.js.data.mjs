@@ -1,7 +1,7 @@
 export default function getData({ oldData }) {
   const UnoCSSPlugin = {
     id: 'UnoCSS',
-    importer: 'import UnoCSS from \'unocss/vite\'',
+    dynamicImporter: `const UnoCSS = (await import('unocss/vite')).default`,
     initializer: 'UnoCSS()',
   }
 
@@ -10,5 +10,6 @@ export default function getData({ oldData }) {
     plugins: oldData.plugins.flatMap(plugin =>
       plugin.id === 'uni' ? [plugin, UnoCSSPlugin] : plugin,
     ),
+    dynamic: true,
   }
 }

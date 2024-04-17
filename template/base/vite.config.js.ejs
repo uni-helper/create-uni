@@ -2,9 +2,41 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 <%_ for (const { importer } of plugins) { _%>
-<%- importer %>
+<%_ if (importer) { _%>
+<%- importer _%>
+<%_ } _%>
 <%_ } _%>
 
+
+<%_ if (dynamic) { _%>
+export default async () => {
+  <%_ for (const { dynamicImporter } of plugins) { _%>
+  <%_ if (dynamicImporter) { _%>
+  <%- dynamicImporter _%>
+  <%_ } _%>
+  <%_ } _%>
+
+
+  return defineConfig({
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url))
+      }
+    },
+    plugins: [
+    <%_ for (const { initializer } of plugins) { _%>
+    <%_ if (initializer) { _%>
+      <%- initializer _%>,
+    <%_ } _%>
+    <%_ } _%>
+    ],
+    <%_ if (extraConfig) { _%>
+    <%- extraConfig.data _%>,
+    <%_ } _%>
+  })
+}
+
+<%_ } else { _%>
 export default defineConfig({
   resolve: {
     alias: {
@@ -22,3 +54,6 @@ export default defineConfig({
   <%- extraConfig.data _%>,
   <%_ } _%>
 })
+<%_ } _%>
+
+
