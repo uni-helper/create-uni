@@ -1,7 +1,7 @@
 {
   "name": "create-uni",
   "type": "module",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "packageManager": "pnpm@8.6.12",
   "description": "轻松创建你的 uni-app 项目",
   "author": "FliPPeDround <flippedround@qq.com>",
