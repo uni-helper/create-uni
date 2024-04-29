@@ -1,5 +1,4 @@
 import process from 'node:process'
-import { execSync } from 'node:child_process'
 import { getPackageInfo, isPackageExists } from 'local-pkg'
 import envinfo from 'envinfo'
 import { gray, italic, link, yellow } from 'kolorist'
@@ -84,13 +83,16 @@ async function getVSCodeInfo() {
   }
 }
 
-function getVSCodeExtensions(path: string) {
+async function getVSCodeExtensions(path: string) {
+  const { $ } = await import('execa')
   let list
   try {
-    list = execSync(`code --list-extensions --show-versions`)
+    const { stdout } = await $`code --list-extensions --show-versions`
+    list = stdout
   }
   catch (error) {
-    list = execSync(`${path} --list-extensions --show-versions`)
+    const { stdout } = await $`${path} --list-extensions --show-versions`
+    list = stdout
   }
   return list.toString().split(/\r?\n/).filter(line => line.trim() !== '')
 }
@@ -121,7 +123,7 @@ async function getErrorExtensions(argv: string) {
     return { errorExtensions: [], volarExtensions: [] }
   }
 
-  const extensions = getVSCodeExtensions(vscodeInfo!.path)
+  const extensions = await getVSCodeExtensions(vscodeInfo!.path)
   const uniHelperExtensions = paserExtensionList(getUniHelperExtensions(extensions))
   const volarExtensions = paserExtensionList(getVolarExtensions(extensions))
   const choices = uniHelperExtensions.map(item => item.name)

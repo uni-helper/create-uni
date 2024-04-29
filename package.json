@@ -40,6 +40,9 @@
     "typecheck": "tsc --noEmit",
     "up": "cd ./template && pnpx taze@latest major -w -r && cd ./base && pnpx @dcloudio/uvm@latest --manager pnpm"
   },
+  "dependencies": {
+    "execa": "^8.0.1"
+  },
   "devDependencies": {
     "@antfu/ni": "^0.21.12",
     "@antfu/utils": "^0.7.7",
