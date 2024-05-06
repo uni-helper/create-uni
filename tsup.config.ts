@@ -8,6 +8,15 @@ export default ({ watch }) => (
     format: 'cjs',
     platform: 'node',
     target: 'node14',
-    minify: !watch,
+    noExternal: [
+      'ejs',
+      'minimist',
+      'kolorist',
+      'envinfo',
+      'execa',
+      'local-pkg',
+      'prompts',
+    ],
+    minify: watch ? false : 'terser',
   })
 )

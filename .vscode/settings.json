@@ -3,9 +3,11 @@
     "bumpp",
     "dcloudio",
     "esno",
+    "execa",
     "gitee",
     "kolorist",
     "Pinia",
+    "taze",
     "Unocss"
   ],
   "eslint.experimental.useFlatConfig": true,

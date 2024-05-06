@@ -41,7 +41,13 @@
     "up": "cd ./template && pnpx taze@latest major -w -r && cd ./base && pnpx @dcloudio/uvm@latest --manager pnpm"
   },
   "dependencies": {
-    "execa": "^8.0.1"
+    "ejs": "^3.1.9",
+    "envinfo": "^7.12.0",
+    "execa": "^8.0.1",
+    "kolorist": "^1.8.0",
+    "local-pkg": "^0.5.0",
+    "minimist": "^1.2.8",
+    "prompts": "^2.4.2"
   },
   "devDependencies": {
     "@antfu/ni": "^0.21.12",
@@ -53,15 +59,10 @@
     "@types/prompts": "^2.4.9",
     "@uni-helper/eslint-config": "^0.0.5",
     "bumpp": "^9.3.0",
-    "ejs": "^3.1.9",
-    "envinfo": "^7.12.0",
     "eslint": "^8.56.0",
-    "kolorist": "^1.8.0",
     "lint-staged": "^15.2.1",
-    "local-pkg": "^0.5.0",
-    "minimist": "^1.2.8",
-    "prompts": "^2.4.2",
     "simple-git-hooks": "^2.9.0",
+    "terser": "^5.31.0",
     "tsup": "^8.0.2",
     "typescript": "^5.3.3"
   },
