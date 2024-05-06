@@ -2,8 +2,8 @@ import process from 'node:process'
 import { getPackageInfo, isPackageExists } from 'local-pkg'
 import envinfo from 'envinfo'
 import { gray, italic, link, yellow } from 'kolorist'
-import { ora } from '../../utils'
 import { question } from './question'
+import { ora } from '@/utils'
 
 const uniDependenciesMap = {
   '@uni-helper/uni-use': ['@vueuse/core'],

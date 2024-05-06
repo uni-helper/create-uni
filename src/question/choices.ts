@@ -1,12 +1,10 @@
 import type { PromptObject } from 'prompts'
-import { gray } from 'kolorist'
 import { UIList } from './UI/choices'
 import MODULES from './module/choices'
 import PLUGINS from './plugin/choices'
+import { hint, instructions } from '@/constants'
 
 export default (): PromptObject<string>[] => {
-  const instructions = gray('使用↑↓选择，空格或←→选中，a全选，回车确认')
-
   return [
     {
       name: 'needsTypeScript',
@@ -34,7 +32,7 @@ export default (): PromptObject<string>[] => {
       name: 'UIName',
       type: 'select',
       message: '选择需要的组件库？',
-      hint: '使用↑↓选择，回车确认',
+      hint,
       choices: UIList,
     },
     {

@@ -8,14 +8,14 @@ import { defineConfig } from 'vite'
 <%_ } _%>
 
 <%_ if (dynamic) { _%>
-export default async () => {
+export default defineConfig(async () => {
   <%_ for (const { dynamicImporter } of plugins) { _%>
   <%_ if (dynamicImporter) { _%>
   <%- dynamicImporter %>
   <%_ } _%>
   <%_ } _%>
 
-  return defineConfig({
+  return {
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -31,8 +31,8 @@ export default async () => {
     <%_ if (extraConfig) { _%>
     <%- extraConfig.data _%>,
     <%_ } _%>
-  })
-}
+  }
+})
 
 <%_ } else { _%>
 export default defineConfig({

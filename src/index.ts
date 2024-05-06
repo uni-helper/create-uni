@@ -12,10 +12,9 @@ import {
 import { join, resolve } from 'node:path'
 import process from 'node:process'
 import ejs from 'ejs'
-import { bold, green, red } from 'kolorist'
+import { bold, green } from 'kolorist'
 import minimist from 'minimist'
 import prompts from 'prompts'
-import figures from 'prompts/lib/util/figures.js'
 import { question } from './question'
 import filePrompt from './question/file'
 import type { BaseTemplateList } from './question/template/type'
@@ -38,7 +37,7 @@ import {
   validateUIName,
 } from './utils/validateArgv'
 import { postOrderDirectoryTraverse } from './utils/directoryTraverse'
-import { onCancel } from './question/onCancel'
+import { cancelMesssage, onCancel } from './question/onCancel'
 import { getUniAppInfo } from './commands/info'
 
 let loading: Ora
@@ -253,7 +252,7 @@ async function init() {
 
 init()
   .catch((error) => {
-    console.log(`${red(figures.cross)} ${bold('操作已取消')}`)
+    console.log(cancelMesssage)
     console.log(error.message.includes('操作已取消') ? '' : error)
     console.log(`🚀 遇到问题? 快速反馈：${green('https://github.com/uni-helper/create-uni/issues/new/choose')}`)
     process.exit(0)
