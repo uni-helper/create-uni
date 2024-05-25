@@ -8,6 +8,17 @@ export default function getData({ oldData }) {
     })`,
   }
 
+  const nutuiExtraConfig = {
+    id: 'nutui-uniapp',
+    data: `css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "nutui-uniapp/styles/variables.scss";',
+      },
+    },
+  }`,
+  }
+
   return {
     ...oldData,
     plugins: oldData.plugins.some(plugin => plugin.id === 'autoImport')
@@ -17,12 +28,8 @@ export default function getData({ oldData }) {
       : oldData.plugins.flatMap(plugin =>
         plugin.id === 'uni' ? [autoImportNutUiPlugin, plugin] : plugin,
       ),
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: '@import "nutui-uniapp/styles/variables.scss";',
-        },
-      },
+    extraConfig: {
+      data: oldData?.extraConfig ? `${oldData.extraConfig.data},\n  ${nutuiExtraConfig.data}` : nutuiExtraConfig.data,
     },
   }
 }
