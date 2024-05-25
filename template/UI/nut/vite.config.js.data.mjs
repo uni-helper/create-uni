@@ -17,5 +17,12 @@ export default function getData({ oldData }) {
       : oldData.plugins.flatMap(plugin =>
         plugin.id === 'uni' ? [autoImportNutUiPlugin, plugin] : plugin,
       ),
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "nutui-uniapp/styles/variables.scss";',
+        },
+      },
+    },
   }
 }
