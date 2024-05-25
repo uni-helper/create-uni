@@ -1,4 +1,4 @@
-import { green, trueColor } from 'kolorist'
+import { green, trueColor as rgb } from 'kolorist'
 import type { ModelType } from '../type'
 
 export const UIList: ModelType[] = [
@@ -13,17 +13,17 @@ export const UIList: ModelType[] = [
     value: 'uni',
   },
   {
-    title: trueColor(77, 128, 240)('wot-design-ui'),
+    title: rgb(77, 128, 240)('wot-design-uni'),
     description: '高颜值、轻量化的uni-app组件库',
     value: 'wot',
   },
   {
-    title: trueColor(250, 44, 25)('nutui-uniapp'),
+    title: rgb(250, 44, 25)('nutui-uniapp'),
     description: '京东风格的轻量级移动端组件库',
     value: 'nut',
   },
   {
-    title: trueColor(147, 85, 224)('Ano UI'),
+    title: rgb(147, 85, 224)('Ano UI'),
     description: '轻量级、漂亮、快速的 UnoCSS 组件库',
     value: 'ano',
   },
