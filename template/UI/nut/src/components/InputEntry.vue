@@ -17,9 +17,9 @@ function handleClick() {
     >
   </view>
   <view>
-    <button :disabled="!name" @click="handleClick">
+    <nut-button :disabled="!name" block @click="handleClick">
       Hello
-    </button>
+    </nut-button>
   </view>
 
   <nut-popup v-model:visible="popupVisible" :custom-style="{ padding: '30px 50px' }">

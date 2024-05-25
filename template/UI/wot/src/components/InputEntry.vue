@@ -17,9 +17,9 @@ function handleClick() {
     >
   </view>
   <view>
-    <button :disabled="!name" @click="handleClick">
+    <wd-button :disabled="!name" @click="handleClick">
       Hello
-    </button>
+    </wd-button>
   </view>
 
   <wd-popup v-model="popupShow" custom-style="padding: 30px 40px;">
