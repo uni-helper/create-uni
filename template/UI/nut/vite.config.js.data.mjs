@@ -15,7 +15,7 @@ export default function getData({ oldData }) {
         plugin.id === 'autoImport' ? [{ id: plugin.id, importer: plugin.importer }, autoImportNutUiPlugin] : plugin,
       )
       : oldData.plugins.flatMap(plugin =>
-        plugin.id === 'uni' ? [autoImportNutDesignUiPlugin, plugin] : plugin,
+        plugin.id === 'uni' ? [autoImportNutUiPlugin, plugin] : plugin,
       ),
   }
 }
