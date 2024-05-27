@@ -11,6 +11,6 @@ export default function getData({ oldData }) {
 
   return {
     ...oldData,
-    extraConfig: uniUseExtraConfig,
+    extraConfig: oldData?.extraConfig ? { ...oldData.extraConfig, ...uniUseExtraConfig } : uniUseExtraConfig,
   }
 }
