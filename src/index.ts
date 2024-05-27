@@ -15,6 +15,7 @@ import ejs from 'ejs'
 import { bold, green } from 'kolorist'
 import minimist from 'minimist'
 import prompts from 'prompts'
+import JSON5 from 'json5'
 import { question } from './question'
 import filePrompt from './question/file'
 import type { BaseTemplateList } from './question/template/type'
@@ -193,6 +194,10 @@ async function init() {
       if (filepath.endsWith('.ejs')) {
         const template = readFileSync(filepath, 'utf-8')
         const dest = filepath.replace(/\.ejs$/, '')
+
+        if (dest.includes('vite.config') && dataStore[dest].extraConfig)
+          dataStore[dest].extraConfig = JSON5.stringify(dataStore[dest].extraConfig, null, 2).slice(1, -1).trim()
+
         const content = ejs.render(template, dataStore[dest])
 
         writeFileSync(dest, content)

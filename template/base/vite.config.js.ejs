@@ -29,7 +29,7 @@ export default defineConfig(async () => {
     <%_ } _%>
     ],
     <%_ if (extraConfig) { _%>
-    <%- extraConfig.data _%>,
+    <%- extraConfig _%>
     <%_ } _%>
   }
 })
@@ -49,8 +49,9 @@ export default defineConfig({
   <%_ } _%>
   ],
   <%_ if (extraConfig) { _%>
-  <%- extraConfig.data _%>,
+  <%- extraConfig _%>
   <%_ } _%>
+  
 })
 <%_ } _%>
 

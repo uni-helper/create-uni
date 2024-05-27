@@ -16,6 +16,7 @@ export default ({ watch }) => (
       'execa',
       'local-pkg',
       'prompts',
+      'json5',
     ],
     minify: watch ? false : 'terser',
   })
