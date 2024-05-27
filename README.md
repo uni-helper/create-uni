@@ -52,7 +52,7 @@ npx create-uni@latest --info
 | TypeScript | ts | —— | —— |
 | Plugin | pluginList | p | 见[插件列表](#插件列表) |
 | Module | moduleList | m | 见[模块列表](#模块列表) |
-| UI | ui | u | uni/ano |
+| UI | ui | u | 见[组件列表](#组件列表) |
 | Eslint | eslint | e | —— |
 | info | info |  —— | all |
 
@@ -77,6 +77,15 @@ npx create-uni@latest --info
 | [uni-network](https://github.com/uni-helper/uni-network) | 为 uni-app 打造的基于 Promise 的网络请求库 | uniNetwork |
 | [uni-use](https://github.com/uni-helper/uni-use) | uni-app 组合式工具集 | uniUse |
 | [uni-promises](https://github.com/uni-helper/uni-promises) | 为 uni-app 提供的 Promise 包装器 | uniPromises |
+
+#### 📦组件列表
+
+| 组件名 | 描述 | 参数名 |
+| :---: | :---: | :---: |
+| [Uni UI](https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html) | UniApp官方组件库 | uni |
+| [wot-design-uni](https://wot-design-uni.pages.dev/) | 高颜值、轻量化的uni-app组件库 | wot |
+| [nutui-uniapp](https://uniapp-nutui.tech/) | 京东风格的轻量级移动端组件库 | nut |
+| [Ano UI](https://ano-ui.netlify.app/) | 轻量级、漂亮、快速的 UnoCSS 组件库 | ano |
 
 ## 🤝 参与贡献
 
