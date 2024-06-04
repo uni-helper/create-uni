@@ -151,7 +151,7 @@ jobs:
 
       - name: 打包小程序项目
         working-directory: ../sample-project
-        run: pnpm dev:mp-weixin
+        run: pnpm build:mp-weixin
 
   test-template:
     needs: build
@@ -203,4 +203,4 @@ jobs:
 
       - name: 打包小程序项目
         working-directory: ../sample-project
-        run: pnpm dev:mp-weixin
+        run: pnpm build:mp-weixin
