@@ -118,7 +118,7 @@ async function getErrorExtensions(argv: string) {
   const loading = ora('正在获取插件信息...').start()
   const vscodeInfo = await getVSCodeInfo()
   if (!vscodeInfo) {
-    loading.fail('未找到vscode, 无法获取插件信息, 请自行补充vscode插件信息')
+    loading.warn('未找到vscode, 无法获取插件信息, 请自行补充vscode插件信息')
     return { errorExtensions: [], volarExtensions: [] }
   }
   const extensions = await getVSCodeExtensions(vscodeInfo!.path)
