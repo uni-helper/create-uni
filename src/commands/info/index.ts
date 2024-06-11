@@ -2,8 +2,8 @@ import process from 'node:process'
 import { getPackageInfo, isPackageExists } from 'local-pkg'
 import envinfo from 'envinfo'
 import { gray, italic, link, red } from 'kolorist'
+import ora from 'ora'
 import { question } from './question'
-import { ora } from '@/utils'
 
 const uniDependenciesMap = {
   '@uni-helper/uni-use': ['@vueuse/core'],
@@ -118,16 +118,14 @@ async function getErrorExtensions(argv: string) {
   const loading = ora('正在获取插件信息...').start()
   const vscodeInfo = await getVSCodeInfo()
   if (!vscodeInfo) {
-    loading.fail('未找到vscode, 无法获取插件信息')
-    console.log('')
+    loading.fail('未找到vscode, 无法获取插件信息, 请自行补充vscode插件信息')
     return { errorExtensions: [], volarExtensions: [] }
   }
-
   const extensions = await getVSCodeExtensions(vscodeInfo!.path)
   const uniHelperExtensions = paserExtensionList(getUniHelperExtensions(extensions))
   const volarExtensions = paserExtensionList(getVolarExtensions(extensions))
   const choices = uniHelperExtensions.map(item => item.name)
-  argv === 'all' ? loading.succeed('获取插件信息成功') : loading.finish()
+  argv === 'all' ? loading.succeed('获取插件信息成功') : loading.stop()
   if (uniHelperExtensions.length === 0)
     return { errorExtensions: [], volarExtensions }
 

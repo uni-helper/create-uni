@@ -16,14 +16,14 @@ import { bold, green } from 'kolorist'
 import minimist from 'minimist'
 import prompts from 'prompts'
 import JSON5 from 'json5'
+import ora from 'ora'
+import type { Ora } from 'ora'
 import { question } from './question'
 import filePrompt from './question/file'
 import type { BaseTemplateList } from './question/template/type'
-import type { Ora } from './utils'
 import {
   canSkipEmptying,
   dowloadTemplate,
-  ora,
   preOrderDirectoryTraverse,
   printBanner,
   printFinish,

@@ -48,6 +48,7 @@
     "kolorist": "^1.8.0",
     "local-pkg": "^0.5.0",
     "minimist": "^1.2.8",
+    "ora": "^8.0.1",
     "prompts": "^2.4.2"
   },
   "devDependencies": {

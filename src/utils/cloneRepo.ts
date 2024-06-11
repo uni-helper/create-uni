@@ -3,8 +3,8 @@ import { promises as fs } from 'node:fs'
 import { join } from 'node:path'
 import process from 'node:process'
 import { bold } from 'kolorist'
+import type { Ora } from 'ora'
 import type { BaseTemplateList } from '../question/template/type'
-import type { Ora } from './loading'
 import { replaceProjectName } from './setPackageName'
 
 async function removeGitFolder(localPath: string): Promise<void> {

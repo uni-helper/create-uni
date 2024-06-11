@@ -9,6 +9,7 @@ export default ({ watch }) => (
     platform: 'node',
     target: 'node14',
     noExternal: [
+      'ora',
       'ejs',
       'minimist',
       'kolorist',
