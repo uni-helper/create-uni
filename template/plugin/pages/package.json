@@ -1,5 +1,5 @@
 {
   "devDependencies": {
-    "@uni-helper/vite-plugin-uni-pages": "^0.2.22"
+    "@uni-helper/vite-plugin-uni-pages": "^0.2.23"
   }
 }
