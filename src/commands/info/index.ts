@@ -1,7 +1,7 @@
 import process from 'node:process'
 import { getPackageInfo, isPackageExists } from 'local-pkg'
 import envinfo from 'envinfo'
-import { gray, italic, link, yellow } from 'kolorist'
+import { gray, italic, link, red } from 'kolorist'
 import { question } from './question'
 import { ora } from '@/utils'
 
@@ -16,11 +16,11 @@ const uniDependenciesMap = {
 async function getuniHelperDependencies() {
   const isUniPkg = isPackageExists('@dcloudio/uni-app')
   if (!isUniPkg) {
-    console.log(yellow('当前目录未安装uni-app，无法获取依赖信息'))
-    console.log('')
+    console.log()
+    console.log(red(' ⛔ 当前目录未安装uni-app，请在uni-app项目根目录下执行, 以获取依赖信息！！！'))
+    console.log()
     return []
   }
-
   const { packageJson } = (await getPackageInfo('.'))!
   const dependencies = Object.keys({ ...packageJson.dependencies, ...packageJson.devDependencies })
   const uniHelperDependencies = dependencies.filter(item => item.includes('@uni-helper'))
