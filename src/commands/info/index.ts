@@ -1,9 +1,12 @@
 import process from 'node:process'
+import { execSync } from 'node:child_process'
+import { resolve } from 'node:path'
 import { getPackageInfo, isPackageExists } from 'local-pkg'
 import envinfo from 'envinfo'
 import { gray, italic, link, red } from 'kolorist'
 import ora from 'ora'
 import { question } from './question'
+import { whichPm } from '@/utils/whichPm'
 
 const uniDependenciesMap = {
   '@uni-helper/uni-use': ['@vueuse/core'],
@@ -21,15 +24,15 @@ async function getuniHelperDependencies() {
     console.log()
     return []
   }
-  const { packageJson } = (await getPackageInfo('.'))!
+  const { packageJson } = (await getPackageInfo(process.cwd()))!
   const dependencies = Object.keys({ ...packageJson.dependencies, ...packageJson.devDependencies })
   const uniHelperDependencies = dependencies.filter(item => item.includes('@uni-helper'))
   return uniHelperDependencies
 }
 
 async function getDependenciesVersionAndBugs(name: string) {
-  const { version, packageJson } = (await getPackageInfo(name))!
-  const bugs = typeof packageJson?.bugs === 'string' ? packageJson.bugs : packageJson.bugs?.url
+  const { version, packageJson } = await getPackageInfo(name) || {}
+  const bugs = typeof packageJson?.bugs === 'string' ? packageJson?.bugs : packageJson?.bugs?.url
   return { version, bugs }
 }
 
@@ -56,10 +59,10 @@ async function getErrorDependencies(argv: string) {
   const errorDependencies = []
 
   if (argv === 'all') {
-    uniHelperDependencies.forEach(async (name) => {
-      const { version, bugs } = await getDependenciesVersionAndBugs(name)
+    for (const name of uniHelperDependencies) {
+      const { version, bugs } = await getDependenciesVersionAndBugs(name.trim())
       errorDependencies.push({ name, version, bugs })
-    })
+    }
   }
   else {
     const { errorIndexList } = await question(uniHelperDependencies, '请选择需要反馈的依赖')
@@ -83,18 +86,41 @@ async function getVSCodeInfo() {
   }
 }
 
-async function getVSCodeExtensions(path: string) {
-  const { $ } = await import('execa')
+// async function getVSCodeExtensions(path: string) {
+//   const { $ } = await import('execa')
+//   let list
+//   try {
+//     const { stdout } = await $`code --list-extensions --show-versions`
+//     list = stdout
+//   }
+//   catch (error) {
+//     const { stdout } = await $`${path} --list-extensions --show-versions`
+//     list = stdout
+//   }
+//   return list.toString().split(/\r?\n/).filter(line => line.trim() !== '')
+// }
+
+function getVSCodeExtensions(path: string) {
   let list
   try {
-    const { stdout } = await $`code --list-extensions --show-versions`
-    list = stdout
+    list = execSync(
+      `cade --list-extensions --show-versions`,
+      {
+        encoding: 'utf-8',
+        stdio: ['pipe', 'pipe', 'ignore'],
+      },
+    )
   }
   catch (error) {
-    const { stdout } = await $`${path} --list-extensions --show-versions`
-    list = stdout
+    list = execSync(
+      `${resolve(path)} --list-extensions --show-versions`,
+      {
+        encoding: 'utf-8',
+        stdio: ['pipe', 'pipe', 'ignore'],
+      },
+    )
   }
-  return list.toString().split(/\r?\n/).filter(line => line.trim() !== '')
+  return list.split(/\r?\n/).filter(line => line.trim() !== '')
 }
 
 function getUniHelperExtensions(extensions: string[]) {
@@ -153,10 +179,23 @@ export async function getBaseEnvInfo() {
   const os = (await envinfo.helpers.getOSInfo())?.[1]
   const vscode = (await getVSCodeInfo())?.version
   const node = (await envinfo.helpers.getNodeInfo())?.[1]
+  const pm = await whichPm()
+  const _npmPackages = await envinfo.run(
+    {
+      npmPackages: '**',
+      System: ['OS', 'CPU'],
+      IDEs: ['VSCode', 'Nvim'],
+    },
+    {
+      json: true,
+      showNotFound: true, // 显示未找到的信息
+    },
+  )
   return {
     os,
     node,
     vscode,
+    packageManager: pm?.name,
   }
 }
 
@@ -216,7 +255,8 @@ export async function getUniAppInfo(argv: string) {
 
   console.log(
     `${[
-      gray(italic('感谢使用uni-helper，请提供以上信息以便我们排查问题。')),
+      gray(italic('🎯 感谢使用uni-helper，请提供虚线内的信息以便我们排查问题')),
+      gray(italic('   若还需提供其他信息，请自行修改补充')),
       '',
       '👉 uni-helper 官网: https://uni-helper.js.org/',
       '👉 改进建议: https://github.com/uni-helper/create-uni/issues/new/choose',
