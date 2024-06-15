@@ -1,12 +1,11 @@
 import process from 'node:process'
 import { execSync } from 'node:child_process'
 import { resolve } from 'node:path'
-import { getPackageInfo, isPackageExists } from 'local-pkg'
 import envinfo from 'envinfo'
-import { gray, italic, link, red } from 'kolorist'
-import ora from 'ora'
+import { gray, italic, link, red, yellow } from 'kolorist'
+import JSON5 from 'json5'
 import { question } from './question'
-import { whichPm } from '@/utils/whichPm'
+import { ora, whichPm } from '@/utils'
 
 const uniDependenciesMap = {
   '@uni-helper/uni-use': ['@vueuse/core'],
@@ -16,89 +15,47 @@ const uniDependenciesMap = {
   '@uni-helper/vite-plugin-uni-tailwind': ['tailwindcss'],
 } as Record<string, string[]>
 
-async function getuniHelperDependencies() {
-  const isUniPkg = isPackageExists('@dcloudio/uni-app')
-  if (!isUniPkg) {
-    console.log()
-    console.log(red(' ⛔ 当前目录未安装uni-app，请在uni-app项目根目录下执行, 以获取依赖信息！！！'))
-    console.log()
-    return []
-  }
-  const { packageJson } = (await getPackageInfo(process.cwd()))!
-  const dependencies = Object.keys({ ...packageJson.dependencies, ...packageJson.devDependencies })
-  const uniHelperDependencies = dependencies.filter(item => item.includes('@uni-helper'))
-  return uniHelperDependencies
-}
-
-async function getDependenciesVersionAndBugs(name: string) {
-  const { version, packageJson } = await getPackageInfo(name) || {}
-  const bugs = typeof packageJson?.bugs === 'string' ? packageJson?.bugs : packageJson?.bugs?.url
-  return { version, bugs }
-}
-
-async function getBaseDependencies() {
+function getBaseDependencies(packageInfo: UniPresetEnvInfo['npmPackages']) {
   const baseDependenciesName = ['vue', 'vite', '@dcloudio/uni-app']
-  const baseDependencies = []
+  const baseDependencies: Record<string, string> = {}
   for (const name of baseDependenciesName) {
-    const packageInfo = await getPackageInfo(name)
-    if (packageInfo?.version) {
-      baseDependencies.push({
-        name,
-        version: packageInfo.version,
-      })
-    }
+    const version = packageInfo[name]?.installed
+    if (version)
+      baseDependencies[name] = version
   }
-
   return baseDependencies
 }
 
-async function getErrorDependencies(argv: string) {
-  const uniHelperDependencies = await getuniHelperDependencies()
-  if (uniHelperDependencies.length === 0)
-    return []
-  const errorDependencies = []
+function getUniHelperDependencies(packageInfo: UniPresetEnvInfo['npmPackages']) {
+  const uniHelperDependencies: Record<string, string> = {}
+  for (const name in packageInfo) {
+    if (name.includes('@uni-helper'))
+      uniHelperDependencies[name] = packageInfo[name].installed
+  }
+  return uniHelperDependencies
+}
+
+async function getErrorDependencies(
+  argv: string,
+  uniHelperDependencies: Record<string, string>,
+) {
+  if (!uniHelperDependencies)
+    return {}
+  let errorDependencies: Record<string, string> = {}
 
   if (argv === 'all') {
-    for (const name of uniHelperDependencies) {
-      const { version, bugs } = await getDependenciesVersionAndBugs(name.trim())
-      errorDependencies.push({ name, version, bugs })
-    }
+    errorDependencies = uniHelperDependencies
   }
   else {
-    const { errorIndexList } = await question(uniHelperDependencies, '请选择需要反馈的依赖')
+    const uniHelperDependenciesName = Object.keys(uniHelperDependencies)
+    const { errorIndexList } = await question(uniHelperDependenciesName, '请选择需要反馈的依赖')
     for (const index of errorIndexList) {
-      const name = uniHelperDependencies[index]
-      const { version, bugs } = await getDependenciesVersionAndBugs(name)
-      errorDependencies.push({ name, version, bugs })
+      const name = uniHelperDependenciesName[index]
+      errorDependencies[name] = uniHelperDependencies[name]
     }
   }
   return errorDependencies
 }
-
-async function getVSCodeInfo() {
-  const vscode = await envinfo.helpers.getVSCodeInfo()
-  if (vscode.length !== 3)
-    return null
-  return {
-    name: vscode[0],
-    version: vscode[1],
-    path: vscode[2],
-  }
-}
-
-// async function getVSCodeExtensions(path: string) {
-//   const { $ } = await import('execa')
-//   let list
-//   try {
-//     const { stdout } = await $`code --list-extensions --show-versions`
-//     list = stdout
-//   }
-//   catch (error) {
-//     const { stdout } = await $`${path} --list-extensions --show-versions`
-//     list = stdout
-//   }
-//   return list.toString().split(/\r?\n/).filter(line => line.trim() !== '')
-// }
 
 function getVSCodeExtensions(path: string) {
   let list
@@ -140,20 +97,14 @@ function paserExtensionList(list: string[]) {
   })
 }
 
-async function getErrorExtensions(argv: string) {
-  const loading = ora('正在获取插件信息...').start()
-  const vscodeInfo = await getVSCodeInfo()
-  if (!vscodeInfo) {
-    loading.warn('未找到vscode, 无法获取插件信息, 请自行补充vscode插件信息')
-    return { errorExtensions: [], volarExtensions: [] }
-  }
-  const extensions = await getVSCodeExtensions(vscodeInfo!.path)
-  const uniHelperExtensions = paserExtensionList(getUniHelperExtensions(extensions))
-  const volarExtensions = paserExtensionList(getVolarExtensions(extensions))
+async function getErrorExtensions(
+  argv: string,
+  uniHelperExtensions: ReturnType<typeof paserExtensionList>,
+) {
+  if (!uniHelperExtensions)
+    return []
+
   const choices = uniHelperExtensions.map(item => item.name)
-  argv === 'all' ? loading.succeed('获取插件信息成功') : loading.stop()
-  if (uniHelperExtensions.length === 0)
-    return { errorExtensions: [], volarExtensions }
 
   let errorExtensions: typeof uniHelperExtensions = []
   if (argv === 'all') {
@@ -169,90 +120,159 @@ async function getErrorExtensions(argv: string) {
       })
     })
   }
-  return {
-    errorExtensions,
-    volarExtensions,
-  }
+  return errorExtensions
 }
 
+interface UniPresetEnvInfo {
+  System: {
+    OS: string
+  }
+  Binaries: {
+    Node: {
+      version: string
+      path: string
+    }
+  }
+  IDEs: {
+    VSCode: {
+      version: string
+      path: string
+    }
+  }
+  npmPackages: {
+    [key: string]: {
+      installed: string
+      wanted: string
+    }
+  }
+}
 export async function getBaseEnvInfo() {
-  const os = (await envinfo.helpers.getOSInfo())?.[1]
-  const vscode = (await getVSCodeInfo())?.version
-  const node = (await envinfo.helpers.getNodeInfo())?.[1]
-  const pm = await whichPm()
-  const _npmPackages = await envinfo.run(
+  const loading = ora('正在获取环境信息...').start()
+  const warmList = ['']
+
+  const _envInfo = JSON5.parse<UniPresetEnvInfo>(await envinfo.run(
     {
       npmPackages: '**',
-      System: ['OS', 'CPU'],
-      IDEs: ['VSCode', 'Nvim'],
+      System: ['OS'],
+      Binaries: ['Node'],
+      IDEs: ['VSCode'],
     },
     {
       json: true,
-      showNotFound: true, // 显示未找到的信息
+      showNotFound: true,
     },
-  )
+  ))
+  const os = _envInfo.System.OS
+  const node = _envInfo.Binaries.Node.version
+  const vscode = _envInfo.IDEs.VSCode?.version || null
+  const packageInfo = _envInfo.npmPackages
+
+  // 获取npm包信息
+  let uniHelperDependencies
+  let baseDependencies
+  if (packageInfo && Object.keys(packageInfo).includes('@dcloudio/uni-app')) {
+    uniHelperDependencies = getUniHelperDependencies(packageInfo)
+    baseDependencies = getBaseDependencies(packageInfo)
+  }
+  else {
+    warmList.push(red(' ⛔ 当前目录未安装uni-app，请在uni-app项目根目录下执行, 以获取依赖信息！！！'))
+  }
+
+  // 获取vscode扩展信息
+  let uniHelperExtensions
+  let volarExtensions
+  if (vscode) {
+    const extensions = getVSCodeExtensions(_envInfo.IDEs.VSCode.path)
+    uniHelperExtensions = paserExtensionList(getUniHelperExtensions(extensions))
+    volarExtensions = paserExtensionList(getVolarExtensions(extensions))[0] || null
+  }
+  else {
+    warmList.push(yellow(' ⛔ 未找到vscode, 无法获取插件信息, 请自行补充vscode插件信息'))
+  }
+
+  const pm = await whichPm()
+
+  loading.succeed('获取环境信息成功')
+  console.log(warmList.join('\n'))
   return {
     os,
     node,
     vscode,
+    uniHelperExtensions,
+    baseDependencies,
+    volarExtensions,
+    packageInfo,
+    uniHelperDependencies,
     packageManager: pm?.name,
   }
 }
 
 export async function getUniAppInfo(argv: string) {
-  const errorDependencies = await getErrorDependencies(argv)
-  const { errorExtensions, volarExtensions } = await getErrorExtensions(argv)
+  // 获取环境信息
   const baseEnvInfo = await getBaseEnvInfo()
-  const baseDependencies = await getBaseDependencies()
+  const errorDependencies = await getErrorDependencies(argv, baseEnvInfo.uniHelperDependencies!)
+  const errorExtensions = await getErrorExtensions(argv, baseEnvInfo.uniHelperExtensions!)
+
   const splitter = '----------------------------------------------'
-  let baseEnvInfoStr = ''
-  for (const [key, value] of Object.entries(baseEnvInfo))
-    baseEnvInfoStr += `  - ${key}: \`${value}\`\n`
-  for (const { name, version } of volarExtensions)
-    baseEnvInfoStr += `  - ${name}: \`${version}\`\n`
-
-  let baseDependenciesStr = ''
-  for (const { name, version } of baseDependencies)
-    baseDependenciesStr += `  - ${name}: \`${version}\`\n`
-
-  let errorDependenciesStr = ''
-  for (const { name, version, bugs } of errorDependencies) {
-    errorDependenciesStr += `  - ${link(name, bugs!)}: \`${version}\`\n`
-    if (uniDependenciesMap[name]) {
-      for (const uniDependency of uniDependenciesMap[name]) {
-        const { version } = await getDependenciesVersionAndBugs(uniDependency)
-        errorDependenciesStr += `    - ${uniDependency}: \`${version}\`\n`
-      }
-    }
-  }
-
-  let errorExtensionsStr = ''
-  for (const { name, version, bugs } of errorExtensions)
-    errorExtensionsStr += `  - ${link(name, bugs)}: \`${version}\`\n`
-
   console.log()
   console.log(splitter)
   console.log()
-  console.log(italic('基础环境信息:'))
-  console.table(baseEnvInfoStr)
 
-  if (baseDependencies.length > 0) {
+  // 输出系统环境信息
+  const systemEnvInfo = {
+    os: baseEnvInfo.os,
+    node: baseEnvInfo.node,
+    packageManager: baseEnvInfo.packageManager,
+    vscode: baseEnvInfo?.vscode,
+    volar: baseEnvInfo?.volarExtensions?.version,
+  }
+  let baseEnvInfoStr = ''
+  for (const [key, value] of Object.entries(systemEnvInfo)) {
+    if (value)
+      baseEnvInfoStr += `  - ${key}: \`${value}\`\n`
+  }
+  console.log(italic('基础环境信息:'))
+  console.log(baseEnvInfoStr)
+
+  // 输出基础依赖信息
+  const baseDependenciesLength = Object.keys(baseEnvInfo?.baseDependencies || {}).length
+  if (baseDependenciesLength > 0) {
+    let baseDependenciesStr = ''
+    for (const [name, version] of Object.entries(baseEnvInfo.baseDependencies!))
+      baseDependenciesStr += `  - ${name}: \`${version}\`\n`
+
     console.log(italic('基础依赖信息:'))
     console.log(baseDependenciesStr)
   }
 
-  if (errorDependencies.length > 0) {
+  // 输出uni-helper依赖信息
+  const uniHelperDependenciesLength = Object.keys(baseEnvInfo?.uniHelperDependencies || {}).length
+  if (uniHelperDependenciesLength > 0) {
+    let errorDependenciesStr = ''
+    for (const [key, value] of Object.entries(errorDependencies)) {
+      errorDependenciesStr += `  - ${key}: \`${value}\`\n`
+      if (uniDependenciesMap[key]) {
+        for (const uniDependency of uniDependenciesMap[key])
+          errorDependenciesStr += `    - ${uniDependency}: \`${baseEnvInfo.packageInfo![uniDependency].installed}\`\n`
+      }
+    }
+
     console.log(italic('uni-helper依赖信息:'))
     console.log(errorDependenciesStr)
   }
 
+  // 输出uni-helper插件信息
   if (errorExtensions.length > 0) {
+    let errorExtensionsStr = ''
+    for (const { name, version, bugs } of errorExtensions)
+      errorExtensionsStr += `  - ${link(name, bugs)}: \`${version}\`\n`
+
     console.log(italic('uni-helper插件信息:'))
     console.log(errorExtensionsStr)
   }
 
   console.log(splitter)
-
+  console.log()
   console.log(
     `${[
       gray(italic('🎯 感谢使用uni-helper，请提供虚线内的信息以便我们排查问题')),

@@ -153,6 +153,10 @@ jobs:
         working-directory: ../sample-project
         run: pnpm build:mp-weixin
 
+      - name: 输出环境信息
+        working-directory: ../sample-project
+        run: node ./../create-uni/dist/outfile.cjs --info all
+
   test-template:
     needs: build
     strategy:
@@ -204,3 +208,7 @@ jobs:
       - name: 打包小程序项目
         working-directory: ../sample-project
         run: pnpm build:mp-weixin
+
+      - name: 输出环境信息
+        working-directory: ../sample-project
+        run: node ./../create-uni/dist/outfile.cjs --info all
