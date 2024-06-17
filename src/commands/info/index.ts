@@ -1,6 +1,5 @@
 import process from 'node:process'
 import { execSync } from 'node:child_process'
-import { resolve } from 'node:path'
 import envinfo from 'envinfo'
 import { gray, italic, link, red, yellow } from 'kolorist'
 import JSON5 from 'json5'
@@ -57,27 +56,20 @@ async function getErrorDependencies(
   return errorDependencies
 }
 
-function getVSCodeExtensions(path: string) {
-  let list
+function getVSCodeExtensions() {
   try {
-    list = execSync(
-      `cade --list-extensions --show-versions`,
+    const list = execSync(
+      `code --list-extensions --show-versions`,
       {
         encoding: 'utf-8',
-        stdio: ['pipe', 'pipe', 'ignore'],
+        stdio: [0, 'pipe', 'ignore'],
       },
     )
+    return list.split(/\r?\n/).filter(line => line.trim() !== '')
   }
   catch (error) {
-    list = execSync(
-      `${resolve(path)} --list-extensions --show-versions`,
-      {
-        encoding: 'utf-8',
-        stdio: ['pipe', 'pipe', 'ignore'],
-      },
-    )
+    return null
   }
-  return list.split(/\r?\n/).filter(line => line.trim() !== '')
 }
 
 function getUniHelperExtensions(extensions: string[]) {
@@ -181,8 +173,8 @@ export async function getBaseEnvInfo() {
   // 获取vscode扩展信息
   let uniHelperExtensions
   let volarExtensions
-  if (vscode) {
-    const extensions = getVSCodeExtensions(_envInfo.IDEs.VSCode.path)
+  const extensions = getVSCodeExtensions()
+  if (vscode && extensions) {
     uniHelperExtensions = paserExtensionList(getUniHelperExtensions(extensions))
     volarExtensions = paserExtensionList(getVolarExtensions(extensions))[0] || null
   }
