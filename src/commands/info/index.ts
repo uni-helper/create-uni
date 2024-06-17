@@ -179,7 +179,7 @@ export async function getBaseEnvInfo() {
     volarExtensions = paserExtensionList(getVolarExtensions(extensions))[0] || null
   }
   else {
-    warmList.push(yellow(' ⛔ 未找到vscode, 无法获取插件信息, 请自行补充vscode插件信息'))
+    warmList.push(yellow(' ⚠️ 未找到vscode, 无法获取插件信息, 请自行补充vscode插件信息'))
   }
 
   const pm = await whichPm()
