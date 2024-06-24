@@ -7,6 +7,7 @@ const process = require('node:process')
 const devProcess = spawn('pnpm', ['dev:mp-weixin'], {
   stdio: 'inherit',
   shell: true,
+  cwd: path.join(__dirname, '../sample-project'),
 })
 
 // 检查文件是否存在
