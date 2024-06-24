@@ -151,13 +151,7 @@ jobs:
 
       - name: dev小程序项目
         working-directory: ../sample-project
-        run: |
-          pnpm dev:mp-weixin &
-          PNPM_PID=$!
-          while [[ ! -f "dist/dev/mp-weixin/app.js" ]]; do
-            sleep 3
-          done
-          kill $PNPM_PID
+        run: node scripts/dev.cjs
 
       - name: 打包小程序项目
         working-directory: ../sample-project
@@ -217,13 +211,7 @@ jobs:
 
       - name: dev小程序项目
         working-directory: ../sample-project
-        run: |
-          pnpm dev:mp-weixin &
-          PNPM_PID=$!
-          while [[ ! -f "dist/dev/mp-weixin/app.js" ]]; do
-            sleep 3
-          done
-          kill $PNPM_PID
+        run: node scripts/dev.cjs
 
       - name: 打包小程序项目
         working-directory: ../sample-project
