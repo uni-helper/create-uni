@@ -3,11 +3,13 @@ const fs = require('node:fs')
 const path = require('node:path')
 const process = require('node:process')
 
+const workingDirectory = path.join(__dirname, '../../sample-project')
+
 // 启动开发命令
 const devProcess = spawn('pnpm', ['dev:mp-weixin'], {
   stdio: 'inherit',
   shell: true,
-  cwd: path.join(__dirname, '../sample-project'),
+  cwd: workingDirectory,
 })
 
 // 检查文件是否存在
@@ -30,7 +32,7 @@ async function waitForFile(filePath) {
 
 // 主逻辑
 async function main() {
-  const expectedFile = path.join(__dirname, 'dist/dev/mp-weixin/app.js')
+  const expectedFile = path.join(workingDirectory, 'dist/dev/mp-weixin/app.js')
   await waitForFile(expectedFile)
   devProcess.kill() // 结束进程
 }
