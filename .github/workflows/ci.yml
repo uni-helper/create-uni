@@ -149,6 +149,10 @@ jobs:
         working-directory: ../sample-project
         run: pnpm build
 
+      - name: dev小程序项目
+        working-directory: ../sample-project
+        run: timeout 20 pnpm dev:mp-weixin
+
       - name: 打包小程序项目
         working-directory: ../sample-project
         run: pnpm build:mp-weixin
@@ -204,6 +208,10 @@ jobs:
       - name: 打包项目
         working-directory: ../sample-project
         run: pnpm build
+
+      - name: dev小程序项目
+        working-directory: ../sample-project
+        run: timeout 20 pnpm dev:mp-weixin
 
       - name: 打包小程序项目
         working-directory: ../sample-project
