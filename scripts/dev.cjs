@@ -5,9 +5,9 @@ const process = require('node:process')
 
 const workingDirectory = path.join(__dirname, '../../sample-project')
 
-// 启动开发命令，改为使用 pipe 来捕获输出
+// 启动开发命令，改为使用 pipe 来捕获错误输出
 const devProcess = spawn('pnpm', ['dev:mp-weixin'], {
-  stdio: ['inherit', 'pipe', 'pipe'], // 只对 stdout 和 stderr 使用 pipe
+  stdio: ['inherit', 'inherit', 'pipe'],
   shell: true,
   cwd: workingDirectory,
 })
@@ -42,6 +42,7 @@ async function main() {
   const expectedFile = path.join(workingDirectory, 'dist/dev/mp-weixin/app.js')
   await waitForFile(expectedFile)
   devProcess.kill() // 结束进程
+  process.exit(0)
 }
 
 main().catch((err) => {
