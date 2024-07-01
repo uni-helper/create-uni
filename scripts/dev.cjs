@@ -5,11 +5,18 @@ const process = require('node:process')
 
 const workingDirectory = path.join(__dirname, '../../sample-project')
 
-// 启动开发命令
+// 启动开发命令，改为使用 pipe 来捕获输出
 const devProcess = spawn('pnpm', ['dev:mp-weixin'], {
-  stdio: 'inherit',
+  stdio: ['inherit', 'pipe', 'pipe'], // 只对 stdout 和 stderr 使用 pipe
   shell: true,
   cwd: workingDirectory,
+})
+
+// 捕获错误输出
+devProcess.stderr.on('data', (data) => {
+  console.error(`stderr: ${data}`)
+  devProcess.kill()
+  process.exit(1)
 })
 
 // 检查文件是否存在
