@@ -101,10 +101,10 @@ npx create-uni@latest --info
 
 [MIT LICENSE](./LICENSE)
 
-## 🙇🏻‍♂️[赞助](https://afdian.net/a/flippedround)
+## 🙇🏻‍♂️[赞助](https://afdian.com/a/flippedround)
 
 <p align="center">
-  <a href="https://afdian.net/a/flippedround">
+  <a href="https://afdian.com/a/flippedround">
     <img alt="sponsors" src="https://cdn.jsdelivr.net/gh/FliPPeDround/sponsors/sponsorkit/sponsors.svg"/>
   </a>
 </p>

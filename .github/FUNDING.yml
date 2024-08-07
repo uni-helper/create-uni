@@ -1,1 +1,5 @@
-custom: ['https://afdian.net/a/flippedround', 'https://afdian.net/a/kejun', 'https://github.com/ModyQyW/sponsors', 'https://afdian.net/a/zguolee']
+custom:
+  - 'https://afdian.com/a/flippedround'
+  - 'https://afdian.com/a/kejun'
+  - 'https://github.com/ModyQyW/sponsors'
+  - 'https://afdian.com/a/zguolee'
