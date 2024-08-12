@@ -69,7 +69,7 @@
     "@uni-helper/uni-cloud-types": "^0.5.3",
     "@vue/runtime-core": "3.4.21",
     "mini-types": "^0.1.7",
-    "miniprogram-api-typings": "^3.12.2",
+    "miniprogram-api-typings": "^3.12.3",
     "sass": "1.64.2",
     "vite": "5.2.8"
   }
