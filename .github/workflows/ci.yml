@@ -108,7 +108,7 @@ jobs:
         flag-for-ui: ['', -u uni, -u ano, -u wot, -u nut]
 
         node: [18.x]
-        os: [windows-latest]
+        os: [macos-latest]
 
     runs-on: ${{ matrix.os }}
     env:
