@@ -66,7 +66,7 @@ jobs:
 
     strategy:
       matrix:
-        node: [16.x, 18.x]
+        node: [18.x, 20.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
       fail-fast: false
 
@@ -167,7 +167,7 @@ jobs:
       matrix:
         flag-for-all: [--ts -e -p import -p pages -p layouts -p manifest -p filePlatform -p platformModifier -p middleware -m pinia -m unocss -m uniNetwork -m uniUse -m uniPromises -u uni]
         flag-for-template: ['', -t vitesse]
-        node: [16.x, 18.x]
+        node: [18.x, 20.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
