@@ -87,6 +87,9 @@ npx create-uni@latest --info
 | [nutui-uniapp](https://uniapp-nutui.tech/) | 京东风格的轻量级移动端组件库 | nut |
 | [Ano UI](https://ano-ui.netlify.app/) | 轻量级、漂亮、快速的 UnoCSS 组件库 | ano |
 
+#### 🛠️ 环境要求
+Vite 需要 Node.js 版本 18+ 或 20+
+
 ## 🤝 参与贡献
 
 - 提交新功能
