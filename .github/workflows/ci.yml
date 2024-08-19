@@ -108,7 +108,7 @@ jobs:
         flag-for-ui: ['', -u uni, -u ano, -u wot, -u nut]
 
         node: [18.x]
-        os: [ubuntu-latest]
+        os: [windows-latest]
 
     runs-on: ${{ matrix.os }}
     env:
@@ -168,7 +168,7 @@ jobs:
         flag-for-all: [--ts -e -p import -p pages -p layouts -p manifest -p filePlatform -p platformModifier -p middleware -m pinia -m unocss -m uniNetwork -m uniUse -m uniPromises -u uni]
         flag-for-template: ['', -t vitesse]
         node: [18.x, 20.x]
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [windows-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
     env:
