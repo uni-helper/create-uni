@@ -4,7 +4,7 @@
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@uni-helper/eslint-config": "^0.0.6",
+    "@uni-helper/eslint-config": "^0.1.0",
     "eslint": "^9.9.0"
   }
 }
