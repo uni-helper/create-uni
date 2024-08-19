@@ -15,8 +15,10 @@ const devProcess = spawn('pnpm', ['dev:mp-weixin'], {
 // 捕获错误输出
 devProcess.stderr.on('data', (data) => {
   console.error(`stderr: ${data}`)
-  devProcess.kill()
-  process.exit(1)
+  if (!data.include('Warning: To load an ES module, set "type": "module" in the package.json or use the .mjs extension.')) {
+    devProcess.kill()
+    process.exit(1)
+  }
 })
 
 // 检查文件是否存在
