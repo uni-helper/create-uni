@@ -151,7 +151,7 @@ jobs:
 
       - name: dev小程序项目
         working-directory: ../sample-project
-        run: node ./../create-uni/scripts/dev.cjs
+        run: node --no-warnings ./../create-uni/scripts/dev.cjs
 
       - name: 打包小程序项目
         working-directory: ../sample-project
@@ -211,7 +211,7 @@ jobs:
 
       - name: dev小程序项目
         working-directory: ../sample-project
-        run: node ./../create-uni/scripts/dev.cjs
+        run: node --no-warnings ./../create-uni/scripts/dev.cjs
 
       - name: 打包小程序项目
         working-directory: ../sample-project
