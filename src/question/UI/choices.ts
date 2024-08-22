@@ -23,6 +23,11 @@ export const UIList: ModelType[] = [
     value: 'nut',
   },
   {
+    title: rgb(60, 156, 255)('uv-ui'),
+    description: '多平台快速开发的UI框架',
+    value: 'uv',
+  },
+  {
     title: rgb(147, 85, 224)('Ano UI'),
     description: '轻量级、漂亮、快速的 UnoCSS 组件库',
     value: 'ano',

@@ -8,7 +8,7 @@
 </p>
 
 <h2 align="center">
-<sub>>_ Easy to use create uni▌</sub>
+<sub> >_ Easy to use create uni▌ </sub>
 </h2>
 
 # 📦 使用
@@ -85,9 +85,10 @@ npx create-uni@latest --info
 | [Uni UI](https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html) | UniApp官方组件库 | uni |
 | [wot-design-uni](https://wot-design-uni.pages.dev/) | 高颜值、轻量化的uni-app组件库 | wot |
 | [nutui-uniapp](https://uniapp-nutui.tech/) | 京东风格的轻量级移动端组件库 | nut |
+| [uv-ui](https://www.uvui.cn/components/intro.html) | 多平台快速开发的UI框架 | uv |
 | [Ano UI](https://ano-ui.netlify.app/) | 轻量级、漂亮、快速的 UnoCSS 组件库 | ano |
 
-#### 🛠️ 环境要求
+## 🛠️ 环境要求
 Vite 需要 Node.js 版本 18+ 或 20+
 
 ## 🤝 参与贡献

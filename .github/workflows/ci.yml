@@ -103,16 +103,15 @@ jobs:
       matrix:
         flag-for-ts: ['', --ts]
         flag-for-eslint: ['', -e]
-        flag-for-plugin: ['', -p import -p pages -p layouts -p manifest, -p filePlatform -p platformModifier -p middleware]
-        flag-for-modulea: ['', -m pinia -m unocss, -m uniNetwork -m uniUse -m uniPromises]
-        flag-for-ui: ['', -u uni, -u ano, -u wot, -u nut]
+        flag-for-plugin: ['', -p import -p pages -p layouts -p manifest -p filePlatform -p platformModifier -p middleware -m pinia -m unocss -m uniNetwork -m uniUse -m uniPromises]
+        flag-for-ui: ['', -u uni, -u ano, -u wot, -u nut, -u uv]
 
         node: [18.x]
-        os: [ubuntu-latest]
+        os: [windows-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
     env:
-      FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-plugin }} ${{ matrix.flag-for-modulea }} ${{ matrix.flag-for-ui }}
+      FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-plugin }} ${{ matrix.flag-for-ui }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
@@ -146,66 +145,6 @@ jobs:
         run: pnpm install
 
       - name: 打包H5项目
-        working-directory: ../sample-project
-        run: pnpm build
-
-      - name: dev小程序项目
-        working-directory: ../sample-project
-        run: node ./../create-uni/scripts/dev.cjs
-
-      - name: 打包小程序项目
-        working-directory: ../sample-project
-        run: pnpm build:mp-weixin
-
-      - name: 输出环境信息
-        working-directory: ../sample-project
-        run: node ./../create-uni/dist/outfile.cjs --info all
-
-  test-template:
-    needs: build
-    strategy:
-      matrix:
-        flag-for-all: [--ts -e -p import -p pages -p layouts -p manifest -p filePlatform -p platformModifier -p middleware -m pinia -m unocss -m uniNetwork -m uniUse -m uniPromises -u uni]
-        flag-for-template: ['', -t vitesse]
-        node: [18.x, 20.x]
-        os: [windows-latest, macos-latest]
-
-    runs-on: ${{ matrix.os }}
-    env:
-      FEATURE_FLAGS: ${{ matrix.flag-for-template }} ${{ matrix.flag-for-all }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node }}
-          cache: pnpm
-      - uses: actions/cache/restore@v4
-        id: cache-restore
-        with:
-          path: dist/outfile.cjs
-          key: ${{ github.sha }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ matrix.os }}-${{ matrix.node }}
-      - name: 当没有缓存时，执行构建
-        if: steps.cache-restore.outputs.cache-hit != 'true'
-        run: pnpm install && pnpm build
-
-      - if: ${{ !(contains(env.FEATURE_FLAGS, '-t vitesse')) }}
-        name: 创建多参数项目
-        working-directory: ../
-        run: node ./create-uni/dist/outfile.cjs sample-project ${{ matrix.flag-for-all}}
-
-      - if: ${{ (contains(env.FEATURE_FLAGS, '-t vitesse')) }}
-        name: 创建模版项目
-        working-directory: ../
-        run: node ./create-uni/dist/outfile.cjs sample-project ${{matrix.flag-for-template}}
-
-      - name: 安装项目依赖
-        working-directory: ../sample-project
-        run: pnpm install
-
-      - name: 打包项目
         working-directory: ../sample-project
         run: pnpm build
 
