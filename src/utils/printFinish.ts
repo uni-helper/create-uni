@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import { relative } from 'node:path'
 import { bold, green } from 'kolorist'
-import { getCommand } from './getCommand'
 import type { Ora } from '@/utils'
+import { getCommand } from './getCommand'
 
 export function printFinish(
   root: string,
@@ -15,7 +15,7 @@ export function printFinish(
   if (root !== cwd) {
     const cdProjectName = relative(cwd, root)
     console.log(
-    `  ${bold(green(`cd ${cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName}`))}`,
+      `  ${bold(green(`cd ${cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName}`))}`,
     )
   }
   console.log(`  ${bold(green(getCommand(packageManager, 'install')))}`)

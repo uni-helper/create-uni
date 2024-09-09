@@ -1,8 +1,8 @@
 import prompts from 'prompts'
-import projectName from './name'
 import choices from './choices'
-import template from './template'
+import projectName from './name'
 import { onCancel } from './onCancel'
+import template from './template'
 
 export async function question() {
   const questions = [

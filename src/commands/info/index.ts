@@ -1,10 +1,10 @@
-import process from 'node:process'
 import { execSync } from 'node:child_process'
-import envinfo from 'envinfo'
-import { gray, italic, link, red, yellow } from 'kolorist'
-import JSON5 from 'json5'
-import { question } from './question'
+import process from 'node:process'
 import { ora, whichPm } from '@/utils'
+import envinfo from 'envinfo'
+import JSON5 from 'json5'
+import { gray, italic, link, red, yellow } from 'kolorist'
+import { question } from './question'
 
 const uniDependenciesMap = {
   '@uni-helper/uni-use': ['@vueuse/core'],
@@ -67,7 +67,7 @@ function getVSCodeExtensions() {
     )
     return list.split(/\r?\n/).filter(line => line.trim() !== '')
   }
-  catch (error) {
+  catch {
     return null
   }
 }

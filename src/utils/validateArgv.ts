@@ -3,10 +3,10 @@ import process from 'node:process'
 import { bold, gray, red } from 'kolorist'
 import figures from 'prompts/lib/util/figures.js'
 
-import { UIList } from './../question/UI/choices'
-import { templateList } from './../question/template/templateDate'
-import PLUGINS from './../question/plugin/choices'
 import MODULES from './../question/module/choices'
+import PLUGINS from './../question/plugin/choices'
+import { templateList } from './../question/template/templateDate'
+import { UIList } from './../question/UI/choices'
 import type { BaseTemplateList } from './../question/template/type'
 
 type ArgvBase = string | null
@@ -59,8 +59,8 @@ function validateModules(argvModules: ArgvList): [] {
 }
 
 export {
+  validateModules,
+  validatePlugins,
   validateTemplateType,
   validateUIName,
-  validatePlugins,
-  validateModules,
 }

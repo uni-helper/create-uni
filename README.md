@@ -1,4 +1,3 @@
-
 <h1 align="center">✨💚create uni💚✨</h1>
 
 <p align="center">
@@ -40,7 +39,7 @@ npm create uni <项目名称> --ts -m pinia -m uniUse -u ano -e
 ```
 
 ```shell
-npx create-uni@latest --info 
+npx create-uni@latest --info
 # --info  获取当前项目环境信息
 ```
 

@@ -4,4 +4,7 @@ export default uni({
   rules: {
     'no-console': 'warn',
   },
+  ignores: [
+    'dist/outfile.cjs',
+  ],
 })

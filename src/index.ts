@@ -12,14 +12,14 @@ import {
 import { join, resolve } from 'node:path'
 import process from 'node:process'
 import ejs from 'ejs'
+import JSON5 from 'json5'
 import { bold, green } from 'kolorist'
 import minimist from 'minimist'
 import prompts from 'prompts'
-import JSON5 from 'json5'
-import type { Ora } from './utils'
+import { getUniAppInfo } from './commands/info'
 import { question } from './question'
 import filePrompt from './question/file'
-import type { BaseTemplateList } from './question/template/type'
+import { cancelMesssage, onCancel } from './question/onCancel'
 import {
   canSkipEmptying,
   dowloadTemplate,
@@ -31,15 +31,15 @@ import {
   replaceProjectName,
 } from './utils'
 
+import { postOrderDirectoryTraverse } from './utils/directoryTraverse'
 import {
   validateModules,
   validatePlugins,
   validateTemplateType,
   validateUIName,
 } from './utils/validateArgv'
-import { postOrderDirectoryTraverse } from './utils/directoryTraverse'
-import { cancelMesssage, onCancel } from './question/onCancel'
-import { getUniAppInfo } from './commands/info'
+import type { BaseTemplateList } from './question/template/type'
+import type { Ora } from './utils'
 
 let loading: Ora
 async function init() {

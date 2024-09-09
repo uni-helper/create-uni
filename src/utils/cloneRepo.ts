@@ -3,9 +3,9 @@ import { promises as fs } from 'node:fs'
 import { join } from 'node:path'
 import process from 'node:process'
 import { bold } from 'kolorist'
-import type { BaseTemplateList } from '../question/template/type'
-import { replaceProjectName } from './setPackageName'
 import type { Ora } from '@/utils'
+import { replaceProjectName } from './setPackageName'
+import type { BaseTemplateList } from '../question/template/type'
 
 async function removeGitFolder(localPath: string): Promise<void> {
   const gitFolderPath = join(localPath, '.git')

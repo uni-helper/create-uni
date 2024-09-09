@@ -1,8 +1,8 @@
+import { hint, instructions } from '@/constants'
 import type { PromptObject } from 'prompts'
-import { UIList } from './UI/choices'
 import MODULES from './module/choices'
 import PLUGINS from './plugin/choices'
-import { hint, instructions } from '@/constants'
+import { UIList } from './UI/choices'
 
 export default (): PromptObject<string>[] => {
   return [
