@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@uni-helper/uni-use": "^0.19.12",
+    "@uni-helper/uni-use": "^0.19.14",
     "@vueuse/core": "9.13.0"
   }
 }
