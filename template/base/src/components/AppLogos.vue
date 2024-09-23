@@ -1,3 +1,6 @@
+<script setup>
+</script>
+
 <template>
   <view class="container">
     <view class="uni-helper-logo">

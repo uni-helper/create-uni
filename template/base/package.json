@@ -65,10 +65,9 @@
     "@dcloudio/uni-cli-shared": "3.0.0-4020420240722002",
     "@dcloudio/uni-stacktracey": "3.0.0-4020420240722002",
     "@dcloudio/vite-plugin-uni": "3.0.0-4020420240722002",
-    "@uni-helper/uni-app-types": "^0.5.13",
-    "@uni-helper/uni-cloud-types": "^0.5.3",
+    "@mini-types/alipay": "^3.0.14",
+    "@uni-helper/uni-types": "^1.0.0-alpha.4",
     "@vue/runtime-core": "3.4.21",
-    "mini-types": "^0.1.7",
     "miniprogram-api-typings": "^3.12.3",
     "sass": "1.64.2",
     "vite": "5.2.8"

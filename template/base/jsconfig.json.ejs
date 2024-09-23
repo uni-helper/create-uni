@@ -1,9 +1,4 @@
 {
-  <%_ for (const { extensions } of config) { _%>
-  <%_ if (extensions) { _%>
-  <%- extensions %>,
-  <%_ } _%>
-  <%_ } _%>
   "compilerOptions": {
     <%_ for (const { options } of config) { _%>
     <%_ if (options) { _%>
@@ -15,10 +10,10 @@
       "@/*": ["./src/*"]
     },
     "types": [
+      "vite/client",
       "@dcloudio/types",
+      "@mini-types/alipay",
       "miniprogram-api-typings",
-      "mini-types",
-      "@uni-helper/uni-cloud-types",
       <%_ for (const { types } of config) { _%>
       <%_ if (types) { _%>
       <%_ for (const  type  of types) { _%>
@@ -28,24 +23,24 @@
       <%_ } _%>
       <%_ } _%>
       <%_ } _%>
-      "@uni-helper/uni-app-types"
+      "@uni-helper/uni-types"
     ]
   },
+  <%_ for (const { includes } of config) { _%>
+  <%_ if (includes) { _%>
   "include": [
     "**/*.d.ts",
-    <%_ for (const { includes } of config) { _%>
-    <%_ if (includes) { _%>
     <%_ for (const  include  of includes) { _%>
     <%_ if (include) { _%>
     "<%- include %>",
     <%_ } _%>
     <%_ } _%>
-    <%_ } _%>
-    <%_ } _%>
     "src/**/*.jsx",
     "src/**/*.vue"
-  ],
+    ],
+  <%_ } _%>
+  <%_ } _%>
   "vueCompilerOptions": {
-    "plugins": ["@uni-helper/uni-app-types/volar-plugin"]
+    "plugins": ["@uni-helper/uni-types/volar-plugin"]
   }
 }
