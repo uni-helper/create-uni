@@ -1,7 +1,7 @@
 {
   "devDependencies": {
-    "@iconify-json/carbon": "^1.2.1",
-    "@uni-helper/unocss-preset-uni": "^0.2.9",
-    "unocss": "^0.63.1"
+    "@iconify-json/carbon": "^1.2.3",
+    "@uni-helper/unocss-preset-uni": "^0.2.10",
+    "unocss": "^0.63.4"
   }
 }
