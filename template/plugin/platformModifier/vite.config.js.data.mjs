@@ -9,7 +9,7 @@ export default function getData({ oldData }) {
   return {
     ...oldData,
     plugins: oldData.plugins.flatMap(plugin =>
-      plugin.id === 'uni' ? [plugin, platformModifierPlugin] : plugin,
+      plugin.id === 'uni' ? [platformModifierPlugin, plugin] : plugin,
     ),
   }
 }
