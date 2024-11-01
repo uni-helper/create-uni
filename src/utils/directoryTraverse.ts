@@ -22,9 +22,6 @@ export const preOrderDirectoryTraverse: DirectoryTraverse = (dir, dirCallback, f
 
 export const postOrderDirectoryTraverse: DirectoryTraverse = (dir, dirCallback, fileCallback) => {
   for (const filename of fs.readdirSync(dir)) {
-    if (filename === '.git')
-      continue
-
     const fullpath = path.resolve(dir, filename)
     if (fs.lstatSync(fullpath).isDirectory()) {
       postOrderDirectoryTraverse(fullpath, dirCallback, fileCallback)
