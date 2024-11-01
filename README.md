@@ -73,6 +73,7 @@ npx create-uni@latest --info
 | [vite-plugin-uni-platform](https://github.com/uni-helper/vite-plugin-uni-platform) | 基于文件名 (*.<h5\|mp-weixin\|app>.*) 的按平台编译插件 | filePlatform |
 | [vite-plugin-uni-platform-modifier](https://github.com/uni-helper/vite-plugin-uni-platform-modifier) | 为属性、指令提供平台修饰符并按需编译 | platformModifier |
 | [vite-plugin-uni-middleware](https://github.com/uni-helper/vite-plugin-uni-middleware) | 使用路由中间件 | middleware |
+| [uni-ku-root](https://github.com/uni-ku/root) | 模拟虚拟根组件(支持SFC的App.vue) | root |
 
 #### 📦模块列表
 
