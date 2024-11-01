@@ -12,4 +12,14 @@ export const templateList: TemplateList[] = [
       },
     },
   },
+  {
+    title: `wot-demo`,
+    description: `由${link(green('Wot Design Uni'), 'https://github.com/Moonofweisheng/wot-demo')}提供的基于vitesse-uni-app的快速启动模板`,
+    value: {
+      type: 'wot',
+      url: {
+        github: 'https://github.com/Moonofweisheng/wot-demo.git',
+      },
+    },
+  },
 ]
