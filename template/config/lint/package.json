@@ -5,6 +5,6 @@
   },
   "devDependencies": {
     "@uni-helper/eslint-config": "^0.2.1",
-    "eslint": "^9.13.0"
+    "eslint": "^9.14.0"
   }
 }
