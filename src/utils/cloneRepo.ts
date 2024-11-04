@@ -3,9 +3,9 @@ import { promises as fs } from 'node:fs'
 import { join } from 'node:path'
 import process from 'node:process'
 import { bold } from 'kolorist'
-import type { Ora } from '@/utils'
-import { replaceProjectName } from './setPackageName'
 import type { BaseTemplateList } from '../question/template/type'
+import { replaceProjectName } from './setPackageName'
+import type { Ora } from '@/utils'
 
 async function removeGitFolder(localPath: string): Promise<void> {
   const gitFolderPath = join(localPath, '.git')
@@ -55,8 +55,9 @@ export async function dowloadTemplate(data: BaseTemplateList['value'], name: str
   try {
     await cloneRepo(repoUrlList, root)
   }
-  catch {
+  catch (error) {
     loading.fail(`${bold('模板创建失败！')}`)
+    console.log(error)
     process.exit(1)
   }
 
