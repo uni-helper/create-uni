@@ -1,7 +1,7 @@
 import process from 'node:process'
-import { canSkipEmptying } from '@/utils'
 import type { PromptObject } from 'prompts'
 import { cancelMesssage } from './onCancel'
+import { canSkipEmptying } from '@/utils'
 
 export default (targetDir?: string): PromptObject<string>[] => {
   return [
