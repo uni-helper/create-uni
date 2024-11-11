@@ -1,10 +1,10 @@
 import { execSync } from 'node:child_process'
 import process from 'node:process'
+import { ora, whichPm } from '@/utils'
 import envinfo from 'envinfo'
 import JSON5 from 'json5'
 import { gray, italic, link, red, yellow } from 'kolorist'
 import { question } from './question'
-import { ora, whichPm } from '@/utils'
 
 const uniDependenciesMap = {
   '@uni-helper/uni-use': ['@vueuse/core'],

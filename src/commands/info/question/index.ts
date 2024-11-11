@@ -1,7 +1,7 @@
-import prompts from 'prompts'
-import type { PromptObject } from 'prompts'
 import { instructions } from '@/constants'
 import { onCancel } from '@/question/onCancel'
+import prompts from 'prompts'
+import type { PromptObject } from 'prompts'
 
 export async function question(choices: string[], message: string) {
   const questions = [

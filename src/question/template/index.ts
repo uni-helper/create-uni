@@ -1,6 +1,6 @@
+import { hint } from '@/constants'
 import type { PromptObject } from 'prompts'
 import { templateList } from './templateDate'
-import { hint } from '@/constants'
 
 export default (): PromptObject<string> => {
   return {
