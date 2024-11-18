@@ -68,7 +68,7 @@
     "@mini-types/alipay": "^3.0.14",
     "@uni-helper/uni-types": "^1.0.0-alpha.6",
     "@vue/runtime-core": "3.4.21",
-    "miniprogram-api-typings": "^4.0.1",
+    "miniprogram-api-typings": "^4.0.2",
     "sass": "1.64.2",
     "vite": "5.2.8"
   }
