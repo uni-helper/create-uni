@@ -37,4 +37,9 @@ export default [
     value: 'middleware',
     description: '使用路由中间件',
   },
+  {
+    title: rgb(146, 220, 210)('uni-ku-root'),
+    value: 'root',
+    description: '模拟虚拟根组件(支持SFC的App.vue)',
+  },
 ] as ModelType[]
