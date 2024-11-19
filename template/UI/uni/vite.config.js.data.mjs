@@ -1,16 +1,15 @@
 export default function getData({ oldData }) {
-  const autoImportUniUiPlugin = (hasRoot) => {
-    return {
-      id: 'uni-ui',
-      importer: `import { UniUIResolver } from '@uni-helper/vite-plugin-uni-components/resolvers'`,
-      initializer: `Components({
-      dts: true,
-      resolvers: [UniUIResolver(${hasRoot ? '{exclude: \'UniKuAppRoot\'}' : ''})]
-    })`,
-    }
-  }
-
   const hasRootPlugin = oldData.plugins.some(plugin => plugin.id === 'root')
+  const resolverOptions = hasRootPlugin ? '{ exclude: \'UniKuAppRoot\' }' : ''
+
+  const autoImportUniUiPlugin = {
+    id: 'uni-ui',
+    importer: `import { UniUIResolver } from '@uni-helper/vite-plugin-uni-components/resolvers'`,
+    initializer: `Components({
+      dts: true,
+      resolvers: [UniUIResolver(${resolverOptions})]
+    })`,
+  }
 
   return {
     ...oldData,
@@ -19,12 +18,12 @@ export default function getData({ oldData }) {
         plugin.id === 'autoImport'
           ? [
               { id: plugin.id, importer: plugin.importer },
-              autoImportUniUiPlugin(hasRootPlugin),
+              autoImportUniUiPlugin,
             ]
           : plugin,
       )
       : oldData.plugins.flatMap(plugin =>
-        plugin.id === 'uni' ? [autoImportUniUiPlugin(hasRootPlugin), plugin] : plugin,
+        plugin.id === 'uni' ? [autoImportUniUiPlugin, plugin] : plugin,
       ),
   }
 }
