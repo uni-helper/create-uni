@@ -61,7 +61,7 @@ npx create-uni@latest --info
 | :---: | :---: | :---: |
 | [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app) | 由 Vite & uni-app 驱动的跨端快速启动模板   | vitesse |
 | [wot-demo](https://github.com/Moonofweisheng/wot-demo) | 基于 vitesse-uni-app 的 wot-design-uni 快速起手demo |  wot    |
-| [unisave](https://github.com/sunpm/unisave) |  拥抱 web 开发，拯救 uniapp。适配所有(app、mp、web)平台！！！   | unisave |
+| [unisave](https://github.com/sunpm/unisave) |  拥抱 web 开发，拯救 uniapp。适配所有(app、mp、web)平台   | unisave |
 
 #### 📦插件列表
 
