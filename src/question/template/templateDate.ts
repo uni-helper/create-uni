@@ -1,4 +1,4 @@
-import { dim, green, link } from 'kolorist'
+import { dim, green, link, lightMagenta } from 'kolorist'
 import type { TemplateList } from './type'
 
 export const templateList: TemplateList[] = [
@@ -19,6 +19,16 @@ export const templateList: TemplateList[] = [
       type: 'wot',
       url: {
         github: 'https://github.com/Moonofweisheng/wot-demo.git',
+      },
+    },
+  },
+  {
+    title: `unisave`,
+    description: `由${link(green('sunpm'), 'https://github.com/sunpm')}维护: 拥抱 web 开发，${lightMagenta('拯救')} uniapp。适配所有(app、mp、web)平台！！！`,
+    value: {
+      type: 'unisave',
+      url: {
+        github: 'https://github.com/sunpm/unisave.git',
       },
     },
   },
