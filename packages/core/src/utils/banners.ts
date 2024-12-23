@@ -1,9 +1,12 @@
 import process from 'node:process'
 import { bold, lightCyan } from 'kolorist'
 
-/* eslint-disable no-console */
-export function printBanner() {
+export function generateBanner() {
   const text = 'Uni-creator - 快速创建 uni-app 项目'
+
+  if (!process.stdout.isTTY || process.stdout.getColorDepth() <= 8)
+    return lightCyan(bold(text))
+
   let colorText = ''
 
   const startColor = { r: 0x3B, g: 0xD1, b: 0x91 }
@@ -17,11 +20,5 @@ export function printBanner() {
     colorText += bold(`\x1B[38;2;${red};${green};${blue}m${text[i]}\x1B[0m`)
   }
 
-  const output = process.stdout.isTTY && process.stdout.getColorDepth() > 8
-    ? colorText
-    : lightCyan(bold(text))
-
-  console.log()
-  console.log(output)
-  console.log()
+  return colorText
 }
