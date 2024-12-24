@@ -5,11 +5,15 @@
     "baseUrl": ".",
     "module": "esnext",
     "moduleResolution": "node",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "resolveJsonModule": true,
     "strict": true,
     "strictNullChecks": true,
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
-  }
+  },
+  "include": ["src"]
 }

@@ -1,8 +1,9 @@
-import { bold, red } from 'kolorist'
-import figures from 'prompts/lib/util/figures.js'
+import process from 'node:process'
+import { cancel } from '@clack/prompts'
 
-export const cancelMesssage = `${red(figures.cross)} ${bold('操作已取消')}`
+export const cancelMesssage = '操作已取消'
 
-export function onCancel() {
-  throw new Error(cancelMesssage)
+export function printCancel() {
+  cancel(cancelMesssage)
+  process.exit(0)
 }

@@ -16,15 +16,13 @@ import ejs from 'ejs'
 import JSON5 from 'json5'
 import { bold, green } from 'kolorist'
 import minimist from 'minimist'
-import prompts from 'prompts'
 import { installAndInvokeCLI } from './installAndInvokeCLI'
 import { question } from './question'
-import filePrompt from './question/file'
+import askForceOverwrite from './question/file'
 
-import { cancelMesssage, onCancel } from './question/onCancel'
+import { cancelMesssage } from './question/onCancel'
 
 import {
-  canSkipEmptying,
   dowloadTemplate,
   generateBanner,
   ora,
@@ -40,7 +38,7 @@ import {
   validateTemplateType,
   validateUIName,
 } from './utils/validateArgv'
-import type { BaseTemplateList } from './question/template/type'
+import type { TemplateValue, UnCustomTempValue } from './question/template/type'
 import type { Ora } from './utils'
 
 let loading: Ora
@@ -67,7 +65,7 @@ async function init() {
   let result: {
     projectName?: string
     shouldOverwrite?: boolean
-    templateType?: BaseTemplateList['value']
+    templateType?: TemplateValue
     needsTypeScript?: boolean
     pluginList?: string[]
     moduleList?: string[]
@@ -78,6 +76,8 @@ async function init() {
   if (!projectName) {
     try {
       result = await question()
+      console.log(result)
+      // return
     }
     catch (cancelled) {
     // eslint-disable-next-line no-console
@@ -91,9 +91,7 @@ async function init() {
     const pluginList = validatePlugins(argv.pluginList)
     const moduleList = validateModules(argv.moduleList)
 
-    const shouldOverwrite = canSkipEmptying(projectName)
-      ? true
-      : (await prompts(filePrompt(projectName), { onCancel })).shouldOverwrite
+    const shouldOverwrite = await askForceOverwrite(projectName)
 
     result = {
       projectName,
@@ -132,7 +130,7 @@ async function init() {
 
   if (result.templateType!.type !== 'custom') {
     const { templateType, projectName } = result
-    await dowloadTemplate(templateType!, projectName!, root, loading)
+    await dowloadTemplate(templateType as UnCustomTempValue, projectName!, root, loading)
     printFinish(root, cwd, packageManager, loading)
     return
   }

@@ -1,14 +1,12 @@
-import type { PromptObject } from 'prompts'
-import filePrompt from './file'
+import { text } from '@clack/prompts'
 
-export default (): PromptObject<string>[] => {
-  return [
-    {
-      name: 'projectName',
-      type: 'text',
-      message: '请输入项目名称:',
-      initial: 'uni-app',
+export default () => (
+  text({
+    message: '请输入项目名称:',
+    placeholder: 'uni-app',
+    validate: (value) => {
+      if (!value)
+        return '项目名称不能为空'
     },
-    ...filePrompt(),
-  ]
-}
+  })
+)

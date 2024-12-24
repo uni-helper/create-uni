@@ -1,5 +1,5 @@
-export interface ModelType {
-  title: string
-  description: string
+export interface Options {
+  label: string
+  hint: string
   value: string | null
 }

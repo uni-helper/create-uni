@@ -3,24 +3,41 @@ import process from 'node:process'
 import { bold, gray, red } from 'kolorist'
 import figures from 'prompts/lib/util/figures.js'
 
-import MODULES from './../question/module/choices'
-import PLUGINS from './../question/plugin/choices'
-import { templateList } from './../question/template/templateDate'
-import { UIList } from './../question/UI/choices'
-import type { BaseTemplateList } from './../question/template/type'
+import MODULES from '../question/module/module.data'
+import PLUGINS from '../question/plugin/plugin.data'
+import { templateList } from '../question/template/template.data'
+import { UIList } from '../question/ui/ui.data'
+import type { TemplateValue } from './../question/template/type'
 
 type ArgvBase = string | null
 type ArgvList = ArgvBase | string[]
 
-function validateTemplateType(argvTemplate: ArgvBase): BaseTemplateList['value'] {
+function validateTemplateType(argvTemplate: ArgvBase): TemplateValue {
   if (!argvTemplate)
-    return { type: 'custom' } as BaseTemplateList['value']
-  const templateType = templateList.find(item => item.value.type === argvTemplate)?.value
-  if (!templateType) {
-    console.error(`${red(figures.cross)} ${bold(`暂不支持 ${gray(argvTemplate)} 模板`)}`)
-    process.exit(1)
+    return { type: 'custom' }
+  const templateType = templateList.find(item => item.value === argvTemplate)
+  if (templateType) {
+    return {
+      type: templateType.value,
+      url: templateType.url!,
+    }
   }
-  return templateType
+  else {
+    for (const item of templateList) {
+      if (item.list) {
+        const templateType = item.list.find(subItem => subItem.value === argvTemplate)
+        if (templateType) {
+          return {
+            type: templateType.value,
+            url: templateType.url!,
+          }
+        }
+      }
+    }
+  }
+
+  console.error(`${red(figures.cross)} ${bold(`暂不支持 ${gray(argvTemplate)} 模板`)}`)
+  process.exit(1)
 }
 
 function validateUIName(argvUIName: ArgvBase) {

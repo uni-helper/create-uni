@@ -1,33 +1,20 @@
-import process from 'node:process'
 import { canSkipEmptying } from '@/utils'
-import type { PromptObject } from 'prompts'
-import { cancelMesssage } from './onCancel'
+import { confirm, isCancel } from '@clack/prompts'
+import { printCancel } from './onCancel'
 
-export default (targetDir?: string): PromptObject<string>[] => {
-  return [
-    {
-      name: 'shouldOverwrite',
-      type: prevValue => (canSkipEmptying(targetDir ?? prevValue) ? null : 'toggle'),
-      message: (prevValue) => {
-        const _targetDir = targetDir ?? prevValue
-        const dirForPrompt = _targetDir === '.' ? '当前文件' : `目标文件"${_targetDir}"`
-
-        return `${dirForPrompt}非空，是否覆盖？`
-      },
-      initial: false,
-      active: '是',
-      inactive: '否',
-    },
-    {
-      name: 'overwriteChecker',
-      type: (prevValues) => {
-        if (prevValues === false) {
-          console.log(cancelMesssage)
-          process.exit(1)
-        }
-
-        return null
-      },
-    },
-  ]
+export default async (targetDir: string): Promise<boolean | undefined> => {
+  if (canSkipEmptying(targetDir))
+    return true
+  const message = `${targetDir === '.' ? '当前文件' : `目标文件"${targetDir}"`}非空，是否覆盖？`
+  const shouldOverwrite = await confirm({
+    message,
+    active: '是',
+    inactive: '否',
+  })
+  if (shouldOverwrite === false || isCancel(shouldOverwrite)) {
+    printCancel()
+  }
+  else {
+    return shouldOverwrite
+  }
 }
