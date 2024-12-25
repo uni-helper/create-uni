@@ -44,15 +44,18 @@ importers:
       '@clack/prompts':
         specifier: ^0.9.0
         version: 0.9.0
+      '@types/cross-spawn':
+        specifier: ^6.0.6
+        version: 6.0.6
       '@types/ejs':
         specifier: ^3.1.5
         version: 3.1.5
       '@types/minimist':
         specifier: ^1.2.5
         version: 1.2.5
-      cross-env:
-        specifier: ^7.0.3
-        version: 7.0.3
+      cross-spawn:
+        specifier: ^7.0.6
+        version: 7.0.6
       ejs:
         specifier: ^3.1.10
         version: 3.1.10
@@ -79,6 +82,9 @@ importers:
       '@types/minimist':
         specifier: ^1.2.5
         version: 1.2.5
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
       envinfo:
         specifier: ^7.14.0
         version: 7.14.0
@@ -536,6 +542,9 @@ packages:
     peerDependencies:
       eslint: '>=8.40.0'
 
+  '@types/cross-spawn@6.0.6':
+    resolution: {integrity: sha512-fXRhhUkG4H3TQk5dBhQ7m/JDdSNHKwR2BBia62lhwEIq9xGiQKLxd6LymNhn47SjXhsUEPmxi+PKw2OkW4LLjA==}
+
   '@types/ejs@3.1.5':
     resolution: {integrity: sha512-nv+GSx77ZtXiJzwKdsASqi+YQ5Z7vwHsTP0JY2SiQgjGckkBRKZnk8nIM+7oUZ1VCtuTz0+By4qVR7fqzp/Dfg==}
 
@@ -894,6 +903,10 @@ packages:
 
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
+    engines: {node: '>= 8'}
+
+  cross-spawn@7.0.6:
+    resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
 
   cssesc@3.0.0:
@@ -2607,6 +2620,10 @@ snapshots:
       - supports-color
       - typescript
 
+  '@types/cross-spawn@6.0.6':
+    dependencies:
+      '@types/node': 18.19.50
+
   '@types/ejs@3.1.5': {}
 
   '@types/envinfo@7.8.4': {}
@@ -2980,6 +2997,12 @@ snapshots:
       cross-spawn: 7.0.3
 
   cross-spawn@7.0.3:
+    dependencies:
+      path-key: 3.1.1
+      shebang-command: 2.0.0
+      which: 2.0.2
+
+  cross-spawn@7.0.6:
     dependencies:
       path-key: 3.1.1
       shebang-command: 2.0.0

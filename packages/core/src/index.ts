@@ -41,9 +41,6 @@ import {
 import type { TemplateValue, UnCustomTempValue } from './question/template/type'
 
 async function init() {
-  intro(generateBanner())
-  const s = spinner()
-
   const argv = minimist(process.argv.slice(2), {
     alias: {
       templateType: ['t'],
@@ -57,9 +54,11 @@ async function init() {
   })
 
   if (argv.info || argv.gui) {
-    installAndInvokeCLI(argv, s)
+    installAndInvokeCLI(argv)
     return
   }
+  intro(generateBanner())
+  const s = spinner()
 
   const projectName = argv._[0]
 
