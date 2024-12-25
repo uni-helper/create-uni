@@ -23,31 +23,18 @@
     "miniapp",
     "create"
   ],
-  "sideEffects": false,
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepublishOnly": "nr build",
-    "release": "bumpp",
-    "typecheck": "tsc --noEmit",
-    "up": "cd ./template && pnpx taze@latest major -w -r && cd ./base && pnpx @dcloudio/uvm@latest --manager pnpm"
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@antfu/ni": "^0.23.0",
-    "@antfu/utils": "^0.7.10",
-    "@types/ejs": "^3.1.5",
-    "@types/envinfo": "^7.8.4",
     "@types/node": "^18.19.50",
-    "@types/prompts": "^2.4.9",
     "@uni-helper/eslint-config": "^0.2.0",
     "bumpp": "^9.5.2",
-    "ejs": "^3.1.10",
-    "envinfo": "^7.13.0",
     "eslint": "^9.10.0",
-    "json5": "^2.2.3",
     "lint-staged": "^15.2.10",
-    "path-exists": "^5.0.0",
-    "prompts": "^2.4.2",
     "simple-git-hooks": "^2.11.1",
     "terser": "^5.31.6",
     "tsup": "^8.2.4",

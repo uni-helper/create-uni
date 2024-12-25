@@ -1,7 +1,7 @@
 import process from 'node:process'
 
-import { bold, gray, red } from 'kolorist'
-import figures from 'prompts/lib/util/figures.js'
+import { outro } from '@clack/prompts'
+import { bold, gray } from 'kolorist'
 
 import MODULES from '../question/module/module.data'
 import PLUGINS from '../question/plugin/plugin.data'
@@ -36,7 +36,7 @@ function validateTemplateType(argvTemplate: ArgvBase): TemplateValue {
     }
   }
 
-  console.error(`${red(figures.cross)} ${bold(`暂不支持 ${gray(argvTemplate)} 模板`)}`)
+  outro(`${bold(`暂不支持 ${gray(argvTemplate)} 模板`)}`)
   process.exit(1)
 }
 
@@ -45,7 +45,7 @@ function validateUIName(argvUIName: ArgvBase) {
     return null
   const UIName = UIList.find(item => item.value === argvUIName)?.value
   if (!UIName) {
-    console.error(`${red(figures.cross)} ${bold(`暂不支持 ${gray(argvUIName)} UI库`)}`)
+    outro(`${bold(`暂不支持 ${gray(argvUIName)} UI库`)}`)
     process.exit(1)
   }
   return UIName
@@ -57,7 +57,7 @@ function validatePlugins(argvPlugins: ArgvList): [] {
   const pluginList = [argvPlugins].flat()
   const missedPluginList = pluginList.filter(item => !PLUGINS.some(plugin => plugin.value === item))
   if (missedPluginList.length) {
-    console.error(`${red(figures.cross)} ${bold(`暂不支持 ${gray(missedPluginList.join(', '))} 插件`)}`)
+    outro(`${bold(`暂不支持 ${gray(missedPluginList.join(', '))} 插件`)}`)
     process.exit(1)
   }
   return pluginList as []
@@ -69,7 +69,7 @@ function validateModules(argvModules: ArgvList): [] {
   const moduleList = [argvModules].flat()
   const missedModuleList = moduleList.filter(item => !MODULES.some(module => module.value === item))
   if (missedModuleList.length) {
-    console.error(`${red(figures.cross)} ${bold(`暂不支持 ${gray(missedModuleList.join(', '))} 模块`)}`)
+    outro(`${bold(`暂不支持 ${gray(missedModuleList.join(', '))} 模块`)}`)
     process.exit(1)
   }
   return moduleList as []

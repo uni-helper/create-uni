@@ -1,6 +1,6 @@
 import { defineConfig } from 'tsup'
 
-export default ({ watch }) => (
+export default ({ watch }: { watch: boolean }) => (
   defineConfig({
     entry: {
       outfile: 'src/index.ts',

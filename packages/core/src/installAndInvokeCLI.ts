@@ -1,10 +1,10 @@
 import { execSync } from 'node:child_process'
 import type { spinner } from '@clack/prompts'
-import { whichPm } from './utils'
+import { getPkgManager } from './utils'
 
 // Do installation here
 async function runCli(cli: string) {
-  const pm = (await whichPm())!.name
+  const pm = getPkgManager()
   const shellCommand = `${pm === 'npm' ? 'npx' : `${pm} dlx`} ${cli}`
   console.log(shellCommand)
   execSync(shellCommand)

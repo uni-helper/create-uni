@@ -11,10 +11,10 @@ import {
 } from 'node:fs'
 import { join, resolve } from 'node:path'
 import process from 'node:process'
-import { intro, spinner } from '@clack/prompts'
+import { intro, outro, spinner } from '@clack/prompts'
 import ejs from 'ejs'
 import JSON5 from 'json5'
-import { bold, green } from 'kolorist'
+import { green } from 'kolorist'
 import minimist from 'minimist'
 import { installAndInvokeCLI } from './installAndInvokeCLI'
 import { question } from './question'
@@ -25,7 +25,7 @@ import { cancelMesssage } from './question/onCancel'
 import {
   dowloadTemplate,
   generateBanner,
-  ora,
+  getPkgManager,
   preOrderDirectoryTraverse,
   printFinish,
   renderTemplate,
@@ -39,9 +39,7 @@ import {
   validateUIName,
 } from './utils/validateArgv'
 import type { TemplateValue, UnCustomTempValue } from './question/template/type'
-import type { Ora } from './utils'
 
-let loading: Ora
 async function init() {
   intro(generateBanner())
   const s = spinner()
@@ -76,8 +74,6 @@ async function init() {
   if (!projectName) {
     try {
       result = await question()
-      console.log(result)
-      // return
     }
     catch (cancelled) {
     // eslint-disable-next-line no-console
@@ -105,11 +101,10 @@ async function init() {
     }
   }
 
-  loading = ora(`${bold('正在创建模板...')}`).start()
+  s.start('正在创建模板...')
   const cwd = process.cwd()
   const root = join(cwd, result.projectName!)
-  const userAgent = process.env.npm_config_user_agent ?? ''
-  const packageManager = /pnpm/.test(userAgent) ? 'pnpm' : /yarn/.test(userAgent) ? 'yarn' : 'npm'
+  const packageManager = getPkgManager()
 
   function emptyDir(dir: string) {
     if (!existsSync(dir))
@@ -130,8 +125,8 @@ async function init() {
 
   if (result.templateType!.type !== 'custom') {
     const { templateType, projectName } = result
-    await dowloadTemplate(templateType as UnCustomTempValue, projectName!, root, loading)
-    printFinish(root, cwd, packageManager, loading)
+    await dowloadTemplate(templateType as UnCustomTempValue, projectName!, root, s)
+    printFinish(root, cwd, packageManager, s)
     return
   }
 
@@ -252,12 +247,12 @@ async function init() {
   }
   replaceProjectName(root, result.projectName!)
 
-  printFinish(root, cwd, packageManager, loading)
+  printFinish(root, cwd, packageManager, s)
 }
 
 init()
   .catch((error) => {
-    console.log(cancelMesssage)
+    outro(cancelMesssage)
     console.log(error.message.includes('操作已取消') ? '' : error)
     console.log(`🚀 遇到问题? 快速反馈：${green('https://github.com/uni-helper/create-uni/issues/new/choose')}`)
     process.exit(0)

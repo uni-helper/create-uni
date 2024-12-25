@@ -1,24 +1,29 @@
-/* eslint-disable no-console */
 import { relative } from 'node:path'
-import { bold, green } from 'kolorist'
-import type { Ora } from '@/utils'
+import { note } from '@clack/prompts'
+import { dim, lightGreen } from 'kolorist'
+import type { spinner } from '@clack/prompts'
 import { getCommand } from './getCommand'
+import type { getPkgManager } from './getPkgManager'
 
 export function printFinish(
   root: string,
   cwd: string,
-  packageManager: 'pnpm' | 'npm' | 'yarn',
-  loading: Ora,
+  packageManager: ReturnType<typeof getPkgManager>,
+  loading: ReturnType<typeof spinner>,
 ) {
-  loading.succeed(`${bold('模板创建完成！')}`)
-  console.log()
-  if (root !== cwd) {
-    const cdProjectName = relative(cwd, root)
-    console.log(
-      `  ${bold(green(`cd ${cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName}`))}`,
-    )
+  loading.stop('🎉 恭喜！您的项目已准备就绪。')
+  const cdProjectName = () => {
+    if (root !== cwd) {
+      const cdProjectName = relative(cwd, root)
+      return cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName
+    }
   }
-  console.log(`  ${bold(green(getCommand(packageManager, 'install')))}`)
-  console.log(`  ${bold(green(getCommand(packageManager, 'dev')))}`)
+
+  const gettingStarted = `
+${dim('$')} ${lightGreen(`cd ${cdProjectName()}`)}
+${dim('$')} ${lightGreen(getCommand(packageManager, 'install'))}
+${dim('$')} ${lightGreen(getCommand(packageManager, 'dev'))}
+  `
+  note(gettingStarted.trim().replace(/^\t\t\t/gm, ''), dim('Getting Started'))
   console.log()
 }

@@ -3,7 +3,7 @@ import { promises as fs } from 'node:fs'
 import { join } from 'node:path'
 import process from 'node:process'
 import { bold } from 'kolorist'
-import type { Ora } from '@/utils'
+import type { spinner } from '@clack/prompts'
 import { replaceProjectName } from './setPackageName'
 import type { UnCustomTempValue } from '../question/template/type'
 
@@ -40,8 +40,10 @@ async function cloneRepo(gitUrls: string[], localPath: string): Promise<void> {
     }
   }
 
-  if (lastError)
-    throw new Error('All URLs failed')
+  if (lastError) {
+    // @ts-expect-error 类型断言
+    throw new Error(lastError)
+  }
 }
 
 function getRepoUrlList(url: UnCustomTempValue['url']) {
@@ -50,13 +52,13 @@ function getRepoUrlList(url: UnCustomTempValue['url']) {
   return [gitee, github?.replace('github.com', 'githubfast.com'), github].filter(Boolean) as string[]
 }
 
-export async function dowloadTemplate(data: UnCustomTempValue, name: string, root: string, loading: Ora) {
+export async function dowloadTemplate(data: UnCustomTempValue, name: string, root: string, loading: ReturnType<typeof spinner>) {
   const repoUrlList = getRepoUrlList(data.url)
   try {
     await cloneRepo(repoUrlList, root)
   }
   catch (error) {
-    loading.fail(`${bold('模板创建失败！')}`)
+    loading.stop(`${bold('模板创建失败！')}`, 2)
     console.log(error)
     process.exit(1)
   }

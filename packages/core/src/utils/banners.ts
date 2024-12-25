@@ -1,11 +1,12 @@
 import process from 'node:process'
-import { bold, lightCyan } from 'kolorist'
+import { bgLightGreen, bold } from 'kolorist'
 
 export function generateBanner() {
+  console.log()
   const text = 'Uni-creator - 快速创建 uni-app 项目'
 
   if (!process.stdout.isTTY || process.stdout.getColorDepth() <= 8)
-    return lightCyan(bold(text))
+    return bgLightGreen(` ${text} `)
 
   let colorText = ''
 

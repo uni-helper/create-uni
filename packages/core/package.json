@@ -23,14 +23,29 @@
     "create"
   ],
   "sideEffects": false,
+  "bin": {
+    "create-uni": "dist/outfile.cjs"
+  },
+  "files": [
+    "dist/outfile.cjs",
+    "template"
+  ],
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch"
+    "dev": "tsup --watch",
+    "prepublishOnly": "nr build",
+    "release": "bumpp",
+    "typecheck": "tsc --noEmit",
+    "up": "cd ./template && pnpx taze@latest major -w -r && cd ./base && pnpx @dcloudio/uvm@latest --manager pnpm"
   },
   "devDependencies": {
     "@clack/prompts": "^0.9.0",
+    "@types/ejs": "^3.1.5",
     "@types/minimist": "^1.2.5",
+    "ejs": "^3.1.10",
+    "json5": "^2.2.3",
     "kolorist": "^1.8.0",
-    "minimist": "^1.2.8"
+    "minimist": "^1.2.8",
+    "path-exists": "^5.0.0"
   }
 }
