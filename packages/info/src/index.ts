@@ -1,9 +1,9 @@
 import { execSync } from 'node:child_process'
 import process from 'node:process'
-import { spinner } from '@clack/prompts'
+import { log, spinner } from '@clack/prompts'
 import envinfo from 'envinfo'
 import JSON5 from 'json5'
-import { gray, italic, link, red, yellow } from 'kolorist'
+import { gray, italic, link, magenta, yellow } from 'kolorist'
 // import { question } from './question'
 import { whichPm } from './utils/whichPm'
 
@@ -156,14 +156,13 @@ export async function getBaseEnvInfo() {
       npmPackages: '**',
       System: ['OS'],
       Binaries: ['Node'],
-      IDEs: ['VSCode', 'WebStorm'],
+      IDEs: ['VSCode'],
     },
     {
       json: true,
       showNotFound: true,
     },
   ))
-  console.log(_envInfo)
   const os = _envInfo.System.OS
   const node = _envInfo.Binaries.Node.version
   const vscode = _envInfo.IDEs.VSCode?.version || null
@@ -177,7 +176,7 @@ export async function getBaseEnvInfo() {
     baseDependencies = getBaseDependencies(packageInfo)
   }
   else {
-    warmList.push(red(' ⛔ 当前目录未安装uni-app，请在uni-app项目根目录下执行, 以获取依赖信息！！！'))
+    log.error(magenta('当前目录未安装uni-app，请在uni-app项目根目录下执行, 以获取依赖信息！！！'))
   }
 
   // 获取vscode扩展信息
@@ -189,7 +188,7 @@ export async function getBaseEnvInfo() {
     volarExtensions = paserExtensionList(getVolarExtensions(extensions))[0] || null
   }
   else {
-    warmList.push(yellow(' ⚠️ 未找到vscode, 无法获取插件信息, 请自行补充vscode插件信息'))
+    log.warn(yellow('未找到vscode, 无法获取插件信息, 请自行补充vscode插件信息'))
   }
 
   const pm = await whichPm()

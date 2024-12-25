@@ -56,7 +56,10 @@ async function init() {
     string: ['_'],
   })
 
-  installAndInvokeCLI(argv, s)
+  if (argv.info || argv.gui) {
+    installAndInvokeCLI(argv, s)
+    return
+  }
 
   const projectName = argv._[0]
 

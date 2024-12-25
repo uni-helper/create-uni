@@ -41,6 +41,7 @@
     "@clack/prompts": "^0.9.0",
     "@types/envinfo": "^7.8.4",
     "@types/minimist": "^1.2.5",
+    "cross-env": "^7.0.3",
     "envinfo": "^7.14.0",
     "json5": "^2.2.3",
     "kolorist": "^1.8.0",
