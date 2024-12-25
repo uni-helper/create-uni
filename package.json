@@ -24,6 +24,7 @@
     "create"
   ],
   "scripts": {
+    "dev": "pnpm -r dev",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit"
