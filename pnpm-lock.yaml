@@ -68,7 +68,26 @@ importers:
 
   packages/gui: {}
 
-  packages/info: {}
+  packages/info:
+    devDependencies:
+      '@clack/prompts':
+        specifier: ^0.9.0
+        version: 0.9.0
+      '@types/envinfo':
+        specifier: ^7.8.4
+        version: 7.8.4
+      '@types/minimist':
+        specifier: ^1.2.5
+        version: 1.2.5
+      envinfo:
+        specifier: ^7.14.0
+        version: 7.14.0
+      json5:
+        specifier: ^2.2.3
+        version: 2.2.3
+      kolorist:
+        specifier: ^1.8.0
+        version: 1.8.0
 
 packages:
 
@@ -517,6 +536,9 @@ packages:
   '@types/ejs@3.1.5':
     resolution: {integrity: sha512-nv+GSx77ZtXiJzwKdsASqi+YQ5Z7vwHsTP0JY2SiQgjGckkBRKZnk8nIM+7oUZ1VCtuTz0+By4qVR7fqzp/Dfg==}
 
+  '@types/envinfo@7.8.4':
+    resolution: {integrity: sha512-K5WaRgSlqjc408IyPbxOFnz7rVG9E8ELhj7XR3Ncui15EgeyIXTcCfmwrRnU4uEOCJQhzZRAQurYznEEc1dD2g==}
+
   '@types/eslint@9.6.1':
     resolution: {integrity: sha512-FXx2pKgId/WyYo2jXw63kk7/+TY7u7AziEJxJAnSFzHlqTAS3Ync6SvgYAN/k4/PQpnnVuzoMuVnByKK2qp0ag==}
 
@@ -936,6 +958,11 @@ packages:
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
+
+  envinfo@7.14.0:
+    resolution: {integrity: sha512-CO40UI41xDQzhLB1hWyqUKgFhs250pNcGbyGKe1l/e4FSaI/+YE4IMG76GDt0In67WLPACIITC+sOi08x4wIvg==}
+    engines: {node: '>=4'}
+    hasBin: true
 
   environment@1.1.0:
     resolution: {integrity: sha512-xUtoPkMggbz0MPyPiIWr1Kp4aeWJjDZ6SMvURhimjdZgsRuDplF5/s9hcgGhyXMhs+6vpnuoiZ2kFiu3FMnS8Q==}
@@ -2574,6 +2601,8 @@ snapshots:
 
   '@types/ejs@3.1.5': {}
 
+  '@types/envinfo@7.8.4': {}
+
   '@types/eslint@9.6.1':
     dependencies:
       '@types/estree': 1.0.5
@@ -2990,6 +3019,8 @@ snapshots:
       tapable: 2.2.1
 
   entities@4.5.0: {}
+
+  envinfo@7.14.0: {}
 
   environment@1.1.0: {}
 

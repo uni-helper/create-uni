@@ -1,12 +1,48 @@
 {
   "name": "@create-uni/info",
-  "version": "1.0.0",
-  "description": "",
-  "author": "",
-  "license": "ISC",
-  "keywords": [],
-  "main": "index.js",
+  "type": "module",
+  "version": "2.0.0",
+  "packageManager": "pnpm@9.9.0",
+  "description": "快速检测你的uni-app项目",
+  "author": "FliPPeDround <flippedround@qq.com>",
+  "license": "MIT",
+  "funding": "https://afdian.com/a/flippedround",
+  "homepage": "https://github.com/uni-helper/create-uni#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uni-helper/create-uni.git"
+  },
+  "bugs": "https://github.com/uni-helper/create-uni/issues",
+  "keywords": [
+    "uni",
+    "uni-app",
+    "create-uni",
+    "cli",
+    "vue",
+    "miniapp",
+    "create"
+  ],
+  "sideEffects": false,
+  "bin": {
+    "create-uni": "dist/outfile.cjs"
+  },
+  "files": [
+    "dist/outfile.cjs",
+    "template"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "prepublishOnly": "nr build",
+    "release": "bumpp",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@clack/prompts": "^0.9.0",
+    "@types/envinfo": "^7.8.4",
+    "@types/minimist": "^1.2.5",
+    "envinfo": "^7.14.0",
+    "json5": "^2.2.3",
+    "kolorist": "^1.8.0"
   }
 }
