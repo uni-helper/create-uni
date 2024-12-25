@@ -1,7 +1,7 @@
 {
   "name": "@create-uni/info",
   "type": "module",
-  "version": "2.0.0",
+  "version": "0.0.1",
   "packageManager": "pnpm@9.9.0",
   "description": "快速检测你的uni-app项目",
   "author": "FliPPeDround <flippedround@qq.com>",
@@ -24,7 +24,7 @@
   ],
   "sideEffects": false,
   "bin": {
-    "create-uni": "dist/outfile.cjs"
+    "@create-uni/info": "dist/outfile.cjs"
   },
   "files": [
     "dist/outfile.cjs",
@@ -43,6 +43,7 @@
     "@types/minimist": "^1.2.5",
     "envinfo": "^7.14.0",
     "json5": "^2.2.3",
-    "kolorist": "^1.8.0"
+    "kolorist": "^1.8.0",
+    "path-exists": "^5.0.0"
   }
 }

@@ -1,10 +1,11 @@
 import { execSync } from 'node:child_process'
 import process from 'node:process'
-import { ora, whichPm } from '@/utils'
+import { spinner } from '@clack/prompts'
 import envinfo from 'envinfo'
 import JSON5 from 'json5'
 import { gray, italic, link, red, yellow } from 'kolorist'
-import { question } from './question'
+// import { question } from './question'
+import { whichPm } from './utils/whichPm'
 
 const uniDependenciesMap = {
   '@uni-helper/uni-use': ['@vueuse/core'],
@@ -47,7 +48,8 @@ async function getErrorDependencies(
   }
   else {
     const uniHelperDependenciesName = Object.keys(uniHelperDependencies)
-    const { errorIndexList } = await question(uniHelperDependenciesName, '请选择需要反馈的依赖')
+    // const { errorIndexList } = await question(uniHelperDependenciesName, '请选择需要反馈的依赖')
+    const errorIndexList = {}
     for (const index of errorIndexList) {
       const name = uniHelperDependenciesName[index]
       errorDependencies[name] = uniHelperDependencies[name]
@@ -96,14 +98,15 @@ async function getErrorExtensions(
   if (!uniHelperExtensions)
     return []
 
-  const choices = uniHelperExtensions.map(item => item.name)
+  // const choices = uniHelperExtensions.map(item => item.name)
 
   let errorExtensions: typeof uniHelperExtensions = []
   if (argv === 'all') {
     errorExtensions = uniHelperExtensions
   }
   else {
-    const { errorIndexList } = await question(choices, '请选择需要反馈的vscode插件')
+    // const { errorIndexList } = await question(choices, '请选择需要反馈的vscode插件')
+    const errorIndexList = []
     errorIndexList.forEach((index: number) => {
       errorExtensions.push({
         name: uniHelperExtensions[index].name,
@@ -130,6 +133,10 @@ interface UniPresetEnvInfo {
       version: string
       path: string
     }
+    WebStorm: {
+      version: string
+      path: string
+    }
   }
   npmPackages: {
     [key: string]: {
@@ -139,7 +146,9 @@ interface UniPresetEnvInfo {
   }
 }
 export async function getBaseEnvInfo() {
-  const loading = ora('正在获取环境信息...').start()
+  // const loading = ora('正在获取环境信息...').start()
+  const s = spinner()
+  s.start('正在获取环境信息...')
   const warmList = ['']
 
   const _envInfo = JSON5.parse<UniPresetEnvInfo>(await envinfo.run(
@@ -147,13 +156,14 @@ export async function getBaseEnvInfo() {
       npmPackages: '**',
       System: ['OS'],
       Binaries: ['Node'],
-      IDEs: ['VSCode'],
+      IDEs: ['VSCode', 'WebStorm'],
     },
     {
       json: true,
       showNotFound: true,
     },
   ))
+  console.log(_envInfo)
   const os = _envInfo.System.OS
   const node = _envInfo.Binaries.Node.version
   const vscode = _envInfo.IDEs.VSCode?.version || null
@@ -184,7 +194,7 @@ export async function getBaseEnvInfo() {
 
   const pm = await whichPm()
 
-  loading.succeed('获取环境信息成功')
+  // loading.succeed('获取环境信息成功')
   console.log(warmList.join('\n'))
   return {
     os,
@@ -277,3 +287,5 @@ export async function getUniAppInfo(argv: string) {
 
   process.exit(0)
 }
+
+getUniAppInfo('xx')
