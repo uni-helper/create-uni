@@ -12,6 +12,10 @@ import type { UniPresetEnvInfo } from './types'
 export async function getBaseEnvInfo() {
   const s = spinner()
   s.start('正在获取环境信息...')
+  const loadingStopInfo = {
+    message: '获取环境信息完成',
+    code: 0,
+  }
 
   const _envInfo = JSON.parse(await envinfo.run(
     {
@@ -38,7 +42,8 @@ export async function getBaseEnvInfo() {
     baseDependencies = getBaseDependencies(packageInfo)
   }
   else {
-    s.message(red('当前目录未安装uni-app，请在uni-app项目根目录下执行, 以获取依赖信息！！！'))
+    loadingStopInfo.message = red('当前目录未安装uni-app，请在uni-app项目根目录下执行, 以获取依赖信息！！！')
+    loadingStopInfo.code = 1
   }
 
   // 获取vscode扩展信息
@@ -50,12 +55,12 @@ export async function getBaseEnvInfo() {
     volarExtensions = paserExtensionList(getVolarExtensions(extensions))[0] || null
   }
   else {
-    s.message(yellow('未找到vscode, 无法获取插件信息, 请自行补充vscode插件信息'))
+    if (loadingStopInfo.code === 1)
+      loadingStopInfo.message += `\n   ${yellow('未找到vscode, 无法获取插件信息, 请自行补充vscode插件信息')}`
   }
-
   const pm = await whichPm()
 
-  s.stop('获取环境信息完成')
+  s.stop(loadingStopInfo.message, loadingStopInfo.code)
   return {
     os,
     node,
@@ -70,7 +75,7 @@ export async function getBaseEnvInfo() {
 }
 
 export async function getUniAppInfo() {
-  const argv = process.argv[2]
+  const argv = process.argv?.[2]
 
   intro(generateBanner('@uni-create/info - 快速检测 uni-app 环境信息'))
   // 获取环境信息

@@ -7,7 +7,8 @@ async function runCli(cli: string, argv?: string) {
   let fullCustomCommand
 
   if (process.env.NODE_ENV !== 'dev') {
-    fullCustomCommand = 'node ./../create-uni/packages/info/dist/outfile.cjs'
+    // fullCustomCommand = 'node ./../create-uni/packages/info/dist/outfile.cjs'
+    fullCustomCommand = 'node ./../info/dist/outfile.cjs'
   }
   else {
     fullCustomCommand = `${pm === 'npm' ? 'npx' : `${pm} dlx`} ${cli}`
