@@ -1,20 +1,17 @@
-import { instructions } from '@/constants'
-import { onCancel } from '@/question/onCancel'
-import prompts from 'prompts'
-import type { PromptObject } from 'prompts'
+import process from 'node:process'
+import { isCancel, multiselect } from '@clack/prompts'
 
-export async function question(choices: string[], message: string) {
-  const questions = [
-    {
-      name: 'errorIndexList',
-      type: 'multiselect',
-      message,
-      instructions,
-      choices,
-    },
-  ] as unknown as PromptObject<string>[]
-
-  const answers = await prompts(questions, { onCancel })
-
-  return answers
+export default async function question(choices: string[], message: string) {
+  const result = await multiselect({
+    message,
+    options: choices.map(item => ({
+      value: item,
+      label: item,
+    })),
+    required: false,
+  })
+  if (isCancel(result)) {
+    process.exit(0)
+  }
+  return result
 }

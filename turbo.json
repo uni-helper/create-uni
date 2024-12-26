@@ -1,7 +1,23 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
+    "@create-uni/info#build": {
+      "cache": false,
+      "dependsOn": [
+        "@create-uni/shared#build"
+      ]
+    },
+    "create-uni#build": {
+      "cache": false,
+      "dependsOn": [
+        "@create-uni/shared#build"
+      ]
+    },
     "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "build": {
       "cache": false
     }
   }

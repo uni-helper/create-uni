@@ -2,19 +2,19 @@ import { spawnSync } from 'node:child_process'
 import process from 'node:process'
 import { getPkgManager } from './utils'
 // Do installation here
-async function runCli(cli: string) {
+async function runCli(cli: string, argv?: string) {
   const pm = getPkgManager()
   let fullCustomCommand
 
   if (process.env.NODE_ENV !== 'dev') {
-    fullCustomCommand = 'node ./../info/dist/outfile.cjs'
+    fullCustomCommand = 'node ./../create-uni/packages/info/dist/outfile.cjs'
   }
   else {
     fullCustomCommand = `${pm === 'npm' ? 'npx' : `${pm} dlx`} ${cli}`
   }
 
-  const [command, ...args] = fullCustomCommand.split(' ')
-  const { status, error } = spawnSync(command, args, {
+  const [command, ..._args] = fullCustomCommand.split(' ')
+  const { status, error } = spawnSync(command, [..._args, argv ?? ''], {
     stdio: 'inherit',
   })
   if (error) {
@@ -34,6 +34,6 @@ export function installAndInvokeCLI(argv: any) {
   }
 
   if (argv.info) {
-    runCli(cliMap.info)
+    runCli(cliMap.info, argv.info)
   }
 }

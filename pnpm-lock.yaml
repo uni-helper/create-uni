@@ -97,9 +97,6 @@ importers:
       envinfo:
         specifier: ^7.14.0
         version: 7.14.0
-      json5:
-        specifier: ^2.2.3
-        version: 2.2.3
       kolorist:
         specifier: ^1.8.0
         version: 1.8.0

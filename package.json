@@ -27,7 +27,8 @@
     "dev:core": "turbo dev --filter=./packages/core",
     "dev:info": "turbo dev --filter=./packages/info",
     "dev:shared": "turbo dev --filter=./packages/shared",
-    "dev": "turbo dev",
+    "dev": "turbo dev --concurrency 20",
+    "build": "turbo build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit"

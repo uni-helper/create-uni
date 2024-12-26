@@ -1,5 +1,5 @@
 import process from 'node:process'
-import { intro, log, spinner } from '@clack/prompts'
+import { intro, outro, spinner } from '@clack/prompts'
 import { generateBanner } from '@create-uni/shared'
 import envinfo from 'envinfo'
 import { gray, italic, link, red, yellow } from 'kolorist'
@@ -12,7 +12,6 @@ import type { UniPresetEnvInfo } from './types'
 export async function getBaseEnvInfo() {
   const s = spinner()
   s.start('正在获取环境信息...')
-  const warmList = ['']
 
   const _envInfo = JSON.parse(await envinfo.run(
     {
@@ -39,7 +38,7 @@ export async function getBaseEnvInfo() {
     baseDependencies = getBaseDependencies(packageInfo)
   }
   else {
-    s.stop(red('当前目录未安装uni-app，请在uni-app项目根目录下执行, 以获取依赖信息！！！'), 1)
+    s.message(red('当前目录未安装uni-app，请在uni-app项目根目录下执行, 以获取依赖信息！！！'))
   }
 
   // 获取vscode扩展信息
@@ -51,13 +50,12 @@ export async function getBaseEnvInfo() {
     volarExtensions = paserExtensionList(getVolarExtensions(extensions))[0] || null
   }
   else {
-    log.warn(yellow('未找到vscode, 无法获取插件信息, 请自行补充vscode插件信息'))
+    s.message(yellow('未找到vscode, 无法获取插件信息, 请自行补充vscode插件信息'))
   }
 
   const pm = await whichPm()
 
-  // s.stop('获取环境信息成功', 2)
-  console.log(warmList.join('\n'))
+  s.stop('获取环境信息完成')
   return {
     os,
     node,
@@ -71,12 +69,15 @@ export async function getBaseEnvInfo() {
   }
 }
 
-export async function getUniAppInfo(argv: string) {
+export async function getUniAppInfo() {
+  const argv = process.argv[2]
+
   intro(generateBanner('@uni-create/info - 快速检测 uni-app 环境信息'))
   // 获取环境信息
   const baseEnvInfo = await getBaseEnvInfo()
   const errorDependencies = await getErrorDependencies(argv, baseEnvInfo.uniHelperDependencies!)
   const errorExtensions = await getErrorExtensions(argv, baseEnvInfo.uniHelperExtensions!)
+  outro('🎉 检测完成')
 
   const splitter = '----------------------------------------------'
   console.log()
@@ -151,4 +152,4 @@ export async function getUniAppInfo(argv: string) {
   process.exit(0)
 }
 
-getUniAppInfo('xx')
+getUniAppInfo()
