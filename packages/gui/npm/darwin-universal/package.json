@@ -1,0 +1,15 @@
+{
+  "name": "@create-uni/gui-darwin-universal",
+  "version": "0.0.0",
+  "os": [
+    "darwin"
+  ],
+  "license": "MIT",
+  "main": "gui.darwin-universal.node",
+  "files": [
+    "gui.darwin-universal.node"
+  ],
+  "engines": {
+    "node": ">= 10"
+  }
+}

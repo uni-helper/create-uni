@@ -1,12 +1,36 @@
 {
   "name": "@create-uni/gui",
-  "version": "1.0.0",
-  "description": "",
-  "author": "",
-  "license": "ISC",
-  "keywords": [],
+  "version": "0.0.0",
+  "license": "MIT",
   "main": "index.js",
+  "types": "index.d.ts",
+  "napi": {
+    "name": "gui",
+    "triples": {
+      "defaults": false,
+      "additional": [
+        "aarch64-apple-darwin",
+        "aarch64-pc-windows-msvc",
+        "x86_64-apple-darwin",
+        "x86_64-pc-windows-msvc",
+        "i686-pc-windows-msvc",
+        "universal-apple-darwin"
+      ]
+    }
+  },
+  "engines": {
+    "node": ">= 10"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release",
+    "dev": "napi build --platform",
+    "prepublishOnly": "napi prepublish -t npm",
+    "test": "ava",
+    "universal": "napi universal",
+    "version": "napi version"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^2.18.4"
   }
 }
