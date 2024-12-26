@@ -10,6 +10,7 @@
   "funding": "https://afdian.com/a/flippedround",
   "homepage": "https://github.com/uni-helper/create-uni#readme",
   "repository": {
+    "directory": "packages/shared",
     "type": "git",
     "url": "git+https://github.com/uni-helper/create-uni.git"
   },
@@ -37,7 +38,7 @@
   ],
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch --onSuccess 'tsup --dts-only'"
+    "dev": "tsup --watch"
   },
   "dependencies": {
     "kolorist": "^1.8.0"

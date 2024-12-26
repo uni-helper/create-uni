@@ -9,6 +9,7 @@
   "funding": "https://afdian.com/a/flippedround",
   "homepage": "https://github.com/uni-helper/create-uni#readme",
   "repository": {
+    "directory": "packages/info",
     "type": "git",
     "url": "git+https://github.com/uni-helper/create-uni.git"
   },

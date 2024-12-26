@@ -1,0 +1,30 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "@create-uni/info#build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/outfile.cjs"
+      ]
+    },
+    "create-uni#build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/outfile.cjs"
+      ]
+    },
+    "build": {
+      "dependsOn": [
+        "^build"
+      ]
+    }
+  }
+}
