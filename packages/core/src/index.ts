@@ -12,19 +12,18 @@ import {
 import { join, resolve } from 'node:path'
 import process from 'node:process'
 import { intro, outro, spinner } from '@clack/prompts'
+import { generateBanner } from '@create-uni/shared'
 import ejs from 'ejs'
 import JSON5 from 'json5'
 import { green } from 'kolorist'
 import minimist from 'minimist'
+
 import { installAndInvokeCLI } from './installAndInvokeCLI'
 import { question } from './question'
 import askForceOverwrite from './question/file'
-
 import { cancelMesssage } from './question/onCancel'
-
 import {
   dowloadTemplate,
-  generateBanner,
   getPkgManager,
   preOrderDirectoryTraverse,
   printFinish,
@@ -57,7 +56,8 @@ async function init() {
     installAndInvokeCLI(argv)
     return
   }
-  intro(generateBanner())
+
+  intro(generateBanner('Uni-creator - 快速创建 uni-app 项目'))
   const s = spinner()
 
   const projectName = argv._[0]

@@ -1,0 +1,45 @@
+{
+  "name": "@create-uni/shared",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "pnpm@9.9.0",
+  "description": "快速检测你的uni-app项目",
+  "author": "FliPPeDround <flippedround@qq.com>",
+  "license": "MIT",
+  "funding": "https://afdian.com/a/flippedround",
+  "homepage": "https://github.com/uni-helper/create-uni#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uni-helper/create-uni.git"
+  },
+  "bugs": "https://github.com/uni-helper/create-uni/issues",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./*": "./*"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./*"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch --onSuccess 'tsup --dts-only'"
+  },
+  "dependencies": {
+    "kolorist": "^1.8.0"
+  }
+}

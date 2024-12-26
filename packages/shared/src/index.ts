@@ -1,11 +1,18 @@
 import process from 'node:process'
 import { bgLightGreen, bold } from 'kolorist'
 
-export function generateBanner() {
+export function generateBanner(text: string) {
   console.log()
-  const text = 'Uni-creator - 快速创建 uni-app 项目'
+  // 检查是否在支持颜色的终端中运行
+  const supportsColor = () => {
+    if (!process.stdout.isTTY)
+      return false
+    const colorDepth = process.stdout.getColorDepth()
+    const colorterm = process.env.COLORTERM
+    return colorDepth >= 8 || colorterm === 'truecolor' || colorterm === '24bit'
+  }
 
-  if (!process.stdout.isTTY || process.stdout.getColorDepth() <= 8)
+  if (!supportsColor())
     return bgLightGreen(` ${text} `)
 
   let colorText = ''

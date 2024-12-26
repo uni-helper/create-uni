@@ -1,157 +1,20 @@
-import { execSync } from 'node:child_process'
 import process from 'node:process'
-import { log, spinner } from '@clack/prompts'
+import { intro, log, spinner } from '@clack/prompts'
+import { generateBanner } from '@create-uni/shared'
 import envinfo from 'envinfo'
-import JSON5 from 'json5'
-import { gray, italic, link, magenta, yellow } from 'kolorist'
-// import { question } from './question'
+import { gray, italic, link, red, yellow } from 'kolorist'
+import { uniDependenciesMap } from './constants'
+import { getBaseDependencies, getErrorDependencies, getUniHelperDependencies } from './utils/dependencies'
+import { getErrorExtensions, getUniHelperExtensions, getVolarExtensions, getVSCodeExtensions, paserExtensionList } from './utils/extensions'
 import { whichPm } from './utils/whichPm'
+import type { UniPresetEnvInfo } from './types'
 
-const uniDependenciesMap = {
-  '@uni-helper/uni-use': ['@vueuse/core'],
-  '@uni-helper/axios-adapter': ['axios'],
-  '@uni-helper/unocss-preset-uni': ['unocss'],
-  '@uni-helper/eslint-config': ['eslint'],
-  '@uni-helper/vite-plugin-uni-tailwind': ['tailwindcss'],
-} as Record<string, string[]>
-
-function getBaseDependencies(packageInfo: UniPresetEnvInfo['npmPackages']) {
-  const baseDependenciesName = ['vue', 'vite', '@dcloudio/uni-app']
-  const baseDependencies: Record<string, string> = {}
-  for (const name of baseDependenciesName) {
-    const version = packageInfo[name]?.installed
-    if (version)
-      baseDependencies[name] = version
-  }
-  return baseDependencies
-}
-
-function getUniHelperDependencies(packageInfo: UniPresetEnvInfo['npmPackages']) {
-  const uniHelperDependencies: Record<string, string> = {}
-  for (const name in packageInfo) {
-    if (name.includes('@uni-helper'))
-      uniHelperDependencies[name] = packageInfo[name].installed
-  }
-  return uniHelperDependencies
-}
-
-async function getErrorDependencies(
-  argv: string,
-  uniHelperDependencies: Record<string, string>,
-) {
-  if (!uniHelperDependencies)
-    return {}
-  let errorDependencies: Record<string, string> = {}
-
-  if (argv === 'all') {
-    errorDependencies = uniHelperDependencies
-  }
-  else {
-    const uniHelperDependenciesName = Object.keys(uniHelperDependencies)
-    // const { errorIndexList } = await question(uniHelperDependenciesName, '请选择需要反馈的依赖')
-    const errorIndexList = {}
-    for (const index of errorIndexList) {
-      const name = uniHelperDependenciesName[index]
-      errorDependencies[name] = uniHelperDependencies[name]
-    }
-  }
-  return errorDependencies
-}
-
-function getVSCodeExtensions() {
-  try {
-    const list = execSync(
-      `code --list-extensions --show-versions`,
-      {
-        encoding: 'utf-8',
-        stdio: [0, 'pipe', 'ignore'],
-      },
-    )
-    return list.split(/\r?\n/).filter(line => line.trim() !== '')
-  }
-  catch {
-    return null
-  }
-}
-
-function getUniHelperExtensions(extensions: string[]) {
-  return extensions.filter(item => item.toLocaleLowerCase().includes('uni-helper.') || item.toLocaleLowerCase().includes('mrmaoddxxaa.create-uniapp-view'))
-}
-
-function getVolarExtensions(extensions: string[]) {
-  return extensions.filter(item => item.toLocaleLowerCase().includes('vue.volar'))
-}
-
-function paserExtensionList(list: string[]) {
-  return list.map((item) => {
-    const [name_, version] = item.split('@')
-    const [_, name] = name_.split('.')
-    const bugs = `https://github.com/uni-helper/${name}/issues`
-    return { name, version, bugs }
-  })
-}
-
-async function getErrorExtensions(
-  argv: string,
-  uniHelperExtensions: ReturnType<typeof paserExtensionList>,
-) {
-  if (!uniHelperExtensions)
-    return []
-
-  // const choices = uniHelperExtensions.map(item => item.name)
-
-  let errorExtensions: typeof uniHelperExtensions = []
-  if (argv === 'all') {
-    errorExtensions = uniHelperExtensions
-  }
-  else {
-    // const { errorIndexList } = await question(choices, '请选择需要反馈的vscode插件')
-    const errorIndexList = []
-    errorIndexList.forEach((index: number) => {
-      errorExtensions.push({
-        name: uniHelperExtensions[index].name,
-        version: uniHelperExtensions[index].version,
-        bugs: uniHelperExtensions[index].bugs,
-      })
-    })
-  }
-  return errorExtensions
-}
-
-interface UniPresetEnvInfo {
-  System: {
-    OS: string
-  }
-  Binaries: {
-    Node: {
-      version: string
-      path: string
-    }
-  }
-  IDEs: {
-    VSCode: {
-      version: string
-      path: string
-    }
-    WebStorm: {
-      version: string
-      path: string
-    }
-  }
-  npmPackages: {
-    [key: string]: {
-      installed: string
-      wanted: string
-    }
-  }
-}
 export async function getBaseEnvInfo() {
-  // const loading = ora('正在获取环境信息...').start()
   const s = spinner()
   s.start('正在获取环境信息...')
   const warmList = ['']
 
-  const _envInfo = JSON5.parse<UniPresetEnvInfo>(await envinfo.run(
+  const _envInfo = JSON.parse(await envinfo.run(
     {
       npmPackages: '**',
       System: ['OS'],
@@ -162,7 +25,7 @@ export async function getBaseEnvInfo() {
       json: true,
       showNotFound: true,
     },
-  ))
+  )) as UniPresetEnvInfo
   const os = _envInfo.System.OS
   const node = _envInfo.Binaries.Node.version
   const vscode = _envInfo.IDEs.VSCode?.version || null
@@ -176,7 +39,7 @@ export async function getBaseEnvInfo() {
     baseDependencies = getBaseDependencies(packageInfo)
   }
   else {
-    log.error(magenta('当前目录未安装uni-app，请在uni-app项目根目录下执行, 以获取依赖信息！！！'))
+    s.stop(red('当前目录未安装uni-app，请在uni-app项目根目录下执行, 以获取依赖信息！！！'), 1)
   }
 
   // 获取vscode扩展信息
@@ -193,7 +56,7 @@ export async function getBaseEnvInfo() {
 
   const pm = await whichPm()
 
-  // loading.succeed('获取环境信息成功')
+  // s.stop('获取环境信息成功', 2)
   console.log(warmList.join('\n'))
   return {
     os,
@@ -209,6 +72,7 @@ export async function getBaseEnvInfo() {
 }
 
 export async function getUniAppInfo(argv: string) {
+  intro(generateBanner('@uni-create/info - 快速检测 uni-app 环境信息'))
   // 获取环境信息
   const baseEnvInfo = await getBaseEnvInfo()
   const errorDependencies = await getErrorDependencies(argv, baseEnvInfo.uniHelperDependencies!)

@@ -1,6 +1,6 @@
 import { spawnSync } from 'node:child_process'
 import process from 'node:process'
-import { generateBanner, getPkgManager } from './utils'
+import { getPkgManager } from './utils'
 // Do installation here
 async function runCli(cli: string) {
   const pm = getPkgManager()
@@ -14,14 +14,16 @@ async function runCli(cli: string) {
   }
 
   const [command, ...args] = fullCustomCommand.split(' ')
-  const { status } = spawnSync(command, args, {
+  const { status, error } = spawnSync(command, args, {
     stdio: 'inherit',
   })
+  if (error) {
+    throw new Error(`Error executing command: ${error.message}`)
+  }
   process.exit(status ?? 0)
 }
 
 export function installAndInvokeCLI(argv: any) {
-  console.log(generateBanner())
   const cliMap = {
     ui: '@create-uni/gui',
     info: '@create-uni/info',
