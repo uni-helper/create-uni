@@ -24,10 +24,7 @@
     "create"
   ],
   "scripts": {
-    "dev:core": "turbo dev --filter=./packages/core",
-    "dev:info": "turbo dev --filter=./packages/info",
-    "dev:shared": "turbo dev --filter=./packages/shared",
-    "dev": "turbo dev --concurrency 20",
+    "dev": "pnpm -r dev",
     "build": "turbo build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -43,7 +40,6 @@
     "simple-git-hooks": "^2.11.1",
     "terser": "^5.31.6",
     "tsup": "^8.2.4",
-    "turbo": "^2.3.3",
     "typescript": "^5.5.4"
   },
   "simple-git-hooks": {
