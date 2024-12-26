@@ -55,9 +55,15 @@ export async function getBaseEnvInfo() {
     volarExtensions = paserExtensionList(getVolarExtensions(extensions))[0] || null
   }
   else {
-    if (loadingStopInfo.code === 1)
+    if (loadingStopInfo.code === 1) {
       loadingStopInfo.message += `\n   ${yellow('未找到vscode, 无法获取插件信息, 请自行补充vscode插件信息')}`
+    }
+    else {
+      loadingStopInfo.message += `${yellow('未找到vscode, 无法获取插件信息, 请自行补充vscode插件信息')}`
+      loadingStopInfo.code = 2
+    }
   }
+
   const pm = await whichPm()
 
   s.stop(loadingStopInfo.message, loadingStopInfo.code)
