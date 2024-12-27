@@ -31,7 +31,7 @@
     "dev": "turbo run dev",
     "build": "turbo build",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint:fix": "eslint . --fix && cd ./packages/gui && cargo fmt",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

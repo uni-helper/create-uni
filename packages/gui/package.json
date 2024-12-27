@@ -2,8 +2,14 @@
   "name": "@create-uni/gui",
   "version": "0.0.0",
   "license": "MIT",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "./bin/index.cjs",
+  "bin": {
+    "create-gui": "./bin/index.cjs"
+  },
+  "files": [
+    "bin/index.cjs",
+    "index.js"
+  ],
   "napi": {
     "name": "gui",
     "triples": {
