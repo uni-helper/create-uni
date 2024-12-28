@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
@@ -7,13 +9,13 @@ import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
 import React, { useState } from 'react'
 
 const steps = [
-  '项目名称111',
-  'Require TypeScript',
-  'Use Template',
-  'Select Required Plugins',
-  'Select Required Modules',
-  'Require ESLint',
-  'Choose Installation Path',
+  'Project Name',
+  'TypeScript',
+  'Template',
+  'Plugins',
+  'Modules',
+  'ESLint',
+  'Install Path',
   'Confirm',
 ]
 
@@ -52,9 +54,8 @@ export default function CLIInterface() {
     try {
       if ('showDirectoryPicker' in window) {
         // eslint-disable-next-line ts/ban-ts-comment
-        // @ts-expect-error xx
+        // @ts-ignore
         const dirHandle = await window.showDirectoryPicker()
-        console.log('Selected directory:', dirHandle)
         setFormData({ ...formData, installationPath: dirHandle.name })
       }
       else {
@@ -64,7 +65,7 @@ export default function CLIInterface() {
     catch (err) {
       console.error('Error selecting directory:', err)
       // eslint-disable-next-line no-alert
-      const manualPath = prompt('Please enter the installation path manually:')
+      const manualPath = prompt('Enter installation path:')
       if (manualPath) {
         setFormData({ ...formData, installationPath: manualPath })
       }
@@ -93,14 +94,13 @@ export default function CLIInterface() {
       case 0:
         return (
           <div className="space-y-2">
-            <Label htmlFor="projectName" className="text-sm font-medium">项目名称</Label>
+            <Label htmlFor="projectName" className="text-sm font-medium">Project Name</Label>
             <Input
               id="projectName"
               name="projectName"
               value={formData.projectName}
               onChange={handleInputChange}
               className="w-full"
-              placeholder="uni-app"
             />
           </div>
         )
@@ -204,7 +204,7 @@ export default function CLIInterface() {
                 value={formData.installationPath}
                 onChange={handleInputChange}
                 className="flex-grow"
-                placeholder="Enter installation path"
+                placeholder="Enter path"
               />
               <Button
                 onClick={handleDirectoryPicker}
@@ -220,9 +220,9 @@ export default function CLIInterface() {
         return (
           <div className="space-y-4">
             <h2 className="text-lg font-semibold">Confirm Your Choices</h2>
-            <pre className="bg-gray-100 p-4 rounded-md overflow-x-auto text-sm">
-              {JSON.stringify(formData, null, 2)}
-            </pre>
+            <div className="bg-gray-100 p-4 rounded-md overflow-x-auto text-xs">
+              <pre>{JSON.stringify(formData, null, 2)}</pre>
+            </div>
           </div>
         )
       default:
@@ -231,18 +231,18 @@ export default function CLIInterface() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 p-4 sm:p-6 md:p-8">
-      <div className="max-w-md mx-auto">
-        <h1 className="text-2xl font-bold mb-6">Uni Creator</h1>
+    <div className="bg-white text-gray-900 h-[667px] w-[375px] overflow-y-auto">
+      <div className="p-4">
+        <h1 className="text-xl font-bold mb-4">Project Setup</h1>
         <div className="mb-4">
           <div className="h-1 bg-gray-200 rounded-full">
             <div
-              className="h-full bg-primary rounded-full transition-all duration-300 ease-in-out"
+              className="h-full bg-blue-500 rounded-full transition-all duration-300 ease-in-out"
               style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
             >
             </div>
           </div>
-          <div className="text-sm mt-2 text-gray-600">
+          <div className="text-xs mt-1 text-gray-600">
             Step
             {' '}
             {currentStep + 1}
@@ -255,38 +255,41 @@ export default function CLIInterface() {
             {steps[currentStep]}
           </div>
         </div>
-        <div className="bg-white border border-gray-200 p-6 rounded-lg shadow-sm">
-          <div className="mb-6">{renderStep()}</div>
-          <div className="flex justify-between mt-6">
-            <Button
-              onClick={handleBack}
-              disabled={currentStep === 0}
-              variant="outline"
-              size="sm"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back
-            </Button>
-            {currentStep < steps.length - 1
-              ? (
-                  <Button
-                    onClick={handleNext}
-                    size="sm"
-                  >
-                    Next
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                )
-              : (
-                  <Button
-                    onClick={handleConfirm}
-                    size="sm"
-                  >
-                    Confirm
-                    <Check className="w-4 h-4 ml-2" />
-                  </Button>
-                )}
-          </div>
+        <div className="bg-white border border-gray-200 p-4 rounded-lg shadow-sm mb-4">
+          <div className="mb-4">{renderStep()}</div>
+        </div>
+        <div className="flex justify-between">
+          <Button
+            onClick={handleBack}
+            disabled={currentStep === 0}
+            variant="outline"
+            size="sm"
+            className="w-[72px]"
+          >
+            <ArrowLeft className="w-4 h-4 mr-1" />
+            Back
+          </Button>
+          {currentStep < steps.length - 1
+            ? (
+                <Button
+                  onClick={handleNext}
+                  size="sm"
+                  className="w-[72px]"
+                >
+                  Next
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </Button>
+              )
+            : (
+                <Button
+                  onClick={handleConfirm}
+                  size="sm"
+                  className="w-[72px]"
+                >
+                  Confirm
+                  <Check className="w-4 h-4 ml-1" />
+                </Button>
+              )}
         </div>
       </div>
     </div>

@@ -1,0 +1,5 @@
+{
+  "watch": ["src"],
+  "ext": "rs",
+  "exec": "pnpm run build:debug"
+}

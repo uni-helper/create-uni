@@ -26,26 +26,32 @@
   "scripts": {
     "dev:shared": "turbo dev --filter=./packages/shared",
     "dev:core": "turbo dev --filter=./packages/core",
+    "dev:gui": "turbo dev --filter=./packages/gui",
     "dev:info": "turbo dev --filter=./packages/info",
-    "prepare:type": "turbo prepare:type --filter='./packages/*'",
     "dev": "turbo run dev",
     "build": "turbo build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix && cd ./packages/gui && cargo fmt",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "postinstall": "node scripts/link.cjs"
   },
   "devDependencies": {
     "@antfu/ni": "^0.23.0",
     "@types/node": "^18.19.50",
     "@uni-helper/eslint-config": "^0.2.0",
     "bumpp": "^9.5.2",
+    "consola": "^3.3.3",
+    "cross-env": "^7.0.3",
     "eslint": "^9.10.0",
     "lint-staged": "^15.2.10",
+    "nodemon": "^3.1.9",
     "simple-git-hooks": "^2.11.1",
     "terser": "^5.31.6",
     "tsup": "^8.2.4",
     "turbo": "^2.3.3",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "unbuild": "^3.1.0",
+    "unplugin-preprocessor-directives": "^1.0.3"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

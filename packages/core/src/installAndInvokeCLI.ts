@@ -5,15 +5,12 @@ import { getPkgManager } from './utils'
 async function runCli(cli: string, argv?: string) {
   const pm = getPkgManager()
   let fullCustomCommand
-
-  if (process.env.NODE_ENV !== 'dev') {
-    // fullCustomCommand = 'node ./../create-uni/packages/info/dist/outfile.cjs'
-    fullCustomCommand = 'node ./../info/dist/outfile.cjs'
-  }
-  else {
-    fullCustomCommand = `${pm === 'npm' ? 'npx' : `${pm} dlx`} ${cli}`
-  }
-
+  // #if DEV
+  fullCustomCommand = 'pnpm create-uni-info'
+  // #endif
+  // #if !DEV
+  fullCustomCommand = `${pm === 'npm' ? 'npx' : `${pm} dlx`} ${cli}`
+  // #endif
   const [command, ..._args] = fullCustomCommand.split(' ')
   const { status, error } = spawnSync(command, [..._args, argv ?? ''], {
     stdio: 'inherit',

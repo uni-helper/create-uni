@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "./bin/index.cjs",
   "bin": {
-    "create-gui": "./bin/index.cjs"
+    "create-uni-gui": "./bin/index.cjs"
   },
   "files": [
     "bin/index.cjs",
@@ -30,7 +30,8 @@
   "scripts": {
     "artifacts": "napi artifacts",
     "build": "napi build --platform --release",
-    "dev": "napi build --platform",
+    "build:debug": "napi build --platform",
+    "dev": "nodemon",
     "prepublishOnly": "napi prepublish -t npm",
     "test": "ava",
     "universal": "napi universal",
