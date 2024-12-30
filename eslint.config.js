@@ -6,6 +6,6 @@ export default uni({
   },
   ignores: [
     'dist/outfile.cjs',
-    'packages/gui/index.js',
+    'packages/gui',
   ],
 })

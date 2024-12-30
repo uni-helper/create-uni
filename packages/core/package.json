@@ -33,7 +33,7 @@
   ],
   "scripts": {
     "build": "tsup",
-    "dev": "cross-env DEV=true tsup --watch",
+    "dev": "cross-env CREATE_UNI_DEV=true tsup --watch",
     "prepublishOnly": "nr build",
     "release": "bumpp",
     "typecheck": "tsc --noEmit",

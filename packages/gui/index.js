@@ -310,7 +310,6 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { createWebview, open } = nativeBinding
+const { createWebview } = nativeBinding
 
 module.exports.createWebview = createWebview
-module.exports.open = open
