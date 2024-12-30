@@ -25,7 +25,7 @@
   ],
   "sideEffects": false,
   "bin": {
-    "create-uni": "dist/outfile.js"
+    "create-uni": "dist/outfile.cjs"
   },
   "files": [
     "dist/outfile.cjs",

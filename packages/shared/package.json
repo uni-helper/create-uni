@@ -16,31 +16,20 @@
   },
   "bugs": "https://github.com/uni-helper/create-uni/issues",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
+    ".": "./src/index.ts",
     "./*": "./*"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.ts",
   "typesVersions": {
     "*": {
       "*": [
-        "./dist/*",
         "./*"
       ]
     }
   },
   "files": [
-    "dist"
+    "src"
   ],
-  "scripts": {
-    "build": "unbuild",
-    "dev": "unbuild --stub"
-  },
   "dependencies": {
     "kolorist": "^1.8.0"
   }

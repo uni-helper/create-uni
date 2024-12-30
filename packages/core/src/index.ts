@@ -18,6 +18,7 @@ import JSON5 from 'json5'
 import { green } from 'kolorist'
 import minimist from 'minimist'
 
+import { helpMessage } from './constants'
 import { installAndInvokeCLI } from './installAndInvokeCLI'
 import { question } from './question'
 import askForceOverwrite from './question/file'
@@ -48,9 +49,17 @@ async function init() {
       moduleList: ['m'],
       UIName: ['ui', 'u'],
       needsEslint: ['eslint', 'e'],
+      help: ['h', 'help'],
+      info: ['info', 'i'],
+      gui: ['gui', 'g'],
     },
     string: ['_'],
   })
+
+  if (argv.help) {
+    console.log(helpMessage)
+    return
+  }
 
   if (argv.info || argv.gui) {
     installAndInvokeCLI(argv)

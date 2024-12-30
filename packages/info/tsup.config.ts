@@ -5,9 +5,9 @@ export default ({ watch }: { watch: boolean }) => (
     entry: {
       outfile: 'src/index.ts',
     },
-    format: 'esm',
+    format: 'cjs',
     platform: 'node',
-    target: 'node18',
+    target: 'node14',
     minify: watch ? false : 'terser',
     clean: true,
   })
