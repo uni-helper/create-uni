@@ -6,6 +6,6 @@
     "@types/node": "^22.10.2",
     "@vue/tsconfig": "^0.7.0",
     "typescript": "^5.7.2",
-    "vue-tsc": "^2.1.10"
+    "vue-tsc": "^2.2.0"
   }
 }
