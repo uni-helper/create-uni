@@ -1,11 +1,11 @@
+import type { spinner } from '@clack/prompts'
+import type { UnCustomTempValue } from '../question/template/type'
 import { exec } from 'node:child_process'
 import { promises as fs } from 'node:fs'
 import { join } from 'node:path'
 import process from 'node:process'
 import { bold } from 'kolorist'
-import type { spinner } from '@clack/prompts'
 import { replaceProjectName } from './setPackageName'
-import type { UnCustomTempValue } from '../question/template/type'
 
 async function removeGitFolder(localPath: string): Promise<void> {
   const gitFolderPath = join(localPath, '.git')

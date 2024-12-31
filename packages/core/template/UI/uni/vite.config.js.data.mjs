@@ -15,15 +15,15 @@ export default function getData({ oldData }) {
     ...oldData,
     plugins: oldData.plugins.some(plugin => plugin.id === 'autoImport')
       ? oldData.plugins.flatMap(plugin =>
-        plugin.id === 'autoImport'
-          ? [
-              { id: plugin.id, importer: plugin.importer },
-              autoImportUniUiPlugin,
-            ]
-          : plugin,
-      )
+          plugin.id === 'autoImport'
+            ? [
+                { id: plugin.id, importer: plugin.importer },
+                autoImportUniUiPlugin,
+              ]
+            : plugin,
+        )
       : oldData.plugins.flatMap(plugin =>
-        plugin.id === 'uni' ? [autoImportUniUiPlugin, plugin] : plugin,
-      ),
+          plugin.id === 'uni' ? [autoImportUniUiPlugin, plugin] : plugin,
+        ),
   }
 }

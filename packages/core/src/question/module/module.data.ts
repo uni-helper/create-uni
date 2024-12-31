@@ -1,5 +1,5 @@
-import { trueColor as rgb } from 'kolorist'
 import type { Options } from '../type'
+import { trueColor as rgb } from 'kolorist'
 
 export default [
   {

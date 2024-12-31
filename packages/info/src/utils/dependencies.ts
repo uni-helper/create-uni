@@ -1,5 +1,5 @@
-import question from '../question'
 import type { UniPresetEnvInfo } from '../types'
+import question from '../question'
 
 export function getBaseDependencies(packageInfo: UniPresetEnvInfo['npmPackages']) {
   const baseDependenciesName = ['vue', 'vite', '@dcloudio/uni-app']

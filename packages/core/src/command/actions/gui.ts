@@ -1,3 +1,6 @@
+import moduleData from '@/question/module/module.data'
+import pluginData from '@/question/plugin/plugin.data'
+import { templateList } from '@/question/template/template.data'
 import { sync } from 'cross-spawn'
 import { composeCommand } from '../composeCommand'
 
@@ -13,8 +16,15 @@ export function actionGuiCLI() {
   const fullCustomCommand = composeCommand('@create-uni/gui')
   // #endif
 
+  const input = JSON.stringify({
+    templateList,
+    plugin: pluginData,
+    module: moduleData,
+  })
+
   const [command, ..._args] = fullCustomCommand.split(' ')
   const { error, stdout } = sync(command, [..._args], {
+    input,
     stdio: 'pipe',
   })
 

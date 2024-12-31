@@ -1,5 +1,5 @@
-import { green, lightMagenta, link } from 'kolorist'
 import type { TemplateList } from './type'
+import { green, lightMagenta, link } from 'kolorist'
 
 export const templateList: TemplateList[] = [
   {

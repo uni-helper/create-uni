@@ -12,10 +12,10 @@ export default function getData({ oldData }) {
     ...oldData,
     plugins: oldData.plugins.some(plugin => plugin.id === 'autoImport')
       ? oldData.plugins.flatMap(plugin =>
-        plugin.id === 'autoImport' ? [{ id: plugin.id, importer: plugin.importer }, autoImportUvUiPlugin] : plugin,
-      )
+          plugin.id === 'autoImport' ? [{ id: plugin.id, importer: plugin.importer }, autoImportUvUiPlugin] : plugin,
+        )
       : oldData.plugins.flatMap(plugin =>
-        plugin.id === 'uni' ? [autoImportUvUiPlugin, plugin] : plugin,
-      ),
+          plugin.id === 'uni' ? [autoImportUvUiPlugin, plugin] : plugin,
+        ),
   }
 }

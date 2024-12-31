@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import type { UniPresetEnvInfo } from './types'
 import process from 'node:process'
 import { intro, outro, spinner } from '@clack/prompts'
 import { generateBanner } from '@create-uni/shared'
@@ -9,7 +10,6 @@ import { uniDependenciesMap } from './constants'
 import { getBaseDependencies, getErrorDependencies, getUniHelperDependencies } from './utils/dependencies'
 import { getErrorExtensions, getUniHelperExtensions, getVolarExtensions, getVSCodeExtensions, paserExtensionList } from './utils/extensions'
 import { whichPm } from './utils/whichPm'
-import type { UniPresetEnvInfo } from './types'
 
 export async function getBaseEnvInfo() {
   const s = spinner()

@@ -25,6 +25,7 @@ const plugins = ['Plugin 1', 'Plugin 2', 'Plugin 3', 'Plugin 4']
 const modules = ['Module 1', 'Module 2', 'Module 3', 'Module 4']
 
 export default function CLIInterface() {
+  console.log(window.create_uni_data)
   const [currentStep, setCurrentStep] = useState(0)
   const [formData, setFormData] = useState({
     projectName: '',

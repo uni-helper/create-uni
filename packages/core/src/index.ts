@@ -17,8 +17,8 @@ import { generateBanner } from '@create-uni/shared'
 import ejs from 'ejs'
 import JSON5 from 'json5'
 import { green } from 'kolorist'
-
 import minimist from 'minimist'
+
 import { commandAction } from './command'
 import { question } from './question'
 import askForceOverwrite from './question/file'

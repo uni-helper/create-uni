@@ -1,13 +1,13 @@
+import type { TemplateValue } from './../question/template/type'
+
 import process from 'node:process'
-
 import { outro } from '@clack/prompts'
-import { bold, gray } from 'kolorist'
 
+import { bold, gray } from 'kolorist'
 import MODULES from '../question/module/module.data'
 import PLUGINS from '../question/plugin/plugin.data'
 import { templateList } from '../question/template/template.data'
 import { UIList } from '../question/ui/ui.data'
-import type { TemplateValue } from './../question/template/type'
 
 type ArgvBase = string | null
 type ArgvList = ArgvBase | string[]

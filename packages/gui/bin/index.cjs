@@ -3,4 +3,3 @@
 const { createWebview } = require('./../index.js')
 
 createWebview()
-// open()

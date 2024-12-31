@@ -1,3 +1,4 @@
+import type { TemplateValue } from './template/type'
 import { group } from '@clack/prompts'
 import { needsEslint, needsTypeScript } from './choices'
 import askForceOverwrite from './file'
@@ -7,7 +8,6 @@ import { printCancel } from './onCancel'
 import pluginList from './plugin'
 import templateType from './template'
 import UIName from './ui'
-import type { TemplateValue } from './template/type'
 
 export interface Answers {
   projectName?: string

@@ -11,7 +11,7 @@ import 'core-js/actual/promise/finally';`,
     entries: oldData.entries.some(item => item.id === 'uniPromises')
       ? oldData.entries
       : oldData.entries.flatMap(entry =>
-        entry.id === 'vue' ? [entry, uniUseEntry] : entry,
-      ),
+          entry.id === 'vue' ? [entry, uniUseEntry] : entry,
+        ),
   }
 }

@@ -1,5 +1,5 @@
-import { green, trueColor as rgb } from 'kolorist'
 import type { Options } from '../type'
+import { green, trueColor as rgb } from 'kolorist'
 
 export const UIList: Options[] = [
   {

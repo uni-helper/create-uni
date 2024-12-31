@@ -1,9 +1,9 @@
+import type { spinner } from '@clack/prompts'
+import type { getPkgManager } from './getPkgManager'
 import { relative } from 'node:path'
 import { note } from '@clack/prompts'
 import { dim, lightGreen } from 'kolorist'
-import type { spinner } from '@clack/prompts'
 import { getCommand } from './getCommand'
-import type { getPkgManager } from './getPkgManager'
 
 export function printFinish(
   root: string,

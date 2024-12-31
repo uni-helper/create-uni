@@ -1,8 +1,8 @@
+import type { BaseTemplateListWithList, TemplateValue } from './type'
 import process from 'node:process'
 import { cancel, isCancel, select } from '@clack/prompts'
 import { cancelMesssage } from '../onCancel'
 import { templateList } from './template.data'
-import type { BaseTemplateListWithList, TemplateValue } from './type'
 
 export default async (): Promise<TemplateValue> => {
   const templateType = await select({
@@ -12,11 +12,11 @@ export default async (): Promise<TemplateValue> => {
         label: '自定义模板',
         value: 'custom',
       },
-      ...templateList.map((item => ({
+      ...templateList.map(item => ({
         label: `${item.label}${item.list ? ' ▼' : ''}`,
         value: item.value,
         hint: item.description,
-      }))),
+      })),
     ],
     initialValue: 'custom',
   })
@@ -38,11 +38,11 @@ export default async (): Promise<TemplateValue> => {
   if (group) {
     const template = await select({
       message: `请选择 ${templateType} 模板`,
-      options: group.list.map((item => ({
+      options: group.list.map(item => ({
         label: item.label,
         value: item.value,
         hint: item.description,
-      }))),
+      })),
     })
     if (isCancel(template)) {
       cancel(cancelMesssage)
