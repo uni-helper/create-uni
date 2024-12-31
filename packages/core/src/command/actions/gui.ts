@@ -1,3 +1,4 @@
+import process from 'node:process'
 import moduleData from '@/question/module/module.data'
 import pluginData from '@/question/plugin/plugin.data'
 import { templateList } from '@/question/template/template.data'
@@ -33,4 +34,6 @@ export function actionGuiCLI() {
 
   if (stdout.length > 0)
     console.log(stdout.toString())
+
+  process.exit(0)
 }
