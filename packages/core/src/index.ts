@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import type { TemplateValue, UnCustomTempValue } from './question/template/type'
 import {
   existsSync,
   mkdirSync,
@@ -16,10 +17,9 @@ import { generateBanner } from '@create-uni/shared'
 import ejs from 'ejs'
 import JSON5 from 'json5'
 import { green } from 'kolorist'
-import minimist from 'minimist'
 
-import { helpMessage } from './constants'
-import { installAndInvokeCLI } from './installAndInvokeCLI'
+import minimist from 'minimist'
+import { commandAction } from './command'
 import { question } from './question'
 import askForceOverwrite from './question/file'
 import { cancelMesssage } from './question/onCancel'
@@ -38,7 +38,6 @@ import {
   validateTemplateType,
   validateUIName,
 } from './utils/validateArgv'
-import type { TemplateValue, UnCustomTempValue } from './question/template/type'
 
 async function init() {
   const argv = minimist(process.argv.slice(2), {
@@ -56,15 +55,7 @@ async function init() {
     string: ['_'],
   })
 
-  if (argv.help) {
-    console.log(helpMessage)
-    return
-  }
-
-  if (argv.info || argv.gui) {
-    installAndInvokeCLI(argv)
-    return
-  }
+  commandAction(argv)
 
   intro(generateBanner('Uni-creator - 快速创建 uni-app 项目'))
   const s = spinner()

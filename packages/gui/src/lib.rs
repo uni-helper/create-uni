@@ -78,7 +78,6 @@ pub fn create_webview() -> Result<()> {
 
 
     match event {
-      Event::NewEvents(StartCause::Init) => println!("Wry application started!"),
       Event::WindowEvent {
         event: WindowEvent::CloseRequested,
         ..
@@ -89,10 +88,7 @@ pub fn create_webview() -> Result<()> {
       }
 
       Event::UserEvent(e) => match e {
-        UserEvent::FilePath => {
-          println!("File path selected");
-          open()
-        },
+        UserEvent::FilePath => open(),
         UserEvent::CloseWindow => { /* handled above */ }
       },
       _ => (),

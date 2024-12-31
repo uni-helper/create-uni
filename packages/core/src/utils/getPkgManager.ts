@@ -10,8 +10,9 @@ export function pkgFromUserAgent(userAgent: string | undefined) {
     return undefined
   const pkgSpec = userAgent.split(' ')[0]
   const pkgSpecArr = pkgSpec.split('/')
+
   return {
-    name: pkgSpecArr[0],
+    name: pkgSpecArr[0] || 'npm',
     version: pkgSpecArr[1],
   }
 }
