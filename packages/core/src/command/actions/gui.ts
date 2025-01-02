@@ -24,7 +24,7 @@ export function actionGuiCLI() {
   })
 
   const [command, ..._args] = fullCustomCommand.split(' ')
-  const { error, stdout } = sync(command, [..._args], {
+  const { error, stdout, stderr } = sync(command, [..._args], {
     input,
     stdio: 'pipe',
   })
@@ -34,6 +34,8 @@ export function actionGuiCLI() {
 
   if (stdout.length > 0)
     console.log(stdout.toString())
+  if (stderr.length > 0)
+    console.error(stderr.toString())
 
   process.exit(0)
 }

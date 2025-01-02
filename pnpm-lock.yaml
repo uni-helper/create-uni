@@ -174,6 +174,9 @@ importers:
       vite:
         specifier: ^6.0.4
         version: 6.0.6(@types/node@18.19.68)(jiti@2.4.2)(terser@5.37.0)(yaml@2.6.1)
+      vite-plugin-singlefile:
+        specifier: ^2.1.0
+        version: 2.1.0(rollup@4.29.1)(vite@6.0.6(@types/node@18.19.68)(jiti@2.4.2)(terser@5.37.0)(yaml@2.6.1))
 
 packages:
 
@@ -2880,6 +2883,13 @@ packages:
 
   validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}
+
+  vite-plugin-singlefile@2.1.0:
+    resolution: {integrity: sha512-7tJo+UgZABlKpY/nubth/wxJ4+pUGREPnEwNOknxwl2MM0zTvF14KTU4Ln1lc140gjLLV5mjDrvuoquU7OZqCg==}
+    engines: {node: '>18.0.0'}
+    peerDependencies:
+      rollup: ^4.28.1
+      vite: ^5.4.11 || ^6.0.0
 
   vite@6.0.6:
     resolution: {integrity: sha512-NSjmUuckPmDU18bHz7QZ+bTYhRR0iA72cs2QAxCqDpafJ0S6qetco0LB3WW2OxlMHS0JmAv+yZ/R3uPmMyGTjQ==}
@@ -5803,6 +5813,12 @@ snapshots:
     dependencies:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
+
+  vite-plugin-singlefile@2.1.0(rollup@4.29.1)(vite@6.0.6(@types/node@18.19.68)(jiti@2.4.2)(terser@5.37.0)(yaml@2.6.1)):
+    dependencies:
+      micromatch: 4.0.8
+      rollup: 4.29.1
+      vite: 6.0.6(@types/node@18.19.68)(jiti@2.4.2)(terser@5.37.0)(yaml@2.6.1)
 
   vite@6.0.6(@types/node@18.19.68)(jiti@2.4.2)(terser@5.37.0)(yaml@2.6.1):
     dependencies:

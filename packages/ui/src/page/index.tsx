@@ -8,7 +8,7 @@ import { ArrowLeft, ArrowRight, Check, Moon, Sun } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 
 const steps = [
-  'Project Name',
+  '项目名称',
   'TypeScript',
   'Template',
   'Plugins',
@@ -80,17 +80,22 @@ export default function CLIInterface() {
     setDarkMode(!darkMode)
   }
 
+  const StepLabel = (index: number) => (
+    <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{steps[index]}</Label>
+  )
+
   const renderStep = () => {
     switch (currentStep) {
       case 0:
         return (
           <div className="space-y-2">
-            <Label htmlFor="projectName" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Project Name</Label>
+            {StepLabel(currentStep)}
             <Input
               id="projectName"
               name="projectName"
               value={formData.projectName}
               onChange={handleInputChange}
+              placeholder="uni-app"
               className="w-full bg-zinc-50 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 focus:border-zinc-500 dark:focus:border-zinc-400 focus:ring-zinc-500 dark:focus:ring-zinc-400"
             />
           </div>
@@ -102,7 +107,8 @@ export default function CLIInterface() {
             onValueChange={value => handleRadioChange(value, 'requireTypeScript')}
           >
             <div className="space-y-2">
-              <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Require TypeScript</Label>
+              {StepLabel(currentStep)}
+
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="yes" id="typescript-yes" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400" />
                 <Label htmlFor="typescript-yes" className="text-zinc-600 dark:text-zinc-400">Yes</Label>
@@ -121,7 +127,8 @@ export default function CLIInterface() {
             onValueChange={value => handleRadioChange(value, 'useTemplate')}
           >
             <div className="space-y-2">
-              <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Use Template</Label>
+              {StepLabel(currentStep)}
+
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="yes" id="template-yes" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400" />
                 <Label htmlFor="template-yes" className="text-zinc-600 dark:text-zinc-400">Yes</Label>
@@ -136,7 +143,8 @@ export default function CLIInterface() {
       case 3:
         return (
           <div className="space-y-2">
-            <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Select Required Plugins</Label>
+            {StepLabel(currentStep)}
+
             {plugins.map(plugin => (
               <div key={plugin} className="flex items-center space-x-2">
                 <Checkbox
@@ -153,7 +161,8 @@ export default function CLIInterface() {
       case 4:
         return (
           <div className="space-y-2">
-            <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Select Required Modules</Label>
+            {StepLabel(currentStep)}
+
             {modules.map(module => (
               <div key={module} className="flex items-center space-x-2">
                 <Checkbox
@@ -174,7 +183,8 @@ export default function CLIInterface() {
             onValueChange={value => handleRadioChange(value, 'requireESLint')}
           >
             <div className="space-y-2">
-              <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Require ESLint</Label>
+              {StepLabel(currentStep)}
+
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="yes" id="eslint-yes" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400" />
                 <Label htmlFor="eslint-yes" className="text-zinc-600 dark:text-zinc-400">Yes</Label>
@@ -189,7 +199,8 @@ export default function CLIInterface() {
       case 6:
         return (
           <div className="space-y-2">
-            <Label htmlFor="installationPath" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Choose Installation Path</Label>
+            {StepLabel(currentStep)}
+
             <div className="flex items-center space-x-2">
               <Input
                 id="installationPath"
@@ -288,7 +299,7 @@ export default function CLIInterface() {
               )}
         </div>
       </div>
-      <footer className="mt-auto p-4 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-xs rounded-xl">
+      <footer className="mt-auto p-4 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-xs rounded-t-xl">
         <div className="flex justify-between items-center">
           <div>
             <p>© 2025 Designed by FliPPeDround. </p>

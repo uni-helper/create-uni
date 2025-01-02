@@ -1,13 +1,26 @@
-import path from 'node:path'
+import { resolve } from 'node:path'
 import preact from '@preact/preset-vite'
 import { defineConfig } from 'vite'
+import { viteSingleFile } from 'vite-plugin-singlefile'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': resolve(__dirname, './src'),
     },
   },
-  plugins: [preact()],
+  plugins: [
+    preact(),
+    viteSingleFile(),
+  ],
+  build: {
+    outDir: './../gui/src/ui',
+    emptyOutDir: false,
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+      },
+    },
+  },
 })

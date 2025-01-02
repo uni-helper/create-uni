@@ -21,6 +21,11 @@
         "dist/outfile.cjs"
       ]
     },
+    "@create-uni/gui#build": {
+      "dependsOn": [
+        "@create-uni/ui#build"
+      ]
+    },
     "build": {
       "dependsOn": [
         "^build"

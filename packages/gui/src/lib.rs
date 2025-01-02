@@ -10,7 +10,11 @@ use tao::{
   event_loop::{ControlFlow, EventLoopBuilder},
   window::WindowBuilder,
 };
-use wry::{http::Request, WebViewBuilder};
+use wry::{
+  dpi::LogicalSize,
+  http::Request,
+  WebViewBuilder
+};
 
 use rfd::FileDialog;
 use std::env;
@@ -57,10 +61,17 @@ pub fn create_webview() -> Result<()> {
       }
   }
 
-
+  const WINDOW_HEIGHT: u32 = 728;
+  const WINDOW_WIDTH: u32 = 450;
 
   let event_loop = EventLoopBuilder::<UserEvent>::with_user_event().build();
-  let window = WindowBuilder::new().build(&event_loop).unwrap();
+  let window = WindowBuilder::new()
+    .with_inner_size(LogicalSize {
+      width: WINDOW_WIDTH,
+      height: WINDOW_HEIGHT,
+    })  
+    .build(&event_loop)
+    .unwrap();
 
   let proxy = event_loop.create_proxy();
   let handler = move |req: Request<String>| {
@@ -75,12 +86,24 @@ pub fn create_webview() -> Result<()> {
     }
   };
 
-  let _webview = WebViewBuilder::new()
+  #[cfg(debug_assertions)] 
+    let _webview = WebViewBuilder::new()
     .with_url("http://localhost:5173/")
     .with_ipc_handler(handler)
     .with_initialization_script(&input)
     .build(&window)
     .unwrap();
+  
+
+  const HTML_CONTENT: &str = include_str!("ui/index.html");
+  #[cfg(not(debug_assertions))] 
+    let _webview = WebViewBuilder::new()
+      .with_html(HTML_CONTENT)
+      .with_ipc_handler(handler)
+      .with_initialization_script(&input)
+      .build(&window)
+      .expect("Failed to build WebView in release mode");
+  
 
   event_loop.run(move |event, _, control_flow| {
     *control_flow = ControlFlow::Wait;
