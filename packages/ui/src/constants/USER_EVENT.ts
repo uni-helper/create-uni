@@ -5,4 +5,6 @@ export enum USER_EVENT {
   CLOSE = 'close',
   /** 最小化 */
   MINIMIZE = 'minimize',
+  /** 拖动窗口 */
+  DRAG_WINDOW = 'drag_window',
 }

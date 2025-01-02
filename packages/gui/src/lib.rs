@@ -24,27 +24,7 @@ use std::io::{self, Read};
 enum UserEvent {
   FilePath,
   CloseWindow,
-}
-
-fn open() {
-  // 获取当前工作目录
-  let current_dir: PathBuf = env::current_dir().expect("无法获取当前工作目录");
-
-  // 弹出文件目录选择框
-  let folder_path = FileDialog::new()
-    .set_title("选择一个目录")
-    .set_directory(&current_dir)
-    .pick_folder();
-
-  // 检查是否选择了目录
-  match folder_path {
-    Some(path) => {
-      println!("选择的目录路径: {:?}", path);
-    }
-    None => {
-      println!("没有选择目录");
-    }
-  }
+  DragWindow,
 }
 
 #[napi]
@@ -85,12 +65,15 @@ pub fn create_webview() -> Result<()> {
         println!("File path selected");
         let _ = proxy.send_event(UserEvent::FilePath);
       }
+      "drag_window" => {
+        let _ = proxy.send_event(UserEvent::DragWindow);
+      }
       _ => {}
     }
   };
 
   #[cfg(debug_assertions)] 
-    let _webview = WebViewBuilder::new()
+  let webview = WebViewBuilder::new()
     .with_url("http://localhost:5173/")
     .with_ipc_handler(handler)
     .with_initialization_script(&input)
@@ -100,12 +83,12 @@ pub fn create_webview() -> Result<()> {
 
   const HTML_CONTENT: &str = include_str!("ui/index.html");
   #[cfg(not(debug_assertions))] 
-    let _webview = WebViewBuilder::new()
-      .with_html(HTML_CONTENT)
-      .with_ipc_handler(handler)
-      .with_initialization_script(&input)
-      .build(&window)
-      .expect("Failed to build WebView in release mode");
+  let webview = WebViewBuilder::new()
+    .with_html(HTML_CONTENT)
+    .with_ipc_handler(handler)
+    .with_initialization_script(&input)
+    .build(&window)
+    .expect("Failed to build WebView in release mode");
   
 
   event_loop.run(move |event, _, control_flow| {
@@ -122,7 +105,37 @@ pub fn create_webview() -> Result<()> {
       }
 
       Event::UserEvent(e) => match e {
-        UserEvent::FilePath => open(),
+        UserEvent::FilePath => {
+          let current_dir: PathBuf = env::current_dir().expect("无法获取当前工作目录");
+
+          // 弹出文件目录选择框
+          let folder_path = FileDialog::new()
+            .set_title("选择一个目录")
+            .set_directory(&current_dir)
+            .pick_folder();
+        
+          // 检查是否选择了目录
+          match folder_path {
+            Some(path) => {
+              println!("选择的目录路径: {:?}", path);
+              let script = format!(
+                  r#"
+                  window.dispatchEvent(
+                    new CustomEvent('pathEvent', {{
+                      detail: {{ path: '{}' }} 
+                  }})
+                  );
+                  "#,
+                  path.to_str().unwrap_or("")
+              );
+              webview.evaluate_script(&script).unwrap();
+            }
+            None => {
+              println!("没有选择目录");
+            }
+          }
+        },
+        UserEvent::DragWindow => window.drag_window().unwrap(),
         UserEvent::CloseWindow => { /* handled above */ }
       },
       _ => (),

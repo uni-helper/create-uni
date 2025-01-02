@@ -33,6 +33,11 @@ export default function CLIInterface() {
     installationPath: '',
   })
 
+  window.addEventListener('pathEvent', (event) => {
+    const message = event.detail.path
+    setFormData({ ...formData, installationPath: message })
+  })
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }

@@ -4,6 +4,10 @@ import { Footer } from './components/footer'
 import { Header } from './components/header'
 import './style.css'
 
+document.addEventListener('contextmenu', (event) => {
+  event.preventDefault()
+})
+
 export function App() {
   return (
     <div class="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 h-[100vh] overflow-y-auto transition-colors duration-200 flex flex-col">
