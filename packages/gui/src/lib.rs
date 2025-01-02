@@ -61,15 +61,18 @@ pub fn create_webview() -> Result<()> {
       }
   }
 
-  const WINDOW_HEIGHT: u32 = 728;
-  const WINDOW_WIDTH: u32 = 450;
+  const WINDOW_WIDTH: u32 = 375;
+  const WINDOW_HEIGHT: u32 = 667;
 
   let event_loop = EventLoopBuilder::<UserEvent>::with_user_event().build();
   let window = WindowBuilder::new()
     .with_inner_size(LogicalSize {
       width: WINDOW_WIDTH,
       height: WINDOW_HEIGHT,
-    })  
+    })
+    .with_title("Uni Creator")
+    .with_resizable(false)
+    .with_decorations(false)
     .build(&event_loop)
     .unwrap();
 

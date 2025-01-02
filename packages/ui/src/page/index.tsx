@@ -32,7 +32,8 @@ export default function CLIInterface() {
     requireESLint: '',
     installationPath: '',
   })
-  const [darkMode, setDarkMode] = useState(false)
+
+  const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains('dark'))
 
   useEffect(() => {
     if (darkMode) {
@@ -238,8 +239,9 @@ export default function CLIInterface() {
   return (
     <div className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 h-[100vh] overflow-y-auto transition-colors duration-200 flex flex-col">
       <div className="p-6">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-zinc-800 dark:text-zinc-200">Uni Creator</h1>
+        <div className="flex items-start mb-6">
+          <h1 className="text-3xl font-bold text-zinc-800 dark:text-zinc-200">Uni Creator</h1>
+          <span className="ml-2 px-2 py-1 text-xs font-semibold bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-lg">Beta</span>
         </div>
         <div className="mb-6">
           <div className="h-1 bg-zinc-200 dark:bg-zinc-700 rounded-full">
