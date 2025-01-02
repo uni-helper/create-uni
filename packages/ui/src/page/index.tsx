@@ -4,8 +4,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { USER_EVENT } from '@/constants/USER_EVENT'
-import { ArrowLeft, ArrowRight, Check, Moon, Sun } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
+import React, { useState } from 'react'
 
 const steps = [
   '项目名称',
@@ -32,17 +32,6 @@ export default function CLIInterface() {
     requireESLint: '',
     installationPath: '',
   })
-
-  const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains('dark'))
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark')
-    }
-    else {
-      document.documentElement.classList.remove('dark')
-    }
-  }, [darkMode])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -75,10 +64,6 @@ export default function CLIInterface() {
   const handleConfirm = () => {
     console.log('Form submitted:', formData)
     // Here you would typically send the data to a server or perform some action
-  }
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
   }
 
   const StepLabel = (index: number) => (
@@ -237,87 +222,64 @@ export default function CLIInterface() {
   }
 
   return (
-    <div className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 h-[100vh] overflow-y-auto transition-colors duration-200 flex flex-col">
-      <div className="p-6">
-        <div className="flex items-start mb-6">
-          <h1 className="text-3xl font-bold text-zinc-800 dark:text-zinc-200">Uni Creator</h1>
-          <span className="ml-2 px-2 py-1 text-xs font-semibold bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 rounded-lg">Beta</span>
-        </div>
-        <div className="mb-6">
-          <div className="h-1 bg-zinc-200 dark:bg-zinc-700 rounded-full">
-            <div
-              className="h-full bg-zinc-600 dark:bg-zinc-400 rounded-full transition-all duration-300 ease-in-out"
-              style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
-            >
-            </div>
-          </div>
-          <div className="text-xs mt-2 text-zinc-500 dark:text-zinc-400">
-            Step
-            {' '}
-            {currentStep + 1}
-            {' '}
-            of
-            {' '}
-            {steps.length}
-            :
-            {' '}
-            {steps[currentStep]}
-          </div>
-        </div>
-        <div className="bg-gradient-to-b from-zinc-50 to-white dark:from-zinc-800 dark:to-zinc-900 p-6 rounded-lg shadow-sm mb-6">
-          <div className="mb-6">{renderStep()}</div>
-        </div>
-        <div className="flex justify-between">
-          <Button
-            onClick={handleBack}
-            disabled={currentStep === 0}
-            variant="outline"
-            size="sm"
-            className="w-[80px] border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-50"
+    <div className="p-6 pt-0">
+      <div className="mb-6">
+        <div className="h-1 bg-zinc-200 dark:bg-zinc-700 rounded-full">
+          <div
+            className="h-full bg-zinc-600 dark:bg-zinc-400 rounded-full transition-all duration-300 ease-in-out"
+            style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
           >
-            <ArrowLeft className="w-4 h-4 mr-1" />
-            Back
-          </Button>
-          {currentStep < steps.length - 1
-            ? (
-                <Button
-                  onClick={handleNext}
-                  size="sm"
-                  className="w-[80px] bg-zinc-800 dark:bg-zinc-200 text-zinc-100 dark:text-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-300"
-                >
-                  Next
-                  <ArrowRight className="w-4 h-4 ml-1" />
-                </Button>
-              )
-            : (
-                <Button
-                  onClick={handleConfirm}
-                  size="sm"
-                  className="w-[80px] bg-zinc-800 dark:bg-zinc-200 text-zinc-100 dark:text-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-300"
-                >
-                  Confirm
-                  <Check className="w-4 h-4 ml-1" />
-                </Button>
-              )}
+          </div>
+        </div>
+        <div className="text-xs mt-2 text-zinc-500 dark:text-zinc-400">
+          Step
+          {' '}
+          {currentStep + 1}
+          {' '}
+          of
+          {' '}
+          {steps.length}
+          :
+          {' '}
+          {steps[currentStep]}
         </div>
       </div>
-      <footer className="mt-auto p-4 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-xs rounded-t-xl">
-        <div className="flex justify-between items-center">
-          <div>
-            <p>© 2025 Designed by FliPPeDround. </p>
-            <p className="text-zinc-400/70">MIT License</p>
-          </div>
-
-          <Button
-            onClick={toggleDarkMode}
-            variant="outline"
-            size="icon"
-            className="w-8 h-8 rounded-full"
-          >
-            {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </Button>
-        </div>
-      </footer>
+      <div className="bg-gradient-to-b from-zinc-100 to-white dark:from-zinc-800 dark:to-zinc-900 p-6 rounded-lg mb-6">
+        <div className="mb-6">{renderStep()}</div>
+      </div>
+      <div className="flex justify-between">
+        <Button
+          onClick={handleBack}
+          disabled={currentStep === 0}
+          variant="outline"
+          size="sm"
+          className="w-[80px] border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-50"
+        >
+          <ArrowLeft className="w-4 h-4 mr-1" />
+          Back
+        </Button>
+        {currentStep < steps.length - 1
+          ? (
+              <Button
+                onClick={handleNext}
+                size="sm"
+                className="w-[80px] bg-zinc-800 dark:bg-zinc-200 text-zinc-100 dark:text-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-300"
+              >
+                Next
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Button>
+            )
+          : (
+              <Button
+                onClick={handleConfirm}
+                size="sm"
+                className="w-[80px] bg-zinc-800 dark:bg-zinc-200 text-zinc-100 dark:text-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-300"
+              >
+                Confirm
+                <Check className="w-4 h-4 ml-1" />
+              </Button>
+            )}
+      </div>
     </div>
   )
 }
