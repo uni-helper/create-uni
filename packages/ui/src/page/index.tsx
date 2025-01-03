@@ -30,7 +30,7 @@ export default function CLIInterface() {
     requiredPlugins: [],
     requiredModules: [],
     requireESLint: '',
-    installationPath: '',
+    installationPath: window.create_uni_current_dir,
   })
 
   window.addEventListener('pathEvent', (event) => {

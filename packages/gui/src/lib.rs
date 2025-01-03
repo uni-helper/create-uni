@@ -6,7 +6,7 @@ extern crate napi_derive;
 use napi::Result;
 
 use tao::{
-  event::{Event, StartCause, WindowEvent},
+  event::{Event, WindowEvent},
   event_loop::{ControlFlow, EventLoopBuilder},
   window::WindowBuilder,
 };
@@ -29,17 +29,24 @@ enum UserEvent {
 
 #[napi]
 pub fn create_webview() -> Result<()> {
+  let current_dir: PathBuf = env::current_dir().expect("Unable to get current working directory");
   let mut input = String::new();
 
-  // 从标准输入读取数据到字符串
-  match io::stdin().read_to_string(&mut input) {
-      Ok(_) => {
-        input.insert_str(0, "window.create_uni_data=");
-      },
-      Err(e) => {
-          println!("Failed to read from stdin: {}", e);
-      }
+  // Read data from standard input into a string
+  if let Err(e) = io::stdin().read_to_string(&mut input) {
+    println!("Failed to read from stdin: {}", e);
+    return Ok(());
   }
+
+  let current_dir_str = current_dir.to_str().unwrap_or("");
+  let escaped_current_dir_str = current_dir_str.replace("\\", "\\\\");
+
+  // Concatenate the final string
+  let final_string = format!(
+    "window.create_uni_current_dir=\"{}\";window.create_uni_data={}",
+    escaped_current_dir_str,
+    input
+  );
 
   const WINDOW_WIDTH: u32 = 375;
   const WINDOW_HEIGHT: u32 = 667;
@@ -72,24 +79,22 @@ pub fn create_webview() -> Result<()> {
     }
   };
 
-  #[cfg(debug_assertions)] 
+  #[cfg(debug_assertions)]
   let webview = WebViewBuilder::new()
     .with_url("http://localhost:5173/")
     .with_ipc_handler(handler)
-    .with_initialization_script(&input)
+    .with_initialization_script(&final_string)
     .build(&window)
     .unwrap();
-  
 
   const HTML_CONTENT: &str = include_str!("ui/index.html");
-  #[cfg(not(debug_assertions))] 
+  #[cfg(not(debug_assertions))]
   let webview = WebViewBuilder::new()
     .with_html(HTML_CONTENT)
     .with_ipc_handler(handler)
-    .with_initialization_script(&input)
+    .with_initialization_script(&final_string)
     .build(&window)
     .expect("Failed to build WebView in release mode");
-  
 
   event_loop.run(move |event, _, control_flow| {
     *control_flow = ControlFlow::Wait;
@@ -100,41 +105,32 @@ pub fn create_webview() -> Result<()> {
         ..
       }
       | Event::UserEvent(UserEvent::CloseWindow) => {
-        // let _ = menu_webview.take();
         *control_flow = ControlFlow::Exit
       }
 
       Event::UserEvent(e) => match e {
         UserEvent::FilePath => {
-          let current_dir: PathBuf = env::current_dir().expect("无法获取当前工作目录");
-
-          // 弹出文件目录选择框
-          let folder_path = FileDialog::new()
-            .set_title("选择一个目录")
+          // Show file dialog to select a directory
+          if let Some(path) = FileDialog::new()
+            .set_title("Select a directory")
             .set_directory(&current_dir)
-            .pick_folder();
-        
-          // 检查是否选择了目录
-          match folder_path {
-            Some(path) => {
-              println!("选择的目录路径: {:?}", path);
-              let script = format!(
-                  r#"
-                  window.dispatchEvent(
-                    new CustomEvent('pathEvent', {{
-                      detail: {{ path: '{}' }} 
-                  }})
-                  );
-                  "#,
-                  path.to_str().unwrap_or("")
+            .pick_folder()
+          {
+            let script = format!(
+              r#"
+              window.dispatchEvent(
+                new CustomEvent('pathEvent', {{
+                  detail: {{ path: '{}' }} 
+              }})
               );
-              webview.evaluate_script(&script).unwrap();
-            }
-            None => {
-              println!("没有选择目录");
-            }
+              "#,
+              path.to_str().unwrap_or("").replace("\\", "\\\\")
+            );
+            webview.evaluate_script(&script).unwrap();
+          } else {
+            println!("No directory selected");
           }
-        },
+        }
         UserEvent::DragWindow => window.drag_window().unwrap(),
         UserEvent::CloseWindow => { /* handled above */ }
       },
