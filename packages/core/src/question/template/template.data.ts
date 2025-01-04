@@ -9,6 +9,7 @@ export const templateList: TemplateList[] = [
     url: {
       github: 'https://github.com/uni-helper/vitesse-uni-app.git',
     },
+    website: 'https://vitesse-docs.netlify.app/',
   },
   {
     label: `wot-demo`,

@@ -1,21 +1,30 @@
+import { Rename } from '@/components/icons/reName'
+import { Eslint } from '@/components/icons/selint'
+import { Template } from '@/components/icons/template'
+import { Typescript } from '@/components/icons/typeScript'
+import { TemplateCheck } from '@/components/tempateCheck'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { USER_EVENT } from '@/constants/USER_EVENT'
-import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Blocks, Check, Folder, Package } from 'lucide-react'
 import React, { useState } from 'react'
 
 const steps = [
-  '项目名称',
-  'TypeScript',
-  'Template',
-  'Plugins',
-  'Modules',
-  'ESLint',
-  'Install Path',
-  'Confirm',
+  {
+    title: 'Project Name',
+    icon: <Rename />,
+    description: '请输入项目名称',
+  },
+  { title: 'TypeScript', icon: <Typescript /> },
+  { title: 'Template', icon: <Template /> },
+  { title: 'Plugins', icon: <Blocks size={18} /> },
+  { title: 'Modules', icon: <Package size={18} /> },
+  { title: 'ESLint', icon: <Eslint /> },
+  { title: 'Install Path', icon: <Folder size={18} /> },
+  { title: 'Confirm', icon: <Check size={18} /> },
 ]
 
 const plugins = ['Plugin 1', 'Plugin 2', 'Plugin 3', 'Plugin 4']
@@ -25,7 +34,7 @@ export default function CLIInterface() {
   const [currentStep, setCurrentStep] = useState(0)
   const [formData, setFormData] = useState({
     projectName: '',
-    requireTypeScript: '',
+    requireTypeScript: true,
     useTemplate: '',
     requiredPlugins: [],
     requiredModules: [],
@@ -72,7 +81,10 @@ export default function CLIInterface() {
   }
 
   const StepLabel = (index: number) => (
-    <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{steps[index]}</Label>
+    <div className="flex items-center pb-2">
+      <div className="mr-2 text-zinc-500 text-xl">{steps[index].icon}</div>
+      <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{steps[index].title}</Label>
+    </div>
   )
 
   const renderStep = () => {
@@ -94,18 +106,18 @@ export default function CLIInterface() {
       case 1:
         return (
           <RadioGroup
-            value={formData.requireTypeScript}
+            value={formData.requireTypeScript as unknown as string}
             onValueChange={value => handleRadioChange(value, 'requireTypeScript')}
           >
             <div className="space-y-2">
               {StepLabel(currentStep)}
 
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="yes" id="typescript-yes" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400" />
+                <RadioGroupItem value={true as unknown as string} id="typescript-yes" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400" />
                 <Label htmlFor="typescript-yes" className="text-zinc-600 dark:text-zinc-400">Yes</Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="no" id="typescript-no" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400" />
+                <RadioGroupItem value={false as unknown as string} id="typescript-no" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400" />
                 <Label htmlFor="typescript-no" className="text-zinc-600 dark:text-zinc-400">No</Label>
               </div>
             </div>
@@ -120,14 +132,7 @@ export default function CLIInterface() {
             <div className="space-y-2">
               {StepLabel(currentStep)}
 
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="yes" id="template-yes" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400" />
-                <Label htmlFor="template-yes" className="text-zinc-600 dark:text-zinc-400">Yes</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="no" id="template-no" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400" />
-                <Label htmlFor="template-no" className="text-zinc-600 dark:text-zinc-400">No</Label>
-              </div>
+              <TemplateCheck />
             </div>
           </RadioGroup>
         )
@@ -246,7 +251,7 @@ export default function CLIInterface() {
           {steps.length}
           :
           {' '}
-          {steps[currentStep]}
+          {steps[currentStep].title}
         </div>
       </div>
       <div className="bg-gradient-to-b from-zinc-100 to-white dark:from-zinc-800 dark:to-zinc-900 p-6 rounded-lg mb-6">

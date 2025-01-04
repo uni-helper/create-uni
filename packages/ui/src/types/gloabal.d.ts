@@ -1,8 +1,14 @@
 // global.d.ts
-interface Window {
-  ipc: {
-    postMessage: (message: string) => void
+import type { TemplateList } from './../../../core/src/question/template/type'
+
+declare global {
+  interface Window {
+    ipc: {
+      postMessage: (message: string) => void
+    }
+    create_uni_data: {
+      templateList: TemplateList[]
+    }
+    create_uni_current_dir: string
   }
-  create_uni_data?: any
-  create_uni_current_dir: string
 }

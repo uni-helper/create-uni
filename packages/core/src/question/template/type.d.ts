@@ -20,6 +20,10 @@ interface BaseTemplateListCommon {
    */
   description?: string
   /**
+   * 官方网站
+   */
+  website?: string
+  /**
    * 模板下载完成后的回调函数
    * @param {string} root - 模板下载的根目录
    */

@@ -4,9 +4,9 @@ import { Footer } from './components/footer'
 import { Header } from './components/header'
 import './style.css'
 
-document.addEventListener('contextmenu', (event) => {
-  event.preventDefault()
-})
+// document.addEventListener('contextmenu', (event) => {
+//   event.preventDefault()
+// })
 
 export function App() {
   return (
