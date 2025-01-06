@@ -4,28 +4,31 @@ import { green, lightMagenta, link } from 'kolorist'
 export const templateList: TemplateList[] = [
   {
     label: `vitesse-uni-app`,
-    description: `由${link(green('Uni Helper'), 'https://github.com/uni-helper')}维护的快速启动模板`,
+    description: `由${green('Uni Helper')}维护的快速启动模板`,
     value: 'vitesse',
     url: {
       github: 'https://github.com/uni-helper/vitesse-uni-app.git',
     },
     website: 'https://vitesse-docs.netlify.app/',
+    playground: 'https://vitesse-uni-app.netlify.app/',
   },
   {
     label: `wot-demo`,
-    description: `由${link(green('Wot Design Uni'), 'https://github.com/Moonofweisheng/wot-demo')}提供的基于vitesse-uni-app的快速启动模板`,
+    description: `由${green('Wot Design Uni')}提供的基于vitesse-uni-app的快速启动模板`,
     value: 'wot',
     url: {
       github: 'https://github.com/Moonofweisheng/wot-demo.git',
     },
+    website: 'https://vitesse-docs.netlify.app/',
   },
   {
     label: `unisave`,
-    description: `由${link(green('sunpm'), 'https://github.com/sunpm')}维护: 拥抱 web 开发，${lightMagenta('拯救')}uniapp。适配所有(app、mp、web)平台`,
+    description: `由${green('sunpm')}维护: 拥抱 web 开发，${lightMagenta('拯救')}uniapp。适配所有(app、mp、web)平台`,
     value: 'unisave',
     url: {
       github: 'https://github.com/sunpm/unisave.git',
     },
+    website: 'https://unisave-docs.netlify.app/',
   },
   {
     label: `uni-app-template`,

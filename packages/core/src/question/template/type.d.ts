@@ -24,6 +24,10 @@ interface BaseTemplateListCommon {
    */
   website?: string
   /**
+   * 演练场
+   */
+  playground?: string
+  /**
    * 模板下载完成后的回调函数
    * @param {string} root - 模板下载的根目录
    */

@@ -7,4 +7,6 @@ export enum USER_EVENT {
   MINIMIZE = 'minimize',
   /** 拖动窗口 */
   DRAG_WINDOW = 'drag_window',
+  /** 打开浏览器 */
+  OPEN = 'open',
 }

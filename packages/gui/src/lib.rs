@@ -10,25 +10,24 @@ use tao::{
   event_loop::{ControlFlow, EventLoopBuilder},
   window::WindowBuilder,
 };
-use wry::{
-  dpi::LogicalSize,
-  http::Request,
-  WebViewBuilder
-};
+use wry::{dpi::LogicalSize, http::Request, WebViewBuilder};
 
 use rfd::FileDialog;
 use std::env;
-use std::path::PathBuf;
 use std::io::{self, Read};
+use std::path::PathBuf;
+use webbrowser::{open_browser, Browser::Default};
 
 enum UserEvent {
   FilePath,
   CloseWindow,
   DragWindow,
+  // Open,
 }
 
 #[napi]
 pub fn create_webview() -> Result<()> {
+  // open_browser(Browser::Default, "https://github.com/Uni-Creator").unwrap();
   let current_dir: PathBuf = env::current_dir().expect("Unable to get current working directory");
   let mut input = String::new();
 
@@ -44,8 +43,7 @@ pub fn create_webview() -> Result<()> {
   // Concatenate the final string
   let final_string = format!(
     "window.create_uni_current_dir=\"{}\";window.create_uni_data={}",
-    escaped_current_dir_str,
-    input
+    escaped_current_dir_str, input
   );
 
   const WINDOW_WIDTH: u32 = 375;
@@ -66,7 +64,7 @@ pub fn create_webview() -> Result<()> {
   let proxy = event_loop.create_proxy();
   let handler = move |req: Request<String>| {
     let body = req.body();
-    let mut req = body.split(['-']);
+    let mut req = body.split([',']);
     match req.next().unwrap() {
       "file_path" => {
         println!("File path selected");
@@ -74,6 +72,10 @@ pub fn create_webview() -> Result<()> {
       }
       "drag_window" => {
         let _ = proxy.send_event(UserEvent::DragWindow);
+      }
+      "open" => {
+        let url = req.next().unwrap();
+        open_browser(Default, url).unwrap();
       }
       _ => {}
     }
@@ -104,9 +106,7 @@ pub fn create_webview() -> Result<()> {
         event: WindowEvent::CloseRequested,
         ..
       }
-      | Event::UserEvent(UserEvent::CloseWindow) => {
-        *control_flow = ControlFlow::Exit
-      }
+      | Event::UserEvent(UserEvent::CloseWindow) => *control_flow = ControlFlow::Exit,
 
       Event::UserEvent(e) => match e {
         UserEvent::FilePath => {

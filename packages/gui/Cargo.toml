@@ -12,6 +12,7 @@ napi = { version = "2.12.2", default-features = false, features = [ "napi4" ] }
 napi-derive = "2.12.2"
 rfd = "0.15.1"
 tao = "0.31.0"
+webbrowser = "1.0.3"
 wry = "0.47.2"
 
 [build-dependencies]

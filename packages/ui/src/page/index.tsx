@@ -31,7 +31,7 @@ const plugins = ['Plugin 1', 'Plugin 2', 'Plugin 3', 'Plugin 4']
 const modules = ['Module 1', 'Module 2', 'Module 3', 'Module 4']
 
 export default function CLIInterface() {
-  const [currentStep, setCurrentStep] = useState(0)
+  const [currentStep, setCurrentStep] = useState(2)
   const [formData, setFormData] = useState({
     projectName: '',
     requireTypeScript: true,
