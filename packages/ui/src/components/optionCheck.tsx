@@ -40,14 +40,14 @@ export function OptionCheck({ checkList, options, onChange }: OptionCheckProps) 
                 </DrawerHeader>
                 <div className="flex justify-center text-2xl mt-4 space-x-3 ">
                   <Github
-                    onClick={() => window.ipc.postMessage(`${USER_EVENT.OPEN},${plugin.github}`)}
+                    onClick={() => window.ipc.postMessage(`${USER_EVENT.OPEN}|${plugin.github}`)}
                     className="cursor-pointer hover:-translate-y-0.5 transition-transform duration-200"
                     stroke="#888"
                   />
                   {
                     plugin.website && (
                       <BookText
-                        onClick={() => window.ipc.postMessage(`${USER_EVENT.OPEN},${plugin.website}`)}
+                        onClick={() => window.ipc.postMessage(`${USER_EVENT.OPEN}|${plugin.website}`)}
                         className="cursor-pointer hover:-translate-y-0.5 transition-transform duration-20"
                         stroke="#888"
                       />

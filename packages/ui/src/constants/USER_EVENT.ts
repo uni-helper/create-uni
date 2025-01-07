@@ -9,4 +9,6 @@ export enum USER_EVENT {
   DRAG_WINDOW = 'drag_window',
   /** 打开浏览器 */
   OPEN = 'open',
+  /** 安装 */
+  INSTALL = 'install',
 }

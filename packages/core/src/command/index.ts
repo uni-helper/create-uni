@@ -13,14 +13,18 @@ const actions = {
     process.exit(0)
   },
   gui: () => {
-    actionGuiCLI()
+    return actionGuiCLI()
   },
 }
 
 export function commandAction(argv: any) {
-  Object.keys(actions).forEach((key) => {
-    if (argv[key]) {
-      actions[key as keyof typeof actions](argv[key])
-    }
-  })
+  if (argv.help) {
+    actions.help()
+  }
+  else if (argv.info) {
+    actions.info(argv)
+  }
+  else if (argv.gui) {
+    return actions.gui()
+  }
 }

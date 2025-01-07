@@ -24,7 +24,6 @@ const customSteps = [
   { title: 'Modules', icon: <Package size={18} /> },
   { title: 'ESLint', icon: <Eslint /> },
   { title: 'Install Path', icon: <Folder size={18} /> },
-  { title: 'Confirm', icon: <Check size={18} /> },
 ]
 
 const templateSteps = [
@@ -94,11 +93,6 @@ export default function CLIInterface() {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1)
     }
-  }
-
-  const handleConfirm = () => {
-    console.log('Form submitted:', formData)
-    // Here you would typically send the data to a server or perform some action
   }
 
   const StepLabel = (index: number) => (
@@ -221,15 +215,6 @@ export default function CLIInterface() {
             </div>
           </div>
         )
-      case 7:
-        return (
-          <div className="space-y-4">
-            <h2 className="text-lg font-semibold text-zinc-800 dark:text-zinc-200">Confirm Your Choices</h2>
-            <div className="bg-zinc-50 dark:bg-zinc-800 p-4 rounded-md overflow-x-auto text-xs">
-              <pre className="text-zinc-700 dark:text-zinc-300">{JSON.stringify(formData, null, 2)}</pre>
-            </div>
-          </div>
-        )
       default:
         return null
     }
@@ -285,11 +270,11 @@ export default function CLIInterface() {
             )
           : (
               <Button
-                onClick={handleConfirm}
+                onClick={() => window.ipc.postMessage(`${USER_EVENT.INSTALL}|${JSON.stringify(formData)}`)}
                 size="sm"
                 className="w-[80px] bg-zinc-800 dark:bg-zinc-200 text-zinc-100 dark:text-zinc-900 hover:bg-zinc-700 dark:hover:bg-zinc-300"
               >
-                Confirm
+                Install
                 <Check className="w-4 h-4 ml-1" />
               </Button>
             )}

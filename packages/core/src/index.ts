@@ -55,12 +55,10 @@ async function init() {
     string: ['_'],
   })
 
-  commandAction(argv)
+  const res = commandAction(argv)
+  console.log(res)
 
-  intro(generateBanner('Uni-creator - 快速创建 uni-app 项目'))
-  const s = spinner()
-
-  const projectName = argv._[0]
+  const projectName = argv._[0] || res.projectName
 
   let result: {
     projectName?: string
@@ -72,6 +70,9 @@ async function init() {
     UIName?: string | null
     needsEslint?: boolean
   } = {}
+
+  intro(generateBanner('Uni-creator - 快速创建 uni-app 项目'))
+  const s = spinner()
 
   if (!projectName) {
     try {

@@ -64,7 +64,7 @@ pub fn create_webview() -> Result<()> {
   let proxy = event_loop.create_proxy();
   let handler = move |req: Request<String>| {
     let body = req.body();
-    let mut req = body.split([',']);
+    let mut req = body.split(['|']);
     match req.next().unwrap() {
       "file_path" => {
         println!("File path selected");
@@ -76,6 +76,11 @@ pub fn create_webview() -> Result<()> {
       "open" => {
         let url = req.next().unwrap();
         open_browser(Default, url).unwrap();
+      }
+      "install" => {
+        let message = req.next().unwrap();
+        println!("{}", message);
+        let _ = proxy.send_event(UserEvent::CloseWindow);
       }
       _ => {}
     }

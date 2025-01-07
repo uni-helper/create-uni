@@ -1,4 +1,3 @@
-import process from 'node:process'
 import moduleData from '@/question/module/module.data'
 import pluginData from '@/question/plugin/plugin.data'
 import { templateList } from '@/question/template/template.data'
@@ -24,7 +23,7 @@ export function actionGuiCLI() {
   })
 
   const [command, ..._args] = fullCustomCommand.split(' ')
-  const { error, stdout, stderr } = sync(command, [..._args], {
+  const { error, stdout } = sync(command, [..._args], {
     input,
     stdio: 'pipe',
   })
@@ -32,10 +31,22 @@ export function actionGuiCLI() {
   if (error)
     throw new Error(`Error executing command: ${error.message}`)
 
-  if (stdout.length > 0)
-    console.log(stdout.toString())
-  if (stderr.length > 0)
-    console.error(stderr.toString())
+  let data: any
+  if (stdout.length > 0) {
+    const data_string = stdout.toString()
+    try {
+      const _data = JSON.parse(data_string)
+      if (_data.useTemplate) {
+        if (_data.projectName === '') {
+          _data.projectName = 'uni-app'
+        }
+        data = _data
+      }
+    }
+    catch {
+      console.log(data_string)
+    }
+  }
 
-  process.exit(0)
+  return data
 }
