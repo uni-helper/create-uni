@@ -2,9 +2,9 @@ import { Eslint } from '@/components/icons/eslint'
 import { Rename } from '@/components/icons/rename'
 import { Template } from '@/components/icons/template'
 import { Typescript } from '@/components/icons/typeScript'
+import { OptionCheck } from '@/components/optionCheck'
 import { TemplateCheck } from '@/components/templateCheck'
 import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
@@ -12,14 +12,14 @@ import { USER_EVENT } from '@/constants/USER_EVENT'
 import { ArrowLeft, ArrowRight, Blocks, Check, Folder, Package } from 'lucide-react'
 import React, { useState } from 'react'
 
-const steps = [
+const customSteps = [
   {
     title: 'Project Name',
     icon: <Rename />,
     description: '请输入项目名称',
   },
-  { title: 'TypeScript', icon: <Typescript /> },
   { title: 'Template', icon: <Template /> },
+  { title: 'TypeScript', icon: <Typescript /> },
   { title: 'Plugins', icon: <Blocks size={18} /> },
   { title: 'Modules', icon: <Package size={18} /> },
   { title: 'ESLint', icon: <Eslint /> },
@@ -27,10 +27,20 @@ const steps = [
   { title: 'Confirm', icon: <Check size={18} /> },
 ]
 
-const plugins = ['Plugin 1', 'Plugin 2', 'Plugin 3', 'Plugin 4']
-const modules = ['Module 1', 'Module 2', 'Module 3', 'Module 4']
+const templateSteps = [
+  {
+    title: 'Project Name',
+    icon: <Rename />,
+    description: '请输入项目名称',
+  },
+  { title: 'Template', icon: <Template /> },
+  { title: 'Install Path', icon: <Folder size={18} /> },
+  { title: 'Confirm', icon: <Check size={18} /> },
+]
 
 export default function CLIInterface() {
+  const [steps, setSteps] = useState(customSteps)
+
   const [currentStep, setCurrentStep] = useState(0)
   const [formData, setFormData] = useState({
     projectName: '',
@@ -38,7 +48,7 @@ export default function CLIInterface() {
     useTemplate: 'custom',
     requiredPlugins: [],
     requiredModules: [],
-    requireESLint: '',
+    requireESLint: true,
     installationPath: window.create_uni_current_dir,
   })
 
@@ -52,7 +62,14 @@ export default function CLIInterface() {
   }
 
   const handleTemplateChange = (value: string) => {
+    console.log('Template changed:', value)
     setFormData({ ...formData, useTemplate: value })
+    if (value !== 'custom') {
+      setSteps(templateSteps)
+    }
+    else {
+      setSteps(customSteps)
+    }
   }
 
   const handleRadioChange = (value: string, field: string) => {
@@ -132,7 +149,10 @@ export default function CLIInterface() {
           <div className="space-y-2">
             {StepLabel(currentStep)}
 
-            <TemplateCheck useTemplate={formData.useTemplate} onChange={handleTemplateChange} />
+            <TemplateCheck
+              useTemplate={formData.useTemplate}
+              onChange={handleTemplateChange}
+            />
           </div>
         )
       case 3:
@@ -140,17 +160,12 @@ export default function CLIInterface() {
           <div className="space-y-2">
             {StepLabel(currentStep)}
 
-            {plugins.map(plugin => (
-              <div key={plugin} className="flex items-center space-x-2">
-                <Checkbox
-                  id={plugin}
-                  checked={formData.requiredPlugins.includes(plugin)}
-                  onCheckedChange={() => handleCheckboxChange(plugin, 'requiredPlugins')}
-                  className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-                />
-                <Label htmlFor={plugin} className="text-zinc-600 dark:text-zinc-400">{plugin}</Label>
-              </div>
-            ))}
+            <OptionCheck
+              checkList={formData.requiredPlugins}
+              options={window.create_uni_data.plugin}
+              onChange={value => handleCheckboxChange(value, 'requiredPlugins')}
+            />
+
           </div>
         )
       case 4:
@@ -158,34 +173,29 @@ export default function CLIInterface() {
           <div className="space-y-2">
             {StepLabel(currentStep)}
 
-            {modules.map(module => (
-              <div key={module} className="flex items-center space-x-2">
-                <Checkbox
-                  id={module}
-                  checked={formData.requiredModules.includes(module)}
-                  onCheckedChange={() => handleCheckboxChange(module, 'requiredModules')}
-                  className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-                />
-                <Label htmlFor={module} className="text-zinc-600 dark:text-zinc-400">{module}</Label>
-              </div>
-            ))}
+            <OptionCheck
+              checkList={formData.requiredModules}
+              options={window.create_uni_data.module}
+              onChange={value => handleCheckboxChange(value, 'requiredModules')}
+            />
+
           </div>
         )
       case 5:
         return (
           <RadioGroup
-            value={formData.requireESLint}
+            value={formData.requireESLint as unknown as string}
             onValueChange={value => handleRadioChange(value, 'requireESLint')}
           >
             <div className="space-y-2">
               {StepLabel(currentStep)}
 
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="yes" id="eslint-yes" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400" />
+                <RadioGroupItem value={true as unknown as string} id="eslint-yes" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400" />
                 <Label htmlFor="eslint-yes" className="text-zinc-600 dark:text-zinc-400">Yes</Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="no" id="eslint-no" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400" />
+                <RadioGroupItem value={false as unknown as string} id="eslint-no" className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400" />
                 <Label htmlFor="eslint-no" className="text-zinc-600 dark:text-zinc-400">No</Label>
               </div>
             </div>

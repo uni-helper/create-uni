@@ -19,10 +19,6 @@ import Ansi from 'ansi-to-react'
 import { BookText, Github } from 'lucide-react'
 import { Demo } from './icons/demo'
 import { Gitee } from './icons/gitee'
-// import { Github } from './icons/github'
-// import { Guide } from './icons/guide'
-// import { Vitepress } from './icons/vitepress'
-// import { Button } from './ui/button'
 
 interface TemplateItemProps {
   item: typeof window.create_uni_data.templateList[number]
@@ -49,7 +45,7 @@ function TemplateItem({ item }: TemplateItemProps) {
                   return (
                     <Github
                       onClick={() => window.ipc.postMessage(`${USER_EVENT.OPEN},${item.url[key]}`)}
-                      className="cursor-pointer hover:-translate-y-0.5 transition-transform duration-200 hover:stroke-zinc-300"
+                      className="cursor-pointer hover:-translate-y-0.5 transition-transform duration-200"
                       stroke="#888"
                     />
                   )
@@ -58,7 +54,7 @@ function TemplateItem({ item }: TemplateItemProps) {
                   return (
                     <Gitee
                       onClick={() => window.ipc.postMessage(`${USER_EVENT.OPEN},${item.url[key]}`)}
-                      class="cursor-pointer hover:-translate-y-0.5 transition-transform duration-20 hover:stroke-zinc-300"
+                      class="cursor-pointer hover:-translate-y-0.5 transition-transform duration-20"
                     />
                   )
                 }
@@ -71,7 +67,7 @@ function TemplateItem({ item }: TemplateItemProps) {
               item.website && (
                 <BookText
                   onClick={() => window.ipc.postMessage(`${USER_EVENT.OPEN},${item.website}`)}
-                  className="cursor-pointer hover:-translate-y-0.5 transition-transform duration-20 hover:stroke-zinc-300"
+                  className="cursor-pointer hover:-translate-y-0.5 transition-transform duration-20"
                   stroke="#888"
                 />
               )
@@ -80,7 +76,7 @@ function TemplateItem({ item }: TemplateItemProps) {
               item.playground && (
                 <Demo
                   onClick={() => window.ipc.postMessage(`${USER_EVENT.OPEN},${item.playground}`)}
-                  className="cursor-pointer hover:-translate-y-0.5 transition-transform duration-20 hover:!stroke-zinc-300"
+                  className="cursor-pointer hover:-translate-y-0.5 transition-transform duration-20"
                 />
               )
             }
