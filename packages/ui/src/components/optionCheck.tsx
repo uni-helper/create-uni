@@ -23,12 +23,12 @@ export function OptionCheck({ checkList, options, onChange }: OptionCheckProps) 
             onCheckedChange={() => onChange(plugin.value)}
             className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400"
           />
-          <Label htmlFor={plugin.value} className="text-zinc-600 dark:text-zinc-400 flex justify-between  items-center w-full">
+          <Label htmlFor={plugin.value} className="text-zinc-600 dark:text-zinc-300 flex justify-between  items-center w-full">
             {plugin.name}
             <Drawer>
               <DrawerTrigger>
                 <Ellipsis
-                  className="cursor-pointer opacity-50"
+                  className="cursor-pointer opacity-50 hover:opacity-100"
                 />
               </DrawerTrigger>
               <DrawerContent>

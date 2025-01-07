@@ -14,6 +14,9 @@ export default defineConfig({
     preact(),
     viteSingleFile(),
   ],
+  server: {
+    port: 4006,
+  },
   build: {
     outDir: './../gui/src/ui',
     emptyOutDir: false,

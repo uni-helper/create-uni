@@ -88,6 +88,7 @@ function TemplateItem({ item }: TemplateItemProps) {
     </SelectItem>
   )
 }
+
 const templateList = window.create_uni_data.templateList
 templateList.unshift({
   label: '自定义模板',

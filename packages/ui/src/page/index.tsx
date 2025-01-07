@@ -126,6 +126,17 @@ export default function CLIInterface() {
         )
       case 1:
         return (
+          <div className="space-y-2">
+            {StepLabel(currentStep)}
+
+            <TemplateCheck
+              useTemplate={formData.useTemplate}
+              onChange={handleTemplateChange}
+            />
+          </div>
+        )
+      case 2:
+        return (
           <RadioGroup
             value={formData.requireTypeScript as unknown as string}
             onValueChange={value => handleRadioChange(value, 'requireTypeScript')}
@@ -143,17 +154,6 @@ export default function CLIInterface() {
               </div>
             </div>
           </RadioGroup>
-        )
-      case 2:
-        return (
-          <div className="space-y-2">
-            {StepLabel(currentStep)}
-
-            <TemplateCheck
-              useTemplate={formData.useTemplate}
-              onChange={handleTemplateChange}
-            />
-          </div>
         )
       case 3:
         return (
@@ -206,22 +206,17 @@ export default function CLIInterface() {
           <div className="space-y-2">
             {StepLabel(currentStep)}
 
-            <div className="flex items-center space-x-2">
-              <Input
-                id="installationPath"
-                name="installationPath"
-                value={formData.installationPath}
-                onChange={handleInputChange}
-                className="flex-grow bg-zinc-50 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 focus:border-zinc-500 dark:focus:border-zinc-400 focus:ring-zinc-500 dark:focus:ring-zinc-400"
-                placeholder="Enter path"
-              />
+            <div className="flex flex-col items-center">
+              <Label className="pt-2">{formData.installationPath}</Label>
+
+              <div className=" w-full border-b border-1 border-dashed border-zinc-500/50 my-2" />
+
               <Button
-                onClick={() => window.ipc.postMessage(USER_EVENT.FILE_PATH)}
                 variant="outline"
-                size="sm"
-                className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                className="w-full !ml-0 "
+                onClick={() => window.ipc.postMessage(USER_EVENT.FILE_PATH)}
               >
-                Browse
+                Pick Folder
               </Button>
             </div>
           </div>

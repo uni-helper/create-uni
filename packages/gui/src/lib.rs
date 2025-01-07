@@ -83,7 +83,7 @@ pub fn create_webview() -> Result<()> {
 
   #[cfg(debug_assertions)]
   let webview = WebViewBuilder::new()
-    .with_url("http://localhost:5173/")
+    .with_url("http://localhost:4006/")
     .with_ipc_handler(handler)
     .with_initialization_script(&final_string)
     .build(&window)
