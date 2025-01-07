@@ -11,4 +11,14 @@ declare global {
     }
     create_uni_current_dir: string
   }
+
+  interface PathEventDetail {
+    path: string
+  }
+
+  interface PathEvent extends CustomEvent<PathEventDetail> {}
+
+  interface WindowEventMap {
+    pathEvent: PathEvent
+  }
 }

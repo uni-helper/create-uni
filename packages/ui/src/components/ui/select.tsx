@@ -111,7 +111,7 @@ const SelectLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
     ref={ref}
-    className={cn('px-2 py-1.5 text-sm font-medium opacity-50 border-b', className)}
+    className={cn('px-2 py-1.5 text-sm font-medium opacity-50 border-b border-dashed !border-zinc-500', className)}
     {...props}
   />
 ))
@@ -143,8 +143,8 @@ const SelectItem = React.forwardRef<
       </span> */}
     </SelectPrimitive.Item>
 
-    <span className="absolute right-2 top-1/2 transform -translate-y-1/2 flex h-3.5 w-3.5 items-center justify-center">
-      {!props['data-state=checked'] && (
+    {content && (
+      <span className="absolute right-2 top-1/2 transform -translate-y-1/2 flex h-3.5 w-3.5 items-center justify-center">
         <Drawer>
           <DrawerTrigger asChild>
             <Ellipsis
@@ -161,8 +161,8 @@ const SelectItem = React.forwardRef<
             </DrawerFooter>
           </DrawerContent>
         </Drawer>
-      )}
-    </span>
+      </span>
+    )}
   </div>
 ))
 SelectItem.displayName = SelectPrimitive.Item.displayName

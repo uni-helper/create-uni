@@ -1,8 +1,8 @@
-import { Rename } from '@/components/icons/reName'
-import { Eslint } from '@/components/icons/selint'
+import { Eslint } from '@/components/icons/eslint'
+import { Rename } from '@/components/icons/rename'
 import { Template } from '@/components/icons/template'
 import { Typescript } from '@/components/icons/typeScript'
-import { TemplateCheck } from '@/components/tempateCheck'
+import { TemplateCheck } from '@/components/templateCheck'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
@@ -31,11 +31,11 @@ const plugins = ['Plugin 1', 'Plugin 2', 'Plugin 3', 'Plugin 4']
 const modules = ['Module 1', 'Module 2', 'Module 3', 'Module 4']
 
 export default function CLIInterface() {
-  const [currentStep, setCurrentStep] = useState(2)
+  const [currentStep, setCurrentStep] = useState(0)
   const [formData, setFormData] = useState({
     projectName: '',
     requireTypeScript: true,
-    useTemplate: '',
+    useTemplate: 'custom',
     requiredPlugins: [],
     requiredModules: [],
     requireESLint: '',
@@ -49,6 +49,10 @@ export default function CLIInterface() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleTemplateChange = (value: string) => {
+    setFormData({ ...formData, useTemplate: value })
   }
 
   const handleRadioChange = (value: string, field: string) => {
@@ -125,16 +129,11 @@ export default function CLIInterface() {
         )
       case 2:
         return (
-          <RadioGroup
-            value={formData.useTemplate}
-            onValueChange={value => handleRadioChange(value, 'useTemplate')}
-          >
-            <div className="space-y-2">
-              {StepLabel(currentStep)}
+          <div className="space-y-2">
+            {StepLabel(currentStep)}
 
-              <TemplateCheck />
-            </div>
-          </RadioGroup>
+            <TemplateCheck useTemplate={formData.useTemplate} onChange={handleTemplateChange} />
+          </div>
         )
       case 3:
         return (
