@@ -197,4 +197,4 @@ Cargo.lock
 *.node
 
 
-src/ui
+src/ui/index.html
