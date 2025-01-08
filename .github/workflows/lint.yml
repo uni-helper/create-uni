@@ -35,4 +35,4 @@ jobs:
         run: pnpm lint
 
       - name: cargo fmt
-        run: cargo fmt --all -- --check
+        run: cd packages/gui && cargo fmt --check
