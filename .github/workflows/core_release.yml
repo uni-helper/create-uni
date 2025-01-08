@@ -2,6 +2,8 @@ name: create-uni release CI
 
 on:
   push:
+    branches:
+      - main
     tags:
       - 'v*'
     paths:
