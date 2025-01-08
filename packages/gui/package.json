@@ -34,6 +34,7 @@
     "dev": "nodemon",
     "prepublishOnly": "napi prepublish -t npm",
     "test": "ava",
+    "release": "bumpp",
     "universal": "napi universal",
     "version": "napi version"
   },

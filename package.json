@@ -30,7 +30,6 @@
     "build:core": "cd ./packages/core && pnpm build",
     "build:info": "cd ./packages/info && pnpm build",
     "build:ui": "cd ./packages/ui && pnpm build",
-    "build:gui": "pnpm build:ui && cd ./../packages/gui && pnpm build",
     "release:core": "cd ./packages/core && pnpm release",
     "release:info": "cd ./packages/info && pnpm release",
     "release:gui": "cd ./packages/gui && pnpm release",
