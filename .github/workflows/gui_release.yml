@@ -92,14 +92,11 @@ jobs:
         run: ${{ matrix.settings.build }}
         shell: bash
 
-      - name: cd gui file
-        run: cd packages/gui
-
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: bindings-${{ matrix.settings.target }}
-          path: '*.node'
+          path: 'packages/gui/*.node'
           if-no-files-found: error
 
   test-macOS-windows-binding:
