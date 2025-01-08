@@ -25,8 +25,7 @@ export function actionGuiCLI() {
   })
 
   const [command, ..._args] = fullCustomCommand.split(' ')
-  const { error, stdout } = sync(command, [..._args], {
-    input,
+  const { error, stdout } = sync(command, [..._args, '--input', input], {
     stdio: 'pipe',
   })
 
@@ -36,6 +35,7 @@ export function actionGuiCLI() {
   let data: any
   if (stdout.length > 0) {
     const data_string = stdout.toString()
+    console.log(data_string)
     try {
       const _data = JSON.parse(data_string)
       if (_data.useTemplate) {

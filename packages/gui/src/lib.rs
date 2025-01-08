@@ -29,7 +29,12 @@ pub fn create_webview() -> Result<()> {
   let current_dir: PathBuf = env::current_dir().expect("Unable to get current working directory");
   let mut input = String::new();
 
-  io::stdin().read_to_string(&mut input).unwrap();
+  let args: Vec<String> = env::args().collect();
+  if let Some(input_value) = args.iter().position(|x| x == "--input").and_then(|i| args.get(i + 1)) {
+      input = input_value.to_string();
+  } else {
+      println!("No input provided.");
+  }
 
   let current_dir_str = current_dir.to_str().unwrap_or("");
   let escaped_current_dir_str = current_dir_str.replace("\\", "\\\\");
