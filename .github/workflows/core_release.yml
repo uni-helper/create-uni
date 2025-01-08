@@ -2,12 +2,12 @@ name: create-uni release CI
 
 on:
   push:
-    branches:
-      - main
     tags:
       - 'v*'
+    branches:
+      - main
     paths:
-      - 'packages/core/**'
+      - packages/core/package.json
 
 jobs:
   release:
@@ -31,10 +31,6 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile
-
-      - name: PNPM build
-        working-directory: packages/core
-        run: pnpm run build
 
       - name: Publish to NPM
         working-directory: packages/core
