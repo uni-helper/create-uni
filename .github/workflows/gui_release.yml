@@ -122,9 +122,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: packages/gui/artifacts
-      - name: create npm dirs
-        working-directory: packages/gui
-        run: pnpm napi create-npm-dirs
 
       - name: Move artifacts
         working-directory: packages/gui
