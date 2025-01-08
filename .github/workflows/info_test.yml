@@ -3,9 +3,9 @@ name: create-uni/info Test CI
 on:
   push:
     branches:
-      - '*'
-    tags-ignore:
-      - 'v*'
+      - main
+    tags:
+      - '!*v*'
     paths:
       - 'packages/info/**'
       - .github/workflows/info_test.yml

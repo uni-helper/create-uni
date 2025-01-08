@@ -3,9 +3,9 @@ name: create-uni Test CI
 on:
   push:
     branches:
-      - '*'
-    tags-ignore:
-      - 'v*'
+      - main
+    tags:
+      - '!*v*'
     paths:
       - 'packages/core/**'
       - .github/workflows/core_test.yml
