@@ -68,7 +68,6 @@ async function init() {
   if (!projectName) {
     try {
       result = await question()
-      console.log(result)
     }
     catch (cancelled) {
     // eslint-disable-next-line no-console
