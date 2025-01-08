@@ -1,6 +1,7 @@
 import moduleData from '@/question/module/module.data'
 import pluginData from '@/question/plugin/plugin.data'
 import { templateList } from '@/question/template/template.data'
+import { UIList } from '@/question/ui/ui.data'
 import { sync } from 'cross-spawn'
 import { composeCommand } from '../composeCommand'
 
@@ -20,6 +21,7 @@ export function actionGuiCLI() {
     templateList,
     plugin: pluginData,
     module: moduleData,
+    ui: UIList,
   })
 
   const [command, ..._args] = fullCustomCommand.split(' ')

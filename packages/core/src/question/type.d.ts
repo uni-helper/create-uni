@@ -3,6 +3,6 @@ export interface Options {
   hint: string
   value: string | null
   name: string
-  github: string
+  github?: string
   website?: string
 }

@@ -96,7 +96,7 @@ async function init() {
   }
   else if (guiData.projectName) {
     const templateType = validateTemplateType(guiData.useTemplate)
-    const UIName = validateUIName(argv.UIName)
+    const UIName = validateUIName(guiData.requireUI)
     const pluginList = validatePlugins(guiData.requiredPlugins)
     const moduleList = validateModules(guiData.requiredModules)
     result = {

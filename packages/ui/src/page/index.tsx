@@ -8,8 +8,9 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { UICheck } from '@/components/UICheck'
 import { USER_EVENT } from '@/constants/USER_EVENT'
-import { ArrowLeft, ArrowRight, Blocks, Check, Folder, Package } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Blocks, Check, Folder, Package, Puzzle } from 'lucide-react'
 import React, { useState } from 'react'
 
 const customSteps = [
@@ -22,6 +23,7 @@ const customSteps = [
   { title: 'TypeScript', icon: <Typescript /> },
   { title: 'Plugins', icon: <Blocks size={18} /> },
   { title: 'Modules', icon: <Package size={18} /> },
+  { title: 'UI', icon: <Puzzle size={18} /> },
   { title: 'ESLint', icon: <Eslint /> },
   { title: 'Install Path', icon: <Folder size={18} /> },
 ]
@@ -47,6 +49,7 @@ export default function CLIInterface() {
     requireTypeScript: true,
     requiredPlugins: [],
     requiredModules: [],
+    requireUI: null,
     requireESLint: true,
     installationPath: window.create_uni_current_dir,
   })
@@ -69,6 +72,10 @@ export default function CLIInterface() {
     else {
       setSteps(customSteps)
     }
+  }
+
+  const handleUIChange = (value: string) => {
+    setFormData({ ...formData, requireUI: value })
   }
 
   const handleRadioChange = (value: string, field: string) => {
@@ -177,6 +184,18 @@ export default function CLIInterface() {
         )
       case 5:
         return (
+          <div className="space-y-2">
+            {StepLabel(currentStep)}
+
+            <UICheck
+              value={formData.requireUI}
+              options={window.create_uni_data.ui}
+              onChange={handleUIChange}
+            />
+          </div>
+        )
+      case 6:
+        return (
           <RadioGroup
             value={formData.requireESLint as unknown as string}
             onValueChange={value => handleRadioChange(value, 'requireESLint')}
@@ -195,7 +214,7 @@ export default function CLIInterface() {
             </div>
           </RadioGroup>
         )
-      case 6:
+      case 7:
         return (
           <div className="space-y-2">
             {StepLabel(currentStep)}

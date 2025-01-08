@@ -11,6 +11,7 @@ declare global {
       templateList: TemplateList[]
       plugin: Options[]
       module: Options[]
+      ui: Options[]
     }
     create_uni_current_dir: string
   }
