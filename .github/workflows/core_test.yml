@@ -55,12 +55,13 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: pnpm
+          registry-url: https://registry.npmjs.com/
 
       - name: Setup
         run: npm i -g @antfu/ni
 
       - name: Install
-        run: nci
+        run: nci --frozen-lockfile
 
       - name: Build
         run: nr build:core
