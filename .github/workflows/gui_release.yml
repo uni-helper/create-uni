@@ -92,6 +92,9 @@ jobs:
         run: ${{ matrix.settings.build }}
         shell: bash
 
+      - name: cd gui file
+        run: cd packages/gui
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
