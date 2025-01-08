@@ -30,6 +30,8 @@
     "dev:info": "turbo dev --filter=./packages/info",
     "build:core": "cd ./packages/core && pnpm build",
     "build:info": "cd ./packages/info && pnpm build",
+    "release:core": "cd ./packages/core && pnpm release",
+    "release:info": "cd ./packages/info && pnpm release",
     "dev": "turbo run dev",
     "build": "turbo build",
     "lint": "eslint .",
