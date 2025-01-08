@@ -3,11 +3,7 @@ name: create-uni/info release CI
 on:
   push:
     tags:
-      - 'v*'
-    branches:
-      - main
-    paths:
-      - packages/info/package.json
+      - 'info-v*'
 
 jobs:
   release:

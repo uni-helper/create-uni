@@ -3,11 +3,7 @@ name: create-uni release CI
 on:
   push:
     tags:
-      - 'v*'
-    branches:
-      - main
-    paths:
-      - packages/core/package.json
+      - 'core-v*'
 
 jobs:
   release:
