@@ -6,6 +6,9 @@ on:
       - '*'
     tags-ignore:
       - 'v*'
+    paths:
+      - 'packages/core/**'
+      - .github/workflows/core_test.yml
 
   pull_request:
     branches:
