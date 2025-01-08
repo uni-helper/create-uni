@@ -1,0 +1,32 @@
+name: Lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: oxLint
+        run: pnpm dlx oxlint@latest
+
+      - name: Set node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+          cache: pnpm
+
+      - name: Setup
+        run: npm i -g @antfu/ni
+
+      - name: Install
+        run: nci
+
+      - name: Lint
+        run: nr lint

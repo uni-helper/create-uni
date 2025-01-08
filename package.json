@@ -29,6 +29,7 @@
     "dev:gui": "turbo dev --filter=./packages/gui",
     "dev:info": "turbo dev --filter=./packages/info",
     "build:core": "cd ./packages/core && pnpm build",
+    "build:info": "cd ./packages/info && pnpm build",
     "dev": "turbo run dev",
     "build": "turbo build",
     "lint": "eslint .",

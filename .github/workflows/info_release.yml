@@ -1,11 +1,11 @@
-name: create-uni release CI
+name: create-uni/info release CI
 
 on:
   push:
     tags:
       - 'v*'
     paths:
-      - 'packages/core/**'
+      - 'packages/info/**'
 
 jobs:
   release:
@@ -31,11 +31,11 @@ jobs:
         run: pnpm i --frozen-lockfile
 
       - name: PNPM build
-        working-directory: packages/core
+        working-directory: packages/info
         run: pnpm run build
 
       - name: Publish to NPM
-        working-directory: packages/core
+        working-directory: packages/info
         run: pnpm -r publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

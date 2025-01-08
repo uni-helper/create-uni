@@ -1,0 +1,52 @@
+name: create-uni/info Test CI
+
+on:
+  push:
+    branches:
+      - '*'
+    tags-ignore:
+      - 'v*'
+    paths:
+      - 'packages/info/**'
+      - .github/workflows/info_test.yml
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'packages/info/**'
+      - .github/workflows/info_test.yml
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node: [18.x, 20.x]
+        os: [windows-latest, macos-latest]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Set node ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+
+      - name: Setup
+        run: npm i -g @antfu/ni
+
+      - name: Install
+        run: nci
+
+      - name: Build
+        run: nr build:info
+
+      - name: Test
+        run: node ./packages/info/dist/outfile.cjs all
