@@ -13,12 +13,6 @@ on:
       - main
     tags-ignore:
       - '**'
-    paths-ignore:
-      - '**/*.md'
-      - LICENSE
-      - '**/*.gitignore'
-      - .editorconfig
-      - docs/**
     paths:
       - 'packages/gui/**'
       - 'packages/ui/**'
