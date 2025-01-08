@@ -58,13 +58,12 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: pnpm
-          registry-url: https://registry.npmjs.com/
 
       - name: Setup
         run: npm i -g @antfu/ni
 
       - name: Install
-        run: nci --frozen-lockfile
+        run: nci
 
       - name: Build
         run: nr build:core
@@ -120,7 +119,7 @@ jobs:
 
       - name: 安装项目依赖
         working-directory: ../sample-project
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: 打包H5项目
         working-directory: ../sample-project
