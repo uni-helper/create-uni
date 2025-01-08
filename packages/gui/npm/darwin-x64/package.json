@@ -14,5 +14,6 @@
   ],
   "engines": {
     "node": ">= 10"
-  }
+  },
+  "repository": "git@github.com:uni-helper/create-uni.git"
 }
