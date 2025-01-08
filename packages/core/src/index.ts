@@ -60,7 +60,7 @@ async function init() {
 
   const guiData = commandAction(argv)
 
-  const projectName = argv._[0] || guiData.projectName
+  const projectName = argv._[0] || guiData?.projectName
 
   intro(generateBanner('Uni-creator - 快速创建 uni-app 项目'))
   const s = spinner()
@@ -68,6 +68,7 @@ async function init() {
   if (!projectName) {
     try {
       result = await question()
+      console.log(result)
     }
     catch (cancelled) {
     // eslint-disable-next-line no-console
