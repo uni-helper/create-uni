@@ -28,8 +28,7 @@
     "create-uni-info": "./dist/outfile.cjs"
   },
   "files": [
-    "dist/outfile.cjs",
-    "template"
+    "dist/outfile.cjs"
   ],
   "scripts": {
     "build": "tsup",
