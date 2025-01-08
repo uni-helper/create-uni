@@ -26,6 +26,11 @@
   "engines": {
     "node": ">= 10"
   },
+  "repository": {
+    "directory": "packages/gui",
+    "type": "git",
+    "url": "git+https://github.com/uni-helper/create-uni.git"
+  },
   "scripts": {
     "artifacts": "napi artifacts",
     "build": "napi build --platform --release",
