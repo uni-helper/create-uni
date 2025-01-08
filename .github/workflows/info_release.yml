@@ -5,7 +5,7 @@ on:
     tags:
       - 'v*'
     paths:
-      - packages/info/package.json
+      - 'packages/info/**'
 
 jobs:
   release:
