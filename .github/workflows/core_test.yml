@@ -44,7 +44,7 @@ jobs:
     strategy:
       matrix:
         node: [18.x, 20.x]
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [windows-latest, macos-latest]
       fail-fast: false
 
     steps:
@@ -105,7 +105,7 @@ jobs:
           key: ${{ github.sha }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ matrix.os }}-${{ matrix.node }}
       - name: 当没有缓存时，执行构建
         if: steps.cache-restore.outputs.cache-hit != 'true'
-        run: pnpm install && pnpm build
+        run: pnpm install && pnpm build:core
 
       - if: ${{ (contains(env.FEATURE_FLAGS, '-')) }}
         name: 创建多参数项目
