@@ -43,8 +43,8 @@ export default function CLIInterface() {
   const [currentStep, setCurrentStep] = useState(0)
   const [formData, setFormData] = useState({
     projectName: '',
-    requireTypeScript: true,
     useTemplate: 'custom',
+    requireTypeScript: true,
     requiredPlugins: [],
     requiredModules: [],
     requireESLint: true,

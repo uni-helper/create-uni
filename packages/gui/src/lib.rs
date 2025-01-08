@@ -22,25 +22,20 @@ enum UserEvent {
   FilePath,
   CloseWindow,
   DragWindow,
-  // Open,
 }
 
 #[napi]
 pub fn create_webview() -> Result<()> {
-  // open_browser(Browser::Default, "https://github.com/Uni-Creator").unwrap();
   let current_dir: PathBuf = env::current_dir().expect("Unable to get current working directory");
   let mut input = String::new();
 
-  // Read data from standard input into a string
   if let Err(e) = io::stdin().read_to_string(&mut input) {
-    println!("Failed to read from stdin: {}", e);
     return Ok(());
   }
 
   let current_dir_str = current_dir.to_str().unwrap_or("");
   let escaped_current_dir_str = current_dir_str.replace("\\", "\\\\");
 
-  // Concatenate the final string
   let final_string = format!(
     "window.create_uni_current_dir=\"{}\";window.create_uni_data={}",
     escaped_current_dir_str, input
@@ -67,7 +62,6 @@ pub fn create_webview() -> Result<()> {
     let mut req = body.split(['|']);
     match req.next().unwrap() {
       "file_path" => {
-        println!("File path selected");
         let _ = proxy.send_event(UserEvent::FilePath);
       }
       "drag_window" => {
@@ -132,8 +126,6 @@ pub fn create_webview() -> Result<()> {
               path.to_str().unwrap_or("").replace("\\", "\\\\")
             );
             webview.evaluate_script(&script).unwrap();
-          } else {
-            println!("No directory selected");
           }
         }
         UserEvent::DragWindow => window.drag_window().unwrap(),

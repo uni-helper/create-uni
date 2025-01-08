@@ -40,11 +40,14 @@ export function actionGuiCLI() {
         if (_data.projectName === '') {
           _data.projectName = 'uni-app'
         }
+        if (_data.useTemplate === 'custom') {
+          _data.useTemplate = null
+        }
         data = _data
       }
     }
-    catch {
-      console.log(data_string)
+    catch (e) {
+      throw new Error(`Error parsing JSON: ${e}`)
     }
   }
 

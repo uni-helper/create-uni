@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import type { TemplateValue, UnCustomTempValue } from './question/template/type'
+import type { Answers } from './question'
+import type { UnCustomTempValue } from './question/template/type'
 import {
   existsSync,
   mkdirSync,
@@ -10,15 +11,15 @@ import {
   unlinkSync,
   writeFileSync,
 } from 'node:fs'
-import { join, resolve } from 'node:path'
+import { resolve } from 'node:path'
 import process from 'node:process'
 import { intro, outro, spinner } from '@clack/prompts'
 import { generateBanner } from '@create-uni/shared'
 import ejs from 'ejs'
 import JSON5 from 'json5'
 import { green } from 'kolorist'
-import minimist from 'minimist'
 
+import minimist from 'minimist'
 import { commandAction } from './command'
 import { question } from './question'
 import askForceOverwrite from './question/file'
@@ -55,21 +56,11 @@ async function init() {
     string: ['_'],
   })
 
-  const res = commandAction(argv)
-  console.log(res)
+  let result: Answers = {}
 
-  const projectName = argv._[0] || res.projectName
+  const guiData = commandAction(argv)
 
-  let result: {
-    projectName?: string
-    shouldOverwrite?: boolean
-    templateType?: TemplateValue
-    needsTypeScript?: boolean
-    pluginList?: string[]
-    moduleList?: string[]
-    UIName?: string | null
-    needsEslint?: boolean
-  } = {}
+  const projectName = argv._[0] || guiData.projectName
 
   intro(generateBanner('Uni-creator - 快速创建 uni-app 项目'))
   const s = spinner()
@@ -84,7 +75,7 @@ async function init() {
       process.exit(1)
     }
   }
-  else {
+  else if (argv._[0]) {
     const templateType = validateTemplateType(argv.templateType)
     const UIName = validateUIName(argv.UIName)
     const pluginList = validatePlugins(argv.pluginList)
@@ -103,10 +94,26 @@ async function init() {
       needsEslint: argv['needsEslint'!],
     }
   }
+  else if (guiData.projectName) {
+    const templateType = validateTemplateType(guiData.useTemplate)
+    const UIName = validateUIName(argv.UIName)
+    const pluginList = validatePlugins(guiData.requiredPlugins)
+    const moduleList = validateModules(guiData.requiredModules)
+    result = {
+      projectName: guiData.projectName,
+      shouldOverwrite: true,
+      templateType,
+      needsTypeScript: guiData.requireTypeScript,
+      pluginList,
+      moduleList,
+      UIName,
+      needsEslint: guiData.requireESLint,
+    }
+  }
 
   s.start('正在创建模板...')
   const cwd = process.cwd()
-  const root = join(cwd, result.projectName!)
+  const root = resolve(guiData?.installationPath ?? cwd, result.projectName!)
   const packageManager = getPkgManager()
 
   function emptyDir(dir: string) {
