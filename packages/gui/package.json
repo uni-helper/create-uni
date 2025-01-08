@@ -1,6 +1,6 @@
 {
   "name": "@create-uni/gui",
-  "version": "0.0.2-beta.4",
+  "version": "0.0.2-beta.5",
   "license": "MIT",
   "main": "./bin/index.cjs",
   "bin": {
