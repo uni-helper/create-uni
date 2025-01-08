@@ -34,7 +34,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix && cd ./packages/gui && cargo fmt",
     "typecheck": "tsc --noEmit",
-    "postinstall": "node scripts/link.cjs"
+    "postinstall": "node scripts/link.cjs",
+    "up": "cd ./packages/core && pnpm run up"
   },
   "devDependencies": {
     "@antfu/ni": "^0.23.0",

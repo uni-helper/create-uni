@@ -13,6 +13,9 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - 'packages/core/**'
+      - .github/workflows/core_test.yml
 
 jobs:
   lint:
