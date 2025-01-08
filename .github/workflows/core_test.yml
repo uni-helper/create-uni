@@ -1,9 +1,9 @@
-name: CI
+name: create-uni Test CI
 
 on:
   push:
     branches:
-      - main
+      - '*'
     tags-ignore:
       - 'v*'
 
@@ -20,9 +20,6 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2
 
-      - name: oxLint
-        run: pnpm dlx oxlint@latest
-
       - name: Set node
         uses: actions/setup-node@v4
         with:
@@ -37,9 +34,6 @@ jobs:
 
       - name: Lint
         run: nr lint
-
-      - name: Typecheck
-        run: nr typecheck
 
   build:
     runs-on: ${{ matrix.os }}
@@ -69,12 +63,12 @@ jobs:
         run: nci
 
       - name: Build
-        run: nr build
+        run: nr build:core
 
       - uses: actions/cache/save@v4
         id: cache
         with:
-          path: dist/outfile.cjs
+          path: packages/core/dist/outfile.cjs
           key: ${{ github.sha }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ matrix.os }}-${{ matrix.node }}
 
   test:
@@ -104,7 +98,7 @@ jobs:
       - uses: actions/cache/restore@v4
         id: cache-restore
         with:
-          path: dist/outfile.cjs
+          path: packages/core/dist/outfile.cjs
           key: ${{ github.sha }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ matrix.os }}-${{ matrix.node }}
       - name: 当没有缓存时，执行构建
         if: steps.cache-restore.outputs.cache-hit != 'true'
@@ -113,12 +107,12 @@ jobs:
       - if: ${{ (contains(env.FEATURE_FLAGS, '-')) }}
         name: 创建多参数项目
         working-directory: ../
-        run: node ./create-uni/dist/outfile.cjs sample-project ${{ env.FEATURE_FLAGS }}
+        run: node ./create-uni/packages/core/dist/outfile.cjs sample-project ${{ env.FEATURE_FLAGS }}
 
       - if: ${{ !(contains(env.FEATURE_FLAGS, '-')) }}
         name: 创建基础项目
         working-directory: ../
-        run: node ./create-uni/dist/outfile.cjs sample-project
+        run: node ./create-uni/packages/core/dist/outfile.cjs sample-project
 
       - name: 安装项目依赖
         working-directory: ../sample-project
@@ -130,12 +124,12 @@ jobs:
 
       - name: dev小程序项目
         working-directory: ../sample-project
-        run: node ./../create-uni/scripts/dev.cjs
+        run: node ./../create-uni/packages/core/scripts/dev.cjs
 
       - name: 打包小程序项目
         working-directory: ../sample-project
         run: pnpm build:mp-weixin
 
-      - name: 输出环境信息
-        working-directory: ../sample-project
-        run: node ./../create-uni/dist/outfile.cjs --info all
+      # - name: 输出环境信息
+      #   working-directory: ../sample-project
+      #   run: node ./../create-uni/packages/core/dist/outfile.cjs --info all

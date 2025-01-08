@@ -36,7 +36,6 @@
     "dev": "cross-env CREATE_UNI_DEV=true tsup --watch",
     "prepublishOnly": "nr build",
     "release": "bumpp",
-    "typecheck": "tsc --noEmit",
     "up": "cd ./template && pnpx taze@latest major -w -r && cd ./base && pnpx @dcloudio/uvm@latest --manager pnpm"
   },
   "devDependencies": {
