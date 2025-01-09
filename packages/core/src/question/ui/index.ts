@@ -3,7 +3,7 @@ import { UIList } from './ui.data'
 
 export default () => (
   select({
-    message: '选择需要的库:',
+    message: '选择需要的组件库:',
     options: UIList,
   })
 )

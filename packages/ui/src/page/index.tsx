@@ -257,7 +257,7 @@ export default function CLIInterface() {
         <div className="text-xs mt-2 text-zinc-500 dark:text-zinc-400">
           Step
           {' '}
-          {currentStep + 1}
+          {steps.findIndex(item => item.value === currentStep) + 1}
           {' '}
           of
           {' '}
