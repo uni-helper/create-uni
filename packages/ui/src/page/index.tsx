@@ -17,32 +17,31 @@ const customSteps = [
   {
     title: 'Project Name',
     icon: <Rename />,
-    description: '请输入项目名称',
+    value: 'name',
   },
-  { title: 'Template', icon: <Template /> },
-  { title: 'TypeScript', icon: <Typescript /> },
-  { title: 'Plugins', icon: <Blocks size={18} /> },
-  { title: 'Modules', icon: <Package size={18} /> },
-  { title: 'UI', icon: <Puzzle size={18} /> },
-  { title: 'ESLint', icon: <Eslint /> },
-  { title: 'Install Path', icon: <Folder size={18} /> },
-]
+  { title: 'Template', icon: <Template />, value: 'template' },
+  { title: 'TypeScript', icon: <Typescript />, value: 'ts' },
+  { title: 'Plugins', icon: <Blocks size={18} />, value: 'plugins' },
+  { title: 'Modules', icon: <Package size={18} />, value: 'modules' },
+  { title: 'UI', icon: <Puzzle size={18} />, value: 'ui' },
+  { title: 'ESLint', icon: <Eslint />, value: 'eslint' },
+  { title: 'Install Path', icon: <Folder size={18} />, value: 'path' },
+] as const
 
 const templateSteps = [
   {
     title: 'Project Name',
     icon: <Rename />,
-    description: '请输入项目名称',
+    value: 'name',
   },
-  { title: 'Template', icon: <Template /> },
-  { title: 'Install Path', icon: <Folder size={18} /> },
-  { title: 'Confirm', icon: <Check size={18} /> },
-]
+  { title: 'Template', icon: <Template />, value: 'template' },
+  { title: 'Install Path', icon: <Folder size={18} />, value: 'path' },
+] as any
 
 export default function CLIInterface() {
   const [steps, setSteps] = useState(customSteps)
 
-  const [currentStep, setCurrentStep] = useState(0)
+  const [currentStep, setCurrentStep] = useState<typeof customSteps[number]['value']>('name')
   const [formData, setFormData] = useState({
     projectName: '',
     useTemplate: 'custom',
@@ -60,7 +59,8 @@ export default function CLIInterface() {
   })
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    const { name, value } = e.target as HTMLInputElement
+    setFormData({ ...formData, [name]: value })
   }
 
   const handleTemplateChange = (value: string) => {
@@ -91,27 +91,32 @@ export default function CLIInterface() {
   }
 
   const handleNext = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1)
+    const currentIndex = steps.findIndex(item => item.value === currentStep)
+    if (currentIndex < steps.length - 1) {
+      setCurrentStep(steps[currentIndex + 1].value)
     }
   }
 
   const handleBack = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1)
+    const currentIndex = steps.findIndex(item => item.value === currentStep)
+    if (currentIndex > 0) {
+      setCurrentStep(steps[currentIndex - 1].value)
     }
   }
 
-  const StepLabel = (index: number) => (
-    <div className="flex items-center pb-2">
-      <div className="mr-2 text-zinc-500 text-xl">{steps[index].icon}</div>
-      <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{steps[index].title}</Label>
-    </div>
-  )
+  const StepLabel = (value: string) => {
+    const index = steps.findIndex(item => item.value === value)
+    return (
+      <div className="flex items-center pb-2">
+        <div className="mr-2 text-zinc-500 text-xl">{steps[index].icon}</div>
+        <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{steps[index].title}</Label>
+      </div>
+    )
+  }
 
   const renderStep = () => {
     switch (currentStep) {
-      case 0:
+      case 'name':
         return (
           <div className="space-y-2">
             {StepLabel(currentStep)}
@@ -125,7 +130,7 @@ export default function CLIInterface() {
             />
           </div>
         )
-      case 1:
+      case 'template':
         return (
           <div className="space-y-2">
             {StepLabel(currentStep)}
@@ -136,7 +141,7 @@ export default function CLIInterface() {
             />
           </div>
         )
-      case 2:
+      case 'ts':
         return (
           <RadioGroup
             value={formData.requireTypeScript as unknown as string}
@@ -156,7 +161,7 @@ export default function CLIInterface() {
             </div>
           </RadioGroup>
         )
-      case 3:
+      case 'plugins':
         return (
           <div className="space-y-2">
             {StepLabel(currentStep)}
@@ -169,7 +174,7 @@ export default function CLIInterface() {
 
           </div>
         )
-      case 4:
+      case 'modules':
         return (
           <div className="space-y-2">
             {StepLabel(currentStep)}
@@ -182,7 +187,7 @@ export default function CLIInterface() {
 
           </div>
         )
-      case 5:
+      case 'ui':
         return (
           <div className="space-y-2">
             {StepLabel(currentStep)}
@@ -194,7 +199,7 @@ export default function CLIInterface() {
             />
           </div>
         )
-      case 6:
+      case 'eslint':
         return (
           <RadioGroup
             value={formData.requireESLint as unknown as string}
@@ -214,7 +219,7 @@ export default function CLIInterface() {
             </div>
           </RadioGroup>
         )
-      case 7:
+      case 'path':
         return (
           <div className="space-y-2">
             {StepLabel(currentStep)}
@@ -245,7 +250,7 @@ export default function CLIInterface() {
         <div className="h-1 bg-zinc-200 dark:bg-zinc-700 rounded-full">
           <div
             className="h-full bg-zinc-600 dark:bg-zinc-400 rounded-full transition-all duration-300 ease-in-out"
-            style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
+            style={{ width: `${((steps.findIndex(item => item.value === currentStep) + 1) / steps.length) * 100}%` }}
           >
           </div>
         </div>
@@ -259,7 +264,7 @@ export default function CLIInterface() {
           {steps.length}
           :
           {' '}
-          {steps[currentStep].title}
+          {steps.find(item => item.value === currentStep).title}
         </div>
       </div>
       <div className="bg-gradient-to-b from-zinc-100 to-white dark:from-zinc-800 dark:to-zinc-900 p-6 rounded-lg mb-6">
@@ -268,7 +273,7 @@ export default function CLIInterface() {
       <div className="flex justify-between">
         <Button
           onClick={handleBack}
-          disabled={currentStep === 0}
+          disabled={currentStep === 'name'}
           variant="outline"
           size="sm"
           className="w-[80px] border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-50"
@@ -276,7 +281,7 @@ export default function CLIInterface() {
           <ArrowLeft className="w-4 h-4 mr-1" />
           Back
         </Button>
-        {currentStep < steps.length - 1
+        {currentStep !== 'path'
           ? (
               <Button
                 onClick={handleNext}

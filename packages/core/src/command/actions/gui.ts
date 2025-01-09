@@ -1,3 +1,4 @@
+import process from 'node:process'
 import moduleData from '@/question/module/module.data'
 import pluginData from '@/question/plugin/plugin.data'
 import { templateList } from '@/question/template/template.data'
@@ -25,7 +26,9 @@ export function actionGuiCLI() {
   })
 
   const [command, ..._args] = fullCustomCommand.split(' ')
-  const { error, stdout } = sync(command, [..._args, '--input', input], {
+
+  process.env.CREATE_UNI_GUI_INPUT = input
+  const { error, stdout } = sync(command, [..._args], {
     stdio: 'pipe',
   })
 
@@ -35,7 +38,6 @@ export function actionGuiCLI() {
   let data: any
   if (stdout.length > 0) {
     const data_string = stdout.toString()
-    console.log(data_string)
     try {
       const _data = JSON.parse(data_string)
       if (_data.useTemplate) {
@@ -48,10 +50,13 @@ export function actionGuiCLI() {
         data = _data
       }
     }
-    catch (e) {
-      throw new Error(`Error parsing JSON: ${e}`)
+    catch {
+      process.exit(0)
     }
   }
 
+  if (!data?.projectName) {
+    process.exit(0)
+  }
   return data
 }

@@ -14,7 +14,6 @@ use wry::{dpi::LogicalSize, http::Request, WebViewBuilder};
 
 use rfd::FileDialog;
 use std::env;
-use std::io::{self, Read};
 use std::path::PathBuf;
 use webbrowser::{open_browser, Browser::Default};
 
@@ -27,14 +26,14 @@ enum UserEvent {
 #[napi]
 pub fn create_webview() -> Result<()> {
   let current_dir: PathBuf = env::current_dir().expect("Unable to get current working directory");
-  let mut input = String::new();
-
-  let args: Vec<String> = env::args().collect();
-  if let Some(input_value) = args.iter().position(|x| x == "--input").and_then(|i| args.get(i + 1)) {
-      input = input_value.to_string();
-  } else {
-      println!("No input provided.");
-  }
+  let input = match env::var("CREATE_UNI_GUI_INPUT") {
+      Ok(val) => {
+          val
+      },
+      Err(_) => {
+          String::from("default_value")
+      }
+  };
 
   let current_dir_str = current_dir.to_str().unwrap_or("");
   let escaped_current_dir_str = current_dir_str.replace("\\", "\\\\");
@@ -74,6 +73,9 @@ pub fn create_webview() -> Result<()> {
         let url = req.next().unwrap();
         open_browser(Default, url).unwrap();
       }
+      "close" => {
+        let _ = proxy.send_event(UserEvent::CloseWindow);
+      }
       "install" => {
         let message = req.next().unwrap();
         println!("{}", message);
@@ -108,7 +110,9 @@ pub fn create_webview() -> Result<()> {
         event: WindowEvent::CloseRequested,
         ..
       }
-      | Event::UserEvent(UserEvent::CloseWindow) => *control_flow = ControlFlow::Exit,
+      | Event::UserEvent(UserEvent::CloseWindow) => {
+        *control_flow = ControlFlow::Exit
+      },
 
       Event::UserEvent(e) => match e {
         UserEvent::FilePath => {
