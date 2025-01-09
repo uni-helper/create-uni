@@ -27,12 +27,8 @@ enum UserEvent {
 pub fn create_webview() -> Result<()> {
   let current_dir: PathBuf = env::current_dir().expect("Unable to get current working directory");
   let input = match env::var("CREATE_UNI_GUI_INPUT") {
-      Ok(val) => {
-          val
-      },
-      Err(_) => {
-          String::from("default_value")
-      }
+    Ok(val) => val,
+    Err(_) => String::from("default_value"),
   };
 
   let current_dir_str = current_dir.to_str().unwrap_or("");
@@ -110,9 +106,7 @@ pub fn create_webview() -> Result<()> {
         event: WindowEvent::CloseRequested,
         ..
       }
-      | Event::UserEvent(UserEvent::CloseWindow) => {
-        *control_flow = ControlFlow::Exit
-      },
+      | Event::UserEvent(UserEvent::CloseWindow) => *control_flow = ControlFlow::Exit,
 
       Event::UserEvent(e) => match e {
         UserEvent::FilePath => {
