@@ -62,11 +62,12 @@ npx @create-uni/info@latest
 
 #### 📦模板列表
 
-| 模板名 | 描述 | 参数名 |
-| :---: | :---: | :---: |
-| [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app) | 由 Vite & uni-app 驱动的跨端快速启动模板   | vitesse |
-| [wot-demo](https://github.com/Moonofweisheng/wot-demo) | 基于 vitesse-uni-app 的 wot-design-uni 快速起手demo |  wot    |
-| [unisave](https://github.com/sunpm/unisave) |  拥抱 web 开发，拯救 uniapp。适配所有(app、mp、web)平台   | unisave |
+|                                       模板名                                      |                      描述                      |         参数名        |
+| :----------------------------------------------------------------------------: | :------------------------------------------: | :----------------: |
+|        [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app)        |         由 Vite & uni-app 驱动的跨端快速启动模板         |       vitesse      |
+|             [wot-demo](https://github.com/Moonofweisheng/wot-demo)             | 基于 vitesse-uni-app 的 wot-design-uni 快速起手demo |      wot-demo      |
+| [wot-starter-retail](https://github.com/Moonofweisheng/wot-starter-retail.git) |        基于Wot Design Uni的uni-app零售行业模板        | wot-starter-retail |
+|                   [unisave](https://github.com/sunpm/unisave)                  |    拥抱 web 开发，拯救 uniapp。适配所有(app、mp、web)平台    |       unisave      |
 
 #### 📦插件列表
 
