@@ -9,7 +9,6 @@
 <h2 align="center">
 <sub> >_ Easy to use create uni▌ </sub>
 </h2>
-
 # 📦 使用
 
 ```shell
@@ -25,6 +24,7 @@
 
 > [!TIP]
 > 建议添加上标记名（@latest），否则 npm 可能会解析到缓存的过时软件包版本。
+>
 
 ## 📖 介绍
 
@@ -35,11 +35,15 @@
 ## 🚤 快速使用
 
 ```shell
-npm create uni <项目名称> --ts -m pinia -m uniUse -u ano -e
+pnpm create uni --gui
 ```
 
 ```shell
-npx create-uni@latest --info
+pnpm create uni <项目名称> --ts -m pinia -m uniUse -u ano -e
+```
+
+```shell
+npx @create-uni/info@latest
 # --info  获取当前项目环境信息
 ```
 
@@ -53,6 +57,7 @@ npx create-uni@latest --info
 | Module | moduleList | m | 见[模块列表](#模块列表) |
 | UI | ui | u | 见[组件列表](#组件列表) |
 | Eslint | eslint | e | —— |
+| gui | gui | —— | —— |
 | info | info |  —— | all |
 
 #### 📦模板列表
