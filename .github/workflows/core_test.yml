@@ -97,7 +97,15 @@ jobs:
         working-directory: ../
         run: node ./create-uni/packages/core/dist/outfile.cjs sample-project
 
-      - name: 安装项目依赖
+      - name: 使用npm安装项目依赖
+        working-directory: ../sample-project
+        run: npm install --no-frozen-lockfile
+
+      - name: 移除node_modules
+        working-directory: ../sample-project
+        run: npx rimraf node_modules
+
+      - name: 使用pnpm安装项目依赖
         working-directory: ../sample-project
         run: pnpm install --no-frozen-lockfile
 
