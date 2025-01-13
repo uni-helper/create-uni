@@ -58,7 +58,7 @@ npx @create-uni/info@latest
 | UI | ui | u | 见[组件列表](#组件列表) |
 | Eslint | eslint | e | —— |
 | gui | gui | —— | —— |
-| info | info |  —— | all |
+| info | info |  —— | —— |
 
 #### 📦模板列表
 

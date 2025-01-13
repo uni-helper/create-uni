@@ -8,8 +8,8 @@ const actions = {
     console.log(helpMessage)
     process.exit(0)
   },
-  info: (argv?: any) => {
-    actionInfoCLI(argv)
+  info: () => {
+    actionInfoCLI()
     process.exit(0)
   },
   gui: () => {
@@ -22,7 +22,7 @@ export function commandAction(argv: any) {
     actions.help()
   }
   else if (argv.info) {
-    actions.info(argv)
+    actions.info()
   }
   else if (argv.gui) {
     return actions.gui()
