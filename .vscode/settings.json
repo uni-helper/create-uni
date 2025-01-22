@@ -31,5 +31,8 @@
     "json",
     "jsonc",
     "yaml"
+  ],
+  "rust-analyzer.linkedProjects": [
+    "packages/gui/Cargo.toml"
   ]
 }
