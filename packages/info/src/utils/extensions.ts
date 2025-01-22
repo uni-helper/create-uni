@@ -1,5 +1,4 @@
 import { execSync } from 'node:child_process'
-import question from '../question'
 
 export function getVSCodeExtensions() {
   try {
@@ -34,25 +33,25 @@ export function paserExtensionList(list: string[]) {
   })
 }
 
-export async function getErrorExtensions(
-  argv: string,
-  uniHelperExtensions: ReturnType<typeof paserExtensionList>,
-) {
-  if (!uniHelperExtensions)
-    return []
+// export async function getErrorExtensions(
+//   argv: string,
+//   uniHelperExtensions: ReturnType<typeof paserExtensionList>,
+// ) {
+//   if (!uniHelperExtensions)
+//     return []
 
-  const choices = uniHelperExtensions.map(item => item.name)
+//   const choices = uniHelperExtensions.map(item => item.name)
 
-  let errorExtensions: typeof uniHelperExtensions = []
-  if (argv === 'all') {
-    errorExtensions = uniHelperExtensions
-  }
-  else {
-    const errorIndexList = await question(choices, '请选择需要反馈的vscode插件')
+//   let errorExtensions: typeof uniHelperExtensions = []
+//   if (argv === 'all') {
+//     errorExtensions = uniHelperExtensions
+//   }
+//   else {
+//     const errorIndexList = await question(choices, '请选择需要反馈的vscode插件')
 
-    errorIndexList.forEach((item) => {
-      errorExtensions.push(uniHelperExtensions.find(i => i.name === item)!)
-    })
-  }
-  return errorExtensions
-}
+//     errorIndexList.forEach((item) => {
+//       errorExtensions.push(uniHelperExtensions.find(i => i.name === item)!)
+//     })
+//   }
+//   return errorExtensions
+// }

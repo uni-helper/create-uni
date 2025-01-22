@@ -1,5 +1,4 @@
 import type { UniPresetEnvInfo } from '../types'
-import question from '../question'
 
 export function getBaseDependencies(packageInfo: UniPresetEnvInfo['npmPackages']) {
   const baseDependenciesName = ['vue', 'vite', '@dcloudio/uni-app']
@@ -21,23 +20,23 @@ export function getUniHelperDependencies(packageInfo: UniPresetEnvInfo['npmPacka
   return uniHelperDependencies
 }
 
-export async function getErrorDependencies(
-  argv: string,
-  uniHelperDependencies: Record<string, string>,
-) {
-  if (!uniHelperDependencies)
-    return {}
-  let errorDependencies: Record<string, string> = {}
-  if (argv === 'all') {
-    errorDependencies = uniHelperDependencies
-  }
-  else {
-    const uniHelperDependenciesName = Object.keys(uniHelperDependencies)
-    const errorIndexList = await question(uniHelperDependenciesName, '请选择需要反馈的依赖')
+// export async function getErrorDependencies(
+//   argv: string,
+//   uniHelperDependencies: Record<string, string>,
+// ) {
+//   if (!uniHelperDependencies)
+//     return {}
+//   let errorDependencies: Record<string, string> = {}
+//   if (argv === 'all') {
+//     errorDependencies = uniHelperDependencies
+//   }
+//   else {
+//     const uniHelperDependenciesName = Object.keys(uniHelperDependencies)
+//     const errorIndexList = await question(uniHelperDependenciesName, '请选择需要反馈的依赖')
 
-    errorIndexList.forEach((item) => {
-      errorDependencies[item] = uniHelperDependencies[item]
-    })
-  }
-  return errorDependencies
-}
+//     errorIndexList.forEach((item) => {
+//       errorDependencies[item] = uniHelperDependencies[item]
+//     })
+//   }
+//   return errorDependencies
+// }

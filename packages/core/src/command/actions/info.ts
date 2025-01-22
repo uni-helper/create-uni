@@ -1,7 +1,7 @@
 import { sync } from 'cross-spawn'
 import { composeCommand } from '../composeCommand'
 
-export function actionInfoCLI(argv: any) {
+export function actionInfoCLI() {
   // #if CREATE_UNI_DEV
   // @ts-expect-error compile
   const fullCustomCommand = 'pnpm create-uni-info'
@@ -14,7 +14,7 @@ export function actionInfoCLI(argv: any) {
   // #endif
 
   const [command, ..._args] = fullCustomCommand.split(' ')
-  const { error } = sync(command, [..._args, argv ?? ''], {
+  const { error } = sync(command, [..._args], {
     stdio: 'inherit',
   })
 
