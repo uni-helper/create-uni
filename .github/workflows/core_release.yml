@@ -9,9 +9,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v4
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -20,10 +18,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: pnpm
           registry-url: https://registry.npmjs.com/
-
-      - name: Enable Corepack
-        run: corepack enable
 
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile
