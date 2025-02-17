@@ -166,8 +166,8 @@ importers:
         specifier: 3.4.21
         version: 3.4.21
       miniprogram-api-typings:
-        specifier: ^4.0.4
-        version: 4.0.4
+        specifier: ^4.0.5
+        version: 4.0.5
       sass:
         specifier: 1.64.2
         version: 1.64.2
@@ -4667,8 +4667,8 @@ packages:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
 
-  miniprogram-api-typings@4.0.4:
-    resolution: {integrity: sha512-51SElLHA9t7/v54IFVjZcbeP04dQL4HreCvBLt3XGA3qruKRT9gvBtBvHXfOjXbhjVd6Vy2myOg/0LELPWmhfg==}
+  miniprogram-api-typings@4.0.5:
+    resolution: {integrity: sha512-34pYYg4pwjsE752x/zs7QYLL0x0UGBL/IxTuVRRIXbFcv1msDRCWGyZK5KpsDm2P78Fdaw+B80B8R1qbvX6YhQ==}
 
   minizlib@2.1.2:
     resolution: {integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==}
@@ -11652,7 +11652,7 @@ snapshots:
 
   minipass@7.1.2: {}
 
-  miniprogram-api-typings@4.0.4: {}
+  miniprogram-api-typings@4.0.5: {}
 
   minizlib@2.1.2:
     dependencies:
