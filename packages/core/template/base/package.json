@@ -48,6 +48,7 @@
     "@dcloudio/uni-h5": "3.0.0-4050720250324001",
     "@dcloudio/uni-mp-alipay": "3.0.0-4050720250324001",
     "@dcloudio/uni-mp-baidu": "3.0.0-4050720250324001",
+    "@dcloudio/uni-mp-harmony": "3.0.0-4050720250324001",
     "@dcloudio/uni-mp-jd": "3.0.0-4050720250324001",
     "@dcloudio/uni-mp-kuaishou": "3.0.0-4050720250324001",
     "@dcloudio/uni-mp-lark": "3.0.0-4050720250324001",
@@ -68,7 +69,7 @@
     "@mini-types/alipay": "^3.0.14",
     "@uni-helper/uni-types": "^1.0.0-alpha.6",
     "@vue/runtime-core": "3.4.21",
-    "miniprogram-api-typings": "^4.0.5",
+    "miniprogram-api-typings": "^4.0.7",
     "sass": "1.64.2",
     "vite": "5.2.8"
   }
