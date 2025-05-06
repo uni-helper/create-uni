@@ -24,7 +24,7 @@ export function Footer() {
       <div className="flex justify-between items-center">
         <div class="italic">
           <p>
-            © 2025 Designed by
+            © 2025 Design by
             {' '}
             <span
               className="hover:underline whitespace-pre cursor-pointer"
