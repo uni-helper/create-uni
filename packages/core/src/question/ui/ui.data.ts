@@ -11,7 +11,7 @@ export const UIList = [
   {
     label: green('uni-ui'),
     hint: 'UniApp官方组件库',
-    name: 'umi-ui',
+    name: 'uni-ui',
     value: 'uni',
     website: 'https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html',
   },
