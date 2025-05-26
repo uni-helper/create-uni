@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@uni-helper/uni-network": "^0.21.1"
+    "@uni-helper/uni-network": "^0.21.3"
   }
 }
