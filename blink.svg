@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 30">  
+  <!-- 终端提示符和文本 -->
+  <text x="10" y="25" font-family="Consolas, Monaco, monospace" font-size="16" fill="#58595b">
+    >_ Easy to use create uni
+    <!-- 闪烁的光标 -->
+    <tspan id="cursor">▌</tspan>
+  </text>
+  
+  <!-- 光标闪烁动画 -->
+  <defs>  
+    <style>
+      #cursor {
+        animation: blink 1s infinite;
+        opacity: 1;
+      }
+      @keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+    </style>
+  </defs>
+</svg>

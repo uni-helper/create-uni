@@ -6,9 +6,9 @@
     <a href="https://www.npmjs.com/package/create-uni"><img src="https://img.shields.io/npm/v/create-uni?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a>
 </p>
 
-<h2 align="center">
-<sub> >_ Easy to use create uni▌ </sub>
-</h2>
+<p align="center">
+<img src='./blink.svg' width='380' />
+</p>
 # 📦 使用
 
 ```shell
