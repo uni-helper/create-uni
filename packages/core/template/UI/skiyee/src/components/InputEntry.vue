@@ -10,15 +10,12 @@ function handleClick() {
 </script>
 
 <template>
-  <view m4 p2 border="1px solid gray">
-    <input
-      v-model="name"
-      placeholder="What's your name?"
-    >
+  <view m4 p2>
+    <SkInput v-model="name" type="text" placeholder="What's your name?" />
   </view>
   <view>
     <SkButton
-      type="primary" block
+      full
       :disabled="!name"
       @click="handleClick"
     >
