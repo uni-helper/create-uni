@@ -119,7 +119,6 @@ jobs:
           - host: windows-latest
             target: x86_64-pc-windows-msvc
         node:
-          - '18'
           - '20'
     runs-on: ${{ matrix.settings.host }}
     steps:
