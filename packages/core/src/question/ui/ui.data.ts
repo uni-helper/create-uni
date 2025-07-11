@@ -32,6 +32,14 @@ export const UIList = [
     website: 'nutui-uniapp.pages.dev',
   },
   {
+    label: rgb(22, 93, 255)('skiyee-ui'),
+    hint: '随心创造差异化',
+    name: 'skiyee-ui',
+    value: 'skiyee',
+    github: 'https://github.com/skiyee/ui',
+    website: 'https://skiyee-ui.netlify.app/',
+  },
+  {
     label: rgb(60, 156, 255)('uv-ui'),
     hint: '多平台快速开发的UI框架',
     name: 'uv-ui',
