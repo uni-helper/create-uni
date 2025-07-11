@@ -111,7 +111,7 @@ npx @create-uni/info@latest
 - 提交新[`模板`](./src/question/template/)/[`Plugin`](./src/question/plugin/choices.ts)/[`module`](./src/question/module/choices.ts)/[`UI`](./src/question/UI/)
 
 ## 🛠️ 开发
-- Node.js 版本 18+ 或 20+
+- Node.js 版本 20+
 - Rust 版本 1.64+
 - 必须使用`pnpm`作为包管理工具
 - `Clone`此仓库
