@@ -47,4 +47,14 @@ export const templateList: TemplateList[] = [
     website: 'https://unisave-docs.netlify.app/',
     playground: 'https://uni-save.netlify.app/',
   },
+  {
+    label: `tmui3.2`,
+    description: `优质Vue3 TS Pinia Vite跨端组件库`,
+    value: 'tmui32',
+    url: {
+      github: 'https://gitee.com/LYTB/tmui-design.git',
+    },
+    website: 'https://tmui.design/',
+    playground: 'https://tmui.design/h5by32/',
+  },
 ]
