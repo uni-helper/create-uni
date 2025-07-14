@@ -52,7 +52,7 @@ export const templateList: TemplateList[] = [
     description: `优质Vue3 TS Pinia Vite跨端组件库`,
     value: 'tmui32',
     url: {
-      github: 'https://gitee.com/LYTB/tmui-design.git',
+      gitee: 'https://gitee.com/LYTB/tmui-design.git',
     },
     website: 'https://tmui.design/',
     playground: 'https://tmui.design/h5by32/',
