@@ -69,6 +69,7 @@ npx @create-uni/info@latest
 |             [wot-demo](https://github.com/Moonofweisheng/wot-demo)             | 基于 vitesse-uni-app 的 wot-design-uni 快速起手demo |      wot-demo      |
 | [wot-starter-retail](https://github.com/Moonofweisheng/wot-starter-retail.git) |        基于Wot Design Uni的uni-app零售行业模板        | wot-starter-retail |
 |                   [unisave](https://github.com/sunpm/unisave)                  |    拥抱 web 开发，拯救 uniapp。适配所有(app、mp、web)平台    |       unisave      |
+|                   [tmui 3.2](https://tmui.design)                  |    优质Vue3 TS Pinia Vite跨端组件库   |       tmui32      |
 
 #### 📦插件列表
 
