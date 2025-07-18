@@ -55,4 +55,12 @@ export const UIList = [
     github: 'https://github.com/ano-ui/ano-ui',
     website: 'https://ano-ui.netlify.app/',
   },
+  {
+    label: rgb(255, 127, 0)('tmui'),
+    hint: '优质Vue3 TS Pinia Vite跨端组件库',
+    name: 'tmui',
+    value: 'tmui',
+    github: 'https://gitee.com/LYTB/tmui-design',
+    website: 'https://tmui.design/',
+  },
 ] as Options[]
