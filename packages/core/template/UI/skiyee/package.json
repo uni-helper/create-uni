@@ -3,7 +3,7 @@
     "@skiyee/uni-ui": "^0.1.1"
   },
   "devDependencies": {
-    "@skiyee/ui-preset": "^0.0.3",
+    "@skiyee/ui-preset": "^0.0.4",
     "@skiyee/ui-resolver": "^0.0.2"
   }
 }
