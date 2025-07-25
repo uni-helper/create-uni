@@ -1,14 +1,13 @@
-<h1 align="center">✨💚create uni💚✨</h1>
+<img src='./blink.svg' />
 
-<p align="center">
-    <a href="https://github.com/uni-helper/create-uni/stargazers"><img src="https://img.shields.io/github/stars/uni-helper/create-uni?colorA=363a4f&colorB=b7bdf8&style=for-the-badge"></a>
-    <a href="https://www.npmjs.com/package/create-uni"><img src="https://img.shields.io/npm/dm/create-uni?colorA=363a4f&colorB=f5a97f&style=for-the-badge"></a>
-    <a href="https://www.npmjs.com/package/create-uni"><img src="https://img.shields.io/npm/v/create-uni?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a>
-</p>
+<br />
 
-<p align="center">
-<img src='./blink.svg' width='380' />
-</p>
+<a href="https://github.com/uni-helper/create-uni/stargazers"><img src="https://img.shields.io/github/stars/uni-helper/create-uni?colorA=09090b&colorB=fafafa&style=for-the-badge"></a>
+<a href="https://www.npmjs.com/package/create-uni"><img src="https://img.shields.io/npm/dm/create-uni?colorA=09090b&colorB=fafafa&style=for-the-badge"></a>
+<a href="https://www.npmjs.com/package/create-uni"><img src="https://img.shields.io/npm/v/create-uni?colorA=09090b&colorB=fafafa&style=for-the-badge"></a>
+
+<br />
+
 # 📦 使用
 
 ```shell

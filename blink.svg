@@ -1,13 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 30">  
-  <!-- 终端提示符和文本 -->
-  <text x="10" y="25" font-family="Consolas, Monaco, monospace" font-size="16" fill="#58595b">
-    >_ Easy to use create uni
-    <!-- 闪烁的光标 -->
-    <tspan id="cursor">▌</tspan>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 18">
+  <text x="0" font-family="Consolas, Monaco, monospace" font-size="14" fill="#B3B3B3">
+    <tspan y="10">>_</tspan> 
+    <tspan y="12">CREATE UNI</tspan>
+    <tspan y="9" id="cursor">▌</tspan>
   </text>
   
-  <!-- 光标闪烁动画 -->
-  <defs>  
+  <defs>
     <style>
       #cursor {
         animation: blink 1s infinite;
