@@ -1,7 +1,4 @@
 <img src='./blink.svg' />
-
-<br />
-
 <a href="https://github.com/uni-helper/create-uni/stargazers"><img src="https://img.shields.io/github/stars/uni-helper/create-uni?colorA=09090b&colorB=fafafa&style=for-the-badge"></a>
 <a href="https://www.npmjs.com/package/create-uni"><img src="https://img.shields.io/npm/dm/create-uni?colorA=09090b&colorB=fafafa&style=for-the-badge"></a>
 <a href="https://www.npmjs.com/package/create-uni"><img src="https://img.shields.io/npm/v/create-uni?colorA=09090b&colorB=fafafa&style=for-the-badge"></a>
@@ -21,7 +18,7 @@
     pnpm create uni
 ```
 
-> [!TIP]
+> [!IMPORTANT]
 > 建议添加上标记名（@latest），否则 npm 可能会解析到缓存的过时软件包版本。
 >
 <!-- <img src='./Terminal.svg' /> -->
