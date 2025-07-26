@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@vue/compiler-core": "^3.5.11",
+    "echarts": "5.4.2",
+    "pinia": "^2.0.33",
+    "sass": "^1.77.5",
+    "tmui-uni": "^3.2.7",
+    "vue": "^3.5.16",
+    "vue-docgen-api": "^4.79.2",
+    "vue-i18n": "^11.1.5"
+  }
+}
