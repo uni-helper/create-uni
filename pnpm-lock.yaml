@@ -162,6 +162,9 @@ importers:
       '@mini-types/alipay':
         specifier: ^3.0.14
         version: 3.0.14
+      '@uni-helper/plugin-uni':
+        specifier: 0.1.0
+        version: 0.1.0(@dcloudio/vite-plugin-uni@3.0.0-4070520250711001(postcss@8.4.49)(rollup@4.29.1)(vite@5.2.8(@types/node@18.19.68)(sass@1.64.2)(terser@5.37.0))(vue@3.4.21(typescript@5.7.2)))
       '@uni-helper/uni-types':
         specifier: ^1.0.0-alpha.6
         version: 1.0.0-alpha.6(@uni-helper/uni-app-types@1.0.0-alpha.6(typescript@5.7.2)(vue@3.4.21(typescript@5.7.2)))(@uni-helper/uni-cloud-types@1.0.0-alpha.6(typescript@5.7.2)(vue@3.4.21(typescript@5.7.2)))(@uni-helper/uni-ui-types@1.0.0-alpha.6(@uni-helper/uni-app-types@1.0.0-alpha.6(typescript@5.7.2)(vue@3.4.21(typescript@5.7.2)))(typescript@5.7.2)(vue@3.4.21(typescript@5.7.2)))(typescript@5.7.2)(vue@3.4.21(typescript@5.7.2))
@@ -2626,6 +2629,11 @@ packages:
     peerDependencies:
       '@antfu/eslint-config': ^3.4.1
       eslint: ^9.5.0
+
+  '@uni-helper/plugin-uni@0.1.0':
+    resolution: {integrity: sha512-hBPUjoQc/SgqKsyGUl0fJiL+dDwLPhf2es1PJdsXcxHyOujoBP2+D4z5ie+Q72wVwKtTsQSP3tSjww/63JRmbA==}
+    peerDependencies:
+      '@dcloudio/vite-plugin-uni': '*'
 
   '@uni-helper/uni-app-types@1.0.0-alpha.6':
     resolution: {integrity: sha512-t9AKDYBmDaz4IW0fgtBt25ubEzf7kyUeMlHaBaG5nyNGd6pVuDpYkABhsnNPDiZcaHAoN6SbX1SQQx5axDOWbA==}
@@ -9177,6 +9185,10 @@ snapshots:
       eslint: 9.17.0(jiti@2.4.2)
       eslint-flat-config-utils: 0.4.0
       local-pkg: 0.5.1
+
+  '@uni-helper/plugin-uni@0.1.0(@dcloudio/vite-plugin-uni@3.0.0-4070520250711001(postcss@8.4.49)(rollup@4.29.1)(vite@5.2.8(@types/node@18.19.68)(sass@1.64.2)(terser@5.37.0))(vue@3.4.21(typescript@5.7.2)))':
+    dependencies:
+      '@dcloudio/vite-plugin-uni': 3.0.0-4070520250711001(postcss@8.4.49)(rollup@4.29.1)(vite@5.2.8(@types/node@18.19.68)(sass@1.64.2)(terser@5.37.0))(vue@3.4.21(typescript@5.7.2))
 
   '@uni-helper/uni-app-types@1.0.0-alpha.6(typescript@5.7.2)(vue@3.4.21(typescript@5.7.2))':
     dependencies:
