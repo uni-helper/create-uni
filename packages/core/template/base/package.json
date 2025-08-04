@@ -62,7 +62,7 @@
     "vue-i18n": "9.6.2"
   },
   "devDependencies": {
-    "@dcloudio/types": "^3.4.16",
+    "@dcloudio/types": "^3.4.19",
     "@dcloudio/uni-automator": "3.0.0-4070520250711001",
     "@dcloudio/uni-cli-shared": "3.0.0-4070520250711001",
     "@dcloudio/uni-stacktracey": "3.0.0-4070520250711001",
