@@ -10,7 +10,7 @@ export function generateBanner(text: string) {
       return false
     const colorDepth = process.stdout.getColorDepth()
     const colorterm = process.env.COLORTERM
-    return colorDepth >= 8 || colorterm === 'truecolor' || colorterm === '24bit'
+    return colorDepth > 8 || colorterm === 'truecolor' || colorterm === '24bit'
   }
 
   if (!supportsColor())
