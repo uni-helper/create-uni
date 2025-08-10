@@ -1,6 +1,6 @@
 import process from 'node:process'
 
-import { bgLightGreen, bold, green, red } from 'kolorist'
+import { bold, green, lightCyan, red } from 'kolorist'
 
 export function generateBanner(text: string) {
   console.log()
@@ -14,7 +14,7 @@ export function generateBanner(text: string) {
   }
 
   if (!supportsColor())
-    return bgLightGreen(` ${text} `)
+    return lightCyan(` ${text} `)
 
   let colorText = ''
 
