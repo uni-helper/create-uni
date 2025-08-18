@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@skiyee/uni-ui": "^0.2.0"
+    "@skiyee/uni-ui": "^1.0.0"
   },
   "devDependencies": {
     "@skiyee/ui-preset": "^0.0.5",
