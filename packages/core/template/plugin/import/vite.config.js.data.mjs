@@ -2,7 +2,8 @@ export default function getData({ oldData }) {
   const autoImportPlugin = {
     id: 'autoImport',
     importer: `import Components from '@uni-helper/vite-plugin-uni-components'`,
-    initializer: `Components({
+    initializer: `// https://uni-helper.js.org/vite-plugin-uni-components
+    Components({
       dts: true,
     })`,
   }

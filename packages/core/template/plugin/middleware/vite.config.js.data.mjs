@@ -2,7 +2,7 @@ export default function getData({ oldData }) {
   const middlewarePlugin = {
     id: 'middleware',
     importer: `import UniMiddleware from '@uni-helper/vite-plugin-uni-middleware'`,
-    initializer: `// https://github.com/uni-helper/vite-plugin-uni-middleware
+    initializer: `// https://uni-helper.js.org/vite-plugin-uni-middleware
     UniMiddleware()`,
   }
 

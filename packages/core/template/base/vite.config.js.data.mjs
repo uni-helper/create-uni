@@ -3,7 +3,7 @@ export default function getData() {
     plugins: [{
       id: 'uni',
       importer: `import Uni from '@uni-helper/plugin-uni'`,
-      initializer: `// https://github.com/uni-helper/plugin-uni
+      initializer: `// https://uni-helper.js.org/plugin-uni
       Uni()`,
     }],
     extraConfig: null,
