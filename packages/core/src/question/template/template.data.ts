@@ -14,26 +14,27 @@ export const templateList: TemplateList[] = [
   },
   {
     label: `wot`,
-    description: `由${green('Wot Design Uni')}提供的基于vitesse-uni-app的快速启动模板`,
+    description: `由${green('Wot UI')}提供的基于vitesse-uni-app的快速启动模板`,
     value: 'wot',
     list: [
       {
-        label: `wot-demo`,
-        description: `由${rgb(77, 128, 240)('Wot Design Uni')}提供的基于vitesse-uni-app的快速启动模板`,
-        value: 'wot-demo',
+        label: `wot-starter`,
+        description: `由${rgb(77, 128, 240)('Wot UI')}提供的基于vitesse-uni-app的快速启动模板`,
+        value: 'wot-starter',
         url: {
-          github: 'https://github.com/Moonofweisheng/wot-demo.git',
+          github: 'https://github.com/wot-ui/wot-starter.git',
         },
-        playground: 'https://wot-demo.netlify.app/',
+        website: 'https://starter.wot-ui.cn/',
+        playground: 'https://starter-demo.wot-ui.cn/',
       },
       {
         label: 'wot-starter-retail',
-        description: `基于${rgb(77, 128, 240)('Wot Design Uni')}的uni-app零售行业模板`,
+        description: `基于${rgb(77, 128, 240)('Wot UI')}的uni-app零售行业模板`,
         value: 'wot-starter-retail',
         url: {
           github: 'https://github.com/Moonofweisheng/wot-starter-retail.git',
         },
-        playground: 'https://moonofweisheng.github.io/wot-starter-retail/',
+        playground: 'https://starter-retail.wot-ui.cn/',
       },
     ],
   },
