@@ -62,10 +62,10 @@ npx @create-uni/info@latest
 |                                       模板名                                      |                      描述                      |         参数名        |
 | :----------------------------------------------------------------------------: | :------------------------------------------: | :----------------: |
 |        [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app)        |         由 Vite & uni-app 驱动的跨端快速启动模板         |       vitesse      |
-|             [wot-starter](https://github.com/wot-ui/wot-starter)             | 基于 vitesse-uni-app 的 wot-ui 快速起手demo |      wot-starter      |
-| [wot-starter-retail](https://github.com/wot-ui/wot-starter-retail) |        基于 wot-ui 的uni-app零售行业模板        | wot-starter-retail |
-|                   [unisave](https://github.com/sunpm/unisave)                  |    拥抱 web 开发，拯救 uniapp。适配所有(app、mp、web)平台    |       unisave      |
-|                   [tmui 3.2](https://tmui.design)                  |    优质Vue3 TS Pinia Vite跨端组件库   |       tmui32      |
+|             [wot-starter](https://github.com/wot-ui/wot-starter)             | 基于 vitesse-uni-app 的 wot-ui 快速起手模板 |      wot-starter      |
+| [wot-starter-retail](https://github.com/wot-ui/wot-starter-retail) |        基于 wot-ui 的 uni-app 零售行业模板        | wot-starter-retail |
+|                   [unisave](https://github.com/sunpm/unisave)                  |    拥抱 web 开发，拯救 uniapp。适配所有 (app、mp、web) 平台    |       unisave      |
+|                   [tmui 3.2](https://tmui.design)                  |    优质 Vue3 TS Pinia Vite 跨端组件库   |       tmui32      |
 
 #### 📦插件列表
 
@@ -78,7 +78,7 @@ npx @create-uni/info@latest
 | [vite-plugin-uni-platform](https://github.com/uni-helper/vite-plugin-uni-platform) | 基于文件名 (*.<h5\|mp-weixin\|app>.*) 的按平台编译插件 | filePlatform |
 | [vite-plugin-uni-platform-modifier](https://github.com/uni-helper/vite-plugin-uni-platform-modifier) | 为属性、指令提供平台修饰符并按需编译 | platformModifier |
 | [vite-plugin-uni-middleware](https://github.com/uni-helper/vite-plugin-uni-middleware) | 使用路由中间件 | middleware |
-| [uni-ku-root](https://github.com/uni-ku/root) | 模拟虚拟根组件(支持SFC的App.vue) | root |
+| [uni-ku-root](https://github.com/uni-ku/root) | 模拟虚拟根组件 (支持 SFC 的 App.vue) | root |
 
 #### 📦模块列表
 
@@ -94,11 +94,11 @@ npx @create-uni/info@latest
 
 | 组件名 | 描述 | 参数名 |
 | :---: | :---: | :---: |
-| [uni-ui](https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html) | UniApp官方组件库 | uni |
-| [wot-design-uni](https://wot-design-uni.pages.dev/) | 高颜值、轻量化的uni-app组件库 | wot |
+| [uni-ui](https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html) | UniApp 官方组件库 | uni |
+| [wot-design-uni](https://wot-design-uni.pages.dev/) | 高颜值、轻量化的 uni-app 组件库 | wot |
 | [nutui-uniapp](https://uniapp-nutui.tech/) | 京东风格的轻量级移动端组件库 | nut |
 | [skiyee-ui](https://skiyee-ui.netlify.app/) | 随心创造差异化 | skiyee |
-| [uv-ui](https://www.uvui.cn/components/intro.html) | 多平台快速开发的UI框架 | uv |
+| [uv-ui](https://www.uvui.cn/components/intro.html) | 多平台快速开发的 UI 框架 | uv |
 | [ano-ui](https://ano-ui.netlify.app/) | 轻量级、漂亮、快速的 UnoCSS 组件库 | ano |
 
 ## 🤝 参与贡献
