@@ -14,12 +14,12 @@ export const templateList: TemplateList[] = [
   },
   {
     label: `wot`,
-    description: `由${green('Wot UI')}提供的基于vitesse-uni-app的快速启动模板`,
+    description: `由${green('Wot UI')}提供的基于 vitesse-uni-app 的快速启动模板`,
     value: 'wot',
     list: [
       {
         label: `wot-starter`,
-        description: `由${rgb(77, 128, 240)('Wot UI')}提供的基于vitesse-uni-app的快速启动模板`,
+        description: `由${rgb(77, 128, 240)('Wot UI')}提供的基于 vitesse-uni-app 的快速启动模板`,
         value: 'wot-starter',
         url: {
           github: 'https://github.com/wot-ui/wot-starter.git',
@@ -29,10 +29,10 @@ export const templateList: TemplateList[] = [
       },
       {
         label: 'wot-starter-retail',
-        description: `基于${rgb(77, 128, 240)('Wot UI')}的uni-app零售行业模板`,
+        description: `基于${rgb(77, 128, 240)('Wot UI')}的 uni-app 零售行业模板`,
         value: 'wot-starter-retail',
         url: {
-          github: 'https://github.com/Moonofweisheng/wot-starter-retail.git',
+          github: 'https://github.com/wot-ui/wot-starter-retail.git',
         },
         playground: 'https://starter-retail.wot-ui.cn/',
       },
@@ -40,7 +40,7 @@ export const templateList: TemplateList[] = [
   },
   {
     label: `unisave`,
-    description: `拥抱 web 开发，${lightMagenta('拯救')}uniapp。适配所有(app、mp、web)平台`,
+    description: `拥抱 web 开发，${lightMagenta('拯救')}uniapp。适配所有 (app、mp、web) 平台`,
     value: 'unisave',
     url: {
       github: 'https://github.com/sunpm/unisave.git',
@@ -50,7 +50,7 @@ export const templateList: TemplateList[] = [
   },
   {
     label: `tmui3.2`,
-    description: `优质Vue3 TS Pinia Vite跨端组件库`,
+    description: `优质 Vue3 TS Pinia Vite 跨端组件库`,
     value: 'tmui32',
     url: {
       gitee: 'https://gitee.com/LYTB/tmui-design.git',
