@@ -62,8 +62,8 @@ npx @create-uni/info@latest
 |                                       模板名                                      |                      描述                      |         参数名        |
 | :----------------------------------------------------------------------------: | :------------------------------------------: | :----------------: |
 |        [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app)        |         由 Vite & uni-app 驱动的跨端快速启动模板         |       vitesse      |
-|             [wot-demo](https://github.com/Moonofweisheng/wot-demo)             | 基于 vitesse-uni-app 的 wot-design-uni 快速起手demo |      wot-demo      |
-| [wot-starter-retail](https://github.com/Moonofweisheng/wot-starter-retail.git) |        基于Wot Design Uni的uni-app零售行业模板        | wot-starter-retail |
+|             [wot-starter](https://github.com/wot-ui/wot-starter)             | 基于 vitesse-uni-app 的 wot-ui 快速起手demo |      wot-starter      |
+| [wot-starter-retail](https://github.com/wot-ui/wot-starter-retail) |        基于 wot-ui 的uni-app零售行业模板        | wot-starter-retail |
 |                   [unisave](https://github.com/sunpm/unisave)                  |    拥抱 web 开发，拯救 uniapp。适配所有(app、mp、web)平台    |       unisave      |
 |                   [tmui 3.2](https://tmui.design)                  |    优质Vue3 TS Pinia Vite跨端组件库   |       tmui32      |
 
