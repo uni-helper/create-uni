@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@9.9.0",
-  "description": "快速检测你的uni-app项目",
+  "description": "快速检测你的 uni-app 项目",
   "author": "FliPPeDround <flippedround@qq.com>",
   "license": "MIT",
   "funding": "https://afdian.com/a/flippedround",

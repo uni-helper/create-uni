@@ -1,0 +1,48 @@
+{
+  "name": "@create-uni/mcp",
+  "type": "module",
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.9.0",
+  "description": "create-uni的mcp服务",
+  "author": "FliPPeDround <flippedround@qq.com>",
+  "license": "MIT",
+  "funding": "https://afdian.com/a/flippedround",
+  "homepage": "https://github.com/uni-helper/create-uni#readme",
+  "repository": {
+    "directory": "packages/mcp",
+    "type": "git",
+    "url": "git+https://github.com/uni-helper/create-uni.git"
+  },
+  "bugs": "https://github.com/uni-helper/create-uni/issues",
+  "keywords": [
+    "uni",
+    "uni-app",
+    "create-uni",
+    "cli",
+    "vue",
+    "miniapp",
+    "create"
+  ],
+  "sideEffects": false,
+  "bin": {
+    "create-uni-mcp": "./dist/outfile.cjs"
+  },
+  "files": [
+    "dist/outfile.cjs"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "prepublishOnly": "nr build",
+    "inspect": "mcp-inspector",
+    "release": "bumpp",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/inspector": "^0.16.6",
+    "@modelcontextprotocol/sdk": "^1.17.5",
+    "@types/cross-spawn": "^6.0.6",
+    "cross-spawn": "^7.0.6",
+    "zod": "3.25.68"
+  }
+}
