@@ -52,6 +52,7 @@ async function init() {
       help: ['h', 'help'],
       info: ['info', 'i'],
       gui: ['gui', 'g'],
+      force: ['force', 'f'],
     },
     string: ['_'],
   })
@@ -81,7 +82,7 @@ async function init() {
     const pluginList = validatePlugins(argv.pluginList)
     const moduleList = validateModules(argv.moduleList)
 
-    const shouldOverwrite = await askForceOverwrite(projectName)
+    const shouldOverwrite = argv.force ? true : await askForceOverwrite(projectName)
 
     result = {
       projectName,
