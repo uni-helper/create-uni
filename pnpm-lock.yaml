@@ -11,12 +11,6 @@ importers:
       '@antfu/ni':
         specifier: ^0.23.0
         version: 0.23.2
-      '@create-uni/gui':
-        specifier: ^0.0.7
-        version: link:packages/gui
-      '@create-uni/info':
-        specifier: ^0.1.8
-        version: link:packages/info
       '@types/node':
         specifier: ^18.19.50
         version: 18.19.68
@@ -29,9 +23,6 @@ importers:
       consola:
         specifier: ^3.3.3
         version: 3.3.3
-      create-uni:
-        specifier: ^2.3.5
-        version: link:packages/core
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
