@@ -163,29 +163,47 @@ jobs:
         working-directory: ../
         run: node ./create-uni/packages/core/dist/outfile.cjs sample-project
 
-      # - name: 使用npm安装项目依赖
-      #   working-directory: ../sample-project
-      #   run: npm install --no-frozen-lockfile
+      - name: 使用npm安装项目依赖
+        working-directory: ../sample-project
+        run: npm install --no-frozen-lockfile --legacy-peer-deps
 
-      # - name: 移除node_modules
-      #   working-directory: ../sample-project
-      #   run: npx rimraf node_modules
+      - name: 移除node_modules
+        working-directory: ../sample-project
+        run: npx rimraf node_modules
 
       - name: 使用pnpm安装项目依赖
         working-directory: ../sample-project
         run: pnpm install --no-frozen-lockfile
 
-      - name: 打包H5项目
+      - if: ${{ matrix.template != '-t vitesse' }}
+        name: 打包H5项目
         working-directory: ../sample-project
-        run: pnpm build
+        run: pnpm build:h5
 
-      - name: dev小程序项目
+      - if: ${{ matrix.template != '-t vitesse' }}
+        name: dev小程序项目
         working-directory: ../sample-project
         run: node ./../create-uni/scripts/dev.cjs
 
-      - name: 打包小程序项目
+      - if: ${{ matrix.template != '-t vitesse' }}
+        name: 打包小程序项目
         working-directory: ../sample-project
         run: pnpm build:mp-weixin
+
+      - if: ${{ matrix.template == '-t vitesse' }}
+        name: 打包H5项目
+        working-directory: ../sample-project
+        run: pnpm build h
+
+      # - if: ${{ matrix.template != '-t vitesse' }}
+      #   name: dev小程序项目
+      #   working-directory: ../sample-project
+      #   run: pnpm run dev wx
+
+      - if: ${{ matrix.template != '-t vitesse' }}
+        name: 打包小程序项目
+        working-directory: ../sample-project
+        run: pnpm build wx
 
       # - name: 输出环境信息
       #   working-directory: ../sample-project
