@@ -67,11 +67,11 @@ jobs:
         node: [20.x]
         os: [windows-latest, macos-latest]
 
+    if: ${{ !(contains(matrix.flag-for-template, '-t ')) || (matrix.flag-for-ui == '' && matrix.flag-for-ts == '') }}
     runs-on: ${{ matrix.os }}
     env:
       FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-plugin }} ${{ matrix.flag-for-ui }}
       TEMPLATE_FLAGS: ${{ matrix.flag-for-template }}
-    if: ${{ !contains(matrix.flag-for-template, '-t ') || (matrix.flag-for-ui == '' && matrix.flag-for-ts == '') }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
