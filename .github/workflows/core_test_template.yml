@@ -1,4 +1,4 @@
-name: create-uni Test CI
+name: create-uni Test Template CI
 
 on:
   push:
@@ -57,18 +57,14 @@ jobs:
   test:
     needs: build
     strategy:
+      fail-fast: false
       matrix:
-        flag-for-ts: ['', --ts]
-        flag-for-eslint: [-e]
-        flag-for-plugin: [-p import -p pages -p layouts -p manifest -p filePlatform -p platformModifier -p middleware -p root -m pinia -m unocss -m uniNetwork -m uniUse -m uniPromises]
-        flag-for-ui: ['', -u uni, -u ano, -u wot, -u nut, -u uv, -u skiyee]
+        template: ['', -t vitesse, -t wot-starter, -t wot-starter-retail, -t unisave, -t tmui32]
 
         node: [20.x]
         os: [windows-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
-    env:
-      FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-plugin }} ${{ matrix.flag-for-ui }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
@@ -87,19 +83,19 @@ jobs:
         if: steps.cache-restore.outputs.cache-hit != 'true'
         run: pnpm install && pnpm build:core
 
-      - if: ${{ (contains(env.FEATURE_FLAGS, '-')) }}
-        name: 创建多参数项目
+      - if: ${{ matrix.template != '' }}
+        name: 创建模板项目
         working-directory: ../
-        run: node ./create-uni/packages/core/dist/outfile.cjs sample-project ${{ env.FEATURE_FLAGS }}
+        run: node ./create-uni/packages/core/dist/outfile.cjs sample-project ${{ matrix.template }}
 
-      - if: ${{ !(contains(env.FEATURE_FLAGS, '-')) }}
+      - if: ${{ matrix.template == '' }}
         name: 创建基础项目
         working-directory: ../
         run: node ./create-uni/packages/core/dist/outfile.cjs sample-project
 
       - name: 使用npm安装项目依赖
         working-directory: ../sample-project
-        run: npm install --no-frozen-lockfile
+        run: npm install --no-frozen-lockfile --legacy-peer-deps
 
       - name: 移除node_modules
         working-directory: ../sample-project
@@ -109,17 +105,35 @@ jobs:
         working-directory: ../sample-project
         run: pnpm install --no-frozen-lockfile
 
-      - name: 打包H5项目
+      - if: ${{ matrix.template != '-t vitesse' }}
+        name: 打包H5项目
         working-directory: ../sample-project
-        run: pnpm build
+        run: pnpm build:h5
 
-      - name: dev小程序项目
+      - if: ${{ matrix.template != '-t vitesse' }}
+        name: dev小程序项目
         working-directory: ../sample-project
         run: node ./../create-uni/scripts/dev.cjs
 
-      - name: 打包小程序项目
+      - if: ${{ matrix.template != '-t vitesse' }}
+        name: 打包小程序项目
         working-directory: ../sample-project
         run: pnpm build:mp-weixin
+
+      - if: ${{ matrix.template == '-t vitesse' }}
+        name: 打包H5项目
+        working-directory: ../sample-project
+        run: pnpm build h
+
+      # - if: ${{ matrix.template == '-t vitesse' }}
+      #   name: dev小程序项目
+      #   working-directory: ../sample-project
+      #   run: pnpm run dev wx
+
+      - if: ${{ matrix.template == '-t vitesse' }}
+        name: 打包小程序项目
+        working-directory: ../sample-project
+        run: pnpm build wx
 
       # - name: 输出环境信息
       #   working-directory: ../sample-project
