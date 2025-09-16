@@ -69,7 +69,9 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     env:
-      FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-plugin }} ${{ matrix.flag-for-ui }} ${{ matrix.flag-for-template }}
+      FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-plugin }} ${{ matrix.flag-for-ui }}
+      TEMPLATE_FLAGS: ${{ matrix.flag-for-template }}
+    if: ${{ !contains(matrix.flag-for-template, '-t ') || (matrix.flag-for-ui == '' && matrix.flag-for-ts == '') }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
@@ -88,12 +90,17 @@ jobs:
         if: steps.cache-restore.outputs.cache-hit != 'true'
         run: pnpm install && pnpm build:core
 
-      - if: ${{ (contains(env.FEATURE_FLAGS, '-')) }}
+      - if: ${{ (contains(env.TEMPLATE_FLAGS, '-t ')) }}
+        name: 创建模板项目
+        working-directory: ../
+        run: node ./create-uni/packages/core/dist/outfile.cjs sample-project ${{ env.TEMPLATE_FLAGS }}
+
+      - if: ${{ (contains(env.FEATURE_FLAGS, '-')) && !(contains(env.TEMPLATE_FLAGS, '-t ')) }}
         name: 创建多参数项目
         working-directory: ../
         run: node ./create-uni/packages/core/dist/outfile.cjs sample-project ${{ env.FEATURE_FLAGS }}
 
-      - if: ${{ !(contains(env.FEATURE_FLAGS, '-')) }}
+      - if: ${{ !(contains(env.FEATURE_FLAGS, '-')) && !(contains(env.TEMPLATE_FLAGS, '-t ')) }}
         name: 创建基础项目
         working-directory: ../
         run: node ./create-uni/packages/core/dist/outfile.cjs sample-project
