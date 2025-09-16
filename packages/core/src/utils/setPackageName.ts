@@ -1,7 +1,9 @@
-import { readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 function replaceNameContent(filePath: string, projectName: string) {
+  if (!existsSync(filePath))
+    return
   const fileContent = JSON.parse(readFileSync(filePath, 'utf8'))
   fileContent.name = projectName
   writeFileSync(filePath, JSON.stringify(fileContent, null, 2))
