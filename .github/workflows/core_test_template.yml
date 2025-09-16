@@ -93,11 +93,14 @@ jobs:
         working-directory: ../
         run: node ./create-uni/packages/core/dist/outfile.cjs sample-project
 
-      - name: 使用npm安装项目依赖
+        # wot-starter-retail only-allow pnpm
+      - if: ${{ matrix.template != '-t wot-starter-retail' }}
+        name: 使用npm安装项目依赖
         working-directory: ../sample-project
         run: npm install --no-frozen-lockfile --legacy-peer-deps
 
-      - name: 移除node_modules
+      - if: ${{ matrix.template != '-t wot-starter-retail' }}
+        name: 移除node_modules
         working-directory: ../sample-project
         run: npx rimraf node_modules
 
@@ -105,6 +108,7 @@ jobs:
         working-directory: ../sample-project
         run: pnpm install --no-frozen-lockfile
 
+        # vitesse use `unh` command
       - if: ${{ matrix.template != '-t vitesse' }}
         name: 打包H5项目
         working-directory: ../sample-project
