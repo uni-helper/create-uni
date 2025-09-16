@@ -67,7 +67,24 @@ jobs:
         node: [20.x]
         os: [windows-latest, macos-latest]
 
-    if: ${{ !(contains(matrix.flag-for-template, '-t ')) || (matrix.flag-for-ui == '' && matrix.flag-for-ts == '') }}
+        include:
+          - flag-for-template: ''
+          - flag-for-template: -t vitesse
+            flag-for-ui: ''
+            flag-for-ts: ''
+          - flag-for-template: -t wot-starter
+            flag-for-ui: ''
+            flag-for-ts: ''
+          - flag-for-template: -t wot-starter-retail
+            flag-for-ui: ''
+            flag-for-ts: ''
+          - flag-for-template: -t unisave
+            flag-for-ui: ''
+            flag-for-ts: ''
+          - flag-for-template: -t tmui32
+            flag-for-ui: ''
+            flag-for-ts: ''
+
     runs-on: ${{ matrix.os }}
     env:
       FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-plugin }} ${{ matrix.flag-for-ui }}
