@@ -195,12 +195,12 @@ jobs:
         working-directory: ../sample-project
         run: pnpm build h
 
-      # - if: ${{ matrix.template != '-t vitesse' }}
+      # - if: ${{ matrix.template == '-t vitesse' }}
       #   name: dev小程序项目
       #   working-directory: ../sample-project
       #   run: pnpm run dev wx
 
-      - if: ${{ matrix.template != '-t vitesse' }}
+      - if: ${{ matrix.template == '-t vitesse' }}
         name: 打包小程序项目
         working-directory: ../sample-project
         run: pnpm build wx
