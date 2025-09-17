@@ -1,0 +1,108 @@
+name: create-uni Test Template CI
+
+on:
+  push:
+    branches:
+      - main
+    tags-ignore:
+      - '**'
+    paths:
+      - 'packages/core/**'
+      - .github/workflows/core_test.yml
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'packages/core/**'
+      - .github/workflows/core_test.yml
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node: [20.x]
+        os: [windows-latest, macos-latest]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Set node ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+
+      - name: Setup
+        run: npm i -g @antfu/ni
+
+      - name: Install
+        run: nci
+
+      - name: Build
+        run: nr build:core
+
+      - uses: actions/cache/save@v4
+        id: cache
+        with:
+          path: packages/core/dist/outfile.cjs
+          key: ${{ github.sha }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ matrix.os }}-${{ matrix.node }}
+
+  test:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        template: [-t vitesse]
+
+        node: [20.x]
+        os: [windows-latest, macos-latest]
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+      - uses: actions/cache/restore@v4
+        id: cache-restore
+        with:
+          path: packages/core/dist/outfile.cjs
+          key: ${{ github.sha }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ matrix.os }}-${{ matrix.node }}
+      - name: 当没有缓存时，执行构建
+        if: steps.cache-restore.outputs.cache-hit != 'true'
+        run: pnpm install && pnpm build:core
+
+      - name: 创建模板项目
+        working-directory: ../
+        run: node ./create-uni/packages/core/dist/outfile.cjs sample-project ${{ matrix.template }}
+
+      - name: 使用npm安装项目依赖
+        working-directory: ../sample-project
+        run: npm install --no-frozen-lockfile --legacy-peer-deps
+
+      - name: 移除node_modules
+        working-directory: ../sample-project
+        run: npx rimraf node_modules
+
+      - name: 使用pnpm安装项目依赖
+        working-directory: ../sample-project
+        run: pnpm install --no-frozen-lockfile
+
+      - name: 打包H5项目
+        working-directory: ../sample-project
+        run: pnpm build h5
+
+      - name: 打包小程序项目
+        working-directory: ../sample-project
+        run: pnpm build wx
