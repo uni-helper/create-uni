@@ -59,7 +59,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        template: ['', -t vitesse, -t wot-starter, -t wot-starter-retail, -t unisave, -t tmui32]
+        template: [-t vitesse]
 
         node: [20.x]
         os: [windows-latest, macos-latest]
@@ -83,24 +83,15 @@ jobs:
         if: steps.cache-restore.outputs.cache-hit != 'true'
         run: pnpm install && pnpm build:core
 
-      - if: ${{ matrix.template != '' }}
-        name: 创建模板项目
+      - name: 创建模板项目
         working-directory: ../
         run: node ./create-uni/packages/core/dist/outfile.cjs sample-project ${{ matrix.template }}
 
-      - if: ${{ matrix.template == '' }}
-        name: 创建基础项目
-        working-directory: ../
-        run: node ./create-uni/packages/core/dist/outfile.cjs sample-project
-
-        # wot-starter-retail only-allow pnpm
-      - if: ${{ matrix.template != '-t wot-starter-retail' }}
-        name: 使用npm安装项目依赖
+      - name: 使用npm安装项目依赖
         working-directory: ../sample-project
         run: npm install --no-frozen-lockfile --legacy-peer-deps
 
-      - if: ${{ matrix.template != '-t wot-starter-retail' }}
-        name: 移除node_modules
+      - name: 移除node_modules
         working-directory: ../sample-project
         run: npx rimraf node_modules
 
@@ -108,37 +99,10 @@ jobs:
         working-directory: ../sample-project
         run: pnpm install --no-frozen-lockfile
 
-        # vitesse use `unh` command
-      - if: ${{ matrix.template != '-t vitesse' }}
-        name: 打包H5项目
+      - name: 打包H5项目
         working-directory: ../sample-project
-        run: pnpm build:h5
+        run: pnpm build h5
 
-      - if: ${{ matrix.template != '-t vitesse' }}
-        name: dev小程序项目
-        working-directory: ../sample-project
-        run: node ./../create-uni/scripts/dev.cjs
-
-      - if: ${{ matrix.template != '-t vitesse' }}
-        name: 打包小程序项目
-        working-directory: ../sample-project
-        run: pnpm build:mp-weixin
-
-      - if: ${{ matrix.template == '-t vitesse' }}
-        name: 打包H5项目
-        working-directory: ../sample-project
-        run: pnpm build h
-
-      # - if: ${{ matrix.template == '-t vitesse' }}
-      #   name: dev小程序项目
-      #   working-directory: ../sample-project
-      #   run: pnpm run dev wx
-
-      - if: ${{ matrix.template == '-t vitesse' }}
-        name: 打包小程序项目
+      - name: 打包小程序项目
         working-directory: ../sample-project
         run: pnpm build wx
-
-      # - name: 输出环境信息
-      #   working-directory: ../sample-project
-      #   run: node ./../create-uni/packages/core/dist/outfile.cjs --info all
