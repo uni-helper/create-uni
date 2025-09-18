@@ -1,7 +1,7 @@
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 import { pathToFileURL } from 'node:url'
-import JSON5 from 'json5'
+
 import { deepMerge } from './deepMerge'
 import { sortDependencies } from './sortDependencies'
 
@@ -36,8 +36,8 @@ export function renderTemplate(src: string, dest: string, callbacks: Callback[])
 
   if (filename === 'package.json' && fs.existsSync(dest)) {
     // merge instead of overwriting
-    const existing = JSON5.parse(fs.readFileSync(dest, 'utf8'))
-    const newPackage = JSON5.parse(fs.readFileSync(src, 'utf8'))
+    const existing = JSON.parse(fs.readFileSync(dest, 'utf8'))
+    const newPackage = JSON.parse(fs.readFileSync(src, 'utf8'))
     const pkg = sortDependencies(deepMerge(existing, newPackage))
     fs.writeFileSync(dest, `${JSON.stringify(pkg, null, 2)}\n`)
     return
@@ -45,8 +45,8 @@ export function renderTemplate(src: string, dest: string, callbacks: Callback[])
 
   if ((filename === 'extensions.json' || filename === 'settings.json') && fs.existsSync(dest)) {
     // merge instead of overwriting
-    const existing = JSON5.parse(fs.readFileSync(dest, 'utf8'))
-    const newExtensions = JSON5.parse(fs.readFileSync(src, 'utf8'))
+    const existing = JSON.parse(fs.readFileSync(dest, 'utf8'))
+    const newExtensions = JSON.parse(fs.readFileSync(src, 'utf8'))
     const extensions = deepMerge(existing, newExtensions)
     fs.writeFileSync(dest, `${JSON.stringify(extensions, null, 2)}\n`)
     return
