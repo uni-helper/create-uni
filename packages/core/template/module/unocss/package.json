@@ -3,5 +3,16 @@
     "@iconify-json/carbon": "^1.2.13",
     "@uni-helper/unocss-preset-uni": "^0.2.11",
     "unocss": "66.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "unconfig": "7.3.2"
+    }
+  },
+  "overrides": {
+    "unconfig": "7.3.2"
+  },
+  "resolutions": {
+    "unconfig": "7.3.2"
   }
 }
