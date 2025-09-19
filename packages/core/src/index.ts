@@ -16,7 +16,6 @@ import process from 'node:process'
 import { intro, outro, spinner } from '@clack/prompts'
 import { generateBanner } from '@create-uni/shared'
 import ejs from 'ejs'
-import JSON5 from 'json5'
 import { green } from 'kolorist'
 
 import minimist from 'minimist'
@@ -27,6 +26,7 @@ import { cancelMesssage } from './question/onCancel'
 import {
   dowloadTemplate,
   getPkgManager,
+  jsonStringifyWithoutKeysQuotes,
   preOrderDirectoryTraverse,
   printFinish,
   renderTemplate,
@@ -202,7 +202,7 @@ async function init() {
         const dest = filepath.replace(/\.ejs$/, '')
 
         if (dest.includes('vite.config') && dataStore[dest].extraConfig)
-          dataStore[dest].extraConfig = JSON5.stringify(dataStore[dest].extraConfig, null, 2).slice(1, -1).trim()
+          dataStore[dest].extraConfig = jsonStringifyWithoutKeysQuotes(dataStore[dest].extraConfig)
 
         const content = ejs.render(template, dataStore[dest])
 
