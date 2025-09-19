@@ -21,7 +21,7 @@ export const UIList = [
     name: 'wot-design-uni',
     value: 'wot',
     github: 'https://github.com/Moonofweisheng/wot-design-uni',
-    website: 'https://wot-design-uni.cn/',
+    website: 'https://wot-ui.cn/',
   },
   {
     label: rgb(250, 44, 25)('nutui-uniapp'),
@@ -29,7 +29,7 @@ export const UIList = [
     name: 'nutui-uniapp',
     value: 'nut',
     github: 'https://github.com/nutui-uniapp/nutui-uniapp',
-    website: 'nutui-uniapp.pages.dev',
+    website: 'https://nutui-uniapp.pages.dev/',
   },
   {
     label: rgb(22, 93, 255)('skiyee-ui'),
