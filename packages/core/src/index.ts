@@ -26,6 +26,7 @@ import { cancelMesssage } from './question/onCancel'
 import {
   dowloadTemplate,
   getPkgManager,
+  jsonStringifyWithoutKeysQuotes,
   preOrderDirectoryTraverse,
   printFinish,
   renderTemplate,
@@ -201,7 +202,7 @@ async function init() {
         const dest = filepath.replace(/\.ejs$/, '')
 
         if (dest.includes('vite.config') && dataStore[dest].extraConfig)
-          dataStore[dest].extraConfig = JSON.stringify(dataStore[dest].extraConfig, null, 2).slice(1, -1).trim()
+          dataStore[dest].extraConfig = jsonStringifyWithoutKeysQuotes(dataStore[dest].extraConfig)
 
         const content = ejs.render(template, dataStore[dest])
 
