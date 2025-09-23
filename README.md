@@ -95,7 +95,8 @@ npx @create-uni/info@latest
 | 组件名 | 描述 | 参数名 |
 | :---: | :---: | :---: |
 | [uni-ui](https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html) | UniApp 官方组件库 | uni |
-| [wot-design-uni](https://wot-design-uni.pages.dev/) | 高颜值、轻量化的 uni-app 组件库 | wot |
+| [wot-ui](https://wot-ui.cn/) | 高颜值、轻量化的 uni-app 组件库 | wot |
+| [uView-Pro](https://uviewpro.cn/) | 全面支持 Vue3.0、TypeScript 的 uni-app 生态框架 | uview-pro |
 | [nutui-uniapp](https://uniapp-nutui.tech/) | 京东风格的轻量级移动端组件库 | nut |
 | [skiyee-ui](https://skiyee-ui.netlify.app/) | 随心创造差异化 | skiyee |
 | [uv-ui](https://www.uvui.cn/components/intro.html) | 多平台快速开发的 UI 框架 | uv |
@@ -105,7 +106,7 @@ npx @create-uni/info@latest
 
 - 提交新功能
 - 解决[`issues`](https://github.com/uni-helper/create-uni/issues)
-- 提交新[`模板`](./src/question/template/)/[`Plugin`](./src/question/plugin/choices.ts)/[`module`](./src/question/module/choices.ts)/[`UI`](./src/question/UI/)
+- 提交新[`模板`](./packages/core/src/question/template)/[`Plugin`](./packages/core/src/question/plugin)/[`module`](./packages/core/src/question/module)/[`UI`](./packages/core/src/question/UI)
 
 ## 🛠️ 开发
 - Node.js 版本 20+

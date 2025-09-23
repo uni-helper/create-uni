@@ -64,6 +64,7 @@ export const uiNameSchema = z.enum([
   '',
   'uni',
   'wot',
+  'uview-pro',
   'nut',
   'skiyee',
   'uv',
@@ -73,6 +74,7 @@ UI组件库名称，选择合适的组件库加速开发：
 - "": 不需要组件库，手动实现所有UI
 - uni: uni-ui - UniApp官方组件库，稳定可靠
 - wot: wot-design-uni - 高颜值、轻量化的uni-app组件库
+- uview-pro: uView Pro - 全面支持 Vue3.0、TypeScript 的 uni-app 生态框架
 - nut: nutui-uniapp - 京东风格的轻量级移动端组件库
 - skiyee: skiyee-ui - 随心创造差异化的组件库
 - uv: uv-ui - 多平台快速开发的UI框架

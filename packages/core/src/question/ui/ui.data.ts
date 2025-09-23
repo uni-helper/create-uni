@@ -9,14 +9,14 @@ export const UIList = [
     value: null,
   },
   {
-    label: green('uni-ui'),
+    label: green('Uni Ui'),
     hint: 'UniApp官方组件库',
     name: 'uni-ui',
     value: 'uni',
     website: 'https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html',
   },
   {
-    label: rgb(77, 128, 240)('wot-design-uni'),
+    label: rgb(77, 128, 240)('Wot Ui'),
     hint: '高颜值、轻量化的uni-app组件库',
     name: 'wot-design-uni',
     value: 'wot',
@@ -24,7 +24,15 @@ export const UIList = [
     website: 'https://wot-ui.cn/',
   },
   {
-    label: rgb(250, 44, 25)('nutui-uniapp'),
+    label: rgb(41, 121, 255)('uView Pro'),
+    hint: '全面支持 Vue3.0、TypeScript 的 uni-app 生态框架',
+    name: 'uView Pro',
+    value: 'uview-pro',
+    github: 'https://github.com/anyup/uView-Pro',
+    website: 'https://uviewpro.cn/',
+  },
+  {
+    label: rgb(250, 44, 25)('Nut Ui'),
     hint: '京东风格的轻量级移动端组件库',
     name: 'nutui-uniapp',
     value: 'nut',
@@ -32,7 +40,7 @@ export const UIList = [
     website: 'https://nutui-uniapp.pages.dev/',
   },
   {
-    label: rgb(22, 93, 255)('skiyee-ui'),
+    label: rgb(22, 93, 255)('Skiyee Ui'),
     hint: '随心创造差异化',
     name: 'skiyee-ui',
     value: 'skiyee',
@@ -40,7 +48,7 @@ export const UIList = [
     website: 'https://skiyee-ui.netlify.app/',
   },
   {
-    label: rgb(60, 156, 255)('uv-ui'),
+    label: rgb(60, 156, 255)('Uv Ui'),
     hint: '多平台快速开发的UI框架',
     name: 'uv-ui',
     value: 'uv',
