@@ -1,7 +1,7 @@
 {
   "name": "@create-uni/mcp",
   "type": "module",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "packageManager": "pnpm@9.9.0",
   "description": "create-uni的mcp服务",
   "author": "FliPPeDround <flippedround@qq.com>",
