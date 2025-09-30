@@ -41,4 +41,11 @@ export default [
     github: 'https://github.com/uni-helper/uni-promises',
     hint: 'uni-app promise 化的 API',
   },
+  {
+    label: rgb(24, 121, 78)('uni-echarts'),
+    value: 'uniEcharts',
+    name: 'uni-echarts',
+    github: 'https://github.com/xiaohe0601/uni-echarts',
+    hint: '适用于 uni-app 的 Apache ECharts 组件',
+  },
 ] as Options[]

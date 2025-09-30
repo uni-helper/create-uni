@@ -50,6 +50,7 @@ export const moduleListSchema = z.array(z.enum([
   'uniNetwork',
   'uniUse',
   'uniPromises',
+  'uniEcharts',
 ])).optional().default([]).describe(`
 需要安装的模块列表，增强应用功能：
 - pinia: 符合直觉的Vue.js状态管理库，替代Vuex
@@ -57,6 +58,7 @@ export const moduleListSchema = z.array(z.enum([
 - uniNetwork: 为uni-app打造的基于Promise的网络请求库，简化HTTP请求
 - uniUse: uni-app组合式工具集，提供常用工具函数
 - uniPromises: uni-app promise化的API，统一异步操作接口
+- uniEcharts: 适用于 uni-app 的 Apache ECharts 组件
 `)
 
 // UI组件库类型schema
