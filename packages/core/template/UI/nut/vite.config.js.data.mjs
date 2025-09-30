@@ -21,6 +21,6 @@ export default function getData({ oldData, utils }) {
         ? [utils.addResolver(plugin, 'NutResolver()'), autoImportNutUiPlugin]
         : plugin,
     ),
-    extraConfig: utils.deepMerge(oldData.extraConfig || {}, nutuiExtraConfig),
+    extraConfig: utils.mergeExtraConfig(oldData.extraConfig, nutuiExtraConfig),
   }
 }

@@ -21,6 +21,6 @@ export default function getData({ oldData, utils }) {
         ? [utils.addResolver(plugin, 'uViewProResolver()'), autoImportUviewProPlugin]
         : plugin,
     ),
-    extraConfig: utils.deepMerge(oldData.extraConfig || {}, uviewProExtraConfig),
+    extraConfig: utils.mergeExtraConfig(oldData.extraConfig, uviewProExtraConfig),
   }
 }

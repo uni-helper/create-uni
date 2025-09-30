@@ -11,6 +11,6 @@ export default function getData({ oldData, utils }) {
 
   return {
     ...oldData,
-    extraConfig: utils.deepMerge(oldData.extraConfig || {}, uniUseExtraConfig),
+    extraConfig: utils.mergeExtraConfig(oldData.extraConfig, uniUseExtraConfig),
   }
 }

@@ -19,7 +19,12 @@ function addResolver(plugin: PluginData, resolver: string) {
   }
 }
 
+function mergeExtraConfig(oldConfig: Record<string, any> | null, config: Record<string, any>) {
+  return deepMerge(oldConfig || {}, config)
+}
+
 export const injectUtils = {
   deepMerge,
   addResolver,
+  mergeExtraConfig,
 }
