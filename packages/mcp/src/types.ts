@@ -20,6 +20,7 @@ export type PluginType =
   | 'platformModifier'
   | 'middleware'
   | 'root'
+  | 'componentPlaceholder'
 
 // 模块类型
 export type ModuleType =

@@ -58,4 +58,11 @@ export default [
     hint: '模拟虚拟根组件(支持SFC的App.vue)',
     github: 'https://github.com/uni-ku/root',
   },
+  {
+    label: rgb(102, 153, 51)('vite-plugin-component-placeholder'),
+    value: 'componentPlaceholder',
+    name: 'vite-plugin-component-placeholder',
+    hint: '占位组件的原生实现',
+    github: 'https://github.com/chouchouji/vite-plugin-component-placeholder',
+  },
 ] as Options[]
