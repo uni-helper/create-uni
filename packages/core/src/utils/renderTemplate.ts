@@ -3,6 +3,7 @@ import * as path from 'node:path'
 import { pathToFileURL } from 'node:url'
 
 import { deepMerge } from './deepMerge'
+import { injectUtils } from './injectUtils'
 import { sortDependencies } from './sortDependencies'
 
 /**
@@ -77,6 +78,7 @@ export function renderTemplate(src: string, dest: string, callbacks: Callback[])
       // Though current `getData` are all sync, we still retain the possibility of async
       dataStore[dest] = await getData({
         oldData: dataStore[dest] || {},
+        utils: injectUtils,
       })
     })
 

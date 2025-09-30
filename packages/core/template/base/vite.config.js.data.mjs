@@ -4,7 +4,7 @@ export default function getData() {
       id: 'uni',
       importer: `import Uni from '@uni-helper/plugin-uni'`,
       initializer: `// https://uni-helper.js.org/plugin-uni
-      Uni()`,
+    Uni()`,
     }],
     extraConfig: null,
     dynamic: false,

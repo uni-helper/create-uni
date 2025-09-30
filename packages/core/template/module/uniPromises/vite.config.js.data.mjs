@@ -1,4 +1,4 @@
-export default function getData({ oldData }) {
+export default function getData({ oldData, utils }) {
   const promisesExtraConfig = {
     build: {
       target: 'es6',
@@ -8,8 +8,9 @@ export default function getData({ oldData }) {
       exclude: ['vue-demi'],
     },
   }
+
   return {
     ...oldData,
-    extraConfig: oldData?.extraConfig ? { ...oldData.extraConfig, ...promisesExtraConfig } : promisesExtraConfig,
+    extraConfig: utils.mergeExtraConfig(oldData.extraConfig, promisesExtraConfig),
   }
 }

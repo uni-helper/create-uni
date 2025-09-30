@@ -5,6 +5,7 @@ export default function getData({ oldData }) {
     initializer: `// https://uni-helper.js.org/vite-plugin-uni-components
     Components({
       dts: true,
+      resolvers: []
     })`,
   }
 

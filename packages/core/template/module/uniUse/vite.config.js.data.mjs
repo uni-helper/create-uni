@@ -1,4 +1,4 @@
-export default function getData({ oldData }) {
+export default function getData({ oldData, utils }) {
   const uniUseExtraConfig = {
     build: {
       target: 'es6',
@@ -11,6 +11,6 @@ export default function getData({ oldData }) {
 
   return {
     ...oldData,
-    extraConfig: oldData?.extraConfig ? { ...oldData.extraConfig, ...uniUseExtraConfig } : uniUseExtraConfig,
+    extraConfig: utils.mergeExtraConfig(oldData.extraConfig, uniUseExtraConfig),
   }
 }

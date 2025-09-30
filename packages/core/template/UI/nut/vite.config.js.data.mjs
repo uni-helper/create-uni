@@ -1,11 +1,7 @@
-export default function getData({ oldData }) {
+export default function getData({ oldData, utils }) {
   const autoImportNutUiPlugin = {
     id: 'nutui-uniapp',
     importer: `import { NutResolver } from 'nutui-uniapp'`,
-    initializer: `Components({
-      dts: true,
-      resolvers: [NutResolver()]
-    })`,
   }
 
   const nutuiExtraConfig = {
@@ -20,13 +16,11 @@ export default function getData({ oldData }) {
 
   return {
     ...oldData,
-    plugins: oldData.plugins.some(plugin => plugin.id === 'autoImport')
-      ? oldData.plugins.flatMap(plugin =>
-          plugin.id === 'autoImport' ? [{ id: plugin.id, importer: plugin.importer }, autoImportNutUiPlugin] : plugin,
-        )
-      : oldData.plugins.flatMap(plugin =>
-          plugin.id === 'uni' ? [autoImportNutUiPlugin, plugin] : plugin,
-        ),
-    extraConfig: oldData?.extraConfig ? { ...oldData.extraConfig, ...nutuiExtraConfig } : nutuiExtraConfig,
+    plugins: oldData.plugins.flatMap(plugin =>
+      plugin.id === 'autoImport'
+        ? [utils.addResolver(plugin, 'NutResolver()'), autoImportNutUiPlugin]
+        : plugin,
+    ),
+    extraConfig: utils.mergeExtraConfig(oldData.extraConfig, nutuiExtraConfig),
   }
 }
