@@ -28,6 +28,7 @@ export type ModuleType =
   | 'uniNetwork'
   | 'uniUse'
   | 'uniPromises'
+  | 'uniEcharts'
 
 // UI类型
 export type UIType =

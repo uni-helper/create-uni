@@ -197,6 +197,7 @@ export async function createCustom(options: CreateCustomOptions): Promise<CallTo
       uniNetwork: '网络请求库',
       uniUse: '组合式工具集',
       uniPromises: 'Promise化API',
+      uniEcharts: '适用于 uni-app 的 Apache ECharts 组件',
     }
     const moduleNames = options.moduleList.map(m => moduleDescriptions[m as keyof typeof moduleDescriptions] || m)
     features.push(`✅ 模块: ${moduleNames.join(', ')}`)
