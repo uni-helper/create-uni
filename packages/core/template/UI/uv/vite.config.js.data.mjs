@@ -1,21 +1,15 @@
-export default function getData({ oldData }) {
+export default function getData({ oldData, utils }) {
   const autoImportUvUiPlugin = {
     id: 'uv-ui',
     importer: `import { UvResolver } from '@uni-helper/vite-plugin-uni-components/resolvers'`,
-    initializer: `Components({
-      dts: true,
-      resolvers: [UvResolver()]
-    })`,
   }
 
   return {
     ...oldData,
-    plugins: oldData.plugins.some(plugin => plugin.id === 'autoImport')
-      ? oldData.plugins.flatMap(plugin =>
-          plugin.id === 'autoImport' ? [{ id: plugin.id, importer: plugin.importer }, autoImportUvUiPlugin] : plugin,
-        )
-      : oldData.plugins.flatMap(plugin =>
-          plugin.id === 'uni' ? [autoImportUvUiPlugin, plugin] : plugin,
-        ),
+    plugins: oldData.plugins.flatMap(plugin =>
+      plugin.id === 'autoImport'
+        ? [utils.addResolver(plugin, 'UvResolver()'), autoImportUvUiPlugin]
+        : plugin,
+    ),
   }
 }
