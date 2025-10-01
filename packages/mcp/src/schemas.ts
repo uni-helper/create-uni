@@ -31,6 +31,7 @@ export const pluginListSchema = z.array(z.enum([
   'platformModifier',
   'middleware',
   'root',
+  'componentPlaceholder',
 ])).optional().default([]).describe(`
 需要安装的插件列表，每个插件提供特定功能：
 - import: vite-plugin-uni-components - 按需自动引入组件，减少手动导入
@@ -41,6 +42,7 @@ export const pluginListSchema = z.array(z.enum([
 - platformModifier: vite-plugin-uni-platform-modifier - 为属性、指令提供平台修饰符
 - middleware: vite-plugin-uni-middleware - 使用路由中间件，实现权限控制等功能
 - root: uni-ku-root - 模拟虚拟根组件，支持SFC的App.vue
+- componentPlaceholder: vite-plugin-component-placeholder - 占位组件的原生实现
 `)
 
 // 模块类型schema
