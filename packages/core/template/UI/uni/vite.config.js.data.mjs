@@ -1,14 +1,16 @@
 export default function getData({ oldData, utils }) {
-  const excludes = []
-
-  if (oldData.plugins.some(plugin => plugin.id === 'root')) {
-    excludes.push('UniKuAppRoot')
-  }
-  if (oldData.plugins.some(plugin => plugin.id === 'uni-echarts')) {
-    excludes.push('UniEcharts')
+  const excludeMap = {
+    'root': 'UniKuAppRoot',
+    'uni-echarts': 'UniEcharts',
   }
 
-  const resolverOptions = excludes.length > 0 ? `{ exclude: /${excludes.join('|')}/ }` : ''
+  const excludes = oldData.plugins
+    .map(plugin => excludeMap[plugin.id])
+    .filter(Boolean)
+
+  const resolverOptions = excludes.length > 0
+    ? `{ exclude: /${excludes.join('|')}/ }`
+    : ''
 
   const autoImportUniUiPlugin = {
     id: 'uni-ui',
