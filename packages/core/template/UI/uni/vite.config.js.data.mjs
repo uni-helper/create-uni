@@ -9,7 +9,7 @@ export default function getData({ oldData, utils }) {
     .filter(Boolean)
 
   const resolverOptions = excludes.length > 0
-    ? `{ exclude: /${excludes.join('|')}/ }`
+    ? `{ exclude: /^${excludes.join('|')}$/ }`
     : ''
 
   const autoImportUniUiPlugin = {
