@@ -1,16 +1,16 @@
 {
-  "name": "@create-uni/shared",
+  "name": "@create-uni/config",
   "type": "module",
   "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@9.9.0",
-  "description": "create-uni 公用方法",
+  "description": "create-uni 模块配置",
   "author": "FliPPeDround <flippedround@qq.com>",
   "license": "MIT",
   "funding": "https://afdian.com/a/flippedround",
   "homepage": "https://github.com/uni-helper/create-uni#readme",
   "repository": {
-    "directory": "packages/shared",
+    "directory": "packages/config",
     "type": "git",
     "url": "git+https://github.com/uni-helper/create-uni.git"
   },

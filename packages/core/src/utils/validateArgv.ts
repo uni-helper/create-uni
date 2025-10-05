@@ -3,11 +3,9 @@ import type { TemplateValue } from './../question/template/type'
 import process from 'node:process'
 import { outro } from '@clack/prompts'
 
+import { MODULES, PLUGINS, UI } from '@create-uni/config'
 import { bold, gray } from 'kolorist'
-import MODULES from '../question/module/module.data'
-import PLUGINS from '../question/plugin/plugin.data'
 import { templateList } from '../question/template/template.data'
-import { UIList } from '../question/ui/ui.data'
 
 type ArgvBase = string | null
 type ArgvList = ArgvBase | string[]
@@ -43,7 +41,7 @@ function validateTemplateType(argvTemplate: ArgvBase): TemplateValue {
 function validateUIName(argvUIName: ArgvBase) {
   if (!argvUIName)
     return null
-  const UIName = UIList.find(item => item.value === argvUIName)?.value
+  const UIName = UI.find(item => item.value === argvUIName)?.value
   if (!UIName) {
     outro(`${bold(`暂不支持 ${gray(argvUIName)} UI库`)}`)
     process.exit(1)

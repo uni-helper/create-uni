@@ -59,7 +59,8 @@
     "tsup": "^8.2.4",
     "turbo": "^2.3.3",
     "typescript": "^5.5.4",
-    "unplugin-preprocessor-directives": "^1.0.3"
+    "unplugin-preprocessor-directives": "^1.0.3",
+    "vitest": "^3.2.4"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

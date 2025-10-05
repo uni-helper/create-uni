@@ -1,5 +1,5 @@
 import { multiselect } from '@clack/prompts'
-import MODULES from './module.data'
+import { MODULES } from '@create-uni/config'
 
 export default () => (
   multiselect({

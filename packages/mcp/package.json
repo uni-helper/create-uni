@@ -36,9 +36,11 @@
     "prepublishOnly": "nr build",
     "inspect": "mcp-inspector",
     "release": "bumpp",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest"
   },
   "devDependencies": {
+    "@create-uni/config": "workspace:*",
     "@modelcontextprotocol/inspector": "^0.16.6",
     "@modelcontextprotocol/sdk": "^1.17.5",
     "@types/cross-spawn": "^6.0.6",

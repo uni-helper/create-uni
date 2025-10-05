@@ -1,8 +1,6 @@
 import process from 'node:process'
-import moduleData from '@/question/module/module.data'
-import pluginData from '@/question/plugin/plugin.data'
 import { templateList } from '@/question/template/template.data'
-import { UIList } from '@/question/ui/ui.data'
+import { MODULES, PLUGINS, UI } from '@create-uni/config'
 import { sync } from 'cross-spawn'
 import { composeCommand } from '../composeCommand'
 
@@ -20,9 +18,9 @@ export function actionGuiCLI() {
 
   const input = JSON.stringify({
     templateList,
-    plugin: pluginData,
-    module: moduleData,
-    ui: UIList,
+    plugin: PLUGINS,
+    module: MODULES,
+    ui: UI,
   })
 
   const [command, ..._args] = fullCustomCommand.split(' ')

@@ -1,7 +1,7 @@
-import type { Options } from '../type'
+import type { Options } from './type'
 import { green, trueColor as rgb } from 'kolorist'
 
-export const UIList = [
+export default [
   {
     label: '不需要组件库',
     name: '不需要组件库',
