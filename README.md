@@ -107,8 +107,8 @@ npx @create-uni/info@latest
 ## 🤝 参与贡献
 
 - 提交新功能
-- 解决[`issues`](https://github.com/uni-helper/create-uni/issues)
-- 提交新[`模板`](./packages/core/src/question/template)/[`Plugin`](./packages/core/src/question/plugin)/[`module`](./packages/core/src/question/module)/[`UI`](./packages/core/src/question/UI)
+- 反馈/解决[`issues`](https://github.com/uni-helper/create-uni/issues)
+- 提交新[`模板`](./packages/config/src/template.data.ts)/[`插件`](./packages/config/src/plugin.data.ts)/[`模块`](./packages/config/src/module.data.ts)/[`组件库`](./packages/config/src/ui.data.ts)
 
 ## 🛠️ 开发
 - Node.js 版本 20+
