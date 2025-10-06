@@ -1,4 +1,3 @@
-export * from './canSkipEmptying'
 export * from './clearFile'
 export * from './cloneRepo'
 export * from './directoryTraverse'

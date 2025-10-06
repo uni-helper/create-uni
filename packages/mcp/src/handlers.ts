@@ -1,8 +1,9 @@
 import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js'
 import type { CreateCustomOptions, CreateWithTemplateOptions } from './types.js'
 import { MODULES, PLUGINS, TEMPLATES, UI } from '@create-uni/config'
+import { canSkipEmptying } from '@create-uni/shared'
 import { sync } from 'cross-spawn'
-import { canSkipEmptying, flattenTemplateList } from './utils.js'
+import { flattenTemplateList } from './utils.js'
 
 /**
  * 构建命令行参数
@@ -135,7 +136,7 @@ export async function createWithTemplate(options: CreateWithTemplateOptions): Pr
 1. cd ${options.name}
 2. 安装依赖: pnpm install
 3. 启动开发: pnpm dev
-4. 访问 https://uni-helper.js.org/ 查看更多文档信息`,
+4. 重要：访问 https://uni-helper.js.org/ 查看更多文档信息`,
     }],
   }
 }
@@ -203,7 +204,7 @@ ${features.length ? `\n🎯 已选择的功能:\n${features.join('\n')}` : ''}
 1. cd ${options.name}
 2. 安装依赖: pnpm install
 3. 启动开发: pnpm dev
-4. 访问 https://uni-helper.js.org/ 查看更多文档信息`,
+4. 重要：访问 https://uni-helper.js.org/ 查看更多文档信息`,
     }],
   }
 }

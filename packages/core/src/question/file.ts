@@ -1,5 +1,5 @@
-import { canSkipEmptying } from '@/utils'
 import { confirm, isCancel } from '@clack/prompts'
+import { canSkipEmptying } from '@create-uni/shared'
 import { printCancel } from './onCancel'
 
 export default async (targetDir: string): Promise<boolean | undefined> => {

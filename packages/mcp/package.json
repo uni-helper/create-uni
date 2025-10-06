@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@create-uni/config": "workspace:*",
+    "@create-uni/shared": "workspace:*",
     "@modelcontextprotocol/inspector": "^0.16.6",
     "@modelcontextprotocol/sdk": "^1.17.5",
     "@types/cross-spawn": "^6.0.6",

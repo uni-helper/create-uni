@@ -1,20 +1,5 @@
 import type { Options } from '@create-uni/config'
 import type { BaseTemplateListWithUrl, TemplateList } from '@create-uni/config/src/type'
-import { existsSync, readdirSync } from 'node:fs'
-
-export function canSkipEmptying(dir: string) {
-  if (!existsSync(dir))
-    return true
-
-  const files = readdirSync(dir)
-  if (files.length === 0)
-    return true
-
-  if (files.length === 1 && files[0] === '.git')
-    return true
-
-  return false
-}
 
 /**
  * 从配置里获取全部的value作为枚举列表
