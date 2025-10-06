@@ -65,4 +65,4 @@ export default [
     hint: '占位组件的原生实现',
     github: 'https://github.com/chouchouji/vite-plugin-component-placeholder',
   },
-] as Options[]
+] as const satisfies readonly Options[]

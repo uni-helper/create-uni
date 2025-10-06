@@ -207,6 +207,9 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2
     devDependencies:
+      '@create-uni/config':
+        specifier: workspace:*
+        version: link:../config
       '@preact/preset-vite':
         specifier: ^2.9.3
         version: 2.9.3(@babel/core@7.26.0)(preact@10.25.4)(vite@6.0.6(@types/node@18.19.68)(jiti@2.4.2)(sass@1.64.2)(terser@5.37.0)(yaml@2.6.1))
@@ -3046,7 +3049,7 @@ packages:
     engines: {node: '>=12.0.0'}
 
   jsesc@0.5.0:
-    resolution: {integrity: sha1-597mbjXW/Bb3EP6R1c9p9w8IkR0=}
+    resolution: {integrity: sha512-uZz5UnB7u4T9LvwmFqXii7pZSouaRPorGs5who1Ip7VO0wxanFvBL7GkM6dTHlgX+jhBApRetaWpnDabOeTcnA==}
     hasBin: true
 
   jsesc@3.1.0:

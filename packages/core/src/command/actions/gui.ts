@@ -1,6 +1,5 @@
 import process from 'node:process'
-import { templateList } from '@/question/template/template.data'
-import { MODULES, PLUGINS, UI } from '@create-uni/config'
+import { MODULES, PLUGINS, TEMPLATES, UI } from '@create-uni/config'
 import { sync } from 'cross-spawn'
 import { composeCommand } from '../composeCommand'
 
@@ -17,7 +16,7 @@ export function actionGuiCLI() {
   // #endif
 
   const input = JSON.stringify({
-    templateList,
+    templateList: TEMPLATES,
     plugin: PLUGINS,
     module: MODULES,
     ui: UI,

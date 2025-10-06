@@ -48,4 +48,4 @@ export default [
     github: 'https://github.com/xiaohe0601/uni-echarts',
     hint: '适用于 uni-app 的 Apache ECharts 组件',
   },
-] as Options[]
+] as const satisfies readonly Options[]

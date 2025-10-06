@@ -28,6 +28,7 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
+    "@create-uni/config": "workspace:*",
     "@preact/preset-vite": "^2.9.3",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",

@@ -1,8 +1,8 @@
-import type { BaseTemplateListWithList, TemplateValue } from './type'
+import type { BaseTemplateListWithList, TemplateValue } from '@create-uni/config'
 import process from 'node:process'
 import { cancel, isCancel, select } from '@clack/prompts'
+import { TEMPLATES } from '@create-uni/config'
 import { cancelMesssage } from '../onCancel'
-import { templateList } from './template.data'
 
 export default async (): Promise<TemplateValue> => {
   const templateType = await select({
@@ -12,7 +12,7 @@ export default async (): Promise<TemplateValue> => {
         label: '自定义模板',
         value: 'custom',
       },
-      ...templateList.map(item => ({
+      ...TEMPLATES.map(item => ({
         label: `${item.label}${item.list ? ' ▼' : ''}`,
         value: item.value,
         hint: item.description,
@@ -29,7 +29,7 @@ export default async (): Promise<TemplateValue> => {
     return { type: 'custom' }
   }
 
-  const group = templateList.find((item) => {
+  const group = TEMPLATES.find((item) => {
     if (item.value === templateType && item.list) {
       return true
     }
@@ -58,7 +58,7 @@ export default async (): Promise<TemplateValue> => {
     }
   }
   else {
-    const temp = templateList.find(item => item.value === templateType)!
+    const temp = TEMPLATES.find(item => item.value === templateType)!
     return {
       type: templateType,
       url: temp.url!,

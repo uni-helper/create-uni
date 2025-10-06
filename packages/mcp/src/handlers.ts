@@ -1,7 +1,8 @@
 import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js'
 import type { CreateCustomOptions, CreateWithTemplateOptions } from './types.js'
+import { MODULES, PLUGINS, TEMPLATES, UI } from '@create-uni/config'
 import { sync } from 'cross-spawn'
-import { canSkipEmptying } from './utils.js'
+import { canSkipEmptying, flattenTemplateList } from './utils.js'
 
 /**
  * 构建命令行参数
@@ -118,13 +119,8 @@ export async function createWithTemplate(options: CreateWithTemplateOptions): Pr
     }
   }
 
-  const templateInfo = {
-    'vitesse': '由Uni Helper维护的快速启动模板',
-    'wot-starter': '由Wot UI提供的基于 vitesse-uni-app 的快速启动模板',
-    'wot-starter-retail': '基于Wot UI的 uni-app 零售行业模板',
-    'unisave': '拥抱 web 开发，拯救uniapp。适配所有 (app、mp、web) 平台',
-    'tmui32': '优质 Vue3 TS Pinia Vite 跨端组件库',
-  }[options.templateType] || options.templateType
+  const flattenedTemplates = flattenTemplateList(TEMPLATES)
+  const templateInfo = flattenedTemplates.find(t => t.value === options.templateType)?.description || options.templateType
 
   return {
     content: [{
@@ -177,29 +173,21 @@ export async function createCustom(options: CreateCustomOptions): Promise<CallTo
   if (options.needsEslint)
     features.push('✅ ESLint代码规范')
   if (options.UIName) {
-    const uiInfo = {
-      uni: 'UniApp官方组件库',
-      wot: '高颜值、轻量化的uni-app组件库',
-      nut: '京东风格的轻量级移动端组件库',
-      skiyee: '随心创造差异化',
-      uv: '多平台快速开发的UI框架',
-      ano: '轻量级、漂亮、快速的 UnoCSS 组件库',
-    }[options.UIName] || options.UIName
+    const uiInfo = UI.find(ui => ui.value === options.UIName)?.hint || options.UIName
     features.push(`✅ UI组件库: ${uiInfo}`)
   }
   if (options.pluginList?.length) {
-    features.push(`✅ 插件: ${options.pluginList.join(', ')}`)
+    const pluginNames = options.pluginList.map((p) => {
+      const plugin = PLUGINS.find(plugin => plugin.value === p)
+      return plugin ? `${p} (${plugin.hint})` : p
+    })
+    features.push(`✅ 插件: ${pluginNames.join(', ')}`)
   }
   if (options.moduleList?.length) {
-    const moduleDescriptions = {
-      pinia: 'Vue.js状态管理',
-      unocss: '原子级CSS引擎',
-      uniNetwork: '网络请求库',
-      uniUse: '组合式工具集',
-      uniPromises: 'Promise化API',
-      uniEcharts: '适用于 uni-app 的 Apache ECharts 组件',
-    }
-    const moduleNames = options.moduleList.map(m => moduleDescriptions[m as keyof typeof moduleDescriptions] || m)
+    const moduleNames = options.moduleList.map((m) => {
+      const module = MODULES.find(mod => mod.value === m)
+      return module ? `${m} (${module.hint})` : m
+    })
     features.push(`✅ 模块: ${moduleNames.join(', ')}`)
   }
 

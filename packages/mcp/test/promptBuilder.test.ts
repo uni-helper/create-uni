@@ -1,6 +1,7 @@
 import { MODULES, UI } from '@create-uni/config'
+import templates from '@create-uni/config/src/template.data'
 import { expect, it } from 'vitest'
-import { getConfigValuesAsEnum, promptBuilder } from '../src/utils'
+import { getConfigValuesAsEnum, getTemplateValuesAsEnum, promptBuilder, templatePromptBuilder } from '../src/utils'
 
 it('promptBuilder', () => {
   expect(promptBuilder(MODULES, '需要安装的模块列表，增强应用功能')).toMatchInlineSnapshot(`
@@ -37,6 +38,29 @@ it('getConfigValuesAsEnum', () => {
       "skiyee",
       "uv",
       "ano",
+    ]
+  `)
+})
+
+it('templatePromptBuilder', () => {
+  expect(templatePromptBuilder(templates, '请选择项目模板')).toMatchInlineSnapshot(`
+    "请选择项目模板: 
+    - vitesse: 由Uni Helper维护的快速启动模板
+    - wot-starter: 由Wot UI提供的基于 vitesse-uni-app 的快速启动模板
+    - wot-starter-retail: 基于Wot UI的 uni-app 零售行业模板
+    - unisave: 拥抱 web 开发，拯救uniapp。适配所有 (app、mp、web) 平台
+    - tmui32: 优质 Vue3 TS Pinia Vite 跨端组件库模板"
+  `)
+})
+
+it('getTemplateValuesAsEnum', () => {
+  expect(getTemplateValuesAsEnum(templates)).toMatchInlineSnapshot(`
+    [
+      "vitesse",
+      "wot-starter",
+      "wot-starter-retail",
+      "unisave",
+      "tmui32",
     ]
   `)
 })

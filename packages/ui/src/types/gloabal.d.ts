@@ -1,6 +1,6 @@
 // global.d.ts
-import type { TemplateList } from './../../../core/src/question/template/type'
-import type { Options } from './../../../core/src/question/type'
+import type { TemplateList } from '@create-uni/config'
+import type { Options } from '@create-uni/config'
 
 declare global {
   interface Window {

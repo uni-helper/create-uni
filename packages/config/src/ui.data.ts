@@ -63,4 +63,4 @@ export default [
     github: 'https://github.com/ano-ui/ano-ui',
     website: 'https://ano-ui.netlify.app/',
   },
-] as Options[]
+] as const satisfies readonly Options[]

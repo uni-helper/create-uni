@@ -3,9 +3,8 @@ import type { TemplateValue } from './../question/template/type'
 import process from 'node:process'
 import { outro } from '@clack/prompts'
 
-import { MODULES, PLUGINS, UI } from '@create-uni/config'
+import { MODULES, PLUGINS, TEMPLATES, UI } from '@create-uni/config'
 import { bold, gray } from 'kolorist'
-import { templateList } from '../question/template/template.data'
 
 type ArgvBase = string | null
 type ArgvList = ArgvBase | string[]
@@ -13,7 +12,7 @@ type ArgvList = ArgvBase | string[]
 function validateTemplateType(argvTemplate: ArgvBase): TemplateValue {
   if (!argvTemplate)
     return { type: 'custom' }
-  const templateType = templateList.find(item => item.value === argvTemplate)
+  const templateType = TEMPLATES.find(item => item.value === argvTemplate)
   if (templateType) {
     return {
       type: templateType.value,
@@ -21,7 +20,7 @@ function validateTemplateType(argvTemplate: ArgvBase): TemplateValue {
     }
   }
   else {
-    for (const item of templateList) {
+    for (const item of TEMPLATES) {
       if (item.list) {
         const templateType = item.list.find(subItem => subItem.value === argvTemplate)
         if (templateType) {

@@ -1,7 +1,7 @@
 import type { TemplateList } from './type'
 import { green, lightMagenta, trueColor as rgb } from 'kolorist'
 
-export const templateList: TemplateList[] = [
+export default [
   {
     label: `vitesse-uni-app`,
     description: `由${green('Uni Helper')}维护的快速启动模板`,
@@ -50,7 +50,7 @@ export const templateList: TemplateList[] = [
   },
   {
     label: `tmui3.2`,
-    description: `优质 Vue3 TS Pinia Vite 跨端组件库`,
+    description: `优质 Vue3 TS Pinia Vite 跨端组件库模板`,
     value: 'tmui32',
     url: {
       gitee: 'https://gitee.com/LYTB/tmui-design.git',
@@ -58,4 +58,4 @@ export const templateList: TemplateList[] = [
     website: 'https://tmui.design/',
     playground: 'https://tmui.design/h5by32/',
   },
-]
+] as TemplateList[]
