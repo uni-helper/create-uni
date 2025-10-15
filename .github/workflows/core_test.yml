@@ -119,7 +119,7 @@ jobs:
 
       - name: 打包小程序项目
         working-directory: ../sample-project
-        run: pnpm build:mp-weixin
+        run: pnpm build mp-weixin
 
       # - name: 输出环境信息
       #   working-directory: ../sample-project
