@@ -27,7 +27,7 @@
     "@dcloudio/uni-quickapp-webview": "3.0.0-4070620250821001",
     "vue": "3.4.21",
     "vue-i18n": "9.6.2",
-    "vue-router": "4.5.2"
+    "vue-router": "4.5.1"
   },
   "devDependencies": {
     "@dcloudio/types": "^3.4.24",
