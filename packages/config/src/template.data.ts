@@ -39,6 +39,33 @@ export default [
     ],
   },
   {
+    label: `uView Pro`,
+    description: `由 ${green('uView Pro')} 提供的快速开发模板`,
+    value: 'uview-pro',
+    list: [
+      {
+        label: `uView-Pro-Starter`,
+        description: `由 ${green('uView Pro')} 提供的基于 vitesse-uni-app 的快速启动模板`,
+        value: 'uview-pro-starter',
+        url: {
+          github: 'https://github.com/anyup/uView-Pro-Starter.git',
+        },
+        website: 'https://uviewpro.cn/',
+        playground: 'https://h5.uviewpro.cn/',
+      },
+      {
+        label: `uView-Pro-Demo`,
+        description: `由 ${green('uView Pro')} 提供的完整组件演示模板`,
+        value: 'uview-pro-demo',
+        url: {
+          github: 'https://github.com/anyup/uView-Pro.git',
+        },
+        website: 'https://uviewpro.cn/',
+        playground: 'https://h5.uviewpro.cn/',
+      },
+    ],
+  },
+  {
     label: `unisave`,
     description: `拥抱 web 开发，${lightMagenta('拯救')}uniapp。适配所有 (app、mp、web) 平台`,
     value: 'unisave',
