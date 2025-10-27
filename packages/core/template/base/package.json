@@ -30,7 +30,7 @@
     "vue-router": "4.5.1"
   },
   "devDependencies": {
-    "@dcloudio/types": "^3.4.25",
+    "@dcloudio/types": "^3.4.26",
     "@dcloudio/uni-automator": "3.0.0-4070620250821001",
     "@dcloudio/uni-cli-shared": "3.0.0-4070620250821001",
     "@dcloudio/uni-stacktracey": "3.0.0-4070620250821001",
