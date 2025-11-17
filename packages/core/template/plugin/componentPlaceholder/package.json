@@ -1,5 +1,5 @@
 {
   "devDependencies": {
-    "@binbinji/vite-plugin-component-placeholder": "^0.0.12"
+    "@binbinji/vite-plugin-component-placeholder": "^0.0.13"
   }
 }
