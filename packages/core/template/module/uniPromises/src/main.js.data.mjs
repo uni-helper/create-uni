@@ -7,7 +7,7 @@ export default function getData({ oldData }) {
     entries: oldData.entries.some(item => item.id === 'uniUse')
       ? oldData.entries
       : oldData.entries.flatMap(entry =>
-        entry.id === 'vue' ? [entry, uniPromisesEntry] : entry,
-      ),
+          entry.id === 'vue' ? [entry, uniPromisesEntry] : entry,
+        ),
   }
 }
