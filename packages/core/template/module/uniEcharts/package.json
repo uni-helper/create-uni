@@ -1,6 +1,6 @@
 {
   "dependencies": {
     "echarts": "^6.0.0",
-    "uni-echarts": "^2.2.3"
+    "uni-echarts": "^2.2.5"
   }
 }
