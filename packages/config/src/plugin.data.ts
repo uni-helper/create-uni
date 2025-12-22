@@ -38,20 +38,6 @@ export default [
     github: 'https://github.com/uni-helper/vite-plugin-uni-platform',
   },
   {
-    label: rgb(155, 89, 182)('vite-plugin-uni-platform-modifier'),
-    value: 'platformModifier',
-    name: 'vite-plugin-uni-platform-modifier',
-    hint: '为属性、指令提供平台修饰符并按需编译',
-    github: 'https://github.com/uni-helper/vite-plugin-uni-platform-modifier',
-  },
-  {
-    label: rgb(149, 165, 166)('vite-plugin-uni-middleware'),
-    value: 'middleware',
-    name: 'vite-plugin-uni-middleware',
-    hint: '使用路由中间件',
-    github: 'https://github.com/uni-helper/vite-plugin-uni-middleware',
-  },
-  {
     label: rgb(146, 220, 210)('uni-ku-root'),
     value: 'root',
     name: 'uni-ku-root',
