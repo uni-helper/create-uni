@@ -139,6 +139,9 @@ export async function getUniAppInfo() {
           if (packageInfo?.installed) {
             errorDependenciesStr += `    - ${uniDependency}: \`${packageInfo.installed}\`\n`
           }
+          else {
+            errorDependenciesStr += `    - ${uniDependency}: \`未安装\`\n`
+          }
         }
       }
     }
