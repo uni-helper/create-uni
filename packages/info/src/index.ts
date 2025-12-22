@@ -134,8 +134,12 @@ export async function getUniAppInfo() {
     for (const [key, value] of Object.entries(errorDependencies)) {
       errorDependenciesStr += `  - ${key}: \`${value}\`\n`
       if (uniDependenciesMap[key]) {
-        for (const uniDependency of uniDependenciesMap[key])
-          errorDependenciesStr += `    - ${uniDependency}: \`${baseEnvInfo.packageInfo![uniDependency].installed}\`\n`
+        for (const uniDependency of uniDependenciesMap[key]) {
+          const packageInfo = baseEnvInfo.packageInfo?.[uniDependency]
+          if (packageInfo?.installed) {
+            errorDependenciesStr += `    - ${uniDependency}: \`${packageInfo.installed}\`\n`
+          }
+        }
       }
     }
 

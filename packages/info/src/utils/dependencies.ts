@@ -15,7 +15,7 @@ export function getUniHelperDependencies(packageInfo: UniPresetEnvInfo['npmPacka
   const uniHelperDependencies: Record<string, string> = {}
   for (const name in packageInfo) {
     if (name.includes('@uni-helper'))
-      uniHelperDependencies[name] = packageInfo[name].installed
+      uniHelperDependencies[name] = packageInfo[name]?.installed || ''
   }
   return uniHelperDependencies
 }
