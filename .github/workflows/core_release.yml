@@ -7,25 +7,25 @@ on:
 
 jobs:
   release:
+    name: Release
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      id-token: write
+
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup node
-        uses: actions/setup-node@v4
+      - name: Setup JS
+        uses: sxzz/workflows/setup-js@v1
         with:
-          node-version: 20
-          cache: pnpm
-          registry-url: https://registry.npmjs.com/
+          fetch-all: true
 
-      - name: Install Dependencies
-        run: pnpm i --frozen-lockfile
+      - name: Generate GitHub Changelog
+        run: pnpx changelogithub
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to NPM
         working-directory: packages/core
         run: pnpm publish --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
