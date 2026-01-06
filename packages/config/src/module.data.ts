@@ -48,4 +48,11 @@ export default [
     github: 'https://github.com/xiaohe0601/uni-echarts',
     hint: '适用于 uni-app 的 Apache ECharts 组件',
   },
+  {
+    label: rgb(0, 122, 255)('z-paging'),
+    value: 'zPaging',
+    name: 'z-paging',
+    github: 'https://github.com/SmileZXLee/uni-z-paging',
+    hint: '高性能、全平台兼容的 uni-app 分页组件',
+  },
 ] as const satisfies readonly Options[]
