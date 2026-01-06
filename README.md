@@ -91,6 +91,7 @@ npx @create-uni/info@latest
 | [uni-use](https://github.com/uni-helper/uni-use) | uni-app 组合式工具集 | uniUse |
 | [uni-promises](https://github.com/uni-helper/uni-promises) | 为 uni-app 提供的 Promise 包装器 | uniPromises |
 | [uni-echarts](https://uni-echarts.xiaohe.ink) | 适用于 uni-app 的 Apache ECharts 组件 | uniEcharts |
+| [z-paging](https://github.com/SmileZXLee/uni-z-paging) | 高性能、全平台兼容的 uni-app 分页组件 | zPaging |
 
 #### 📦组件列表
 

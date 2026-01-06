@@ -11,7 +11,8 @@ it('promptBuilder', () => {
     - uniNetwork: 为 uni-app 打造的基于 Promise 的网络请求库
     - uniUse: uni-app 组合式工具集
     - uniPromises: uni-app promise 化的 API
-    - uniEcharts: 适用于 uni-app 的 Apache ECharts 组件"
+    - uniEcharts: 适用于 uni-app 的 Apache ECharts 组件
+    - zPaging: 高性能、全平台兼容的 uni-app 分页组件"
   `)
 
   expect(promptBuilder(UI, '是否需要安装UI组件库')).toMatchInlineSnapshot(`
