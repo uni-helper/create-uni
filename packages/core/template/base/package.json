@@ -40,7 +40,7 @@
     "@uni-helper/unh": "^0.2.10",
     "@uni-helper/uni-types": "^1.0.0-alpha.7",
     "@vue/runtime-core": "3.4.21",
-    "miniprogram-api-typings": "^4.1.2",
+    "miniprogram-api-typings": "^5.0.0",
     "sass": "1.64.2",
     "vite": "5.2.8"
   }
