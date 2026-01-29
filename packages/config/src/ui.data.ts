@@ -40,14 +40,6 @@ export default [
     website: 'https://nutui-uniapp.pages.dev/',
   },
   {
-    label: rgb(22, 93, 255)('Skiyee Ui'),
-    hint: '随心创造差异化',
-    name: 'skiyee-ui',
-    value: 'skiyee',
-    github: 'https://github.com/skiyee/ui',
-    website: 'https://skiyee-ui.netlify.app/',
-  },
-  {
     label: rgb(60, 156, 255)('Uv Ui'),
     hint: '多平台快速开发的UI框架',
     name: 'uv-ui',

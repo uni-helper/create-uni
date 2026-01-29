@@ -22,7 +22,6 @@ it('promptBuilder', () => {
     - wot: 高颜值、轻量化的uni-app组件库
     - uview-pro: 全面支持 Vue3.0、TypeScript 的 uni-app 生态框架
     - nut: 京东风格的轻量级移动端组件库
-    - skiyee: 随心创造差异化
     - uv: 多平台快速开发的UI框架
     - ano: 轻量级、漂亮、快速的 UnoCSS 组件库"
   `)
@@ -36,7 +35,6 @@ it('getConfigValuesAsEnum', () => {
       "wot",
       "uview-pro",
       "nut",
-      "skiyee",
       "uv",
       "ano",
     ]

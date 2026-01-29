@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "@skiyee/uni-ui": "^1.1.0"
-  },
-  "devDependencies": {
-    "@skiyee/ui-preset": "^0.0.8",
-    "@skiyee/ui-resolver": "^0.0.2"
-  }
-}

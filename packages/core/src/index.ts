@@ -153,7 +153,7 @@ async function init() {
   // Render templates
   render('base')
 
-  const needUnocss = result.moduleList?.includes('unocss') || ['ano', 'skiyee'].includes(result.UIName!)
+  const needUnocss = result.moduleList?.includes('unocss') || ['ano'].includes(result.UIName!)
   const needUI = Boolean(result.UIName)
 
   // Render Config
