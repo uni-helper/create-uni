@@ -24,12 +24,20 @@ export default [
     website: 'https://wot-ui.cn/',
   },
   {
+    label: rgb(0, 82, 217)('TDesign Uni'),
+    hint: 'Tencent Design 组件库的 uni-app 版本',
+    name: 'TDesign-Uni',
+    value: 'tdesign',
+    github: 'https://github.com/Tencent/tdesign-uni',
+    website: 'https://tdesign.tencent.com/uni-app/',
+  },
+  {
     label: rgb(41, 121, 255)('uView Pro'),
     hint: '全面支持 Vue3.0、TypeScript 的 uni-app 生态框架',
     name: 'uView Pro',
     value: 'uview-pro',
-    github: 'https://github.com/anyup/uView-Pro',
-    website: 'https://uviewpro.cn/',
+    github: 'https://github.com/Tencent/tdesign-miniprogram',
+    website: 'https://tdesign.tencent.com/uniapp/',
   },
   {
     label: rgb(250, 44, 25)('Nut Ui'),

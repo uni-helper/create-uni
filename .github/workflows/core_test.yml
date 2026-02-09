@@ -61,7 +61,7 @@ jobs:
         flag-for-ts: ['', --ts]
         flag-for-eslint: [-e]
         flag-for-plugin: [-p import -p pages -p layouts -p manifest -p filePlatform -p root -p componentPlaceholder -m pinia -m unocss -m uniNetwork -m uniUse -m uniPromises -m uniEcharts -m zPaging]
-        flag-for-ui: ['', -u uni, -u ano, -u wot, -u nut, -u uv]
+        flag-for-ui: ['', -u uni, -u ano, -u wot, -u nut, -u uv, -u tdesign]
 
         node: [20.x]
         os: [windows-latest, macos-latest]

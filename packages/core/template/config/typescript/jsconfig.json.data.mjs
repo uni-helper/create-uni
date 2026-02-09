@@ -3,7 +3,7 @@ export default function getData({ oldData }) {
     id: 'tsConfig',
     options: `"lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "jsx": "preserve",
     "jsxImportSource": "vue",

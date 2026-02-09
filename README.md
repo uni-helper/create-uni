@@ -99,6 +99,7 @@ npx @create-uni/info@latest
 | :---: | :---: | :---: |
 | [uni-ui](https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html) | UniApp 官方组件库 | uni |
 | [wot-ui](https://wot-ui.cn/) | 高颜值、轻量化的 uni-app 组件库 | wot |
+| [TDesign-Uni](https://tdesign.tencent.com/uni-app/) | Tencent Design 组件库的 uni-app 版本 | tdesign |
 | [uView-Pro](https://uviewpro.cn/) | 全面支持 Vue3.0、TypeScript 的 uni-app 生态框架 | uview-pro |
 | [nutui-uniapp](https://uniapp-nutui.tech/) | 京东风格的轻量级移动端组件库 | nut |
 | [uv-ui](https://www.uvui.cn/components/intro.html) | 多平台快速开发的 UI 框架 | uv |

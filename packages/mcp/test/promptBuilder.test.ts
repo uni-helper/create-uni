@@ -20,6 +20,7 @@ it('promptBuilder', () => {
     - " ": 不安装
     - uni: UniApp官方组件库
     - wot: 高颜值、轻量化的uni-app组件库
+    - tdesign: Tencent Design 组件库的 uni-app 版本
     - uview-pro: 全面支持 Vue3.0、TypeScript 的 uni-app 生态框架
     - nut: 京东风格的轻量级移动端组件库
     - uv: 多平台快速开发的UI框架
@@ -33,6 +34,7 @@ it('getConfigValuesAsEnum', () => {
       " ",
       "uni",
       "wot",
+      "tdesign",
       "uview-pro",
       "nut",
       "uv",
@@ -47,6 +49,8 @@ it('templatePromptBuilder', () => {
     - vitesse: 由Uni Helper维护的快速启动模板
     - wot-starter: 由Wot UI提供的基于 vitesse-uni-app 的快速启动模板
     - wot-starter-retail: 基于Wot UI的 uni-app 零售行业模板
+    - uview-pro-starter: 由 uView Pro 提供的基于 vitesse-uni-app 的快速启动模板
+    - uview-pro-demo: 由 uView Pro 提供的完整组件演示模板
     - unisave: 拥抱 web 开发，拯救uniapp。适配所有 (app、mp、web) 平台
     - tmui32: 优质 Vue3 TS Pinia Vite 跨端组件库模板"
   `)
@@ -58,6 +62,8 @@ it('getTemplateValuesAsEnum', () => {
       "vitesse",
       "wot-starter",
       "wot-starter-retail",
+      "uview-pro-starter",
+      "uview-pro-demo",
       "unisave",
       "tmui32",
     ]
