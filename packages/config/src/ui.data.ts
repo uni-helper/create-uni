@@ -29,15 +29,15 @@ export default [
     name: 'TDesign',
     value: 'tdesign',
     github: 'https://github.com/Tencent/tdesign-miniprogram',
-    website: 'https://tdesign.tencent.com/uni-app/',
+    website: 'https://tdesign.tencent.com/uniapp/',
   },
   {
     label: rgb(41, 121, 255)('uView Pro'),
     hint: '全面支持 Vue3.0、TypeScript 的 uni-app 生态框架',
     name: 'uView Pro',
     value: 'uview-pro',
-    github: 'https://github.com/Tencent/tdesign-miniprogram',
-    website: 'https://tdesign.tencent.com/uniapp/',
+    github: 'https://github.com/anyup/uView-Pro',
+    website: 'https://uviewpro.cn/',
   },
   {
     label: rgb(250, 44, 25)('Nut Ui'),
