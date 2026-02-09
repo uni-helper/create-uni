@@ -25,10 +25,10 @@ export default [
   },
   {
     label: rgb(0, 82, 217)('TDesign Uni'),
-    hint: 'Tencent Design 组件库的 uni-app 版本',
-    name: 'TDesign-Uni',
+    hint: 'TDesign 组件库 uni-app 版',
+    name: 'TDesign',
     value: 'tdesign',
-    github: 'https://github.com/Tencent/tdesign-uni',
+    github: 'https://github.com/Tencent/tdesign-miniprogram',
     website: 'https://tdesign.tencent.com/uni-app/',
   },
   {
