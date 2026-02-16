@@ -1,7 +1,7 @@
 <img src='./blink.svg' />
 <a href="https://github.com/uni-helper/create-uni/stargazers"><img src="https://img.shields.io/github/stars/uni-helper/create-uni?colorA=09090b&colorB=fafafa&style=for-the-badge"></a>
-<a href="https://www.npmjs.com/package/create-uni"><img src="https://img.shields.io/npm/dm/create-uni?colorA=09090b&colorB=fafafa&style=for-the-badge"></a>
-<a href="https://www.npmjs.com/package/create-uni"><img src="https://img.shields.io/npm/v/create-uni?colorA=09090b&colorB=fafafa&style=for-the-badge"></a>
+<a href="https://npmx.dev/package/create-uni"><img src="https://img.shields.io/npm/dm/create-uni?colorA=09090b&colorB=fafafa&style=for-the-badge"></a>
+<a href="https://npmx.dev/package/create-uni"><img src="https://img.shields.io/npm/v/create-uni?colorA=09090b&colorB=fafafa&style=for-the-badge"></a>
 
 <br />
 
