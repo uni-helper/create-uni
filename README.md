@@ -87,6 +87,7 @@ npx @create-uni/info@latest
 | :---: | :---: | :---: |
 | [pinia](https://github.com/vuejs/pinia) | 符合直觉的 Vue.js 状态管理库 | pinia |
 | [unocss](https://github.com/antfu/unocss) | 即时按需的原子级 CSS 引擎 | unocss |
+| [vitest](https://github.com/uni-helper/vitest-environment-uniapp) | 基于 Vite 的测试框架 | vitest |
 | [uni-network](https://github.com/uni-helper/uni-network) | 为 uni-app 打造的基于 Promise 的网络请求库 | uniNetwork |
 | [uni-use](https://github.com/uni-helper/uni-use) | uni-app 组合式工具集 | uniUse |
 | [uni-promises](https://github.com/uni-helper/uni-promises) | 为 uni-app 提供的 Promise 包装器 | uniPromises |

@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.18",
+    "vitest-environment-uniapp": "^0.0.5"
+  }
+}

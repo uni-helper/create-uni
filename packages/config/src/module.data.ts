@@ -19,6 +19,14 @@ export default [
     hint: '即时按需的原子级 CSS 引擎',
   },
   {
+    label: rgb(56, 204, 110)('Vitest'),
+    value: 'vitest',
+    name: 'vitest',
+    github: 'https://github.com/uni-helper/vitest-environment-uniapp',
+    website: 'https://vitest.dev/',
+    hint: 'Vitest 是一个基于 Vite 的测试框架',
+  },
+  {
     label: rgb(108, 92, 231)('uni-network'),
     value: 'uniNetwork',
     name: 'uni-network',
