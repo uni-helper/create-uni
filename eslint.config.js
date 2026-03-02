@@ -7,5 +7,6 @@ export default uni({
   ignores: [
     'dist/outfile.cjs',
     'packages/gui',
+    'packages/core/template/**/*.test.js',
   ],
 })
