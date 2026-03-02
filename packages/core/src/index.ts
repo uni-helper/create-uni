@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
+import type { UnCustomTempValue } from '@create-uni/config/src/type'
 import type { Answers } from './question'
-import type { UnCustomTempValue } from './question/template/type'
 import {
   existsSync,
   mkdirSync,
@@ -17,7 +17,6 @@ import { intro, outro, spinner } from '@clack/prompts'
 import { generateBanner } from '@create-uni/shared'
 import ejs from 'ejs'
 import { green } from 'kolorist'
-
 import minimist from 'minimist'
 import { commandAction } from './command'
 import { question } from './question'

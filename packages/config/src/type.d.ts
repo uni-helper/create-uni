@@ -70,7 +70,7 @@ interface CustomTempValue {
   type: 'custom'
 }
 
-interface UnCustomTempValue {
+export interface UnCustomTempValue {
   type: string
   url: AtLeastOne<GithubGitee>
   callBack?: (root: string) => void

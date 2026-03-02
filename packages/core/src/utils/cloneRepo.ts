@@ -1,5 +1,5 @@
 import type { spinner } from '@clack/prompts'
-import type { UnCustomTempValue } from '../question/template/type'
+import type { UnCustomTempValue } from '@create-uni/config/src/type'
 import { exec } from 'node:child_process'
 import { promises as fs } from 'node:fs'
 import { join } from 'node:path'
