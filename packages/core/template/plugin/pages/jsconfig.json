@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "types": [
+      "@uni-helper/vite-plugin-uni-pages"
+    ]
+  }
+}

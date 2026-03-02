@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "types": [
+      "wot-design-uni/global.d.ts"
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "types": [
+      "z-paging/types"
+    ]
+  }
+}

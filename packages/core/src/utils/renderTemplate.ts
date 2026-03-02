@@ -35,22 +35,19 @@ export function renderTemplate(src: string, dest: string, callbacks: Callback[])
 
   const filename = path.basename(src)
 
-  if (filename === 'package.json' && fs.existsSync(dest)) {
-    // merge instead of overwriting
-    const existing = JSON.parse(fs.readFileSync(dest, 'utf8'))
-    const newPackage = JSON.parse(fs.readFileSync(src, 'utf8'))
-    const pkg = sortDependencies(deepMerge(existing, newPackage))
-    fs.writeFileSync(dest, `${JSON.stringify(pkg, null, 2)}\n`)
-    return
-  }
+  if (fs.existsSync(dest)) {
+    const isPackageJson = filename === 'package.json'
+    const isExtensionsJson = filename === 'extensions.json' || filename === 'settings.json'
+    const isJsConfigJson = filename === 'jsconfig.json'
 
-  if ((filename === 'extensions.json' || filename === 'settings.json') && fs.existsSync(dest)) {
-    // merge instead of overwriting
-    const existing = JSON.parse(fs.readFileSync(dest, 'utf8'))
-    const newExtensions = JSON.parse(fs.readFileSync(src, 'utf8'))
-    const extensions = deepMerge(existing, newExtensions)
-    fs.writeFileSync(dest, `${JSON.stringify(extensions, null, 2)}\n`)
-    return
+    if (isPackageJson || isExtensionsJson || isJsConfigJson) {
+      const existing = JSON.parse(fs.readFileSync(dest, 'utf8'))
+      const newContent = JSON.parse(fs.readFileSync(src, 'utf8'))
+      const merged = deepMerge(existing, newContent)
+      const result = isPackageJson ? sortDependencies(merged) : merged
+      fs.writeFileSync(dest, `${JSON.stringify(result, null, 2)}\n`)
+      return
+    }
   }
 
   if (filename.startsWith('_')) {
