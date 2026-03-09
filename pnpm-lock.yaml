@@ -178,8 +178,8 @@ importers:
         specifier: 0.1.0
         version: 0.1.0(@dcloudio/vite-plugin-uni@3.0.0-4080720251210001(postcss@8.5.6)(rollup@4.29.1)(ts-node@10.9.2(@types/node@18.19.68)(typescript@5.7.2))(vite@5.2.8(@types/node@18.19.68)(sass@1.64.2)(terser@5.37.0))(vue@3.4.21(typescript@5.7.2)))
       '@uni-helper/unh':
-        specifier: ^0.2.10
-        version: 0.2.10
+        specifier: ^0.2.11
+        version: 0.2.11
       '@uni-helper/uni-types':
         specifier: ^1.0.0-alpha.7
         version: 1.0.0-alpha.7(@uni-helper/uni-app-types@1.0.0-alpha.7(typescript@5.7.2)(vue@3.4.21(typescript@5.7.2)))(@uni-helper/uni-cloud-types@1.0.0-alpha.7(typescript@5.7.2)(vue@3.4.21(typescript@5.7.2)))(@uni-helper/uni-ui-types@1.0.0-alpha.7(@uni-helper/uni-app-types@1.0.0-alpha.7(typescript@5.7.2)(vue@3.4.21(typescript@5.7.2)))(typescript@5.7.2)(vue@3.4.21(typescript@5.7.2)))(typescript@5.7.2)(vue@3.4.21(typescript@5.7.2))
@@ -3207,8 +3207,8 @@ packages:
     peerDependencies:
       '@dcloudio/vite-plugin-uni': '*'
 
-  '@uni-helper/unh@0.2.10':
-    resolution: {integrity: sha512-IeE5Apz6PKP9kGYv8nMHiS4MjVE57XKtmsb+lttnwl0FJeBVWbh4yd4KNU+FHdNjOzqdXh9XF/yB0Jy1zmyfUA==}
+  '@uni-helper/unh@0.2.11':
+    resolution: {integrity: sha512-VEq6PNwArSZnisYzkOz4QzLePn6ZBEhsPs6xDtIdBuTnYBEpWT4Aw3a7IaHzfII3BH3JuX49/Q5Z7XCx385ZJw==}
     hasBin: true
 
   '@uni-helper/uni-app-types@1.0.0-alpha.7':
@@ -8411,7 +8411,7 @@ snapshots:
       '@babel/traverse': 7.28.4
       '@babel/types': 7.28.5
       convert-source-map: 2.0.0
-      debug: 4.4.1
+      debug: 4.4.3
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -8431,7 +8431,7 @@ snapshots:
       '@babel/traverse': 7.28.4
       '@babel/types': 7.28.5
       convert-source-map: 2.0.0
-      debug: 4.4.1
+      debug: 4.4.3
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -9338,7 +9338,7 @@ snapshots:
       '@babel/parser': 7.28.5
       '@babel/template': 7.27.2
       '@babel/types': 7.28.5
-      debug: 4.4.1
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
@@ -9350,7 +9350,7 @@ snapshots:
       '@babel/parser': 7.29.0
       '@babel/template': 7.28.6
       '@babel/types': 7.29.0
-      debug: 4.4.1
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
@@ -11903,7 +11903,7 @@ snapshots:
     dependencies:
       '@dcloudio/vite-plugin-uni': 3.0.0-4080720251210001(postcss@8.5.6)(rollup@4.29.1)(ts-node@10.9.2(@types/node@18.19.68)(typescript@5.7.2))(vite@5.2.8(@types/node@18.19.68)(sass@1.64.2)(terser@5.37.0))(vue@3.4.21(typescript@5.7.2))
 
-  '@uni-helper/unh@0.2.10':
+  '@uni-helper/unh@0.2.11':
     dependencies:
       '@uni-helper/uni-env': 0.2.0
       cac: 6.7.14
@@ -12193,7 +12193,7 @@ snapshots:
 
   agent-base@6.0.2:
     dependencies:
-      debug: 4.4.1
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
@@ -13174,7 +13174,7 @@ snapshots:
   download@8.0.0:
     dependencies:
       archive-type: 4.0.0
-      content-disposition: 0.5.2
+      content-disposition: 0.5.4
       decompress: 4.2.1
       ext-name: 5.0.0
       file-type: 11.1.0
@@ -13748,7 +13748,7 @@ snapshots:
       etag: 1.8.1
       finalhandler: 1.3.2
       fresh: 0.5.2
-      http-errors: 2.0.0
+      http-errors: 2.0.1
       merge-descriptors: 1.0.3
       methods: 1.1.2
       on-finished: 2.4.1
@@ -13761,7 +13761,7 @@ snapshots:
       send: 0.19.2
       serve-static: 1.16.3
       setprototypeof: 1.2.0
-      statuses: 2.0.1
+      statuses: 2.0.2
       type-is: 1.6.18
       utils-merge: 1.0.1
       vary: 1.1.2
@@ -14092,7 +14092,7 @@ snapshots:
     dependencies:
       '@tootallnate/once': 1.1.2
       data-uri-to-buffer: 3.0.1
-      debug: 4.4.1
+      debug: 4.4.3
       file-uri-to-path: 2.0.0
       fs-extra: 8.1.0
       ftp: 0.3.10
@@ -14250,7 +14250,7 @@ snapshots:
     dependencies:
       '@tootallnate/once': 1.1.2
       agent-base: 6.0.2
-      debug: 4.4.1
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
@@ -14263,7 +14263,7 @@ snapshots:
   https-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.4.1
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
@@ -15773,7 +15773,7 @@ snapshots:
     dependencies:
       '@tootallnate/once': 1.1.2
       agent-base: 6.0.2
-      debug: 4.4.1
+      debug: 4.4.3
       get-uri: 3.0.2
       http-proxy-agent: 4.0.1
       https-proxy-agent: 5.0.1
@@ -16091,7 +16091,7 @@ snapshots:
   proxy-agent@5.0.0:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.4.1
+      debug: 4.4.3
       http-proxy-agent: 4.0.1
       https-proxy-agent: 5.0.1
       lru-cache: 5.1.1
@@ -16687,7 +16687,7 @@ snapshots:
   socks-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.4.1
+      debug: 4.4.3
       socks: 2.8.7
     transitivePeerDependencies:
       - supports-color
@@ -16875,7 +16875,7 @@ snapshots:
 
   superagent-proxy@3.0.0(superagent@6.1.0):
     dependencies:
-      debug: 4.4.1
+      debug: 4.4.3
       proxy-agent: 5.0.0
       superagent: 6.1.0
     transitivePeerDependencies:
@@ -16885,7 +16885,7 @@ snapshots:
     dependencies:
       component-emitter: 1.3.1
       cookiejar: 2.1.4
-      debug: 4.4.1
+      debug: 4.4.3
       fast-safe-stringify: 2.1.1
       form-data: 3.0.4
       formidable: 1.2.6
