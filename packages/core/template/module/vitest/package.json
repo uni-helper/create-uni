@@ -3,7 +3,7 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "vitest": "^4.1.0",
+    "vitest": "^4.1.2",
     "vitest-environment-uniapp": "^0.0.5"
   }
 }
