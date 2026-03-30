@@ -5,7 +5,7 @@
   "devDependencies": {
     "@types/node": "^25.5.0",
     "@vue/tsconfig": "^0.9.1",
-    "typescript": "^6.0.2",
+    "typescript": "5.9.3",
     "vue-tsc": "^3.2.6"
   }
 }
