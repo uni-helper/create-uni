@@ -19,13 +19,23 @@ export default [
     list: [
       {
         label: `wot-starter`,
-        description: `由${rgb(77, 128, 240)('Wot UI')}提供的基于 vitesse-uni-app 的快速启动模板`,
+        description: `由${rgb(77, 128, 240)('Wot UI')}提供的基于 vitesse-uni-app 的快速启动模板(集成 wot-ui v1)`,
         value: 'wot-starter',
         url: {
-          github: 'https://github.com/wot-ui/wot-starter.git',
+          github: '-b v1 https://github.com/wot-ui/wot-starter.git',
+        },
+        website: 'https://starter-v1.wot-ui.cn/',
+        playground: 'https://starter-v1.wot-ui.cn/demo/#/',
+      },
+      {
+        label: `wot-starter-v2`,
+        description: `由${rgb(77, 128, 240)('Wot UI')}提供的基于 vitesse-uni-app 的快速启动模板(集成 @wot-ui/ui@2)`,
+        value: 'wot-starter-v2',
+        url: {
+          github: '-b v2 https://github.com/wot-ui/wot-starter.git',
         },
         website: 'https://starter.wot-ui.cn/',
-        playground: 'https://starter-demo.wot-ui.cn/',
+        playground: 'https://starter.wot-ui.cn/demo/#/',
       },
       {
         label: 'wot-starter-retail',

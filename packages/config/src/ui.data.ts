@@ -21,6 +21,14 @@ export default [
     name: 'wot-design-uni',
     value: 'wot',
     github: 'https://github.com/Moonofweisheng/wot-design-uni',
+    website: 'https://v1.wot-ui.cn/',
+  },
+  {
+    label: rgb(28, 100, 253)('Wot Ui V2'),
+    hint: '轻量、美观、AI友好的 uni-app 组件库',
+    name: 'wot-ui',
+    value: 'wot2',
+    github: 'https://github.com/wot-ui/wot-ui',
     website: 'https://wot-ui.cn/',
   },
   {
