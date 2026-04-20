@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "types": [
+      "@wot-ui/ui/global.d.ts"
+    ]
+  }
+}

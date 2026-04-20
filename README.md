@@ -62,7 +62,8 @@ npx @create-uni/info@latest
 | 模板名 | 描述 | 参数名 |
 | :---: | :---: | :---: |
 | [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app) | 由 Vite & uni-app 驱动的跨端快速启动模板 | vitesse |
-| [wot-starter](https://github.com/wot-ui/wot-starter) | 基于 vitesse-uni-app 的 wot-ui 快速起手模板 | wot-starter |
+| [wot-starter](https://github.com/wot-ui/wot-starter) | 基于 vitesse-uni-app 的 wot-ui 快速起手模板 (集成 wot-ui v1) | wot-starter |
+| [wot-starter-v2](https://github.com/wot-ui/wot-starter/tree/v2) | 基于 vitesse-uni-app 的 wot-ui 快速起手模板 (集成 @wot-ui/ui@2) | wot-starter-v2 |
 | [wot-starter-retail](https://github.com/wot-ui/wot-starter-retail) | 基于 wot-ui 的 uni-app 零售行业模板 | wot-starter-retail |
 | [uview-pro-starter](https://github.com/anyup/uView-Pro-Starter) | 基于 vitesse-uni-app 的 uView Pro 快速启动模板 | uview-pro-starter |
 | [uview-pro-demo](https://github.com/anyup/uView-Pro) | 基于 uView Pro 的完整组件演示模板 | uview-pro-demo |
@@ -99,7 +100,8 @@ npx @create-uni/info@latest
 | 组件名 | 描述 | 参数名 |
 | :---: | :---: | :---: |
 | [uni-ui](https://uniapp.dcloud.net.cn/component/uniui/uni-ui.html) | UniApp 官方组件库 | uni |
-| [wot-ui](https://wot-ui.cn/) | 高颜值、轻量化的 uni-app 组件库 | wot |
+| [wot-ui](https://v1.wot-ui.cn/) | 高颜值、轻量化的 uni-app 组件库(v1) | wot |
+| [wot-ui v2](https://wot-ui.cn/) | 轻量、美观、AI友好的 uni-app 组件库 | wot2 |
 | [TDesign](https://tdesign.tencent.com/uniapp/) | TDesign 组件库 uni-app 版 | tdesign |
 | [uView-Pro](https://uviewpro.cn/) | 全面支持 Vue3.0、TypeScript 的 uni-app 生态框架 | uview-pro |
 | [nutui-uniapp](https://uniapp-nutui.tech/) | 京东风格的轻量级移动端组件库 | nut |
