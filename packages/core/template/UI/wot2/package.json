@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "@wot-ui/ui": "^2.0.0-alpha.9"
+    "@wot-ui/ui": "^2.0.4"
   },
   "devDependencies": {
-    "sass": "^1.78.0"
+    "sass": "^1.99.0"
   }
 }
