@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@uni-helper/uni-promises": "^0.3.3"
+    "@uni-helper/uni-promises": "^0.4.0"
   }
 }
