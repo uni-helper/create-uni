@@ -3,9 +3,9 @@
     "type-check": "vue-tsc --noEmit"
   },
   "devDependencies": {
-    "@types/node": "^26.0.1",
+    "@types/node": "^26.4.1",
     "@vue/tsconfig": "^0.9.1",
     "typescript": "5.9.3",
-    "vue-tsc": "^3.3.5"
+    "vue-tsc": "^3.3.11"
   }
 }
