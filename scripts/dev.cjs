@@ -15,7 +15,8 @@ const devProcess = spawn('pnpm', ['dev', 'mp-weixin'], {
 // 捕获错误输出
 devProcess.stderr.on('data', (data) => {
   console.error(`stderr: ${data}`)
-  if (!data.includes('Warning: To load an ES module, set "type": "module" in the package.json or use the .mjs extension.')) {
+  if (!data.includes('Warning: To load an ES module, set "type": "module" in the package.json or use the .mjs extension.')
+    || !data.includes('unh')) {
     devProcess.kill()
     process.exit(1)
   }
