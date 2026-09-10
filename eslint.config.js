@@ -5,6 +5,7 @@ export default uni({
     'no-console': 'warn',
     'markdown/require-alt-text': 'warn',
   },
+  pnpm: false,
   ignores: [
     'dist/outfile.cjs',
     'packages/gui',

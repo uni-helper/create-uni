@@ -2,7 +2,7 @@ minimumReleaseAgeExcludePrune: true
 minimumReleaseAgeExclude:
   - '@types/node@22.20.2'
 
-trustPolicy: no-downgrade
+trustPolicy: off
 shellEmulator: true
 
 packages:
