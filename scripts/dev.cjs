@@ -64,7 +64,7 @@ devProcess.stderr.on('data', (data) => {
 
   log('stderr 判断 -> isEsmWarning:', isEsmWarning, ', isUnhWarning:', isUnhWarning)
 
-  if (!isEsmWarning || !isUnhWarning) {
+  if (!isEsmWarning && !isUnhWarning) {
     logError('stderr 命中 kill 条件，准备杀掉子进程并退出')
     devProcess.kill()
     process.exit(1)
