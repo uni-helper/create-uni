@@ -45,11 +45,11 @@ jobs:
     name: stable - ${{ matrix.settings.target }} - node@20
     runs-on: ${{ matrix.settings.host }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
       - name: Setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 20
           cache: pnpm
@@ -59,7 +59,7 @@ jobs:
           toolchain: stable
           targets: ${{ matrix.settings.target }}
       - name: Cache cargo
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ~/.cargo/registry/index/
@@ -81,7 +81,7 @@ jobs:
         run: pnpm install
 
       - name: Setup node x86
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         if: matrix.settings.target == 'i686-pc-windows-msvc'
         with:
           node-version: 20
@@ -93,7 +93,7 @@ jobs:
         shell: bash
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: bindings-${{ matrix.settings.target }}
           path: 'packages/gui/*.node'
@@ -105,11 +105,11 @@ jobs:
     needs:
       - build
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
       - name: Setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 20
           cache: pnpm
@@ -119,7 +119,7 @@ jobs:
         run: pnpm install
 
       - name: Download all artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: packages/gui/artifacts
 

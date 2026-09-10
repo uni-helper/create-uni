@@ -1,3 +1,5 @@
+import { ArrowLeft, ArrowRight, Blocks, Check, Folder, Package, Puzzle } from 'lucide-react'
+import React, { useState } from 'react'
 import { Eslint } from '@/components/icons/eslint'
 import { Rename } from '@/components/icons/rename'
 import { Template } from '@/components/icons/template'
@@ -10,8 +12,6 @@ import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { UICheck } from '@/components/UICheck'
 import { USER_EVENT } from '@/constants/USER_EVENT'
-import { ArrowLeft, ArrowRight, Blocks, Check, Folder, Package, Puzzle } from 'lucide-react'
-import React, { useState } from 'react'
 
 const customSteps = [
   {

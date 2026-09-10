@@ -4,6 +4,8 @@ export default uni({
   rules: {
     'no-console': 'warn',
   },
+  pnpm: false,
+  markdown: false,
   ignores: [
     'dist/outfile.cjs',
     'packages/gui',
