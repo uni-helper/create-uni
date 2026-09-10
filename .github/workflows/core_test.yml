@@ -23,7 +23,7 @@ jobs:
 
     strategy:
       matrix:
-        node: [20.x, 22.x]
+        node: [22.x, 24.x]
         os: [windows-latest, macos-latest]
       fail-fast: false
 
@@ -61,9 +61,9 @@ jobs:
         flag-for-ts: ['', --ts]
         flag-for-eslint: [-e]
         flag-for-plugin: [-p import -p pages -p layouts -p manifest -p filePlatform -p root -p componentPlaceholder -m pinia -m unocss -m uniNetwork -m uniUse -m uniPromises -m uniEcharts -m zPaging -m vitest]
-        flag-for-ui: ['', -u uni, -u ano, -u wot, -u nut, -u uv, -u tdesign]
+        flag-for-ui: ['', -u uni, -u ano, -u wot, -u nut, -u uv, -u tdesign -u wot2]
 
-        node: [20.x]
+        node: [22.x]
         os: [windows-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
