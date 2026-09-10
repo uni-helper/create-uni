@@ -3,9 +3,9 @@ import uni from '@uni-helper/eslint-config'
 export default uni({
   rules: {
     'no-console': 'warn',
-    'markdown/require-alt-text': 'warn',
   },
   pnpm: false,
+  markdown: false,
   ignores: [
     'dist/outfile.cjs',
     'packages/gui',
