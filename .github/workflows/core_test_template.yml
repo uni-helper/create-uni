@@ -23,7 +23,7 @@ jobs:
 
     strategy:
       matrix:
-        node: [20.x, 22.x]
+        node: [24.x]
         os: [windows-latest, macos-latest]
       fail-fast: false
 
@@ -62,15 +62,13 @@ jobs:
       matrix:
         template: [-t vitesse]
 
-        node: [20.x]
+        node: [24.x]
         os: [windows-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v6
-        with:
-          version: 8
       - uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node }}
