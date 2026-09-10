@@ -61,10 +61,11 @@ devProcess.stderr.on('data', (data) => {
 
   const isEsmWarning = text.includes('Warning: To load an ES module, set "type": "module" in the package.json or use the .mjs extension.')
   const isUnhWarning = text.includes('unh')
+  const isLegacyWarning = text.includes('legacy-js-api')
 
-  log('stderr 判断 -> isEsmWarning:', isEsmWarning, ', isUnhWarning:', isUnhWarning)
+  log('stderr 判断 -> isEsmWarning:', isEsmWarning, ', isUnhWarning:', isUnhWarning, ', isLegacyWarning:', isLegacyWarning)
 
-  if (!isEsmWarning && !isUnhWarning) {
+  if (!isEsmWarning && !isUnhWarning && !isLegacyWarning) {
     logError('stderr 命中 kill 条件，准备杀掉子进程并退出')
     devProcess.kill()
     process.exit(1)
