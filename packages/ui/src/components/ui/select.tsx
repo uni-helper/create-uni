@@ -1,3 +1,7 @@
+import * as SelectPrimitive from '@radix-ui/react-select'
+
+import { ChevronDown, ChevronUp, Ellipsis } from 'lucide-react'
+import * as React from 'react'
 import {
   Drawer,
   DrawerClose,
@@ -5,11 +9,7 @@ import {
   DrawerFooter,
   DrawerTrigger,
 } from '@/components/ui/drawer'
-
 import { cn } from '@/lib/utils'
-import * as SelectPrimitive from '@radix-ui/react-select'
-import { ChevronDown, ChevronUp, Ellipsis } from 'lucide-react'
-import * as React from 'react'
 import { Button } from './button'
 
 const Select = SelectPrimitive.Root

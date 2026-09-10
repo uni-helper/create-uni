@@ -1,3 +1,6 @@
+import Ansi from 'ansi-to-react'
+
+import { BookText, Github } from 'lucide-react'
 import {
   DrawerDescription,
   DrawerHeader,
@@ -14,9 +17,6 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { USER_EVENT } from '@/constants/USER_EVENT'
-
-import Ansi from 'ansi-to-react'
-import { BookText, Github } from 'lucide-react'
 import { Demo } from './icons/demo'
 import { Gitee } from './icons/gitee'
 

@@ -1,7 +1,7 @@
-import { Button } from '@/components/ui/button'
-import { USER_EVENT } from '@/constants/USER_EVENT'
 import { Moon, Sun } from 'lucide-react'
 import { useEffect, useState } from 'preact/hooks'
+import { Button } from '@/components/ui/button'
+import { USER_EVENT } from '@/constants/USER_EVENT'
 
 export function Footer() {
   const [darkMode, setDarkMode] = useState(document.documentElement.classList.contains('dark'))

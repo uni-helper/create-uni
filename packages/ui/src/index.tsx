@@ -1,3 +1,4 @@
+import { render } from 'preact'
 import {
   ContextMenu,
   ContextMenuContent,
@@ -6,7 +7,6 @@ import {
   ContextMenuTrigger,
 } from '@/components/ui/context-menu'
 import CLIInterface from '@/page/index'
-import { render } from 'preact'
 import { Footer } from './components/footer'
 import { Header } from './components/header'
 import { USER_EVENT } from './constants/USER_EVENT'

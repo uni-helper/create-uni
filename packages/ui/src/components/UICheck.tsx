@@ -1,9 +1,10 @@
+import { BookText, Github } from 'lucide-react'
+
 import {
   DrawerDescription,
   DrawerHeader,
   DrawerTitle,
 } from '@/components/ui/drawer'
-
 import {
   Select,
   SelectContent,
@@ -12,7 +13,6 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { USER_EVENT } from '@/constants/USER_EVENT'
-import { BookText, Github } from 'lucide-react'
 
 interface TemplateItemProps {
   item: typeof window.create_uni_data.ui[number]

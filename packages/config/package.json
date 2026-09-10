@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "pnpm@9.9.0",
+  "packageManager": "pnpm@12.3.4",
   "description": "create-uni 模块配置",
   "author": "FliPPeDround <flippedround@qq.com>",
   "license": "MIT",

@@ -1,2 +1,20 @@
+minimumReleaseAgeExcludePrune: true
+minimumReleaseAgeExclude:
+  - '@types/node@22.20.2'
+
+trustPolicy: no-downgrade
+shellEmulator: true
+
 packages:
   - packages/*
+
+overrides:
+  '@create-uni/gui': link:packages/gui
+  '@create-uni/info': link:packages/info
+  create-uni: link:packages/core
+
+allowBuilds:
+  bufferutil: true
+  esbuild: true
+  pnpm: true
+  simple-git-hooks: true

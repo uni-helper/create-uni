@@ -1,6 +1,6 @@
+import { BookText, Ellipsis, Github } from 'lucide-react'
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
 import { USER_EVENT } from '@/constants/USER_EVENT'
-import { BookText, Ellipsis, Github } from 'lucide-react'
 import { Button } from './ui/button'
 import { Checkbox } from './ui/checkbox'
 import { Label } from './ui/label'
