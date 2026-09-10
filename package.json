@@ -56,7 +56,7 @@
     "bumpp": "^12.3.0",
     "consola": "^3.4.2",
     "cross-env": "^10.1.0",
-    "eslint": "10.9.1",
+    "eslint": "10.10.0",
     "lint-staged": "^17.5.0",
     "nodemon": "^3.1.14",
     "pnpm": "^12.3.4",
