@@ -23,18 +23,18 @@ jobs:
 
     strategy:
       matrix:
-        node: [22.x, 24.x]
+        node: [24.x]
         os: [windows-latest, macos-latest]
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v6
 
       - name: Set node ${{ matrix.node }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
           cache: pnpm
@@ -48,7 +48,7 @@ jobs:
       - name: Build
         run: nr build:core
 
-      - uses: actions/cache/save@v4
+      - uses: actions/cache/save@v5
         id: cache
         with:
           path: packages/core/dist/outfile.cjs
@@ -63,22 +63,22 @@ jobs:
         flag-for-plugin: [-p import -p pages -p layouts -p manifest -p filePlatform -p root -p componentPlaceholder -m pinia -m unocss -m uniNetwork -m uniUse -m uniPromises -m uniEcharts -m zPaging -m vitest]
         flag-for-ui: ['', -u uni, -u ano, -u wot, -u nut, -u uv, -u tdesign, -u wot2]
 
-        node: [22.x]
+        node: [24.x]
         os: [windows-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
     env:
       FEATURE_FLAGS: ${{ matrix.flag-for-ts }} ${{ matrix.flag-for-eslint }} ${{ matrix.flag-for-plugin }} ${{ matrix.flag-for-ui }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
         with:
           version: 8
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
           cache: pnpm
-      - uses: actions/cache/restore@v4
+      - uses: actions/cache/restore@v5
         id: cache-restore
         with:
           path: packages/core/dist/outfile.cjs
