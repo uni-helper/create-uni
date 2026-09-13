@@ -1,4 +1,4 @@
-import { MODULES, PLUGINS, TEMPLATES, UI } from '@create-uni/config'
+import { CSS, MODULES, PLUGINS, TEMPLATES, UI } from '@create-uni/config'
 import { z } from 'zod'
 import { getConfigValuesAsEnum, getTemplateValuesAsEnum, promptBuilder, templatePromptBuilder } from './utils'
 /**
@@ -28,6 +28,12 @@ export const uiNameSchema = z.enum(getConfigValuesAsEnum(UI))
   .default(' ')
   .describe(promptBuilder(UI, 'UI组件库名称, 选择合适的组件库加速开发'))
 
+// 原子化CSS类型schema
+export const cssTypeSchema = z.enum(getConfigValuesAsEnum(CSS))
+  .optional()
+  .default(' ')
+  .describe(promptBuilder(CSS, '原子化CSS方案, unocss与tailwindcss互斥, 也可以选择都不使用'))
+
 // 基础创建参数schema
 export const baseCreateSchema = {
   name: z.string().describe('项目路径名称（将作为文件夹名称）').default('.'),
@@ -47,5 +53,6 @@ export const createCustomSchema = z.object({
   pluginList: pluginListSchema,
   moduleList: moduleListSchema,
   UIName: uiNameSchema,
+  cssType: cssTypeSchema,
   needsEslint: z.boolean().optional().describe('是否需要ESLint配置, 统一代码风格和质量').default(false),
 })

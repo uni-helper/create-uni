@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+/* 只扫描业务源码，避免第三方依赖与构建产物被误识别为 class */
+@source "./**/*.{html,js,ts,jsx,tsx,vue}";
+@source not "./uni_modules";
+@source not "../node_modules";
+@source not "../dist";
+@source not "../unpackage";

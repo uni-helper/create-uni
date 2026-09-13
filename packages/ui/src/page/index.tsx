@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Blocks, Check, Folder, Package, Puzzle } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Blocks, Check, Folder, Package, Palette, Puzzle } from 'lucide-react'
 import React, { useState } from 'react'
 import { Eslint } from '@/components/icons/eslint'
 import { Rename } from '@/components/icons/rename'
@@ -24,6 +24,7 @@ const customSteps = [
   { title: 'Plugins', icon: <Blocks size={18} />, value: 'plugins' },
   { title: 'Modules', icon: <Package size={18} />, value: 'modules' },
   { title: 'UI', icon: <Puzzle size={18} />, value: 'ui' },
+  { title: 'Atomic CSS', icon: <Palette size={18} />, value: 'css' },
   { title: 'ESLint', icon: <Eslint />, value: 'eslint' },
   { title: 'Install Path', icon: <Folder size={18} />, value: 'path' },
 ] as const
@@ -49,6 +50,7 @@ export default function CLIInterface() {
     requiredPlugins: [],
     requiredModules: [],
     requireUI: null,
+    requireCss: null as string | null,
     requireESLint: true,
     installationPath: window.create_uni_current_dir,
   })
@@ -78,7 +80,7 @@ export default function CLIInterface() {
     setFormData({ ...formData, requireUI: value })
   }
 
-  const handleRadioChange = (value: string, field: string) => {
+  const handleRadioChange = (value: string | null, field: string) => {
     setFormData({ ...formData, [field]: value })
   }
 
@@ -198,6 +200,30 @@ export default function CLIInterface() {
               onChange={handleUIChange}
             />
           </div>
+        )
+      case 'css':
+        return (
+          <RadioGroup
+            value={formData.requireCss ?? undefined}
+            onValueChange={value => handleRadioChange(value === 'none' ? null : value, 'requireCss')}
+          >
+            <div className="space-y-2">
+              {StepLabel(currentStep)}
+
+              {window.create_uni_data.css.map(item => (
+                <div key={item.value ?? 'none'} className="flex items-center space-x-2">
+                  <RadioGroupItem
+                    value={item.value ?? 'none'}
+                    id={`css-${item.value ?? 'none'}`}
+                    className="border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                  />
+                  <Label htmlFor={`css-${item.value ?? 'none'}`} className="text-zinc-600 dark:text-zinc-400">
+                    {item.name}
+                  </Label>
+                </div>
+              ))}
+            </div>
+          </RadioGroup>
         )
       case 'eslint':
         return (

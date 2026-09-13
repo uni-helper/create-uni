@@ -3,11 +3,16 @@ import type { TemplateValue } from './../question/template/type'
 import process from 'node:process'
 import { outro } from '@clack/prompts'
 
-import { MODULES, PLUGINS, TEMPLATES, UI } from '@create-uni/config'
+import { CSS, MODULES, PLUGINS, TEMPLATES, UI } from '@create-uni/config'
 import { bold, gray } from 'kolorist'
 
 type ArgvBase = string | null
 type ArgvList = ArgvBase | string[]
+
+/**
+ * 旧版本中 unocss 作为模块存在，这里做兼容处理
+ */
+const LEGACY_MODULES = ['unocss']
 
 function validateTemplateType(argvTemplate: ArgvBase): TemplateValue {
   if (!argvTemplate)
@@ -48,6 +53,23 @@ function validateUIName(argvUIName: ArgvBase) {
   return UIName
 }
 
+function validateCssType(argvCss: ArgvBase | boolean): string | null {
+  if (!argvCss)
+    return null
+  const cssType = [argvCss].flat()[0]
+  const cssValues = CSS.filter(item => item.value).map(item => item.value).join('、')
+  if (typeof cssType !== 'string') {
+    outro(`${bold(`请通过 ${gray('--css')} 指定原子化CSS`)}，可选值: ${gray(cssValues)}`)
+    process.exit(1)
+  }
+  const value = CSS.find(item => item.value === cssType)?.value
+  if (!value) {
+    outro(`${bold(`暂不支持 ${gray(cssType)} 原子化CSS`)}，可选值: ${gray(cssValues)}`)
+    process.exit(1)
+  }
+  return value
+}
+
 function validatePlugins(argvPlugins: ArgvList): [] {
   if (!argvPlugins)
     return []
@@ -64,7 +86,7 @@ function validateModules(argvModules: ArgvList): [] {
   if (!argvModules)
     return []
   const moduleList = [argvModules].flat()
-  const missedModuleList = moduleList.filter(item => !MODULES.some(module => module.value === item))
+  const missedModuleList = moduleList.filter(item => !MODULES.some(module => module.value === item) && !LEGACY_MODULES.includes(item))
   if (missedModuleList.length) {
     outro(`${bold(`暂不支持 ${gray(missedModuleList.join(', '))} 模块`)}`)
     process.exit(1)
@@ -73,6 +95,7 @@ function validateModules(argvModules: ArgvList): [] {
 }
 
 export {
+  validateCssType,
   validateModules,
   validatePlugins,
   validateTemplateType,

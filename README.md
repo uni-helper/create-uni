@@ -36,7 +36,7 @@ pnpm create uni --gui
 ```
 
 ```shell
-pnpm create uni <项目名称> --ts -m pinia -m uniUse -u ano -e
+pnpm create uni <项目名称> --ts -m pinia -m uniUse -u ano -c unocss -e
 ```
 
 ```shell
@@ -53,6 +53,7 @@ npx @create-uni/info@latest
 | Plugin | pluginList | p | 见[插件列表](#插件列表) |
 | Module | moduleList | m | 见[模块列表](#模块列表) |
 | UI | ui | u | 见[组件列表](#组件列表) |
+| CSS | cssType | c | 见[原子化CSS列表](#原子化css列表) |
 | Eslint | eslint | e | —— |
 | gui | gui | —— | —— |
 | info | info | —— | —— |
@@ -87,7 +88,6 @@ npx @create-uni/info@latest
 | 模块名 | 描述 | 参数名 |
 | :---: | :---: | :---: |
 | [pinia](https://github.com/vuejs/pinia) | 符合直觉的 Vue.js 状态管理库 | pinia |
-| [unocss](https://github.com/antfu/unocss) | 即时按需的原子级 CSS 引擎 | unocss |
 | [vitest](https://github.com/uni-helper/vitest-environment-uniapp) | 基于 Vite 的测试框架 | vitest |
 | [uni-network](https://github.com/uni-helper/uni-network) | 为 uni-app 打造的基于 Promise 的网络请求库 | uniNetwork |
 | [uni-use](https://github.com/uni-helper/uni-use) | uni-app 组合式工具集 | uniUse |
@@ -108,6 +108,15 @@ npx @create-uni/info@latest
 | [uv-ui](https://www.uvui.cn/components/intro.html) | 多平台快速开发的 UI 框架 | uv |
 | [ano-ui](https://ano-ui.netlify.app/) | 轻量级、漂亮、快速的 UnoCSS 组件库 | ano |
 
+#### 📦原子化CSS列表
+
+`unocss` 与 `tailwindcss` 互斥，只能选择其中一个，也可以选择都不使用。
+
+| 名称 | 描述 | 参数名 |
+| :---: | :---: | :---: |
+| [unocss](https://unocss.dev/) | 即时按需的原子级 CSS 引擎 | unocss |
+| [tailwindcss](https://tw.weapp.dev/) | 通过 weapp-tailwindcss 适配小程序的原子化 CSS 框架 | tailwindcss |
+
 ## 🤝 参与贡献
 
 - 提交新功能
@@ -115,7 +124,7 @@ npx @create-uni/info@latest
 - 提交新[`模板`](./packages/config/src/template.data.ts)/[`插件`](./packages/config/src/plugin.data.ts)/[`模块`](./packages/config/src/module.data.ts)/[`组件库`](./packages/config/src/ui.data.ts)
 
 ## 🛠️ 开发
-- Node.js 版本 20+
+- Node.js 版本 24+
 - Rust 版本 1.64+
 - 必须使用`pnpm`作为包管理工具
 - `Clone`此仓库

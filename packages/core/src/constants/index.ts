@@ -10,6 +10,7 @@ export const helpMessage = `\
   -p              使用特定插件
   -m              使用特定模块
   -ui             使用特定UI库
+  -c,   --css     使用特定原子化CSS(unocss、tailwindcss)
   -e              使用eslint
   -h,   --help    显示帮助信息
   -i,   --info    显示版本信息

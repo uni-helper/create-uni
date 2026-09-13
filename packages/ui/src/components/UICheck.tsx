@@ -1,3 +1,4 @@
+import type { Options } from '@create-uni/config'
 import { BookText, Github } from 'lucide-react'
 
 import {
@@ -15,7 +16,7 @@ import {
 import { USER_EVENT } from '@/constants/USER_EVENT'
 
 interface TemplateItemProps {
-  item: typeof window.create_uni_data.ui[number]
+  item: Options
 }
 
 function UIItem({ item }: TemplateItemProps) {
@@ -58,7 +59,7 @@ function UIItem({ item }: TemplateItemProps) {
 
 interface OptionCheckProps {
   value?: string
-  options: typeof window.create_uni_data.plugin
+  options: Options[]
   onChange: (value: string) => void
 }
 export function UICheck({ value, options, onChange }: OptionCheckProps) {

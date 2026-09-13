@@ -11,14 +11,6 @@ export default [
     hint: '符合直觉的 Vue.js 状态管理库',
   },
   {
-    label: rgb(204, 204, 204)('Unocss'),
-    value: 'unocss',
-    name: 'unocss',
-    github: 'https://github.com/unocss/unocss',
-    website: 'https://unocss.dev/',
-    hint: '即时按需的原子级 CSS 引擎',
-  },
-  {
     label: rgb(56, 204, 110)('Vitest'),
     value: 'vitest',
     name: 'vitest',

@@ -1,4 +1,4 @@
-import { MODULES, UI } from '@create-uni/config'
+import { CSS, MODULES, UI } from '@create-uni/config'
 import templates from '@create-uni/config/src/template.data'
 import { expect, it } from 'vitest'
 import { getConfigValuesAsEnum, getTemplateValuesAsEnum, promptBuilder, templatePromptBuilder } from '../src/utils'
@@ -7,7 +7,7 @@ it('promptBuilder', () => {
   expect(promptBuilder(MODULES, '需要安装的模块列表，增强应用功能')).toMatchInlineSnapshot(`
     "需要安装的模块列表，增强应用功能: 
     - pinia: 符合直觉的 Vue.js 状态管理库
-    - unocss: 即时按需的原子级 CSS 引擎
+    - vitest: Vitest 是一个基于 Vite 的测试框架
     - uniNetwork: 为 uni-app 打造的基于 Promise 的网络请求库
     - uniUse: uni-app 组合式工具集
     - uniPromises: uni-app promise 化的 API
@@ -20,11 +20,21 @@ it('promptBuilder', () => {
     - " ": 不安装
     - uni: UniApp官方组件库
     - wot: 高颜值、轻量化的uni-app组件库
-    - tdesign: Tencent Design 组件库的 uni-app 版本
+    - wot2: 轻量、美观、AI友好的 uni-app 组件库
+    - tdesign: TDesign 组件库 uni-app 版
     - uview-pro: 全面支持 Vue3.0、TypeScript 的 uni-app 生态框架
     - nut: 京东风格的轻量级移动端组件库
     - uv: 多平台快速开发的UI框架
     - ano: 轻量级、漂亮、快速的 UnoCSS 组件库"
+  `)
+})
+
+it('cssPromptBuilder', () => {
+  expect(promptBuilder(CSS, '原子化CSS方案, unocss与tailwindcss互斥')).toMatchInlineSnapshot(`
+    "原子化CSS方案, unocss与tailwindcss互斥: 
+    - " ": 不安装
+    - unocss: 即时按需的原子级 CSS 引擎
+    - tailwindcss: 通过 weapp-tailwindcss 适配小程序的原子化 CSS 框架"
   `)
 })
 
@@ -34,6 +44,7 @@ it('getConfigValuesAsEnum', () => {
       " ",
       "uni",
       "wot",
+      "wot2",
       "tdesign",
       "uview-pro",
       "nut",
@@ -47,7 +58,8 @@ it('templatePromptBuilder', () => {
   expect(templatePromptBuilder(templates, '请选择项目模板')).toMatchInlineSnapshot(`
     "请选择项目模板: 
     - vitesse: 由Uni Helper维护的快速启动模板
-    - wot-starter: 由Wot UI提供的基于 vitesse-uni-app 的快速启动模板
+    - wot-starter: 由Wot UI提供的基于 vitesse-uni-app 的快速启动模板(集成 wot-ui v1)
+    - wot-starter-v2: 由Wot UI提供的基于 vitesse-uni-app 的快速启动模板(集成 @wot-ui/ui@2)
     - wot-starter-retail: 基于Wot UI的 uni-app 零售行业模板
     - uview-pro-starter: 由 uView Pro 提供的基于 vitesse-uni-app 的快速启动模板
     - uview-pro-demo: 由 uView Pro 提供的完整组件演示模板
@@ -61,6 +73,7 @@ it('getTemplateValuesAsEnum', () => {
     [
       "vitesse",
       "wot-starter",
+      "wot-starter-v2",
       "wot-starter-retail",
       "uview-pro-starter",
       "uview-pro-demo",

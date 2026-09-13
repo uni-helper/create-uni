@@ -1,6 +1,6 @@
 import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js'
 import type { CreateCustomOptions, CreateWithTemplateOptions } from './types.js'
-import { MODULES, PLUGINS, TEMPLATES, UI } from '@create-uni/config'
+import { CSS, MODULES, PLUGINS, TEMPLATES, UI } from '@create-uni/config'
 import { canSkipEmptying } from '@create-uni/shared'
 import { sync } from 'cross-spawn'
 import { flattenTemplateList } from './utils.js'
@@ -27,6 +27,11 @@ function buildCommandArgs(options: CreateCustomOptions & { templateType?: string
   // UI组件库
   if (options.UIName) {
     args.push('-u', options.UIName)
+  }
+
+  // 原子化CSS
+  if (options.cssType && options.cssType !== ' ') {
+    args.push('--css', options.cssType)
   }
 
   // 插件列表
@@ -176,6 +181,10 @@ export async function createCustom(options: CreateCustomOptions): Promise<CallTo
   if (options.UIName) {
     const uiInfo = UI.find(ui => ui.value === options.UIName)?.hint || options.UIName
     features.push(`✅ UI组件库: ${uiInfo}`)
+  }
+  if (options.cssType && options.cssType !== ' ') {
+    const cssInfo = CSS.find(css => css.value === options.cssType)?.hint || options.cssType
+    features.push(`✅ 原子化CSS: ${cssInfo}`)
   }
   if (options.pluginList?.length) {
     const pluginNames = options.pluginList.map((p) => {

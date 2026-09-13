@@ -1,4 +1,4 @@
-import type { MODULES, PLUGINS, UI } from '@create-uni/config/src'
+import type { CSS, MODULES, PLUGINS, UI } from '@create-uni/config/src'
 
 /**
  * 创建项目的基础选项
@@ -23,5 +23,6 @@ export interface CreateCustomOptions extends BaseCreateOptions {
   pluginList?: typeof PLUGINS[number]['value'][]
   moduleList?: typeof MODULES[number]['value'][]
   UIName?: typeof UI[number]['value'] | ' '
+  cssType?: typeof CSS[number]['value'] | ' '
   needsEslint?: boolean
 }

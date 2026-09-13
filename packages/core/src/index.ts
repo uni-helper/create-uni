@@ -13,7 +13,7 @@ import {
 } from 'node:fs'
 import { resolve } from 'node:path'
 import process from 'node:process'
-import { intro, outro, spinner } from '@clack/prompts'
+import { intro, log, outro, spinner } from '@clack/prompts'
 import { generateBanner } from '@create-uni/shared'
 import ejs from 'ejs'
 import { green } from 'kolorist'
@@ -33,6 +33,7 @@ import {
 } from './utils'
 import { postOrderDirectoryTraverse } from './utils/directoryTraverse'
 import {
+  validateCssType,
   validateModules,
   validatePlugins,
   validateTemplateType,
@@ -47,6 +48,7 @@ async function init() {
       pluginList: ['p'],
       moduleList: ['m'],
       UIName: ['ui', 'u'],
+      cssType: ['css', 'c'],
       needsEslint: ['eslint', 'e'],
       help: ['h', 'help'],
       info: ['info', 'i'],
@@ -78,6 +80,7 @@ async function init() {
   else if (argv._[0]) {
     const templateType = validateTemplateType(argv.templateType)
     const UIName = validateUIName(argv.UIName)
+    const cssType = validateCssType(argv.cssType)
     const pluginList = validatePlugins(argv.pluginList)
     const moduleList = validateModules(argv.moduleList)
 
@@ -91,12 +94,14 @@ async function init() {
       pluginList,
       moduleList,
       UIName,
+      cssType,
       needsEslint: argv['needsEslint'!],
     }
   }
   else if (guiData.projectName) {
     const templateType = validateTemplateType(guiData.useTemplate)
     const UIName = validateUIName(guiData.requireUI)
+    const cssType = validateCssType(guiData.requireCss)
     const pluginList = validatePlugins(guiData.requiredPlugins)
     const moduleList = validateModules(guiData.requiredModules)
     result = {
@@ -107,6 +112,7 @@ async function init() {
       pluginList,
       moduleList,
       UIName,
+      cssType,
       needsEslint: guiData.requireESLint,
     }
   }
@@ -152,7 +158,21 @@ async function init() {
   // Render templates
   render('base')
 
-  const needUnocss = result.moduleList?.includes('unocss') || ['ano'].includes(result.UIName!)
+  // 兼容旧版本中通过 `-m unocss` 选择原子化 CSS 的方式
+  const legacyUnocss = result.moduleList?.includes('unocss')
+  if (legacyUnocss)
+    result.moduleList = result.moduleList!.filter(module => module !== 'unocss')
+
+  let cssType = result.cssType ?? (legacyUnocss ? 'unocss' : null)
+  // ano-ui 是基于 UnoCSS 的组件库，只能搭配 UnoCSS 使用
+  if (result.UIName === 'ano') {
+    if (cssType && cssType !== 'unocss')
+      log.warn(`ano-ui 组件库依赖 UnoCSS，已忽略 ${cssType} 并使用 UnoCSS`)
+    cssType = 'unocss'
+  }
+
+  const needUnocss = cssType === 'unocss'
+  const needTailwindcss = cssType === 'tailwindcss'
   const needUI = Boolean(result.UIName)
 
   // Render Config
@@ -173,12 +193,15 @@ async function init() {
 
   // Render modules
   result.moduleList?.forEach(module => render(`module/${module}`))
-  if (needUnocss && !result.moduleList?.includes('unocss'))
+  if (needUnocss)
     render('module/unocss')
+  if (needTailwindcss)
+    render('module/tailwindcss')
 
   // Render UI
   const UI = {
     unocss: needUnocss,
+    tailwindcss: needTailwindcss,
     [result.UIName!]: needUI,
   }
 

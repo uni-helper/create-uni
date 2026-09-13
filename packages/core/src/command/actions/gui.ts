@@ -1,5 +1,5 @@
 import process from 'node:process'
-import { MODULES, PLUGINS, TEMPLATES, UI } from '@create-uni/config'
+import { CSS, MODULES, PLUGINS, TEMPLATES, UI } from '@create-uni/config'
 import { sync } from 'cross-spawn'
 import { composeCommand } from '../composeCommand'
 
@@ -19,6 +19,7 @@ export function actionGuiCLI() {
     templateList: TEMPLATES,
     plugin: PLUGINS,
     module: MODULES,
+    css: CSS,
     ui: UI,
   })
 

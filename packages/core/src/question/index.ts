@@ -1,6 +1,7 @@
 import type { TemplateValue } from './template/type'
-import { group } from '@clack/prompts'
+import { group, log } from '@clack/prompts'
 import { needsEslint, needsTypeScript } from './choices'
+import cssType from './css'
 import askForceOverwrite from './file'
 import moduleList from './module'
 import projectName from './name'
@@ -17,6 +18,7 @@ export interface Answers {
   pluginList?: string[]
   moduleList?: string[]
   UIName?: string | null
+  cssType?: string | null
   needsEslint?: boolean
 }
 
@@ -50,6 +52,14 @@ export async function question(): Promise<Answers> {
       pluginList,
       moduleList,
       UIName,
+      cssType: ({ results }) => {
+        // ano-ui 是基于 UnoCSS 的组件库，必须搭配 UnoCSS 使用
+        if (results.UIName === 'ano') {
+          log.info('ano-ui 组件库依赖 UnoCSS，已自动选择 UnoCSS')
+          return Promise.resolve('unocss')
+        }
+        return cssType()
+      },
       needsEslint,
     },
     {
