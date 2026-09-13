@@ -19,6 +19,24 @@ function addResolver(plugin: PluginData, resolver: string) {
   }
 }
 
+function addImport(plugin: PluginData, autoImport: string) {
+  if (plugin.initializer == null || plugin.initializer.includes(autoImport)) {
+    return plugin
+  }
+
+  return {
+    ...plugin,
+    initializer: plugin.initializer.replace(
+      /(imports\s*:\s*\[)([\s\S]*?)(\])/,
+      (_, prefix, content, suffix) => {
+        const cont = content.trim()
+
+        return `${prefix}${cont}${cont ? ', ' : ''}${autoImport}${suffix}`
+      },
+    ),
+  }
+}
+
 function mergeExtraConfig(oldConfig: Record<string, any> | null, config: Record<string, any>) {
   return deepMerge(oldConfig || {}, config)
 }
@@ -26,5 +44,6 @@ function mergeExtraConfig(oldConfig: Record<string, any> | null, config: Record<
 export const injectUtils = {
   deepMerge,
   addResolver,
+  addImport,
   mergeExtraConfig,
 }

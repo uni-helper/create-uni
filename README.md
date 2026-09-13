@@ -76,6 +76,7 @@ npx @create-uni/info@latest
 | 插件名 | 描述 | 参数名 |
 | :---: | :---: | :---: |
 | [vite-plugin-uni-components](https://github.com/uni-helper/vite-plugin-uni-components) | 按需自动引入组件 | import |
+| [unplugin-auto-import](https://github.com/unplugin/unplugin-auto-import) | 按需自动引入 API | autoImport |
 | [vite-plugin-uni-pages](https://github.com/uni-helper/vite-plugin-uni-pages) | 提供基于文件系统的路由 | pages |
 | [vite-plugin-uni-layouts](https://github.com/uni-helper/vite-plugin-uni-layouts) | 提供类 nuxt 的 layouts 系统 | layouts |
 | [vite-plugin-uni-manifest](https://github.com/uni-helper/vite-plugin-uni-manifest) | 自动生成 manifest.json 文件 | manifest |

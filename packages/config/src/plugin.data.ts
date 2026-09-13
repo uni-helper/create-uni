@@ -10,6 +10,13 @@ export default [
     github: 'https://github.com/uni-helper/vite-plugin-uni-components',
   },
   {
+    label: rgb(155, 89, 182)('unplugin-auto-import'),
+    value: 'autoImport',
+    name: 'unplugin-auto-import',
+    hint: '按需自动引入 API',
+    github: 'https://github.com/unplugin/unplugin-auto-import',
+  },
+  {
     label: rgb(243, 156, 18)('vite-plugin-uni-pages'),
     value: 'pages',
     name: 'vite-plugin-uni-pages',
