@@ -200,8 +200,7 @@ async function init() {
 
   // Render UI
   const UI = {
-    unocss: needUnocss,
-    tailwindcss: needTailwindcss,
+    atomicCSS: needUnocss || needTailwindcss, // unocss / tailwindcss 共用同一份原子化 CSS 模板（Tailwind 类名方案）
     [result.UIName!]: needUI,
   }
 
