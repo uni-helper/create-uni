@@ -3,6 +3,6 @@
     "@wot-ui/ui": "^2.3.2"
   },
   "devDependencies": {
-    "sass": "^1.104.0"
+    "sass": "^1.104.1"
   }
 }
