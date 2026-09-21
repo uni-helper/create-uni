@@ -1,5 +1,5 @@
 {
   "devDependencies": {
-    "unplugin-auto-import": "^21.0.0"
+    "unplugin-auto-import": "^21.1.0"
   }
 }
