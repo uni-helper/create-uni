@@ -8,14 +8,18 @@ on:
       - '**'
     paths:
       - 'packages/core/**'
-      - .github/workflows/core_test.yml
+      - 'packages/config/**'
+      - 'packages/shared/**'
+      - .github/workflows/core_test_template.yml
 
   pull_request:
     branches:
       - main
     paths:
       - 'packages/core/**'
-      - .github/workflows/core_test.yml
+      - 'packages/config/**'
+      - 'packages/shared/**'
+      - .github/workflows/core_test_template.yml
 
 jobs:
   build:
