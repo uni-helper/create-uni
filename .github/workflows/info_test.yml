@@ -8,6 +8,7 @@ on:
       - '**'
     paths:
       - 'packages/info/**'
+      - 'packages/shared/**'
       - .github/workflows/info_test.yml
 
   pull_request:
@@ -15,6 +16,7 @@ on:
       - main
     paths:
       - 'packages/info/**'
+      - 'packages/shared/**'
       - .github/workflows/info_test.yml
 
 jobs:
