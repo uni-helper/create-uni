@@ -12,7 +12,8 @@ it('promptBuilder', () => {
     - uniUse: uni-app 组合式工具集
     - uniPromises: uni-app promise 化的 API
     - uniEcharts: 适用于 uni-app 的 Apache ECharts 组件
-    - zPaging: 高性能、全平台兼容的 uni-app 分页组件"
+    - zPaging: 高性能、全平台兼容的 uni-app 分页组件
+    - uniHighlight: 基于 sugar-high 的 uni-app 轻量级代码高亮组件"
   `)
 
   expect(promptBuilder(UI, '是否需要安装UI组件库')).toMatchInlineSnapshot(`

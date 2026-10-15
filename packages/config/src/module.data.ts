@@ -55,4 +55,11 @@ export default [
     github: 'https://github.com/SmileZXLee/uni-z-paging',
     hint: '高性能、全平台兼容的 uni-app 分页组件',
   },
+  {
+    label: rgb(255, 145, 77)('uni-highlight'),
+    value: 'uniHighlight',
+    name: '@uni-helper/highlight',
+    github: 'https://github.com/uni-helper/highlight',
+    hint: '基于 sugar-high 的 uni-app 轻量级代码高亮组件',
+  },
 ] as const satisfies readonly Options[]

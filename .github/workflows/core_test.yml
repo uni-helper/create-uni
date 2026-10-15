@@ -69,7 +69,7 @@ jobs:
         flag-for-plugin:
           - -p import -p pages -p layouts -p manifest -p filePlatform -p root -p autoImport
             -p componentPlaceholder -m pinia -m uniNetwork -m uniUse
-            -m uniPromises -m uniEcharts -m zPaging -m vitest
+            -m uniPromises -m uniEcharts -m zPaging -m uniHighlight -m vitest
 
         flag-for-ui: ['', -u uni, -u ano, -u wot, -u nut, -u uv, -u tdesign, -u wot2]
 
