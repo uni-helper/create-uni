@@ -22,7 +22,14 @@ jobs:
       - name: update script
         run: pnpm run up
 
+      # 只有 packages/core/template/base/package.json 里的 @dcloudio/uni-app
+      # 版本发生变化时才继续，其它依赖（taze 升的 vue/vite 等）单独变动不提 PR
+      - name: 检测 @dcloudio/uni-app 是否升级
+        id: detect
+        run: node scripts/check-uni-app-upgrade.cjs
+
       - name: Commit and push if changes are made
+        if: steps.detect.outputs.changed == 'true'
         run: |
           git config --global user.email "734243792@qq.com"
           git config --global user.name "FliPPeDround"
@@ -30,6 +37,7 @@ jobs:
           git commit -m "chore: update deps" || echo "No changes to commit"
 
       - name: Create Pull Request
+        if: steps.detect.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.MY_GITHUB_TOKEN }}
