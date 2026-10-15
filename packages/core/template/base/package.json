@@ -44,5 +44,8 @@
     "rollup": "4.14.3",
     "sass": "1.64.2",
     "vite": "5.2.8"
+  },
+  "overrides": {
+    "@dcloudio/types": "$@dcloudio/uni-app"
   }
 }
