@@ -1,1 +1,4 @@
 dangerouslyAllowAllBuilds: true
+strictPeerDependencies: false
+autoInstallPeers: true
+shamefullyHoist: true

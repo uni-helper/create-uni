@@ -30,7 +30,7 @@
     "vue-router": "4.5.1"
   },
   "devDependencies": {
-    "@dcloudio/types": "^3.4.32",
+    "@dcloudio/types": "3.4.31",
     "@dcloudio/uni-automator": "3.0.0-5020620260917001",
     "@dcloudio/uni-cli-shared": "3.0.0-5020620260917001",
     "@dcloudio/uni-stacktracey": "3.0.0-5020620260917001",
@@ -44,8 +44,5 @@
     "rollup": "4.14.3",
     "sass": "1.64.2",
     "vite": "5.2.8"
-  },
-  "overrides": {
-    "@dcloudio/types": "$@dcloudio/uni-app"
   }
 }
