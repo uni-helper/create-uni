@@ -119,6 +119,12 @@ npx @create-uni/info@latest
 | [unocss](https://unocss.dev/) | 即时按需的原子级 CSS 引擎 | unocss |
 | [tailwindcss](https://tw.weapp.dev/) | 通过 weapp-tailwindcss 适配小程序的原子化 CSS 框架 | tailwindcss |
 
+#### 🎨 默认背景
+
+- 图案来源：[Backdrop](https://github.com/FliPPeDround/backdrop) —— 为小程序打造的开箱即用背景图案库
+- 官方预览与更多图案：<https://mpbackdrop.netlify.app/>
+
+
 ## 🤝 参与贡献
 
 - 提交新功能

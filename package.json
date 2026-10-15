@@ -36,6 +36,7 @@
     "release:info": "cd ./packages/info && pnpm release",
     "release:mcp": "cd ./packages/mcp && pnpm release",
     "release:gui": "cd ./packages/gui && pnpm release",
+    "play": "node ./packages/core/dist/outfile.cjs",
     "dev": "turbo run dev",
     "build": "turbo build",
     "lint": "eslint .",

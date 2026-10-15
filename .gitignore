@@ -83,3 +83,6 @@ dist
 # turborepo
 .turbo
 .DS_Store
+
+# play
+uni-app

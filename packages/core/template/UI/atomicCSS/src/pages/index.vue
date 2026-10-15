@@ -2,12 +2,13 @@
 import AppFooter from '@/components/AppFooter.vue'
 import AppLogos from '@/components/AppLogos.vue'
 import InputEntry from '@/components/InputEntry.vue'
+import PageBackground from '@/components/PageBackground.vue'
 </script>
 
 <template>
-  <view class="px-10 py-20 text-center">
+  <PageBackground>
     <AppLogos />
     <InputEntry />
     <AppFooter />
-  </view>
+  </PageBackground>
 </template>
