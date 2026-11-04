@@ -71,7 +71,7 @@ jobs:
             -p componentPlaceholder -m pinia -m uniNetwork -m uniUse
             -m uniPromises -m uniEcharts -m zPaging -m uniHighlight -m vitest
 
-        flag-for-ui: ['', -u uni, -u ano, -u wot, -u nut, -u uv, -u tdesign, -u wot2]
+        flag-for-ui: ['', -u uni, -u ano, -u wot, -u nut, -u uv, -u tdesign, -u wot2, -u hy-app]
 
         node: [24.x]
         os: [windows-latest, macos-latest]
