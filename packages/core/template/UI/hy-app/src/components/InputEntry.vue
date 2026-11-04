@@ -2,10 +2,10 @@
 import { ref } from 'vue'
 
 const name = ref('')
-const popupShow = ref(false)
+const show = ref(false)
 
 function handleClick() {
-  popupShow.value = true
+  show.value = true
 }
 </script>
 
@@ -22,7 +22,7 @@ function handleClick() {
     </hy-button>
   </view>
 
-  <hy-popup v-model="popupShow">
+  <hy-popup :show="show">
     Hello{{ `  ${name}` }} 👏
   </hy-popup>
 </template>

@@ -75,7 +75,7 @@ export default [
     label: rgb(12, 64, 156)('Hy UI'),
     hint: '开箱即用、基于Vue3 + TS 的 uni‑app 组件库，内置i18n、SCSS全局变量',
     name: 'hy-app',
-    value: 'hy',
+    value: 'hy-app',
     github: 'https://github.com/MrGao-hy/hy-design-uni',
     website: 'https://www.hy-design-uni.top/',
   },
