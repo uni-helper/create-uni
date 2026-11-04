@@ -26,7 +26,8 @@ it('promptBuilder', () => {
     - uview-pro: 全面支持 Vue3.0、TypeScript 的 uni-app 生态框架
     - nut: 京东风格的轻量级移动端组件库
     - uv: 多平台快速开发的UI框架
-    - ano: 轻量级、漂亮、快速的 UnoCSS 组件库"
+    - ano: 轻量级、漂亮、快速的 UnoCSS 组件库
+    - hy-app: 开箱即用、基于Vue3 + TS 的 uni‑app 组件库，内置i18n、SCSS全局变量"
   `)
 })
 
@@ -51,6 +52,7 @@ it('getConfigValuesAsEnum', () => {
       "nut",
       "uv",
       "ano",
+      "hy-app",
     ]
   `)
 })
@@ -65,7 +67,8 @@ it('templatePromptBuilder', () => {
     - uview-pro-starter: 由 uView Pro 提供的基于 vitesse-uni-app 的快速启动模板
     - uview-pro-demo: 由 uView Pro 提供的完整组件演示模板
     - unisave: 拥抱 web 开发，拯救uniapp。适配所有 (app、mp、web) 平台
-    - tmui32: 优质 Vue3 TS Pinia Vite 跨端组件库模板"
+    - tmui32: 优质 Vue3 TS Pinia Vite 跨端组件库模板
+    - hy-starter: 由Hy‑App UI提供的快速启动模板"
   `)
 })
 
@@ -80,6 +83,7 @@ it('getTemplateValuesAsEnum', () => {
       "uview-pro-demo",
       "unisave",
       "tmui32",
+      "hy-starter",
     ]
   `)
 })
