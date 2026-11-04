@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "types": [
+      "@hy-app/ui/global.d.ts"
+    ]
+  }
+}
