@@ -95,4 +95,14 @@ export default [
     website: 'https://tmui.design/',
     playground: 'https://tmui.design/h5by32/',
   },
+  {
+    label: `hy-starter`,
+    description: `由${green('Hy‑App UI')}提供的快速启动模板`,
+    value: 'hy-starter',
+    url: {
+      github: 'https://github.com/MrGao-hy/init-uniapp.git',
+    },
+    website: 'https://www.hy-design-uni.top/',
+    playground: 'https://h5.hy-design-uni.top/',
+  },
 ] as TemplateList[]

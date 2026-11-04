@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@hy-app/ui": "^1.1.0"
+  },
+  "devDependencies": {
+    "sass": "^1.101.0"
+  }
+}

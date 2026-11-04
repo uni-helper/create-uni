@@ -70,6 +70,7 @@ npx @create-uni/info@latest
 | [uview-pro-demo](https://github.com/anyup/uView-Pro) | 基于 uView Pro 的完整组件演示模板 | uview-pro-demo |
 | [unisave](https://github.com/sunpm/unisave) | 拥抱 web 开发，拯救 uniapp。适配所有 (app、mp、web) 平台 | unisave |
 | [tmui 3.2](https://tmui.design) | 优质 Vue3 TS Pinia Vite 跨端组件库 | tmui32 |
+| [hy-starter](https://github.com/MrGao-hy/init-uniapp) | 基于 hy-app & vite & uniapp 快速启动模板 | hy-starter |
 
 #### 📦插件列表
 
@@ -109,6 +110,7 @@ npx @create-uni/info@latest
 | [nutui-uniapp](https://uniapp-nutui.tech/) | 京东风格的轻量级移动端组件库 | nut |
 | [uv-ui](https://www.uvui.cn/components/intro.html) | 多平台快速开发的 UI 框架 | uv |
 | [ano-ui](https://ano-ui.netlify.app/) | 轻量级、漂亮、快速的 UnoCSS 组件库 | ano |
+| [hy-app](https://www.hy-design-uni.top/) | 极简美观、原生轻量、AI 开发友好的 UniApp 组件库 | hy-app |
 
 #### 📦原子化CSS列表
 
