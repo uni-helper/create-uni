@@ -1,5 +1,5 @@
 {
   "devDependencies": {
-    "@uni-helper/vite-plugin-uni-manifest": "^0.6.1"
+    "@uni-helper/vite-plugin-uni-manifest": "^0.7.0"
   }
 }
