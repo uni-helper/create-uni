@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 256 256">
+  <title>uni-helper/create-uni logo</title>
+  <rect x="24" y="24" width="208" height="208" rx="48" fill="none" stroke="#2B9939" stroke-width="10"/>
+  <g fill="none" stroke="#2B9939" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 76 92 L 129 128 L 76 164"/>
+  </g>
+  <rect x="147" y="92" width="33" height="72" rx="9" fill="#2B9939"/>
+</svg>
