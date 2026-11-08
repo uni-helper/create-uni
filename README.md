@@ -1,11 +1,39 @@
-<img src='./blink.svg' />
-<a href="https://github.com/uni-helper/create-uni/stargazers"><img src="https://img.shields.io/github/stars/uni-helper/create-uni?colorA=09090b&colorB=fafafa&style=for-the-badge"></a>
-<a href="https://npmx.dev/package/create-uni"><img src="https://img.shields.io/npm/dm/create-uni?colorA=09090b&colorB=fafafa&style=for-the-badge"></a>
-<a href="https://npmx.dev/package/create-uni"><img src="https://img.shields.io/npm/v/create-uni?colorA=09090b&colorB=fafafa&style=for-the-badge"></a>
+<a href="https://github.com/uni-helper/create-uni"><img src="https://cdn.jsdelivr.net/gh/uni-helper/create-uni@main/blink.svg" alt="banner" width="100%"/></a>
 
-<br />
+# create-uni
 
-# 📦 使用
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/gh/uni-helper/create-uni@main/logo.svg" alt="logo" width="256" height="256"/>
+</p>
+
+<p align="center">
+  <a href="https://github.com/uni-helper/create-uni/blob/main/LICENSE"><img src="https://img.shields.io/github/license/uni-helper/create-uni?style=for-the-badge&labelColor=005947&color=eee" alt="License"></a>
+  <a href="https://github.com/uni-helper/create-uni/stargazers"><img src="https://img.shields.io/github/stars/uni-helper/create-uni?style=for-the-badge&labelColor=005947&color=eee" alt="Stars"></a>
+  <a href="https://npmx.dev/package/create-uni"><img src="https://img.shields.io/npm/v/create-uni?style=for-the-badge&labelColor=005947&color=eee" alt="NPM Version"></a>
+  <a href="https://npmx.dev/package/create-uni"><img src="https://img.shields.io/npm/dm/create-uni?style=for-the-badge&labelColor=005947&color=eee" alt="NPM Downloads"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/FliPPeDround"><img src="https://img.shields.io/badge/Author%20%26%20Maintainer-FliPPeDround-blue?style=for-the-badge" alt="Author & Maintainer"></a>
+</p>
+
+一条命令拉起基于 Vite + Vue 3 的 uni-app 项目，模板、插件、模块、组件库和原子化 CSS 都可以在创建时选好。
+
+不想看文档？直接问 AI 🤖 <a href="https://deepwiki.com/uni-helper/create-uni"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
+
+> **请考虑持续[赞助](https://afdian.com/a/flippedround)以维持该项目的持续健康发展，非常感谢！🙏**
+
+## 📖 简介
+
+`create-uni` 是一个用于快速创建 uni-app 项目的轻量脚手架工具，可以直接拉起基于 `vite` 和 `vue3` 的项目，并提供一些模板供选择。
+
+<p align="center"><img src="https://cdn.jsdelivr.net/gh/uni-helper/create-uni@main/.github/image/demo.png"></p>
+
+## 🚤 快速开始
+
+### 交互式创建
+
+不带项目名执行时，脚手架会依次询问项目名、模板和各项配置。
 
 ```shell
 # npm
@@ -20,43 +48,48 @@
 
 > [!IMPORTANT]
 > 建议添加上标记名（@latest），否则 npm 可能会解析到缓存的过时软件包版本。
->
-<!-- <img src='./Terminal.svg' /> -->
 
-## 📖 介绍
+### 命令行创建
 
-`create-uni` 是一个用于快速创建 uni-app 项目的轻量脚手架工具，它可以帮助你快速创建一个基于`vite`和`vue3`的`uni-app`项目，同时提供了一些模板供你选择。
-
-<p align="center"><img  src=".github/image/demo.png"></p>
-
-## 🚤 快速使用
-
-```shell
-pnpm create uni --gui
-```
+配置项全部通过参数传入时，不再进入交互提问。
 
 ```shell
 pnpm create uni <项目名称> --ts -m pinia -m uniUse -u ano -c unocss -e
 ```
 
+### 图形界面
+
+用桌面窗口代替终端提问，适合不想记参数的时候。
+
+```shell
+pnpm create uni --gui
+```
+
+### 检查项目环境
+
 ```shell
 npx @create-uni/info@latest
-# --info  获取当前项目环境信息
 ```
+
+需要在 uni-app 项目根目录下执行；其他目录下会提示未检测到 `@dcloudio/uni-app`，无法收集依赖信息。也可以直接用 `create-uni --info` 调用同一份逻辑。
 
 ### 参数说明
 
 | 配置项 | 参数 | 别名 | 可选值 |
-|  :---: | :---: | :---: | :---: |
-| Template | —— | t | 见[模板列表](#模板列表) |
-| TypeScript | ts | —— | —— |
-| Plugin | pluginList | p | 见[插件列表](#插件列表) |
-| Module | moduleList | m | 见[模块列表](#模块列表) |
-| UI | ui | u | 见[组件列表](#组件列表) |
-| CSS | cssType | c | 见[原子化CSS列表](#原子化css列表) |
-| Eslint | eslint | e | —— |
-| gui | gui | —— | —— |
-| info | info | —— | —— |
+| :---: | :---: | :---: | :---: |
+| 模板 | `--templateType` | `-t` | 见[模板列表](#模板列表) |
+| TypeScript | `--needsTypeScript` | `--ts` | —— |
+| 插件 | `--pluginList` | `-p` | 见[插件列表](#插件列表) |
+| 模块 | `--moduleList` | `-m` | 见[模块列表](#模块列表) |
+| UI | `--UIName` | `--ui`, `-u` | 见[组件列表](#组件列表) |
+| 原子化CSS | `--cssType` | `--css`, `-c` | 见[原子化CSS列表](#原子化css列表) |
+| Eslint | `--needsEslint` | `--eslint`, `-e` | —— |
+| 图形界面 | `--gui` | `-g` | —— |
+| 项目环境信息 | `--info` | `-i` | —— |
+| 覆盖同名目录 | `--force` | `-f` | —— |
+| 帮助 | `--help` | `-h` | —— |
+
+`-p`、`-m`、`-u` 可以重复传多个参数。`--force` 遇到同名目录时直接覆盖，不再询问。
 
 #### 📦模板列表
 
@@ -121,26 +154,43 @@ npx @create-uni/info@latest
 | [unocss](https://unocss.dev/) | 即时按需的原子级 CSS 引擎 | unocss |
 | [tailwindcss](https://tw.weapp.dev/) | 通过 weapp-tailwindcss 适配小程序的原子化 CSS 框架 | tailwindcss |
 
-#### 🎨 默认背景
+## 📦 包
+
+| 包 | 说明 |
+| :---: | :---: |
+| [create-uni](./packages/core) | 脚手架本体，`npm create uni` 跑的就是它 |
+| [@create-uni/info](./packages/info) | 检测 uni-app 项目的依赖、环境与 VSCode 插件情况 |
+| [@create-uni/gui](./packages/gui) | `--gui` 打开的桌面窗口，Rust + WebView 实现 |
+| [@create-uni/mcp](./packages/mcp) | 给 AI 助手用的 MCP 服务，暴露两个创建项目的工具 |
+
+`packages/config`、`packages/shared`、`packages/ui` 是上面几个包共用的内部包，不单独发布。
+
+## 🎨 默认背景
 
 - 图案来源：[Backdrop](https://github.com/FliPPeDround/backdrop) —— 为小程序打造的开箱即用背景图案库
 - 官方预览与更多图案：<https://mpbackdrop.netlify.app/>
 
+## 🛠️ 开发
+
+- Node.js 24+（CI 矩阵，仓库未 pin 具体版本）
+- pnpm 12.3.4（根 `package.json` 的 `packageManager`）
+- Rust stable，仅 `packages/gui` 需要；没有 pin 版本，按当前依赖解析结果需要 1.89+
+
+```shell
+pnpm i            # 安装依赖，postinstall 会把 create-uni、@create-uni/info、@create-uni/gui link 到根目录
+pnpm build:core   # 构建 CLI 到 packages/core/dist/outfile.cjs
+pnpm play         # 用刚构建的产物跑一次，等价于 pnpm create-uni
+```
+
+完整的开发流程、测试方式和提交规范见 [CONTRIBUTING.md](./CONTRIBUTING.md)。
 
 ## 🤝 参与贡献
 
 - 提交新功能
-- 反馈/解决[`issues`](https://github.com/uni-helper/create-uni/issues)
+- 反馈/解决 [`issues`](https://github.com/uni-helper/create-uni/issues)
 - 提交新[`模板`](./packages/config/src/template.data.ts)/[`插件`](./packages/config/src/plugin.data.ts)/[`模块`](./packages/config/src/module.data.ts)/[`组件库`](./packages/config/src/ui.data.ts)
 
-## 🛠️ 开发
-- Node.js 版本 24+
-- Rust 版本 1.64+
-- 必须使用`pnpm`作为包管理工具
-- `Clone`此仓库
-- `pnpm i`安装依赖
-- `pnpm dev`运行
-- 可本地执行`pnpm create-uni`测试
+动手之前请读一遍 [CONTRIBUTING.md](./CONTRIBUTING.md)。
 
 ## 🌸 感谢
 
